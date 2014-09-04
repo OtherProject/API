@@ -1,0 +1,68 @@
+<div class="container api-content">        
+    
+    {if $page.page=='home'}
+        {include file="file:$rootpath/app/view/template/banner.html"}
+    {/if}
+    
+    
+    <div class="row">
+        <div class="col-md-4">
+            <h3>Events</h3>
+            <div class="api-calendar">
+            <div id="mini-clndr">
+                <script id="mini-clndr-template" type="text/template">
+
+                <div class="controls">
+                  <div class="clndr-previous-button">&lsaquo;</div><div class="month"><%= month %></div><div class="clndr-next-button">&rsaquo;</div>
+                </div>
+    
+                <div class="days-container">
+                  <div class="days">
+                    <div class="headers">
+                      <% _.each(daysOfTheWeek, function(day) { %><div class="day-header"><%= day %></div><% }); %>
+                    </div>
+                    <% _.each(days, function(day) { %><div class="<%= day.classes %>" id="<%= day.id %>"><%= day.day %></div><% }); %>
+                  </div>
+                  <div class="events">
+                    <div class="headers">
+                      <div class="x-button">x</div>
+                      <div class="event-header">EVENTS</div>
+                    </div>
+                    <div class="events-list">
+                      <% _.each(eventsThisMonth, function(event) { %>
+                        <div class="event">
+                          <a href="<%= event.url %>"><%= moment(event.date).format('MMMM Do') %>: <%= event.title %></a>
+                        </div>
+                      <% }); %>
+                    </div>
+                  </div>
+                </div>
+    
+              </script>
+            </div>
+            </div>
+        
+        <div class="api-kliping">
+            <h4 class="text-center">Kliping Kegiatan</h4>
+            <div class="kegiatan">
+                <p class="date">Friday, August 29th 2014</p>
+                <a href="#">Keynote Speech at The Sixth Global Forum of the United Nations Alliance of Civilizations (UNAOC)</a>
+            </div>
+            
+            <div class="kegiatan">
+                <p class="date">Friday, August 29th 2014</p>
+                <a href="#">Keynote Speech at The Sixth Global Forum of the United Nations Alliance of Civilizations (UNAOC)</a>
+            </div>
+            
+            <div class="kegiatan">
+                <p class="date">Friday, August 29th 2014</p>
+                <a href="#">Keynote Speech at The Sixth Global Forum of the United Nations Alliance of Civilizations (UNAOC)</a>
+            </div>
+            
+            <div class="kegiatan">
+                <p class="date">Friday, August 29th 2014</p>
+                <a href="#">Keynote Speech at The Sixth Global Forum of the United Nations Alliance of Civilizations (UNAOC)</a>
+            </div>
+        </div>
+        
+        </div>

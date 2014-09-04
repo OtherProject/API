@@ -1,0 +1,160 @@
+p,a{font-size:13px;}
+
+.api-btn{
+    background-color: #96B0FA;
+    color: #FFF;
+}
+
+.api-btn:hover{
+    background-color: #FFF;
+    color: #96B0FA;
+    border: 1px solid #96B0FA;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+}
+.api-header{
+    height: 150px;
+    margin-bottom: 20px;
+    background: #4573f8; /* Old browsers */
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzQ1NzNmOCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMyNDQyOWEiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top,  #4573f8 0%, #24429a 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#4573f8), color-stop(100%,#24429a)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #4573f8 0%,#24429a 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #4573f8 0%,#24429a 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #4573f8 0%,#24429a 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #4573f8 0%,#24429a 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4573f8', endColorstr='#24429a',GradientType=0 ); /* IE6-8 */
+}
+
+.api-navbar{top: 50px;height: 70px;}
+.api-navbar .navbar-brand{height:70px; padding: 15px 45px 15px 0;}
+.api-navbar .navbar-brand img{margin-top:-60px;}
+.navbar-default .navbar-nav > li > a{
+    font-weight: bold; 
+    color:#3961D6;
+    margin-right: 20px;
+}
+
+.navbar-default .navbar-nav > li.active > a, .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus{
+    background-color: transparent;
+    border-bottom: 4px solid #F6831F;
+}
+
+.api-content{
+    max-width: 930px;
+    margin-bottom: 20px;
+}
+.api-content h3{
+    border-bottom: 2px solid #F6831F ;
+    color:#333;
+}
+
+.time-ago{
+    line-height: 20px;
+    margin-top: -20px;
+    padding: 0 10px;
+    position: absolute;
+    z-index: 10;
+    background: none repeat scroll 0 0 #4663B8;
+}
+.time-ago a{color: #FFFFFF;}
+
+.api-calendar{margin-bottom:20px;}
+
+.api-news{
+    margin-bottom: 10px;
+}
+.api-news .title h4{
+    width: 85%;
+    color:#333;
+    font-weight: bold;
+}
+
+.api-news .dateposted p{font-size: 11px;}
+.api-news .more{margin:0 10px 5px 0;}
+.api-news .content img{margin-bottom: 10px;}
+.api-news h3{color: #333;border: none;font-weight: bold;}
+
+.api-kliping{
+    background-color: #D0DCFF;
+    margin-left: 6px;
+    width: 95.2%;
+    border-top: 7px solid #4663B8;
+}
+.api-kliping p.date{
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+.api-kliping a{display: block;}
+.api-kliping .kegiatan{
+    border-top: 1px solid #FFFFFF;
+    padding: 10px;
+}
+.api-kliping .kegiatan:hover{
+    background-color: #8AA7FD;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+}
+.api-kliping .kegiatan:hover a{color: #FFF;}
+
+.api-kliping .kegiatan a{text-decoration: none;}
+
+.api-anggota .more{
+    display: block;
+    text-decoration: none;
+    background-color: #111;
+    padding: 10px 10px 0 10px;
+    font-size: 13px;
+    color: #FFF;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+}
+
+.api-anggota .more:hover{
+    background-color: #2B4CAC;
+}
+
+.api-anggota{
+    background-color: #EEE;
+    margin-bottom: 15px;
+    margin-right:10px;
+    width: 48%;    
+}
+.api-anggota .title{
+    padding:10px 10px 0 0;
+    color:#2B4CAC;
+    font-weight: bold;
+}
+.api-anggota .image{padding:10px 10px 0 10px}
+.api-anggota .content{color:#646464;font-weight: normal;font-size:12px;}
+.api-anggota .more{
+    font-size: 12px; 
+    margin-right: -15px;
+    padding-bottom:10px;}
+
+.api-footer{
+    background-color: #d8dfdd;
+    margin-bottom:20px;
+    padding: 10px 10px 0 10px;
+    font-size: 10px;
+}
+
+.api-separator{border:1px dotted #F6831F; margin-bottom:0;}
+
+/** CUSTOM CLNDR CSS **/
+#mini-clndr .clndr .controls {background-color: #4472F7;}
+#mini-clndr .clndr .days-container .days .headers, #mini-clndr .clndr .days-container .events .event-header {background-color: #B2C5FF;}
+#mini-clndr .clndr {border-bottom: 7px solid #4663B8;}
+
+/** Bootstrap Custom CSS **/
+
+
+@media (min-width: 768px){
+    .navbar-nav > li > a {
+        padding: 25px 20px 5px;
+    }
+}

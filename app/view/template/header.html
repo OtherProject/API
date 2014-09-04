@@ -1,0 +1,48 @@
+<div class="api-header">
+    <div class="navbar navbar-default navbar-static-top api-navbar" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><img src="{$basedomain}assets/img/logo.png" /></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="{if $page.page=='home'}active{/if}"><a href="{$basedomain}">HOME</a></li>
+            <li class="dropdown {if $page.page=='organisasi'}active{/if}">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">TENTANG ORGANISASI <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="{$basedomain}organisasi/profile">Profile</a></li>
+                <li><a href="{$basedomain}organisasi/struktur_organisasi">Struktur Organisasi</a></li>
+                <li><a href="{$basedomain}organisasi/anggota">Anggota</a></li>
+                <li><a href="{$basedomain}organisasi/afiliasi">Afiliasi</a></li>
+              </ul>
+            </li>
+            <li class="dropdown {if $page.page=='news'}active{/if}">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">NEWS <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="{$basedomain}news/agenda">Agenda</a></li>
+                <li><a href="{$basedomain}news/kliping_kegiatan">Kliping Kegiatan</a></li>
+                <li><a href="{$basedomain}news/berita">Berita</a></li>
+              </ul>
+            </li>
+            <li class="dropdown {if $page.page=='direktori'}active{/if}">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">DIREKTORI <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="{$basedomain}kepakaran">Kepakaran</a></li>
+                <li><a href="{$basedomain}buah_pikir">Buah Pikir</a></li>
+                <li><a href="{$basedomain}perundang_undangan">Perundang-undangan</a></li>
+                <li><a href="{$basedomain}repository">Repository</a></li>
+              </ul>
+            </li>
+            <li class="{if $page.page=='gallery'}active{/if}"><a href="{$basedomain}gallery">GALLERY</a></li>
+            <li class="{if $page.page=='login'}active{/if}"><a href="{$basedomain}login">LOGIN</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+</div>

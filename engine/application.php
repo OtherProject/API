@@ -105,7 +105,7 @@ class Application {
 	function loadView($fileName='home', $data="")
 	{
 		
-		global $CONFIG, $basedomain, $app_domain;
+		global $CONFIG, $basedomain, $rootpath, $app_domain;
 		
 		if ($fileName == "") return false;
 		if (array_key_exists('admin', $CONFIG)){
@@ -131,6 +131,7 @@ class Application {
 		if (!$this->view) $this->view = $this->setSmarty();
 		
 		$this->view->assign('basedomain',$basedomain);
+        $this->view->assign('rootpath',$rootpath);
 		
 		/* include file view */
 		if (is_file(APP_VIEW.$fileName.$html_ext)) {

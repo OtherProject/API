@@ -1,6 +1,6 @@
 <?php
 
-class home extends Controller {
+class news extends Controller {
 	
 	var $models = FALSE;
 	var $view;
@@ -19,8 +19,16 @@ class home extends Controller {
         //$this->models = $this->loadModel('frontend');
 	}
 	
-	function index(){
-    	return $this->loadView('home');
+	function kliping_kegiatan(){
+    	return $this->loadView('news/kliping_kegiatan');
+    }
+    
+    function berita(){
+    	return $this->loadView('news/berita');
+    }
+    
+    function berita_detail(){
+    	return $this->loadView('news/berita_detail');
     }
 }
 
