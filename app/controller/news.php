@@ -18,6 +18,10 @@ class news extends Controller {
 	{
         //$this->models = $this->loadModel('frontend');
 	}
+    
+    function agenda(){
+    	return $this->loadView('news/agenda');
+    }
 	
 	function kliping_kegiatan(){
     	return $this->loadView('news/kliping_kegiatan');

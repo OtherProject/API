@@ -8,9 +8,10 @@
     <!-- HEADER DEFAULT -->
     {include file="template/header.html"}
     
-    <!-- SIDEBAR -->
-    {include file="template/sidebar.html"}
-    
+    {if $page.function != 'agenda'}
+        <!-- SIDEBAR -->
+        {include file="template/sidebar.html"}
+    {/if}
     <!-- CONTENT -->
 	{$content}
 	
