@@ -8,7 +8,7 @@
     <!-- HEADER DEFAULT -->
     {include file="template/header.html"}
     
-    {if $page.function != 'agenda'}
+    {if $page.function != 'agenda' AND $page.page != 'gallery'}
         <!-- SIDEBAR -->
         {include file="template/sidebar.html"}
     {/if}

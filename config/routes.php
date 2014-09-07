@@ -8,6 +8,8 @@
 $ROUTES = array(
 		'home',
 		'organisasi',
-        'news'
+        'news',
+        'kepakaran',
+        'gallery'
         );
 ?>
