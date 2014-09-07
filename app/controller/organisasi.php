@@ -34,6 +34,10 @@ class organisasi extends Controller {
     function anggota(){
         return $this->loadView('organisasi/anggota');
     }
+    
+    function anggota_view(){
+        return $this->loadView('organisasi/anggota-view');
+    }
 }
 
 ?>
