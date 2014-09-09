@@ -51,6 +51,10 @@
     <script src="{$basedomain}plugin/bootstrap-image-gallery-3.1.1/js/jquery.blueimp-gallery.min.js"></script>
     <script src="{$basedomain}plugin/bootstrap-image-gallery-3.1.1/js/bootstrap-image-gallery.min.js"></script>
     
+    <!-- Datatables JS -->
+    <script src="{$basedomain}plugin/datatable/js/jquery.dataTables.min.js"></script>
+    <script src="{$basedomain}plugin/datatable/js/dataTables.bootstrap.js"></script>
+    
     
 <literal>    
     <script type="text/javascript">
@@ -120,16 +124,14 @@
 					start: '2014-09-12T20:00:00'
 				},
 				{
-					title: 'Birthday Party',
-					start: '2014-09-13T07:00:00'
-				},
-				{
 					title: 'Click for Google',
 					url: 'http://google.com/',
 					start: '2014-09-28'
 				}
 			]
-		});   
+		});
+        // INITIATE DATATABLE
+            $('.table').dataTable();   
     });
     </script>
 </literal>

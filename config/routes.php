@@ -9,7 +9,7 @@ $ROUTES = array(
 		'home',
 		'organisasi',
         'news',
-        'kepakaran',
+        'direktori',
         'gallery'
         );
 ?>

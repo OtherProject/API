@@ -37,14 +37,15 @@ p,a{font-size:13px;}
     margin-right: 20px;
 }
 
-.navbar-default .navbar-nav > li.active > a, .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus{
-    background-color: transparent;
-    border-bottom: 4px solid #F6831F;
+.navbar-default .navbar-nav > li.active > a, .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:active{
+    background-color: transparent !important;
+    border-bottom: 4px solid #F6831F !important;
 }
 
 .api-content{
     max-width: 930px;
     margin-bottom: 20px;
+    min-height: 400px;
 }
 .api-content h3{
     border-bottom: 1px solid #FFC18B;
@@ -64,44 +65,44 @@ p,a{font-size:13px;}
 
 .api-calendar{margin-bottom:20px;}
 
-.api-news{
+.api-news, .api-kliping, .api-buah_pikir, .api-perundangan{
     margin-bottom: 10px;
 }
-.api-news .title h4{
+.api-news .title h4, .api-kliping .title h4, .api-buah_pikir .title h4, .api-perundangan .title h4{
     width: 85%;
     color:#333;
     font-weight: bold;
 }
 
-.api-news .dateposted p{font-size: 11px;}
-.api-news .more{margin:0 10px 5px 0;}
-.api-news .content img{margin-bottom: 10px;}
-.api-news h3{color: #333;border: none;font-weight: bold;}
+.api-news .dateposted p, .api-kliping .dateposted p, .api-buah_pikir .dateposted p, .api-perundangan .dateposted p{font-size: 11px;}
+.api-news .more, .api-kliping .more, .api-buah_pikir .more, .api-perundangan .more{margin:0 10px 5px 0;}
+.api-news .content img, .api-kliping .content img, .api-buah_pikir .content img, .api-perundangan .content img{margin-bottom: 10px;}
+.api-news h3, .api-kliping h3, .api-buah_pikir h3, .api-perundangan h3{color: #333;border: none;font-weight: bold;}
 
-.api-kliping{
+.api-kliping-side{
     background-color: #D0DCFF;
     margin-left: 6px;
     width: 95.2%;
     border-top: 7px solid #4663B8;
 }
-.api-kliping p.date{
+.api-kliping-side p.date{
     font-size: 12px;
     margin-bottom: 5px;
 }
-.api-kliping a{display: block;}
-.api-kliping .kegiatan{
+.api-kliping-side a{display: block;}
+.api-kliping-side .kegiatan{
     border-top: 1px solid #FFFFFF;
     padding: 10px;
 }
-.api-kliping .kegiatan:hover{
+.api-kliping-side .kegiatan:hover{
     background-color: #8AA7FD;
     -webkit-transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
     -o-transition: all .2s ease-in-out;
 }
-.api-kliping .kegiatan:hover a{color: #FFF;}
+.api-kliping-side .kegiatan:hover a{color: #FFF;}
 
-.api-kliping .kegiatan a{text-decoration: none;}
+.api-kliping-side .kegiatan a{text-decoration: none;}
 
 .api-anggota .more{
     display: block;
