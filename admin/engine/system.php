@@ -10,6 +10,7 @@ define ('CODEKIR', true);
 define ('LIBS', 'libs/');
 define ('LOGS', 'logs/');
 define ('TMP', 'tmp/');
+define ('CACHE', 'cache/');
 
 require_once (COREPATH.'loader.php');
 

@@ -10,6 +10,28 @@ function base_url() {
 	return $base_url;
 }
 
+function dateFormat($date,$type=false,$locale='id_ID.utf8'){
+		
+		/* ex : dateFormat(<any type of date>, 'dd-mm-yyyy') */
+
+		if($date =='') exit('Date not complete');
+
+		setlocale (LC_TIME, 'id_ID.utf8');
+		
+		if($type == 'dd-mm-yyyy'){
+			return strftime( "%d-%m-%Y", strtotime($date));
+		} 
+		if($type == 'dd/mm/yyyy'){
+			return strftime( "%d/%m/%Y", strtotime($date));
+		} 
+		elseif ($type == 'article-day') {
+			return strftime( "%A, %d %B %Y", strtotime($date));
+		}
+		elseif ($type == 'article') {
+			return strftime( "%d %B %Y", strtotime($date));
+		}
+	}
+	
 function change_date_simple($date_data, $type, $order_by)
 {
 	/* ex : change_date_to_slash('2012-01-01', 'slash', 'by_date') */
