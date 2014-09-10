@@ -1,33 +1,58 @@
 <?php
 class mprofile extends Database {
 	
-	function get_profile()
+	var $session;
+	function __construct()
 	{
-		$query = "SELECT id,title,brief,content,tags FROM cdc_news_content WHERE n_status = '3'";
-		$res = $this->fetch($query,1);
-		if ($res) return $res;
+
+		$this->session = new Session;
+	}
+
+	function updSettings($data,$id)
+	{
+		
+		foreach ($data as $key => $val) {
+			$tmpset[] = $key."='{$val}'";
+		}
+
+		$set = implode(',',$tmpset);
+
+		$query = "UPDATE admin_member SET {$set} WHERE id = {$id}";
+
+		$result = $this->query($query);
+
+		return true;
+	}
+
+	function updSess($data)
+	{
+		// pr($_POST);exit;
+		$username = $data['username'];
+		$password = $data['password'];
+		
+		// pr($data);		
+		
+		$sql = "SELECT * FROM admin_member WHERE username = '{$username}' LIMIT 1";
+		// pr($sql);exit;
+		$res = $this->fetch($sql,0,0);
+		// pr($res);
+		if ($res){
+			$salt = $password;
+			// pr($salt);exit;
+			// $getRule = "SELECT * FROM cdc_group_rule WHERE groupID = {$res['usertype']} LIMIT 1 ";
+			// $res['rule'] = $this->fetch($getRule);
+			// pr($res);
+			// exit;
+			if ($res['password'] == $salt){
+				// $_SESSION['admin'] = $res;
+
+				$this->session->set_session($res);
+				return true;
+			}
+		}		
+		
 		return false;
 	}
 	
-	function profile_inp($brief,$content,$title,$id,$tags,$action)
-	{
-		if($action == 'insert'){
-			$query = "INSERT INTO 
-						cdc_news_content (title,brief,content,tags,n_status)
-						VALUES
-							('{$title}','{$brief}','{$content}','{$tags}','3')";
-		} else {
-			$query = "UPDATE cdc_news_content
-						SET
-							title = '{$title}',
-							brief = '{$brief}',
-							content = '{$content}'
-						WHERE
-							id = '{$id}'";
-		}
-		$result = $this->query($query);
-		
-		return $result;
-	}
 }
 ?>

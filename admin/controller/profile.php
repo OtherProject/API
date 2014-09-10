@@ -1,5 +1,5 @@
 <?php
-defined ('MICRODATA') or exit ( 'Forbidden Access' );
+// defined ('MICRODATA') or exit ( 'Forbidden Access' );
 
 class profile extends Controller {
 	
@@ -9,69 +9,68 @@ class profile extends Controller {
 	{
 		parent::__construct();
 		$this->loadmodule();
-		
+		$this->view = $this->setSmarty();
+		$sessionAdmin = new Session;
+		$this->admin = $sessionAdmin->get_session();
 		// $this->validatePage();
 	}
 	public function loadmodule()
 	{
 		
 		$this->models = $this->loadModel('mprofile');
+
 	}
 	
 	public function index(){
-       
-		$data = $this->models->get_profile();
-		// pr($data);
-		return $this->loadView('viewprofile',$data);
+		    
+		$this->view->assign('admin',$this->admin['admin']);
+		return $this->loadView('inputuser');
 
 	}
     
-	public function profileinp(){
-		global $CONFIG;
+	public function setting(){
+		global $CONFIG,$basedomain;
+		
+		$id = $this->admin['admin']['id'];
+		$x = form_validation($_POST);
+		unset($x['token']);
+		if(isset($_POST['old_password'])){
+			
+			$old_password = sha1($x['old_password'].$this->admin['admin']['salt']);
 
-		if(isset($_POST)){
-                // validasi value yang masuk
-               $x = form_validation($_POST);
+			if($old_password == $this->admin['admin']['password']){
+				
+				unset($x['old_password']);
+				unset($x['repassword']);
+				
 
-			   $action_tentang = 'insert';
-			   $action_sejarah = 'insert';
-			   $action_visi = 'insert';
-			   $action_misi = 'insert';
+				$x['password'] = sha1($x['password'].$this->admin['admin']['salt']);
 
-			   try
-			   {
-			   		if(isset($x) && count($x) != 0)
-			   		{
-						//update or insert tentang
-						if($x['id_tentang'] != ''){
-							$action_tentang = 'update';
-						}
-						$data = $this->models->profile_inp($x['header_tentang'],$x['tentang'],$x['title_tentang'],$x['id_tentang'],$x['tags_tentang'],$action_tentang);
-						
-						//update or insert sejarah
-						if($x['id_sejarah'] != ''){
-							$action_sejarah = 'update';
-						}
-						$data = $this->models->profile_inp($x['header_sejarah'],$x['sejarah'],$x['title_sejarah'],$x['id_sejarah'],$x['tags_sejarah'],$action_sejarah);
-						
-						//update or insert visi
-						if($x['id_visi'] != ''){
-							$action_visi = 'update';
-						}
-						$data = $this->models->profile_inp($x['header_visi'],$x['visi'],$x['title_visi'],$x['id_visi'],$x['tags_visi'],$action_visi);
-						
-						//update or insert sejarah
-						if($x['id_misi'] != ''){
-							$action_misi = 'update';
-						}
-						$data = $this->models->profile_inp($x['header_visi'],$x['misi'],$x['title_visi'],$x['id_misi'],$x['tags_misi'],$action_misi);
-			   		}
-				   	
-			   }catch (Exception $e){}
-			   
-            echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."profile/index'</script>";
-            }
+			} else {
+				echo "<script>alert('Denied. Wrong password');window.location.href='".$CONFIG['admin']['base_url']."profile'</script>";
+			}
+		} else {
+			$x['password'] = $this->admin['admin']['password'];
+		}
+		
+		$data = $this->models->updSettings($x,$id);
+
+
+		if (_p('token')){
+
+			$getUser = $this->models->updSess($x);
+
+			if ($getUser){
+				echo "<script>alert('Settings has been saved.');window.location.href='".$CONFIG['admin']['base_url']."profile'</script>";
+			}else{
+				redirect($basedomain.$CONFIG['admin']['login']);
+			}
+			
+			exit;
+		}
+
 	}
+
 }
 
 ?>
