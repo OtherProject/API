@@ -1,21 +1,15 @@
 
-{include file="meta.html"}
+{include file="template/meta.html"}
 <body>
-	<!-- RUNNING GLOBAL VAR -->
-	<script>
-		var basedomain = "{$basedomain}";
-	</script>
-	
-	
 	<div id="wrapper">
 	<!-- HEADER -->
 		
 		{if ($admin)}
 
-		{include file= "header.html"} 
-		{include file= "jsplugin.html"} 
-		{include file= "top-bar.html"} 
-		{include file= "sidebar.html"} 
+		{include file= "template/header.html"} 
+		{include file= "template/jsplugin.html"} 
+		{include file= "template/top-bar.html"} 
+		{include file= "template/sidebar.html"} 
 		
 		<div id="content">
 			{$content}
@@ -32,3 +26,13 @@
 
 </body> 
 </html>
+
+<script type="text/javascript">
+    /*$(document).ready(function() {
+        $('.table').dataTable( {
+            "language": {
+                "url": "{$basedomain}addons/datatable/Indonesian.lang"
+            }
+        } );
+    } );*/
+</script>

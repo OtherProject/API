@@ -1,0 +1,161 @@
+
+<div id="sidebar-wrapper" class="collapse sidebar-collapse">
+	
+	<div id="search">
+		<form>
+			<input class="form-control input-sm" type="text" name="search" placeholder="Search..." />
+
+			<button type="submit" id="search-btn" class="btn"><i class="fa fa-search"></i></button>
+		</form>		
+	</div> <!-- #search -->
+
+	<nav id="sidebar">		
+		
+		<ul id="main-nav" class="open-active">			
+			
+			
+			<li class="dropdown {if $page.page=='home' || $page.page=='article'}active{/if}">
+				<a href="javascript:;">
+					<i class="fa fa-file-text"></i>
+					News Article
+					<span class="caret"></span>
+				</a>				
+				<ul class="sub-nav">
+					<li>
+						<a href="{$basedomain}article/addarticle">
+							<i class="fa fa-plus"></i> 
+							Tambah Artikel
+						</a>
+					</li>
+					<li>
+						<a href="{$basedomain}home">
+							<i class="fa fa-list-alt"></i> 
+							List Artikel
+						</a>
+					</li>
+					<li>
+						<a href="{$basedomain}article/trash">
+							<i class="fa fa-trash-o"></i>
+							Sampah
+						</a>			
+					</li>
+				</ul>
+			</li>
+            
+            <li class="dropdown {if $page.page=='repository'}active{/if}">
+				<a href="javascript:;">
+					<i class="fa fa-file-text"></i>
+					Repository 
+					<span class="caret"></span>
+				</a>				
+				<ul class="sub-nav">
+				    <li>
+						<a href="{$basedomain}repository">
+							<i class="fa fa-list-alt"></i> 
+							List Repository
+						</a>
+					</li>
+                    <li>
+						<a href="#">
+							<i class="fa fa-list-alt"></i> 
+							Gallery Gambar
+						</a>
+					</li>
+				</ul>
+			</li>
+            
+            <li class="dropdown">
+				<a href="javascript:;">
+					<i class="fa fa-file-text"></i>
+					Tentang Organisasi 
+					<span class="caret"></span>
+				</a>				
+				<ul class="sub-nav">
+				    <li>
+						<a href="#">
+							<i class="fa fa-list-alt"></i> 
+							Profil
+						</a>
+					</li>
+                    <li>
+						<a href="#">
+							<i class="fa fa-list-alt"></i> 
+							Struktur Organisasi
+						</a>
+					</li>
+                    <li>
+						<a href="#">
+							<i class="fa fa-list-alt"></i> 
+							Anggota
+						</a>
+					</li>
+                    <li>
+						<a href="#">
+							<i class="fa fa-list-alt"></i> 
+							Afiliasi
+						</a>
+					</li>
+				</ul>
+			</li>
+            
+            <li class="dropdown">
+				<a href="javascript:;">
+					<i class="fa fa-file-text"></i>
+					Direktori
+					<span class="caret"></span>
+				</a>				
+				<ul class="sub-nav">
+				    <li>
+						<a href="#">
+							<i class="fa fa-list-alt"></i> 
+							Kepakaran
+						</a>
+					</li>
+                    <li>
+						<a href="#">
+							<i class="fa fa-list-alt"></i> 
+							Buah Pikir
+						</a>
+					</li>
+                    <li>
+						<a href="#">
+							<i class="fa fa-list-alt"></i> 
+							Perundang-Undangan
+						</a>
+					</li>
+				</ul>
+			</li>
+
+			{*}
+			<li class="dropdown">
+				<a href="javascript:;">
+					<i class="fa fa-picture-o"></i>
+					Upload Frame & Cover 
+					<span class="caret"></span>
+				</a>				
+				<ul class="sub-nav">
+					<li>
+						<a href="{$basedomain}article/upload">
+							<i class="fa fa-facebook"></i> 
+							Facebook
+						</a>
+					</li>
+					<li>
+						<a href="{$basedomain}article/uploadtwt">
+							<i class="fa fa-twitter"></i> 
+							Twitter
+						</a>
+					<li>
+						<a href="{$basedomain}home/frame">
+							<i class="fa fa-list-alt"></i> 
+							Frame List
+						</a>
+					</li>
+				</ul>
+			</li>	
+			{/*}
+		</ul>
+				
+	</nav> <!-- #sidebar -->
+
+</div> <!-- /#sidebar-wrapper -->

@@ -10,3 +10,5 @@ admin/cache/*
 admin/CACHE/*
 admin/logs/*
 dashboard/config/config.php
+admin/engine
+

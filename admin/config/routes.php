@@ -7,5 +7,6 @@
 
 $ROUTES = array(
 				'home',
+                'repository',
                 );
 ?>

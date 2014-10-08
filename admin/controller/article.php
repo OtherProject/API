@@ -37,7 +37,7 @@ class article extends Controller {
 		} 
 
 		$this->view->assign('admin',$this->admin['admin']);
-		return $this->loadView('inputarticle');
+		return $this->loadView('article/inputarticle');
 	}
     
 	public function articleinp(){
@@ -122,7 +122,7 @@ class article extends Controller {
 		$this->view->assign('active','active');
 		$this->view->assign('data',$data);
 
-		return $this->loadView('viewtrash');
+		return $this->loadView('article/viewtrash');
 
 	}
 	
@@ -151,13 +151,13 @@ class article extends Controller {
 
 	public function upload(){
 
-		return $this->loadView('uploadFrame');
+		return $this->loadView('article/uploadFrame');
 
 	}
 
 	public function uploadtwt(){
 
-		return $this->loadView('uploadFrameTwt');
+		return $this->loadView('article/uploadFrameTwt');
 
 	}
 
