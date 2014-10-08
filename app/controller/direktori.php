@@ -24,7 +24,7 @@ class direktori extends Controller {
     }
     
     function kepakaran(){
-    	//return $this->loadView('gallery/image-view');
+    	return $this->loadView('direktori/kepakaran');
     }
     
     function buah_pikir(){
