@@ -14,10 +14,10 @@
 		<ul id="main-nav" class="open-active">			
 			
 			
-			<li class="dropdown active">
+			<li class="dropdown {if $page.page=='home' || $page.page=='article'}active{/if}">
 				<a href="javascript:;">
 					<i class="fa fa-file-text"></i>
-					News Article 
+					News Article
 					<span class="caret"></span>
 				</a>				
 				<ul class="sub-nav">
@@ -42,7 +42,7 @@
 				</ul>
 			</li>
             
-            <li class="dropdown active">
+            <li class="dropdown {if $page.page=='repository'}active{/if}">
 				<a href="javascript:;">
 					<i class="fa fa-file-text"></i>
 					Repository 
@@ -64,7 +64,7 @@
 				</ul>
 			</li>
             
-            <li class="dropdown active">
+            <li class="dropdown">
 				<a href="javascript:;">
 					<i class="fa fa-file-text"></i>
 					Tentang Organisasi 
@@ -98,7 +98,7 @@
 				</ul>
 			</li>
             
-            <li class="dropdown active">
+            <li class="dropdown">
 				<a href="javascript:;">
 					<i class="fa fa-file-text"></i>
 					Direktori

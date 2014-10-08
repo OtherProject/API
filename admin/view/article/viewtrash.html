@@ -26,7 +26,7 @@
 
 					<h3>
 						<i class="fa fa-table"></i>
-						Deleted Articles List
+						Artikel Dihapus
 					</h3>
 
 				</div> <!-- /.portlet-header -->
@@ -35,9 +35,9 @@
 
 					<div class="table-responsive">
 
-					<form action="{$basedomain}article/articlerest" method=POST name="checks" ID="Form2" onsubmit="return confirm('Are you sure want to restore?');">
+					<form action="{$basedomain}article/articlerest" method=POST name="checks" ID="Form2" onsubmit="return confirm('Yakin ingin mengembalikan artikel?');"> <!-- Are you sure want to restore -->
 
-					<button type="submit" class="btn btn-success btn-sm" id="btn-dis" disabled><i class="fa fa-trash-o"></i> Restore</button>
+					<button type="submit" class="btn btn-success btn-sm" id="btn-dis" disabled><i class="fa fa-trash-o"></i> Kembalikan</button>
 					
 					<table 
 						class="table table-striped table-bordered table-hover table-highlight table-checkable" 
@@ -51,9 +51,9 @@
 									<th class="checkbox-column">
 										<input type="checkbox" class="icheck-input" onchange="return AreAnyCheckboxesChecked();">
 									</th>
-									<th data-filterable="true" data-sortable="true" data-direction="desc">Title</th>
+									<th data-filterable="true" data-sortable="true" data-direction="desc">Judul</th>
 									<th data-filterable="true" data-sortable="true" data-direction="desc">Status</th>
-									<th data-direction="asc" data-filterable="true" data-sortable="true">Created Date</th>
+									<th data-direction="asc" data-filterable="true" data-sortable="true">Tanggal Buat</th>
 									<th data-filterable="true" data-sortable="true">Author</th>
 								</tr>
 							</thead>
