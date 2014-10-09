@@ -48,6 +48,7 @@ class article extends Controller {
 		} else {
 			$_POST['n_status']=0;
 		}
+        
 		if(isset($_POST['articletype'])){
 			if($_POST['articletype']=='on') {
 				if($_POST['articleid_old']!=0){
@@ -83,7 +84,6 @@ class article extends Controller {
 								$x['image'] = $image['full_name'];
 							}
 						}
-						
 						$data = $this->models->article_inp($x);
 			   		}
 				   	

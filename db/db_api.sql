@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10deb1
+-- version 4.1.7
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Aug 01, 2014 at 04:09 PM
--- Server version: 5.5.37-0ubuntu0.14.04.1
--- PHP Version: 5.5.9-1ubuntu4.3
+-- Host: 127.0.0.1
+-- Generation Time: 09 Okt 2014 pada 14.51
+-- Versi Server: 5.6.16
+-- PHP Version: 5.5.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `db_api`
+-- Database: `project_api`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `activity_log`
+-- Struktur dari tabel `activity_log`
 --
 
 CREATE TABLE IF NOT EXISTS `activity_log` (
@@ -40,7 +40,33 @@ CREATE TABLE IF NOT EXISTS `activity_log` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `api_category`
+-- Struktur dari tabel `admin_member`
+--
+
+CREATE TABLE IF NOT EXISTS `admin_member` (
+  `id` int(15) NOT NULL AUTO_INCREMENT,
+  `name` varchar(46) DEFAULT NULL,
+  `nickname` varchar(50) DEFAULT NULL,
+  `email` varchar(200) DEFAULT NULL,
+  `register_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `username` varchar(46) DEFAULT NULL,
+  `salt` varchar(200) DEFAULT NULL,
+  `password` varchar(200) DEFAULT NULL,
+  `n_status` int(3) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data untuk tabel `admin_member`
+--
+
+INSERT INTO `admin_member` (`id`, `name`, `nickname`, `email`, `register_date`, `username`, `salt`, `password`, `n_status`) VALUES
+(1, 'admin', 'admin', 'admin@example.com', '2014-08-08 05:56:36', 'admin', 'codekir v3.0', '101cebd12fd19cc458caa73359c02624a71f5da3', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `api_category`
 --
 
 CREATE TABLE IF NOT EXISTS `api_category` (
@@ -57,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `api_category` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `api_member_interest`
+-- Struktur dari tabel `api_member_interest`
 --
 
 CREATE TABLE IF NOT EXISTS `api_member_interest` (
@@ -72,7 +98,35 @@ CREATE TABLE IF NOT EXISTS `api_member_interest` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `api_news_content`
+-- Struktur dari tabel `api_news_category`
+--
+
+CREATE TABLE IF NOT EXISTS `api_news_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `catName` varchar(100) DEFAULT NULL,
+  `n_status` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+--
+-- Dumping data untuk tabel `api_news_category`
+--
+
+INSERT INTO `api_news_category` (`id`, `catName`, `n_status`) VALUES
+(1, 'Artikell', 1),
+(2, 'Agenda', 1),
+(3, 'Tentang', 1),
+(4, 'Afiliasi', 1),
+(5, 'Kepakaran', 1),
+(6, 'Buah Pikir', 1),
+(7, 'Perundangan', 1),
+(8, 'Repositori', 1),
+(9, 'Gallery', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `api_news_content`
 --
 
 CREATE TABLE IF NOT EXISTS `api_news_content` (
@@ -121,12 +175,24 @@ CREATE TABLE IF NOT EXISTS `api_news_content` (
   KEY `topcontent` (`topcontent`),
   KEY `sourceurl_2` (`sourceurl`),
   KEY `can_save` (`can_save`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data untuk tabel `api_news_content`
+--
+
+INSERT INTO `api_news_content` (`id`, `parentid`, `lid`, `title`, `brief`, `content`, `image`, `thumbnail_image`, `slider_image`, `categoryid`, `articleType`, `url`, `sourceurl`, `file`, `created_date`, `expired_date`, `posted_date`, `fromwho`, `filesize`, `can_save`, `tags`, `authorid`, `n_status`, `topcontent`) VALUES
+(1, 0, 0, 'Test1', 'brief ini apa', 'deskripsi nya agimana&lt;span style=&quot;color:rgb(106,168,79);&quot;&gt;asfl askjfn&amp;nbsp;&lt;/span&gt;', '', '', '', 0, 0, '', '', '', '2014-10-03 06:29:54', '0000-00-00 00:00:00', '2014-10-03 06:45:48', 0, 0, 0, '', 1, 2, 0),
+(2, 0, 0, 'Test2 dengan gambar', '', 'normal', '', '', '', 0, 0, '', '', 'http://localhost/api/admin/', '2014-10-08 14:21:59', '0000-00-00 00:00:00', '2014-10-08 00:00:00', 0, 0, 0, '', 1, 2, 0),
+(3, 0, 0, 'test4', '123', '1231', '', '', '', 0, 0, '', '', 'http://localhost/api/admin/', '2014-10-08 14:34:34', '0000-00-00 00:00:00', '2014-10-08 00:00:00', 0, 0, 0, '', 1, 1, 0),
+(4, 0, 0, 'Test4', 'asdj', 'aslkfnkl', '', '', '', 0, 0, '', '', 'http://localhost/api/admin/', '2014-10-09 12:35:09', '0000-00-00 00:00:00', '2014-10-02 00:00:00', 0, 0, 0, '', 1, 1, 0),
+(5, 0, 0, 'Test6', '123', '123', '405b18ff719c8f30676681813f3b167e.JPG', '', '', 0, 5, '', '', 'http://localhost/api/admin/405b18ff719c8f30676681813f3b167e.JPG', '2014-10-09 12:44:16', '0000-00-00 00:00:00', '2014-10-09 13:18:50', 0, 0, 0, '', 0, 0, 0),
+(6, 0, 0, 'test gambar', '123123', '123123', '50a1a0c1172e27fb90d5a990ed61b03b.JPG', '', '', 0, 1, '', '', 'http://localhost/api/admin/50a1a0c1172e27fb90d5a990ed61b03b.JPG', '2014-10-09 12:53:31', '0000-00-00 00:00:00', '2014-10-09 00:00:00', 0, 0, 0, '', 0, 1, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `api_news_content_comment`
+-- Struktur dari tabel `api_news_content_comment`
 --
 
 CREATE TABLE IF NOT EXISTS `api_news_content_comment` (
@@ -145,7 +211,7 @@ CREATE TABLE IF NOT EXISTS `api_news_content_comment` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `api_news_content_repo`
+-- Struktur dari tabel `api_news_content_repo`
 --
 
 CREATE TABLE IF NOT EXISTS `api_news_content_repo` (
@@ -172,7 +238,7 @@ CREATE TABLE IF NOT EXISTS `api_news_content_repo` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `social_member`
+-- Struktur dari tabel `social_member`
 --
 
 CREATE TABLE IF NOT EXISTS `social_member` (
@@ -210,7 +276,7 @@ CREATE TABLE IF NOT EXISTS `social_member` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10044 ;
 
 --
--- Dumping data for table `social_member`
+-- Dumping data untuk tabel `social_member`
 --
 
 INSERT INTO `social_member` (`id`, `name`, `nickname`, `email`, `register_date`, `verified_date`, `img`, `image_profile`, `small_img`, `username`, `last_login`, `city`, `zipcode`, `sex`, `birthday`, `description`, `middle_name`, `last_name`, `StreetName`, `phone_number`, `n_status`, `login_count`, `verified`, `usertype`, `email_token`, `photo_moderation`, `salt`, `password`) VALUES

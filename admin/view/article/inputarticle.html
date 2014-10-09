@@ -37,12 +37,24 @@ $(function () {
 				
 						<div class="col-sm-12">
 							<div class="form-group">
-							<label for="text-input">Judul</label>
-									<input type="text" name="title" class="form-control" value="{$data.title}" data-required="true"/>
+                                <label for="text-input">Judul</label>
+                                <input type="text" name="title" class="form-control" value="{$data.title}" data-required="true"/>
 							</div>
+						</div>
+                        
+                        <div class="col-sm-5">
+							<div class="form-group">
+                                <label for="text-input">Kategori</label>
+                                
+                                <select name="articletype" class="form-control" >
+                                    <option value="4" {if $data.articleType==4}selected{/if} >Agenda</option>
+                                    <option value="5" {if $data.articleType==5}selected{/if} >Kliping Kegiatan</option>
+                                    <option value="1" {if $data.articleType==1}selected{/if} >Berita</option>
+                                </select>
+                            </div>
 						</div>	
 						
-						<div class="col-md-9">
+						<div class="col-sm-9">
 							<div class="form-group">
 							<label for="text-input">Brief</label>
 									<input type="text" name="brief" class="form-control" value="{$data.brief}" />
@@ -65,7 +77,7 @@ $(function () {
 							
 						</div>
                                                 
-                        <div class="col-md-12">
+                        <div class="col-sm-12">
                             <div class="form-group">                        
                                 <label for="file_image">Cover Image</label>                        
                                 <div class="fileupload fileupload-new" data-provides="fileupload">
@@ -84,7 +96,7 @@ $(function () {
                             </div>
                         </div>
                         
-                        <div class="col-md-6">
+                        <div class="col-sm-6">
                             <div class="form-group">
     							<label for="select-input">Postdate</label>
     							<div id="postdate" class="input-group date" data-auto-close="true" data-date-format="dd-mm-yyyy" data-date-autoclose="true">
