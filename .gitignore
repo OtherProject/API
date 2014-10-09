@@ -5,6 +5,7 @@ public_assets/*
 libs/*
 logs/*
 cache/*
+admin/config
 admin/config/config.php
 admin/cache/*
 admin/CACHE/*
