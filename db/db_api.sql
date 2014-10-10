@@ -113,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `api_news_category` (
 --
 
 INSERT INTO `api_news_category` (`id`, `catName`, `n_status`) VALUES
-(1, 'Artikell', 1),
+(1, 'Artikel', 1),
 (2, 'Agenda', 1),
 (3, 'Tentang', 1),
 (4, 'Afiliasi', 1),
@@ -177,19 +177,6 @@ CREATE TABLE IF NOT EXISTS `api_news_content` (
   KEY `can_save` (`can_save`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
---
--- Dumping data untuk tabel `api_news_content`
---
-
-INSERT INTO `api_news_content` (`id`, `parentid`, `lid`, `title`, `brief`, `content`, `image`, `thumbnail_image`, `slider_image`, `categoryid`, `articleType`, `url`, `sourceurl`, `file`, `created_date`, `expired_date`, `posted_date`, `fromwho`, `filesize`, `can_save`, `tags`, `authorid`, `n_status`, `topcontent`) VALUES
-(1, 0, 0, 'Test1', 'brief ini apa', 'deskripsi nya agimana&lt;span style=&quot;color:rgb(106,168,79);&quot;&gt;asfl askjfn&amp;nbsp;&lt;/span&gt;', '', '', '', 0, 0, '', '', '', '2014-10-03 06:29:54', '0000-00-00 00:00:00', '2014-10-03 06:45:48', 0, 0, 0, '', 1, 2, 0),
-(2, 0, 0, 'Test2 dengan gambar', '', 'normal', '', '', '', 0, 0, '', '', 'http://localhost/api/admin/', '2014-10-08 14:21:59', '0000-00-00 00:00:00', '2014-10-08 00:00:00', 0, 0, 0, '', 1, 2, 0),
-(3, 0, 0, 'test4', '123', '1231', '', '', '', 0, 0, '', '', 'http://localhost/api/admin/', '2014-10-08 14:34:34', '0000-00-00 00:00:00', '2014-10-08 00:00:00', 0, 0, 0, '', 1, 1, 0),
-(4, 0, 0, 'Test4', 'asdj', 'aslkfnkl', '', '', '', 0, 0, '', '', 'http://localhost/api/admin/', '2014-10-09 12:35:09', '0000-00-00 00:00:00', '2014-10-02 00:00:00', 0, 0, 0, '', 1, 1, 0),
-(5, 0, 0, 'Test6', '123', '123', '405b18ff719c8f30676681813f3b167e.JPG', '', '', 0, 5, '', '', 'http://localhost/api/admin/405b18ff719c8f30676681813f3b167e.JPG', '2014-10-09 12:44:16', '0000-00-00 00:00:00', '2014-10-09 13:18:50', 0, 0, 0, '', 0, 0, 0),
-(6, 0, 0, 'test gambar', '123123', '123123', '50a1a0c1172e27fb90d5a990ed61b03b.JPG', '', '', 0, 1, '', '', 'http://localhost/api/admin/50a1a0c1172e27fb90d5a990ed61b03b.JPG', '2014-10-09 12:53:31', '0000-00-00 00:00:00', '2014-10-09 00:00:00', 0, 0, 0, '', 0, 1, 0);
-
--- --------------------------------------------------------
 
 --
 -- Struktur dari tabel `api_news_content_comment`
