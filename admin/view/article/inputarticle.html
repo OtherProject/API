@@ -47,9 +47,8 @@ $(function () {
                                 <label for="text-input">Kategori</label>
                                 
                                 <select name="articletype" class="form-control" >
-                                    <option value="4" {if $data.articleType==4}selected{/if} >Agenda</option>
-                                    <option value="5" {if $data.articleType==5}selected{/if} >Kliping Kegiatan</option>
                                     <option value="1" {if $data.articleType==1}selected{/if} >Berita</option>
+                                    <option value="2" {if $data.articleType==2}selected{/if} >Kliping Kegiatan</option>
                                 </select>
                             </div>
 						</div>	
@@ -70,6 +69,7 @@ $(function () {
 							
 									<!-- hidden -->
 									<input type="hidden" name="id" value="{$data.id}" />
+                                    <input type="hidden" name="categoryid" value="1" />
 									<input type="hidden" name="authorid" value="{$admin.id}" />
 									<input type="hidden" name="image" value="{$data.image}" />
 									<input type="hidden" name="image_url" value="{$data.file}" />

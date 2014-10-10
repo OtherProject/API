@@ -64,7 +64,6 @@ class article extends Controller {
 		if(isset($_POST)){
                 // validasi value yang masuk
                $x = form_validation($_POST);
-
 			   try
 			   {
 			   		if(isset($x) && count($x) != 0)
@@ -74,12 +73,12 @@ class article extends Controller {
 						if($x['id'] != ''){
 							$x['action'] = 'update';
 						}
-						
 						//upload file
 						if(!empty($_FILES)){
 							if($_FILES['file_image']['name'] != ''){
+                                $delete = deleteFile($x['image'],'news');
 								if($x['action'] == 'update') deleteFile($x['image']);
-								$image = uploadFile('file_image',null,'image');
+								$image = uploadFile('file_image','news','image');
 								$x['image_url'] = $CONFIG['admin']['app_url'].$image['folder_name'].$image['full_name'];
 								$x['image'] = $image['full_name'];
 							}
@@ -88,8 +87,12 @@ class article extends Controller {
 			   		}
 				   	
 			   }catch (Exception $e){}
-			   
-            echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."home'</script>";
+            if($x['categoryid'] == '1'){
+                $redirect = $CONFIG['admin']['base_url'].'home';
+            }elseif($x['categoryid']=='2'){
+                $redirect = $CONFIG['admin']['base_url'].'agenda';
+            }
+            echo "<script>alert('Data berhasil di simpan');window.location.href='".$redirect."'</script>";
             }
 	}
 	

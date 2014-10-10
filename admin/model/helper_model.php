@@ -8,7 +8,7 @@ class helper_model extends Database {
 	{
 		$sessi = new Session;
 		$getUserSes = $sessi->get_session('login');
-		$this->user = $getUserSes['login']['admin'];
+		$this->user = $getUserSes['login']['login'];
 	}
 
 	public function getData_sel($parameter){

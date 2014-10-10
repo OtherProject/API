@@ -8,18 +8,18 @@ class marticle extends Database {
 		$date = date('Y-m-d H:i:s');
 		$datetime = array();
 		
-		if(!empty($data['postdate'])) $data['postdate'] = date("Y-m-d",strtotime($data['postdate'])); 
+		if(!empty($data['postdate'])) $data['postdate'] = date("Y-m-d H:i:s",strtotime($data['postdate']));
+        if(!empty($data['expired_date'])) $data['expired_date'] = date("Y-m-d H:i:s",strtotime($data['expired_date']));
 
 		if($data['action'] == 'insert'){
 			
 			$query = "INSERT INTO  
-						{$this->prefix}_news_content (title,brief,content,image,file,articletype,
-												created_date,posted_date,authorid,n_status)
+						{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
+												created_date,posted_date,expired_date,authorid,n_status)
 					VALUES
 						('".$data['title']."','".$data['brief']."','".$data['content']."','".$data['image']."'
-
-							,'".$data['image_url']."','".$data['articletype']."','".$date."','".$data['postdate']."'
-							,'".$data['authorid']."','".$data['n_status']."')";
+                        ,'".$data['image_url']."','".$data['categoryid']."','".$data['articletype']."','".$date."'
+                        ,'".$data['postdate']."','".$data['expired_date']."','".$data['authorid']."','".$data['n_status']."')";
 
 		} else {
 			$query = "UPDATE {$this->prefix}_news_content
@@ -29,6 +29,7 @@ class marticle extends Database {
 							content = '{$data['content']}',
 							image = '{$data['image']}',
 							file = '{$data['image_url']}',
+                            articletype = '{$data['articletype']}',
 							posted_date = '".$date."',
 							authorid = '{$data['authorid']}',
 							n_status = {$data['n_status']}
@@ -41,9 +42,26 @@ class marticle extends Database {
 		return $result;
 	}
 	
-	function get_article($type=1)
+	function get_article($categoryid=null,$type=1)
 	{
-		$query = "SELECT * FROM {$this->prefix}_news_content WHERE n_status = '1' OR n_status = '0' ORDER BY created_date DESC";
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE n_status = '1' AND categoryid = '{$categoryid}' OR n_status = '0' AND categoryid = '{$categoryid}' ORDER BY created_date DESC";
+		
+		$result = $this->fetch($query,1);
+
+		foreach ($result as $key => $value) {
+			$query = "SELECT username FROM admin_member WHERE id={$value['authorid']} LIMIT 1";
+
+			$username = $this->fetch($query,0);
+
+			$result[$key]['username'] = $username['username'];
+		}
+		
+		return $result;
+	}
+    
+    function get_article_filter($categoryid=null,$articletype=null,$type=1)
+	{
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE n_status = '1' AND categoryid = '{$categoryid}' AND articleType = '{$articletype}' OR n_status = '0' AND categoryid = '{$categoryid}' AND articleType = '{$articletype}' ORDER BY created_date DESC";
 		
 		$result = $this->fetch($query,1);
 

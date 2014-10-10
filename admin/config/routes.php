@@ -8,5 +8,6 @@
 $ROUTES = array(
 				'home',
                 'repository',
+                'agenda',
                 );
 ?>

@@ -35,4 +35,9 @@
             }
         } );
     } );*/
+    
+    $(document).ready(function() {
+        /* Add event listener to the dropdown input */
+        $('select#artikel').change( function() { $('.table').dataTable().fnFilter( $(this).val() ); } );
+    } );
 </script>

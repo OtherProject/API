@@ -25,7 +25,7 @@ class home extends Controller {
 	
 	public function index(){
 		$this->view->assign('active','active');
-		$data = $this->models->get_article();
+		$data = $this->models->get_article(1);
 
 		if ($data){
 			foreach ($data as $key => $val){

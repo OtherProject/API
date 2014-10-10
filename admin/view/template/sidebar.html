@@ -14,23 +14,23 @@
 		<ul id="main-nav" class="open-active">			
 			
 			
-			<li class="dropdown {if $page.page=='home' || $page.page=='article'}active{/if}">
+			<li class="dropdown {if $page.page=='home' || $page.page=='article' || $page.page=='agenda'}active{/if}">
 				<a href="javascript:;">
 					<i class="fa fa-file-text"></i>
-					News Article
+					News
 					<span class="caret"></span>
 				</a>				
 				<ul class="sub-nav">
 					<li>
-						<a href="{$basedomain}article/addarticle">
-							<i class="fa fa-plus"></i> 
-							Tambah Artikel
-						</a>
-					</li>
-					<li>
 						<a href="{$basedomain}home">
 							<i class="fa fa-list-alt"></i> 
-							List Artikel
+							Artikel
+						</a>
+					</li>
+                    <li>
+						<a href="{$basedomain}agenda">
+							<i class="fa fa-list-alt"></i> 
+							Agenda
 						</a>
 					</li>
 					<li>
