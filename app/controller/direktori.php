@@ -27,6 +27,14 @@ class direktori extends Controller {
     	return $this->loadView('direktori/kepakaran');
     }
     
+    function search_result(){
+        return $this->loadView('direktori/search_result');
+    }
+    
+    function result_detail(){
+        return $this->loadView('direktori/result_detail');
+    }
+    
     function buah_pikir(){
     	return $this->loadView('direktori/buah_pikir');
     }

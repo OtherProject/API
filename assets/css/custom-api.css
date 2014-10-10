@@ -1,4 +1,8 @@
-p,a{font-size:13px;}
+body p,a{
+    font-family: Arial,Helvetica,Sans-Serif;
+    font-size: 13px;
+    line-height: 150%;
+}
 
 .api-btn{
     background-color: #96B0FA;
@@ -185,9 +189,14 @@ p,a{font-size:13px;}
 }
 
 .kepakaran h4.title{
-    background-color: #A0CAEC;
+    background-color: #D0DCFF;
+    border-top: 7px solid #4663B8;
+    border-bottom: 1px solid #FFF;
     padding: 10px;
+    margin-bottom:0;
 }
+
+.kepakaran h3{margin-top:0; text-align: left;}
 
 #menu_kepakaran .list-group-item{
     padding-left: 10px;
@@ -197,7 +206,8 @@ p,a{font-size:13px;}
 }
 
 #menu_kepakaran a.list-group-item{
-    border-bottom: 1px solid #AAA;
+    border-bottom: 1px solid #FFF;
+    background-color: #D0DCFF;
 }
 
 #menu_kepakaran .panel{
@@ -208,8 +218,10 @@ p,a{font-size:13px;}
 
 #menu_kepakaran .subitem{
     display: block;
+    background-color: #EDF2FF;
     padding: 10px 15px;
-    border: none;
+    border-bottom: 1px solid #FFF;
+    border-top: 1px solid #DAE4FF;
 }
 
 #menu_kepakaran .subitem i{
@@ -218,12 +230,48 @@ p,a{font-size:13px;}
 }
 
 #menu_kepakaran .sub{
-    padding: 10px 20px;
+    padding: 10px 30px;
 }
 
 #menu_kepakaran .subitem:last-child{
-    border-bottom: 1px solid #AAA;
+    border-bottom: 1px solid #FFF;
 }
+
+.api-search{
+    border: 7px solid #EDF2FF;
+    margin: 10px 0;
+    padding: 10px;
+    padding-bottom: 35px;
+}
+
+.api-search .form-inline{
+    margin-top: 35px;
+}
+
+.api-result{
+    padding: 10px;
+    border: 1px solid #EDF2FF;
+    margin-bottom: 15px;
+}
+.api-result .title{font-weight: bold;}
+.api-result .info p{margin:0;}
+.api-result .subject{
+    position: absolute;
+    padding: 5px;
+    background-color: #1C4298;
+    color: #FFF;
+    font-size: 11px;
+    margin-left: 76%;
+    margin-top: -15px;
+}
+
+.api-result_detail h4, .api-result_detail h5{
+    font-weight: bold;
+    border-bottom: 1px solid #A0CAEC;
+    color:#333;
+    padding-bottom: 5px;
+}
+
 .api-footer{
     background-color: #d8dfdd;
     margin-bottom:20px;
@@ -301,4 +349,24 @@ p,a{font-size:13px;}
 
 @media (max-width: 1199px){
     .api-navbar .navbar-brand{padding-right: 0px;}
+}
+@media (max-width: 995px){
+    .api-result .subject{
+        margin-left: 77.6%;
+    }
+}
+@media (max-width: 768px){
+    .api-result .subject{
+        margin-left: 75%;
+    }
+}
+@media (max-width: 635px){
+    .api-result .subject{
+        margin-left: 70%;
+    }
+}
+@media (max-width: 330px){
+    .api-result .subject{
+        margin-left: 46%;
+    }
 }
