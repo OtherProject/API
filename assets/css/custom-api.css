@@ -328,6 +328,10 @@ body p,a{
 
 .api-separator{border:1px dotted #F6831F; margin-bottom:0;}
 
+/** CAROUSEL HOME CSS **/
+#carousel-home{margin-top: -20px;}
+/** END CAROUSEL HOME CSS **/
+
 /** CUSTOM CLNDR CSS **/
 #mini-clndr .clndr .controls {background-color: #4472F7;}
 #mini-clndr .clndr .days-container .days .headers, #mini-clndr .clndr .days-container .events .event-header {background-color: #B2C5FF;}
