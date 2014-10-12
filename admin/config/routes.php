@@ -7,7 +7,8 @@
 
 $ROUTES = array(
 				'home',
-                'repository',
+                'direktori',
                 'agenda',
+                'gallery',
                 );
 ?>

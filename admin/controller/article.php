@@ -32,7 +32,14 @@ class article extends Controller {
 
 		if(isset($_GET['id']))
 		{
-			$data = $this->models->get_article_id($_GET['id']);	
+			$data = $this->models->get_article_id($_GET['id']);
+            
+            if($data){
+                $data['created_date'] = dateFormat($data['created_date'],'dd-mm-yyyy');
+                $data['posted_date'] = dateFormat($data['posted_date'],'dd-mm-yyyy');
+                $data['expired_date'] = dateFormat($data['expired_date'],'dd-mm-yyyy');
+            }
+            
 			$this->view->assign('data',$data);
 		} 
 
@@ -87,11 +94,16 @@ class article extends Controller {
 			   		}
 				   	
 			   }catch (Exception $e){}
-            if($x['categoryid'] == '1'){
-                $redirect = $CONFIG['admin']['base_url'].'home';
-            }elseif($x['categoryid']=='2'){
-                $redirect = $CONFIG['admin']['base_url'].'agenda';
+            
+            $redirect = $CONFIG['admin']['base_url'].'home';
+            if(isset($x['categoryid'])){
+                if($x['categoryid'] == '1'){
+                    $redirect = $CONFIG['admin']['base_url'].'home';
+                }elseif($x['categoryid']=='2'){
+                    $redirect = $CONFIG['admin']['base_url'].'agenda';
+                }
             }
+            
             echo "<script>alert('Data berhasil di simpan');window.location.href='".$redirect."'</script>";
             }
 	}
@@ -102,13 +114,13 @@ class article extends Controller {
 		// pr($_POST);exit;
 		$data = $this->models->article_del($_POST['ids']);
 		
-		echo "<script>alert('Data has been moved to trash');window.location.href='".$CONFIG['admin']['base_url']."home'</script>";
+		echo "<script>alert('Data dipindahkan ke trash');window.location.href='".$CONFIG['admin']['base_url']."home'</script>";
 		
 	}
 	
 	public function trash(){
        
-		$data = $this->models->get_article_trash();
+		$data = $this->models->get_article_trash(1);
 		if ($data){
 			foreach ($data as $key => $val){
 				$data[$key]['created_date'] = dateFormat($val['created_date'],'article');
@@ -135,8 +147,17 @@ class article extends Controller {
 		global $CONFIG;
 		
 		$data = $this->models->article_restore($_POST['ids']);
+        
+        $redirect = $CONFIG['admin']['base_url'].'home';
+        if(isset($_POST['categoryid'])){
+            if($_POST['categoryid'] == '1'){
+                $redirect = $CONFIG['admin']['base_url'].'article';
+            }elseif($_POST['categoryid']=='2'){
+                $redirect = $CONFIG['admin']['base_url'].'agenda';
+            }
+        }
 		
-		echo "<script>alert('Your data has been restore');window.location.href='".$CONFIG['admin']['base_url']."article/trash'</script>";
+		echo "<script>alert('Data berhasil dikembalikan');window.location.href='".$redirect."/trash'</script>";
 		
 	}
 	
