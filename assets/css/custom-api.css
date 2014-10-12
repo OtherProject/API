@@ -49,6 +49,7 @@ body p,a{
 }
 .navbar-default .navbar-nav > li.active > a, .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:active{
     background-color: #A0CAEC !important;
+    border-radius: 5px;
     color: #FFF !important;
     -webkit-transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
@@ -58,7 +59,7 @@ body p,a{
 .api-content{
     max-width: 930px;
     margin-bottom: 20px;
-    min-height: 400px;
+    min-height: 420px;
 }
 .api-content h3{
     border-bottom: 1px solid #A0CAEC;
@@ -120,7 +121,8 @@ body p,a{
 .api-anggota .more{
     display: block;
     text-decoration: none;
-    background-color: #111;
+    background-color: #A0CAEC;
+    border-bottom-right-radius: 5px;
     padding: 10px 10px 0 10px;
     font-size: 13px;
     color: #FFF;
@@ -134,7 +136,8 @@ body p,a{
 }
 
 .api-anggota{
-    background-color: #EEE;
+    border: 1px solid #A0CAEC;
+    border-radius: 5px;
     margin-bottom: 15px;
     margin-right:10px;
     width: 32%;    
@@ -272,9 +275,47 @@ body p,a{
     padding-bottom: 5px;
 }
 
+#api-loginContainer, #api-registerContainer{
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+}
+#api-loginContainer .row > div, #api-registerContainer .row > div {margin-bottom: 1em;}
+#api-loginContainer .row > div:last-child, #api-registerContainer .row > div:last-child {margin-bottom: 0;}
+
+#api-login, #api-register{
+    position: relative;
+    padding: 15px 25px 30px 25px;
+    margin-bottom: 1em;
+    background-color: #FFF;
+    border: 5px solid #A0CAEC;
+    border-radius: 5px;
+}
+#api-login #login-form .form-control, #api-register #register-form .form-control{height: 40px;}
+#api-login #login-btn, #api-register #register-btn {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 20px;
+}
+#api-login h3, #api-register h3{border: none;}
+
+@media (min-width: 768px) {
+  #api-loginContainer {
+    width: 450px;
+  }
+  #api-loginContainer .row > div {
+    margin-bottom: 0;
+  }
+  #api-login #login-form, #api-register #register-form {
+    padding: 0 25px;
+    text-align: left;
+  }
+}
+
 .api-footer{
+    width: 100%;
     background-color: #d8dfdd;
-    margin-bottom:20px;
     padding: 10px 10px 0 10px;
     font-size: 10px;
 }
