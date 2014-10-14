@@ -35,7 +35,7 @@
 
 					<div class="table-responsive">
 
-					<form action="{$basedomain}article/articledel" method=POST name="checks" ID="Form2" onsubmit="return confirm('Are you sure want to delete?');">
+					<form action="{$basedomain}article/articledel" method=POST name="checks" ID="Form2" onsubmit="return confirm('Yakin ingin menghapus artikel?');">
 
 					<a class="btn btn-default btn-sm" href="{$basedomain}article/addarticle"><i class="fa fa-plus"></i> Tambah Artikel</a>
 
@@ -46,6 +46,8 @@
                         <option value="Berita">Berita</option>
                         <option value="Kliping Kegiatan">Kliping Kegiatan</option>
                     </select>
+                    
+                    <a class="btn btn-link btn-sm" href="{$basedomain}article/trash"><i class="fa fa-trash-o"></i> Lihat Trash</a>
 					
 					<table 
 						class="table table-striped table-bordered table-hover table-highlight table-checkable"

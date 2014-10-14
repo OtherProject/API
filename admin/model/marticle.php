@@ -7,10 +7,10 @@ class marticle extends Database {
 		
 		$date = date('Y-m-d H:i:s');
 		$datetime = array();
-		
+        
 		if(!empty($data['postdate'])) $data['postdate'] = date("Y-m-d H:i:s",strtotime($data['postdate']));
         if(!empty($data['expired_date'])) $data['expired_date'] = date("Y-m-d H:i:s",strtotime($data['expired_date']));
-
+        
 		if($data['action'] == 'insert'){
 			
 			$query = "INSERT INTO  
@@ -87,9 +87,9 @@ class marticle extends Database {
 		return $result;
 	}
 	
-	function get_article_trash()
+	function get_article_trash($categoryid=null)
 	{
-		$query = "SELECT * FROM {$this->prefix}_news_content WHERE n_status = '2' ORDER BY created_date DESC";
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE n_status = '2' AND categoryid = '{$categoryid}' ORDER BY created_date DESC";
 		
 		$result = $this->fetch($query,1);
 
@@ -148,7 +148,7 @@ class marticle extends Database {
 		
 		$result = $this->fetch($query,0);
 
-		if($result['posted_date'] != '') $result['posted_date'] = dateFormat($result['posted_date'],'dd-mm-yyyy');
+		//if($result['posted_date'] != '') $result['posted_date'] = dateFormat($result['posted_date'],'dd-mm-yyyy');
 		($result['n_status'] == 1) ? $result['n_status'] = 'checked' : $result['n_status'] = '';
 
 		return $result;

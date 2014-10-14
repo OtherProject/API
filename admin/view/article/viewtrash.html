@@ -39,6 +39,12 @@
 
 					<button type="submit" class="btn btn-success btn-sm" id="btn-dis" disabled><i class="fa fa-trash-o"></i> Kembalikan</button>
 					
+                    <select id="artikel" class="btn btn-default btn-sm">
+                        <option value="">All</option>
+                        <option value="Berita">Berita</option>
+                        <option value="Kliping Kegiatan">Kliping Kegiatan</option>
+                    </select>
+                    
 					<table 
 						class="table table-striped table-bordered table-hover table-highlight table-checkable" 
 						data-provide="datatable" 
@@ -55,18 +61,31 @@
 									<th data-filterable="true" data-sortable="true" data-direction="desc">Status</th>
 									<th data-direction="asc" data-filterable="true" data-sortable="true">Tanggal Buat</th>
 									<th data-filterable="true" data-sortable="true">Author</th>
+                                    <th data-filterable="true" data-sortable="true">Jenis Artikel</th>
 								</tr>
 							</thead>
+                            
 							<tbody>
 								{foreach $data as $var}
+                                
 								<tr>
 									<td class="checkbox-column">
 										<input type="checkbox" class="icheck-input" name="ids[]" value="{$var.id}" onchange="return AreAnyCheckboxesChecked();">
-									</td>
+                                        <!-- hidden -->
+                                        <input type="hidden" name="categoryid" value="{$var.categoryid}" />
+            							<!-- hidden -->
+                                    </td>
 									<td>{$var.title}</td>
 									<td style="color:{$var.status_color}">{$var.n_status}</td>
 									<td>{$var.created_date}</td>
 									<td>{$var.username}</td>
+                                    <td>
+                                        {if $var.articleType=='1'}
+                                            Berita
+                                        {elseif $var.articleType=='2'}
+                                            Kliping Kegiatan
+                                        {/if}
+                                    </td>
 								</tr>
 								{/foreach}
 							</tbody>
@@ -86,3 +105,10 @@
 	</div> <!-- /.row -->
 
 </div>
+
+<script>
+$(document).ready(function() {
+    $('.table').dataTable().fnSetColumnVis( 5, false );
+    $('.form-control:last').parent().remove();
+} );
+</script>
