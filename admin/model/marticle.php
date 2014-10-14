@@ -20,8 +20,10 @@ class marticle extends Database {
 						('".$data['title']."','".$data['brief']."','".$data['content']."','".$data['image']."'
                         ,'".$data['image_url']."','".$data['categoryid']."','".$data['articletype']."','".$date."'
                         ,'".$data['postdate']."','".$data['expired_date']."','".$data['authorid']."','".$data['n_status']."')";
+                        //pr($query);exit;
 
 		} else {
+            if($data['categoryid']=='1' && $data['articletype']=='2') $date = $data['postdate'];
 			$query = "UPDATE {$this->prefix}_news_content
 						SET 
 							title = '{$data['title']}',
@@ -31,6 +33,7 @@ class marticle extends Database {
 							file = '{$data['image_url']}',
                             articletype = '{$data['articletype']}',
 							posted_date = '".$date."',
+                            expired_date = '{$data['expired_date']}',
 							authorid = '{$data['authorid']}',
 							n_status = {$data['n_status']}
 						WHERE
@@ -63,16 +66,15 @@ class marticle extends Database {
 	{
 		$query = "SELECT * FROM {$this->prefix}_news_content WHERE n_status = '1' AND categoryid = '{$categoryid}' AND articleType = '{$articletype}' OR n_status = '0' AND categoryid = '{$categoryid}' AND articleType = '{$articletype}' ORDER BY created_date DESC";
 		
-		$result = $this->fetch($query,1);
-
-		foreach ($result as $key => $value) {
-			$query = "SELECT username FROM admin_member WHERE id={$value['authorid']} LIMIT 1";
-
-			$username = $this->fetch($query,0);
-
-			$result[$key]['username'] = $username['username'];
+		$result = $this->fetch($query,0);
+        
+        if($result){
+    		$query = "SELECT username FROM admin_member WHERE id={$result['authorid']} LIMIT 1";
+    
+    		$username = $this->fetch($query,0);
+    
+    		$result['username'] = $username['username'];
 		}
-		
 		return $result;
 	}
 	

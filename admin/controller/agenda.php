@@ -55,9 +55,9 @@ class agenda extends Controller {
 		{
 			$data = $this->models->get_article_id($_GET['id']);
             
-            $data['created_date'] = date('d/m/Y H:i',strtotime($data['created_date']));
-			$data['posted_date'] = date('d/m/Y H:i',strtotime($data['posted_date']));
-            $data['expired_date'] = date('d/m/Y H:i',strtotime($data['expired_date']));
+            $data['created_date'] = date('d-m-Y H:i',strtotime($data['created_date']));
+			$data['posted_date'] = date('d-m-Y H:i',strtotime($data['posted_date']));
+            $data['expired_date'] = date('d-m-Y H:i',strtotime($data['expired_date']));
             	
 			$this->view->assign('data',$data);
 		} 

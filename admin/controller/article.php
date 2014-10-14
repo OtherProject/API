@@ -80,6 +80,8 @@ class article extends Controller {
 						if($x['id'] != ''){
 							$x['action'] = 'update';
 						}
+                        
+                        //pr($x);exit;
 						//upload file
 						if(!empty($_FILES)){
 							if($_FILES['file_image']['name'] != ''){
@@ -101,6 +103,12 @@ class article extends Controller {
                     $redirect = $CONFIG['admin']['base_url'].'home';
                 }elseif($x['categoryid']=='2'){
                     $redirect = $CONFIG['admin']['base_url'].'agenda';
+                }elseif($x['categoryid']=='3'){
+                    if($x['articletype']=='1'){
+                        $redirect = $CONFIG['admin']['base_url'].'about/profile';
+                    }elseif($x['articletype']=='2'){
+                        $redirect = $CONFIG['admin']['base_url'].'about/struktur';
+                    }
                 }
             }
             
