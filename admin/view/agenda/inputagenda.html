@@ -1,6 +1,13 @@
 <script>
 $(function () {
-	$('.agenda_date').datepicker ();
+    //eonasdan datetimepicker
+	$('.agenda_date').datetimepicker (
+        {
+            use24hours: true,
+            format: 'DD-MM-YYYY HH:mm',
+            minuteStepping:5
+        }
+    );
 	
 	$("#isi").jqte();
 	
@@ -8,8 +15,9 @@ $(function () {
 		checkboxClass: 'icheckbox_minimal-blue',
 		radioClass: 'iradio_minimal-blue',
 		inheritClass: true
-	})
-})
+	});
+});
+
 </script>
 
 <div id="content-header">
@@ -52,7 +60,7 @@ $(function () {
                         <div class="col-sm-6">
                             <div class="form-group">
     							<label for="select-input">Tanggal Mulai</label>
-    							<div id="postdate" class="input-group date" data-auto-close="true" data-date-format="dd-mm-yyyy" data-date-autoclose="true">
+    							<div id="postdate" class="input-group date" data-auto-close="true" data-date-autoclose="true">
     								<input class="form-control agenda_date" type="text" name="postdate" value="{$data.posted_date}" data-required="true" />
     								<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                     
@@ -64,7 +72,7 @@ $(function () {
                         <div class="col-sm-6">
                             <div class="form-group">
     							<label for="select-input">Tanggal Akhir</label>
-    							<div id="expired_date" class="input-group date" data-auto-close="true" data-date-format="dd-mm-yyyy" data-date-autoclose="true">
+    							<div id="expired_date" class="input-group date" data-auto-close="true" data-date-autoclose="true">
     								<input class="form-control agenda_date" type="text" name="expired_date" value="{$data.expired_date}" data-required="true" />
     								<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                     

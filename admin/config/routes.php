@@ -10,5 +10,6 @@ $ROUTES = array(
                 'direktori',
                 'agenda',
                 'gallery',
+                'about',
                 );
 ?>

@@ -29,42 +29,30 @@
 					</li>
                     <li>
 						<a href="{$basedomain}agenda">
-							<i class="fa fa-list-alt"></i> 
+							<i class="fa fa-calendar"></i> 
 							Agenda
 						</a>
 					</li>
-					<li>
-						<a href="{$basedomain}article/trash">
-							<i class="fa fa-trash-o"></i>
-							Sampah
-						</a>			
-					</li>
 				</ul>
 			</li>
             
-            <li class="dropdown {if $page.page=='repository'}active{/if}">
+            <li class="dropdown {if $page.page=='gallery'}active{/if}">
 				<a href="javascript:;">
-					<i class="fa fa-file-text"></i>
-					Repository 
+					<i class="fa fa-picture-o"></i>
+					Galeri 
 					<span class="caret"></span>
 				</a>				
 				<ul class="sub-nav">
-				    <li>
-						<a href="{$basedomain}repository">
-							<i class="fa fa-list-alt"></i> 
-							List Repository
-						</a>
-					</li>
                     <li>
 						<a href="#">
-							<i class="fa fa-list-alt"></i> 
-							Gallery Gambar
+							<i class="fa fa-picture-o"></i> 
+							Galeri Gambar
 						</a>
 					</li>
 				</ul>
 			</li>
             
-            <li class="dropdown">
+            <li class="dropdown {if $page.page=='about'}active{/if}">
 				<a href="javascript:;">
 					<i class="fa fa-file-text"></i>
 					Tentang Organisasi 
@@ -72,13 +60,13 @@
 				</a>				
 				<ul class="sub-nav">
 				    <li>
-						<a href="#">
+						<a href="{$basedomain}about/profile">
 							<i class="fa fa-list-alt"></i> 
 							Profil
 						</a>
 					</li>
                     <li>
-						<a href="#">
+						<a href="{$basedomain}about/struktur">
 							<i class="fa fa-list-alt"></i> 
 							Struktur Organisasi
 						</a>
@@ -98,7 +86,7 @@
 				</ul>
 			</li>
             
-            <li class="dropdown">
+            <li class="dropdown {if $page.page=='direktori'}active{/if}">
 				<a href="javascript:;">
 					<i class="fa fa-file-text"></i>
 					Direktori
@@ -121,6 +109,12 @@
 						<a href="#">
 							<i class="fa fa-list-alt"></i> 
 							Perundang-Undangan
+						</a>
+					</li>
+                    <li>
+						<a href="{$basedomain}direktori/repository">
+							<i class="fa fa-file"></i> 
+							Repository
 						</a>
 					</li>
 				</ul>

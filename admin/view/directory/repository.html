@@ -1,0 +1,76 @@
+<div id="content-header">
+	<h1>Repository</h1>
+</div> <!-- #content-header -->	
+
+<div id="content-container">
+
+	<div class="row">
+
+		<div class="col-md-12">
+
+			<div class="portlet">
+
+				<div class="portlet-header">
+
+					<h3>
+						<i class="fa fa-table"></i>
+						Repository List
+					</h3>
+
+				</div> <!-- /.portlet-header -->
+
+				<div class="portlet-content">						
+
+					<div class="table-responsive">
+
+					<form action="{$basedomain}article/articledel" method=POST name="checks" ID="Form2" onsubmit="return confirm('Are you sure want to delete?');">
+
+					<a href="{$basedomain}article/addarticle"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-plus"></i> Add New</button></a>
+
+					<button type="submit" class="btn btn-primary btn-sm" id="btn-dis" disabled><i class="fa fa-trash-o"></i> Delete</button>
+					
+					<table 
+						class="table table-striped table-bordered table-hover table-highlight table-checkable" 
+						data-provide="datatable" 
+						data-display-rows="10"
+						data-info="true"
+						data-paginate="true"
+					>
+							<thead>
+								<tr>
+									<th class="checkbox-column">
+										<input type="checkbox" class="icheck-input" onchange="return AreAnyCheckboxesChecked();">
+									</th>
+									<th data-filterable="true" data-sortable="true" >No</th>
+									<th data-filterable="true" data-sortable="true" >File Type</th>
+									<th data-filterable="true" data-sortable="true">Filename</th>
+								</tr>
+							</thead>
+							<tbody>
+								{foreach $data as $var}
+								<tr>
+									<td class="checkbox-column">
+										<input type="checkbox" class="icheck-input" name="ids[]" value="{$var.id}" onchange="return AreAnyCheckboxesChecked();" />
+									</td>
+									<td><a href="{$basedomain}article/addarticle/?id={$var.id}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title}">{$var.title}</a></td>
+									<td style="color:{$var.status_color}">{$var.n_status}</td>
+									<td>{$var.created_date}</td>
+								</tr>
+								{/foreach}
+							</tbody>
+						</table>
+					</form>
+					</div> <!-- /.table-responsive -->
+					
+
+				</div> <!-- /.portlet-content -->
+
+			</div> <!-- /.portlet -->
+
+		
+
+		</div> <!-- /.col -->
+
+	</div> <!-- /.row -->
+
+</div>
