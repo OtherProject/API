@@ -26,6 +26,15 @@ class gallery extends Controller {
     function view(){
     	return $this->loadView('gallery/image-view');
     }
+    
+    /* TEMP DATA */
+    function view_ACIKITA(){
+    	return $this->loadView('gallery/image-view-acikita');
+    }
+    
+    function view_RAKORLOK(){
+    	return $this->loadView('gallery/image-view-rakorlok');
+    }
 }
 
 ?>

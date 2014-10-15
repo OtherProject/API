@@ -25,7 +25,7 @@ class organisasi extends Controller {
     
     function profile(){
         
-		$profil =  $this->contentHelper->getNews(false,3);
+        $profil =  $this->contentHelper->getNews(false,3);
         // pr($profil);
         
         $this->view->assign('profil',$profil);
