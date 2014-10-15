@@ -50,7 +50,7 @@ class kepakaran extends Controller {
 		
 
 	}
-	public function kepakaranCat(){
+	public function kategoriCat(){
 
       $this->view->assign('active','active');
 		$data = $this->models->get_category();
@@ -97,7 +97,7 @@ class kepakaran extends Controller {
     
 	public function categoryinp(){
 		global $CONFIG;
-		// pr($_FILES);exit;
+		
 		if(isset($_POST['n_status'])){
 			if($_POST['n_status']=='on') $_POST['n_status']=1;
 		} else {
@@ -118,7 +118,6 @@ class kepakaran extends Controller {
 		if(isset($_POST)){
                 // validasi value yang masuk
                $x = form_validation($_POST);
-               // pr($x);
 
 			   try
 			   {
@@ -145,7 +144,7 @@ class kepakaran extends Controller {
 				   	
 			   }catch (Exception $e){}
 			   
-            echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."kepakaran/kepakaranCat'</script>";
+            echo "<script>alert('Data berhasil di simpan');window.location.href='".$CONFIG['admin']['base_url']."kepakaran'</script>";
             }
 	}
 	
@@ -155,7 +154,7 @@ class kepakaran extends Controller {
 		// pr($_POST);exit;
 		$data = $this->models->category_del($_POST['ids']);
 		
-		echo "<script>alert('Data has been moved to trash');window.location.href='".$CONFIG['admin']['base_url']."kepakaran/kepakaranCat'</script>";
+		echo "<script>alert('Data has been moved to trash');window.location.href='".$CONFIG['admin']['base_url']."kepakaran'</script>";
 		
 	}
 	
@@ -183,13 +182,13 @@ class kepakaran extends Controller {
 	}
 	
 	
-	public function categoryrest(){
+	public function articlerest(){
 
 		global $CONFIG;
-		// pr($_POST);exit;
-		$data = $this->models->category_restore($_POST['ids']);
 		
-		echo "<script>alert('Your data has been restore');window.location.href='".$CONFIG['admin']['base_url']."kepakaran/kepakaranCat'</script>";
+		$data = $this->models->article_restore($_POST['ids']);
+		
+		echo "<script>alert('Your data has been restore');window.location.href='".$CONFIG['admin']['base_url']."article/trash'</script>";
 		
 	}
 	

@@ -4,7 +4,7 @@ class mkepakaran extends Database {
 	var $prefix = "api";
 	function category_inp($data)
 	{
-		// pr($_FILES);exit;
+		
 		$date = date('Y-m-d H:i:s');
 		$datetime = array();
 		
@@ -18,20 +18,20 @@ class mkepakaran extends Database {
 						('".$data['category_name']."','".$data['description']."','".$data['image']."','".$date."','".$data['n_status']."')";
 
 		} else {
-			$query = "UPDATE {$this->prefix}_category
+			$query = "UPDATE {$this->prefix}_news_content
 						SET 
 							category_name = '{$data['category_name']}',
 							description = '{$data['description']}',
 							image = '{$data['image']}',
 							create_date = '".$date."',
+							authorid = '{$data['authorid']}',
 							n_status = {$data['n_status']}
 						WHERE
 							id = '{$data['id']}'";
-							// pr($query);
 		}
 // pr($query);
 		$result = $this->query($query);
-		// pr($result);
+		
 		return $result;
 	}
 	
@@ -105,11 +105,11 @@ class mkepakaran extends Database {
 		
 	}
 	
-	function category_restore($id)
+	function article_restore($id)
 	{
 		foreach ($id as $key => $value) {
 			
-			$query = "UPDATE {$this->prefix}_category SET n_status = '0' WHERE id = '{$value}'";
+			$query = "UPDATE {$this->prefix}_news_content SET n_status = '0' WHERE id = '{$value}'";
 		
 			$result = $this->query($query);
 		
