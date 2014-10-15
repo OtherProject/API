@@ -46,6 +46,19 @@ class direktori extends Controller {
     function repository(){
     	return $this->loadView('direktori/repository');
     }
+
+    function repository_view(){
+    	return $this->loadView('direktori/repository_view');
+    }
+
+/** TEMPORARY DATA INPUTTED **/    
+    function repository_view_1(){
+    	return $this->loadView('direktori/repository_view_1');
+    }
+    
+    function repository_view_2(){
+    	return $this->loadView('direktori/repository_view_2');
+    }
 }
 
 ?>
