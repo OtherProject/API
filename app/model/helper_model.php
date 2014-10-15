@@ -4,6 +4,7 @@
 class helper_model extends Database {
 	
 	var $user = null;
+    var $prefix = "api";
 	function __construct()
 	{
 		$session = new Session;
@@ -11,6 +12,32 @@ class helper_model extends Database {
 		$this->user = $getSessi['login'];
 
 	}
+
+    
+    function getNews($id=false, $categoryid=1, $type=1, $start=0, $limit=5)
+    {
+        
+        $filter = "";
+        if ($id) $filter = " AND id = {$id} ";
+
+        $sql = "SELECT * FROM {$this->prefix}_news_content WHERE n_status = 1 AND categoryid = {$categoryid}
+                AND articleType = {$type} {$filter} LIMIT {$start},{$limit}";
+        // pr($sql);
+        $res = $this->fetch($sql,1);
+        if ($res){
+
+            foreach ($res as $key => $value) {
+                
+                $newData[$key]['title'] = $value['title'];
+                $newData[$key]['start'] = date('Y-m-d', strtotime($value['posted_date']));
+                $newData[$key]['end'] = date('Y-m-d', strtotime($value['expired_date']));
+            }
+
+            pr($newData);
+            return $newData;  
+        } 
+        return false;
+    }
 
     /*
 	function generateEmail($email=false, $username=false,$regfrom=1)

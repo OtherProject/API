@@ -10,8 +10,12 @@ class Controller extends Application{
 		parent::__construct();
 		
 		if (!$GLOBALS['CODEKIR']['LOGS']){
-			$this->loadModel('helper_model');
-			$GLOBALS['CODEKIR']['LOGS'] = new helper_model;
+
+			if ($this->configkey=='default'){
+				$this->loadModel('helper_model');
+				$GLOBALS['CODEKIR']['LOGS'] = new helper_model;	
+			}
+			
 		}
 		
 
@@ -38,6 +42,15 @@ class Controller extends Application{
 		// $this->inject();
 		// pr($filePath);
 		// exit;
+
+		//inject Data
+
+		if ($this->configkey=='default'){
+			$this->view->assign('dateToday',date('Y-m-d'));
+			$this->view->assign('agenda',$this->getAgenda());
+		}
+		
+		
 		if (file_exists($filePath)){
 			
 			if ($DATA[$this->configkey]['page']!=='login'){
@@ -306,6 +319,17 @@ class Controller extends Application{
 		$getHelper = new helper_model;
 
 		$getHelper->logActivity($action,$comment);
+
+	}
+
+	function getAgenda()
+	{
+		$getHelper = new helper_model;
+
+		$data = $getHelper->getNews(false,$cat=2, $type=0,0,100);
+		// pr($data);
+		if ($data) return json_encode($data);
+		else return false;
 
 	}
 	
