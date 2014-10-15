@@ -16,7 +16,7 @@ class news extends Controller {
 	
 	function loadmodule()
 	{
-        //$this->models = $this->loadModel('frontend');
+        $this->contentHelper = $this->loadModel('contentHelper');
 	}
     
     function agenda(){
@@ -24,14 +24,35 @@ class news extends Controller {
     }
 	
 	function kliping_kegiatan(){
+
+		$kliping =  $this->contentHelper->getNews($id=false,$cat=1,$type=2);
+        
+        $this->view->assign('kliping',$kliping);
     	return $this->loadView('news/kliping_kegiatan');
     }
     
     function berita(){
+    	$berita =  $this->contentHelper->getNews($id=false,$cat=1);
+        
+        $this->view->assign('berita',$berita);
     	return $this->loadView('news/berita');
     }
     
     function berita_detail(){
+
+    	$id = _g('id');
+    	$berita =  $this->contentHelper->getNews($id,$cat=1);
+        // pr($berita);
+        $this->view->assign('berita',$berita);
+    	return $this->loadView('news/berita_detail');
+    }
+
+    function kliping_detail(){
+
+    	$id = _g('id');
+		$kliping =  $this->contentHelper->getNews($id,$cat=1,$type=2);
+        
+        $this->view->assign('berita',$kliping);
     	return $this->loadView('news/berita_detail');
     }
 }

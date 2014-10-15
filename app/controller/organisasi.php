@@ -16,7 +16,7 @@ class organisasi extends Controller {
 	
 	function loadmodule()
 	{
-        //$this->models = $this->loadModel('frontend');
+        $this->contentHelper = $this->loadModel('contentHelper');
 	}
 	
 	/**function index(){
@@ -24,10 +24,19 @@ class organisasi extends Controller {
     }**/
     
     function profile(){
+
+        $profil =  $this->contentHelper->getNews(false,3);
+        // pr($profil);
+        
+        $this->view->assign('profil',$profil);
         return $this->loadView('organisasi/profile');
     }
     
     function struktur_organisasi(){
+        $struktur =  $this->contentHelper->getNews($id=false,$cat=3,$type=2,$start=0,$limit=1);
+        // pr($profil);
+        
+        $this->view->assign('struktur',$struktur);
         return $this->loadView('organisasi/struktur_organisasi');
     }
     
