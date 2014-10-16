@@ -10,6 +10,8 @@ $ROUTES = array(
 		'organisasi',
         'news',
         'direktori',
-        'gallery'
+        'gallery',
+        'kepakaran',
+        'anggota'
         );
 ?>
