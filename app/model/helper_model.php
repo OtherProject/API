@@ -33,7 +33,7 @@ class helper_model extends Database {
                 $newData[$key]['end'] = date('Y-m-d', strtotime($value['expired_date']));
             }
 
-            pr($newData);
+            // pr($newData);
             return $newData;  
         } 
         return false;
