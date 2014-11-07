@@ -30,6 +30,22 @@ class user extends Controller {
     function register(){
     	return $this->loadView('user/register');
     }
+    
+    function register_step1(){
+    	return $this->loadView('user/register_step1');
+    }
+    
+    function register_step2(){
+    	return $this->loadView('user/register_step2');
+    }
+    
+    function register_step3(){
+    	return $this->loadView('user/register_step3');
+    }
+    
+    function register_step4(){
+    	return $this->loadView('user/register_step4');
+    }
 }
 
 ?>

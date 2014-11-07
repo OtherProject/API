@@ -327,8 +327,9 @@ class Controller extends Application{
 		$getHelper = new helper_model;
 
 		$data = $getHelper->getNews(false,$cat=2, $type=0,0,100);
-		// pr($data);
-		if ($data) return json_encode($data);
+        //pr($data);
+		if (!empty($data)) {return json_encode($data);}
+        else if (empty($data)){return json_encode('empty');}
 		else return false;
 
 	}

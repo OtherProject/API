@@ -1,0 +1,48 @@
+<div class="container api-content">
+
+    <div id="api-registerContainer">
+        
+        <div class="text-left">
+        <!-- STEP WIZARD -->
+        <div class="wizard">
+            <a class="current"><span class="badge">1</span> Akun API</a>
+            <a><span class="badge">2</span> Identitas Lengkap</a>
+            <a><span class="badge">3</span> Riwayat</a>
+            <a><span class="badge">4</span> Keberhasilan</a>
+        </div>
+        </div>
+        
+        <div id="api-register">
+    		<h3>Akun API</h3>
+    
+    		<form id="register-form" action="" class="form" method="post">
+                
+                <div class="form-group">
+    				<label for="register-email">Email</label>
+    				<input type="text" class="form-control" id="register-email" placeholder="Email" name="email">
+    			</div>
+                
+                <div class="form-group">
+    				<label for="register-password">Password</label>
+    				<input type="password" class="form-control" id="register-password" placeholder="Password" name="password">
+    			</div>
+                
+                <div class="form-group">
+    				<label for="register-rePassword">Retype Password</label>
+    				<input type="password" class="form-control" id="register-rePassword" placeholder="Retype Password" name="rePassword">
+    			</div>
+    
+    			<div class="form-group">
+    				<button type="submit" id="register-btn" class="btn btn-primary btn-block">Lanjut &nbsp; <i class="fa fa-play-circle"></i></button>
+    
+    			</div>
+    		</form>
+        </div> <!-- /#login -->
+        
+        <a href="{$basedomain}user/register_step1" id="signup-btn" class="btn btn-lg btn-block api-btn">
+    		Buat Akun Offline :: Unduh Formulir
+    	</a>
+    
+    </div>
+    
+</div>
