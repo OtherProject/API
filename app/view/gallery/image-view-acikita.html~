@@ -6,19 +6,19 @@
         
         <div id="links">
             <a href="{$basedomain}public_assets/gallery/images/ACIKITA/384.JPG" title="Contoh Judul Foto" data-gallery>
-                <img src="{$basedomain}public_assets/gallery/thumbs/1.JPG" alt="" class="api-gallery">
+                <img src="{$basedomain}public_assets/gallery/thumbs/ACIKITA/384.JPG" alt="" class="api-gallery">
             </a>
             <a href="{$basedomain}public_assets/gallery/images/ACIKITA/385.JPG" title="" data-gallery>
-                <img src="{$basedomain}public_assets/gallery/thumbs/3.JPG" alt="" class="api-gallery">
+                <img src="{$basedomain}public_assets/gallery/thumbs/ACIKITA/385.JPG" alt="" class="api-gallery">
             </a>
             <a href="{$basedomain}public_assets/gallery/images/ACIKITA/386.JPG" title="" data-gallery>
-                <img src="{$basedomain}public_assets/gallery/thumbs/4.JPG" alt="" class="api-gallery">
+                <img src="{$basedomain}public_assets/gallery/thumbs/ACIKITA/386.JPG" alt="" class="api-gallery">
             </a>
             <a href="{$basedomain}public_assets/gallery/images/ACIKITA/387.JPG" title="" data-gallery>
-                <img src="{$basedomain}public_assets/gallery/thumbs/5.JPG" alt="" class="api-gallery">
+                <img src="{$basedomain}public_assets/gallery/thumbs/ACIKITA/387.JPG" alt="" class="api-gallery">
             </a>
             <a href="{$basedomain}public_assets/gallery/images/ACIKITA/390.JPG" title="" data-gallery>
-                <img src="{$basedomain}public_assets/gallery/thumbs/6.JPG" alt="" class="api-gallery">
+                <img src="{$basedomain}public_assets/gallery/thumbs/ACIKITA/390.JPG" alt="" class="api-gallery">
             </a>
         </div>
 

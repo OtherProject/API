@@ -13,7 +13,7 @@
                 </div>
                 </div>
             </div>
-            {*}
+            
             <div class="col-md-3" style="margin-bottom: 10px;">
                 <div class="api-album">
                 <a href="{$basedomain}gallery/view_RAKORLOK">
@@ -25,7 +25,6 @@
                 </div>
                 </div>
             </div>
-		{/*}
         </div>
 
 </div>
