@@ -88,6 +88,7 @@ class article extends Controller {
                                 $delete = deleteFile($x['image'],'news');
 								if($x['action'] == 'update') deleteFile($x['image']);
 								$image = uploadFile('file_image','news','image');
+								
 								$x['image_url'] = $CONFIG['admin']['app_url'].$image['folder_name'].$image['full_name'];
 								$x['image'] = $image['full_name'];
 							}
