@@ -87,7 +87,12 @@ class article extends Controller {
 							if($_FILES['file_image']['name'] != ''){
                                 $delete = deleteFile($x['image'],'news');
 								if($x['action'] == 'update') deleteFile($x['image']);
-								$image = uploadFile('file_image','news','image');
+								if($x['categoryid'] == '9'){
+									$image = uploadFile('file_image','gallery/images','image');
+								}else{
+									$image = uploadFile('file_image','news','image');
+								}
+								
 								$x['image_url'] = $CONFIG['admin']['app_url'].$image['folder_name'].$image['full_name'];
 								$x['image'] = $image['full_name'];
 							}
@@ -109,7 +114,13 @@ class article extends Controller {
                     }elseif($x['articletype']=='2'){
                         $redirect = $CONFIG['admin']['base_url'].'about/struktur';
                     }
-                }
+                }elseif($x['categoryid']=='9'){
+					if($x['articletype']=='1'){
+                        $redirect = $CONFIG['admin']['base_url'].'gallery';
+                    }elseif($x['articletype']=='2'){
+                        $redirect = $CONFIG['admin']['base_url'].'gallery';
+                    }
+				}
             }
             
             echo "<script>alert('Data berhasil di simpan');window.location.href='".$redirect."'</script>";
