@@ -20,6 +20,7 @@ class news extends Controller {
 	}
     
     function agenda(){
+    	
     	return $this->loadView('news/agenda');
     }
 	

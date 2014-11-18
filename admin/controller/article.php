@@ -87,11 +87,15 @@ class article extends Controller {
 							if($_FILES['file_image']['name'] != ''){
                                 $delete = deleteFile($x['image'],'news');
 								if($x['action'] == 'update') deleteFile($x['image']);
+<<<<<<< HEAD
 								if($x['categoryid'] == '9'){
 									$image = uploadFile('file_image','gallery/images','image');
 								}else{
 									$image = uploadFile('file_image','news','image');
 								}
+=======
+								$image = uploadFile('file_image','news','image');
+>>>>>>> origin/master
 								
 								$x['image_url'] = $CONFIG['admin']['app_url'].$image['folder_name'].$image['full_name'];
 								$x['image'] = $image['full_name'];
