@@ -32,13 +32,13 @@
 				</div> <!-- /.portlet-header -->
                 
                 <div class="portlet-content">
-                	<a class="btn btn-default btn-sm" href="{$basedomain}gallery/addImages"><i class="fa fa-plus"></i> Tambah Gambar</a>
+                	<a class="btn btn-default btn-sm" href="{$basedomain}gallery/addImages/?album={$albumId}"><i class="fa fa-plus"></i> Tambah Gambar</a>
 					<button type="submit" class="btn btn-primary btn-sm" id="btn-dis" disabled><i class="fa fa-trash-o"></i> Delete</button>
 					<hr/>
 					{foreach $data as $var}
-                    <div class="col-md-4 portfolio-item">
+                    <div class="col-md-3 portfolio-item">
                         <a href="{$basedomain}gallery/images/album={$var.id}">
-                            <img class="img-responsive thumbnail" src="{$var.file}" alt="" />
+                            <img class="img-responsive thumbnail" src="{$var.files}" alt="" />
                         </a>
                         <h3>
                             <a href="{$basedomain}gallery/images/album={$var.id}">{$var.title}</a>

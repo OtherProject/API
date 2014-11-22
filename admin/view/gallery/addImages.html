@@ -18,7 +18,7 @@ $(function () {
 </div> <!-- #content-header -->	
 
 <div id="content-container">
-	<form id="validate-enhanced" class="form parsley-form" method="post" action="{$basedomain}gallery/inpImages" enctype="multipart/form-data">
+	<form id="validate-enhanced" class="form parsley-form" method="post" action="{$basedomain}gallery/inpGallery" enctype="multipart/form-data">
 
 		<div class="row">
 			<div class="col-md-12">
@@ -38,12 +38,10 @@ $(function () {
 							<div class="col-sm-12">
 
 								<!-- hidden -->
-								<input type="hidden" name="id" value="{$data.id}" />
-								<input type="hidden" name="categoryid" value="9" />
-								<input type="hidden" name="articletype" value="1" /> <!-- album -->
-								<input type="hidden" name="authorid" value="{$admin.id}" />
-								<input type="hidden" name="image" value="{$data.image}" />
-								<input type="hidden" name="image_url" value="{$data.file}" />
+								<input type="hidden" name="otherid" value="{$albumId}" />
+								<input type="hidden" name="gallerytype" value="9" />
+								<input type="hidden" name="typealbum" value="2" />
+								<input type="hidden" name="n_status" value="1" />
 								<!-- hidden -->
 
 								<div class="form-group">                        
@@ -53,7 +51,7 @@ $(function () {
 											<div class="col-sm-12">
 												<input type="submit" class="btn btn-primary" value="Unggah" id="submit" />
 												<span id="addFiles" class="btn btn-default btn-file">
-													<span id="addButton">Tambah Gambar</span>
+													<span id="addButton">Pilih Gambar</span>
 													<input type="file" name="file_image[]" id="file_image" multiple/>
 												</span>
 												<a href="#" class="delImage btn btn-default fileupload-exists">Hapus</a>

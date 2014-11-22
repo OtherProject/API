@@ -235,6 +235,90 @@ function uploadFile($data,$path=null,$ext){
 	return $filename;
 }
 
+/**
+ * @todo upload file function
+ * @param String $data = name attribut of file to be upload
+ * @param String $path = string path to upload file
+ * 
+ * @return Array $result = array('status' => '', 'message' => '', 'full_path' => '', 'full_name' => '', 'raw_name' => '');
+ * @return int status = 0/1
+ * @return String message = message to print at view
+ * @return String full_path = to process the uploaded file
+ * @return String full_name = full name of uploaded file, include extension
+ * @return String raw_name = raw name of uploaded file
+ * */
+function uploadFileMultiple($data,$path=null,$ext){
+	global $CONFIG;
+	
+	if (array_key_exists('admin',$CONFIG)) $key = 'admin';
+	if (array_key_exists('default',$CONFIG)) $key = 'default';
+    if (array_key_exists('mobile',$CONFIG)) $key = 'mobile';
+    /* result template
+    $result = array(
+        'status' => '',
+        'message' => '',
+        'full_path' => '',
+        'full_name' => '',
+        'raw_name' => '',
+        'real_name' => ''
+    );
+    */
+	logFile(serialize($_FILES[$data]));
+    $result = [];
+	foreach($_FILES[$data]['type'] as $filekey => $filevalue){
+	
+	    if (!in_array($_FILES[$data]['type'][$filekey], $CONFIG[$key][$ext])){
+	        $result[] = array(
+	            'status' => '0',
+	            'message' => 'File type is not allowed.',
+	            'full_path' => '',
+	            'full_name' => '',
+	            'raw_name' => '',
+	            'real_name' => ''
+	        );
+	        
+	    }
+
+		if ($path!='') $pathslash = $path.'/';
+		$pathFile = $CONFIG[$key]['upload_path'].$pathslash;
+		$extfile = explode ('.',$_FILES[$data]["name"][$filekey]);
+		$countExt = count($extfile);
+		$getExt = $extfile[$countExt-1];
+		$shufflefilename = md5(str_shuffle('codekir-v0.3'.$CONFIG[$key]['max_filesize']));
+		$filename = $shufflefilename.'.'.$getExt;
+		
+		/* Host Folder path */
+		list($root_path, $dummy) = explode('admin',$CONFIG[$key]['root_path']);
+		list($dummy, $pathFolder) = explode($root_path,$pathFile);
+
+		if ($_FILES[$data]["error"][$filekey] > 0){
+		
+			echo "Return Code: " . $_FILES[$data]["error"][$filekey] . "<br>";
+		
+		}else{
+		
+			$_FILES[$data]["name"][$filekey];
+			($_FILES[$data]["size"][$filekey] / $CONFIG[$key]['max_filesize']);
+			$_FILES[$data]["tmp_name"][$filekey];
+			
+			move_uploaded_file($_FILES[$data]["tmp_name"][$filekey],$pathFile . $filename);
+			$result[] = array(
+				'status' => '1',
+				'message' => 'Upload Succeed.',
+				'full_path' => $pathFile,
+				'full_name' => $filename,
+				'raw_name' => $shufflefilename,
+                'real_name' => $_FILES[$data]["name"][$filekey],
+                'folder_name' => $pathFolder
+			);
+			
+		}
+		
+	}
+	
+	return $result;
+}
+
 function deleteFile($data=null, $path=null)
 {	
 	global $CONFIG;

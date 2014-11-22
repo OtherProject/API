@@ -68,7 +68,7 @@ class article extends Controller {
 			$_POST['articletype']=0;
 		}
  		
-		if(isset($_POST)){
+			if(isset($_POST)){
                 // validasi value yang masuk
                $x = form_validation($_POST);
 			   try
@@ -85,13 +85,16 @@ class article extends Controller {
 						//upload file
 						if(!empty($_FILES)){
 							if($_FILES['file_image']['name'] != ''){
-                                $delete = deleteFile($x['image'],'news');
-								if($x['action'] == 'update') deleteFile($x['image']);
+							
 								if($x['categoryid'] == '9'){
-									$image = uploadFile('file_image','gallery/images','image');
+									$path_upload = 'gallery/images';
 								}else{
-									$image = uploadFile('file_image','news','image');
+									$path_upload = 'news';
 								}
+							
+                                $delete = deleteFile($x['image'],$path_upload);
+								//if($x['action'] == 'update') deleteFile($x['image']);
+								$image = uploadFile('file_image',$path_upload,'image');
 								
 								$x['image_url'] = $CONFIG['admin']['app_url'].$image['folder_name'].$image['full_name'];
 								$x['image'] = $image['full_name'];
