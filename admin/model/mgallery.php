@@ -2,7 +2,7 @@
 class mgallery extends Database {
 	
 	var $prefix = "api";
-	function article_inp($data)
+	function gallery_inp($data)
 	{
 		
 		$date = date('Y-m-d H:i:s');
@@ -14,32 +14,37 @@ class mgallery extends Database {
 		if($data['action'] == 'insert'){
 			
 			$query = "INSERT INTO  
-						{$this->prefix}_news_content (title,brief,content,image,file,categoryid,articletype,
-												created_date,posted_date,expired_date,authorid,n_status)
+						{$this->prefix}_news_content_repo
+						(title,brief,content
+						,typealbum,gallerytype,files
+						,thumbnail,fromwho,otherid
+						,userid,created_date,n_status)
 					VALUES
-						('".$data['title']."','".$data['brief']."','".$data['content']."','".$data['image']."'
-                        ,'".$data['image_url']."','".$data['categoryid']."','".$data['articletype']."','".$date."'
-                        ,'".$data['postdate']."','".$data['expired_date']."','".$data['authorid']."','".$data['n_status']."')";
+						('".$data['title']."','".$data['brief']."','".$data['image']."'
+						,'".$data['typealbum']."','".$data['gallerytype']."','".$data['image_url']."'
+						,'".$data['thumbnail']."','".$data['fromwho']."','".$data['otherid']."'
+						,'".$data['authorid']."','".$date."','".$data['n_status']."')";
                         //pr($query);exit;
 
 		} else {
             if($data['categoryid']=='1' && $data['articletype']=='2') $date = $data['postdate'];
-			$query = "UPDATE {$this->prefix}_news_content
+			$query = "UPDATE {$this->prefix}_news_content_repo
 						SET 
 							title = '{$data['title']}',
 							brief = '{$data['brief']}',
 							content = '{$data['content']}',
-							image = '{$data['image']}',
-							file = '{$data['image_url']}',
-                            articletype = '{$data['articletype']}',
-							posted_date = '".$date."',
-                            expired_date = '{$data['expired_date']}',
-							authorid = '{$data['authorid']}',
+							typealbum = '{$data['image']}',
+							gallerytype = '{$data['gallerytypes']}',
+							files = '{$data['image_url']}',
+                            thumbnail = '{$data['thumbnail']}',
+                            fromwho = '{$data['fromwho']}',
+							otherid = '{$data['otherid']}',
+							userid = '{$data['userid']}',
+							created_date = '".$date."',
 							n_status = {$data['n_status']}
 						WHERE
 							id = '{$data['id']}'";
 		}
-// pr($query);
 		$result = $this->query($query);
 		
 		return $result;

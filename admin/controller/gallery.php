@@ -35,9 +35,11 @@ class gallery extends Controller {
 	}
 	
 	public function album(){
-		$id = $_GET['album'];
-		$data = $this->gallery->get_images($id);
+		$albumId = $_GET['album'];
+		$data = $this->gallery->get_images($albumId);
+		
 		$this->view->assign('data',$data);
+		$this->view->assign('albumId',$albumId);
 		return $this->loadView('gallery/images');
 	}
 	
@@ -52,12 +54,56 @@ class gallery extends Controller {
 	}
 	
 	public function addImages(){
+		$albumId = $_GET['album'];
+		$this->view->assign('albumId',$albumId);
 		return $this->loadView('gallery/addImages');
 	}
 	
-	public function inpImages(){
+	public function inpGallery(){
 		global $CONFIG;
-		pr($_FILES);exit;
+		if(isset($_POST)){
+            // validasi value yang masuk
+           $x = form_validation($_POST);
+		   try
+		   {
+		   		if(isset($x) && count($x) != 0)
+		   		{
+					//update or insert
+					$x['action'] = 'insert';
+					if($x['id'] != ''){
+						$x['action'] = 'update';
+					}
+                    
+					//upload file
+					if(!empty($_FILES)){
+						
+						if($x['gallerytype'] == '9'){
+							$path_upload = 'gallery/images/test';
+						}else{
+							$path_upload = '';
+						}
+						
+						$image = uploadFileMultiple('file_image',$path_upload,'image');
+						foreach ($_FILES['file_image']['name'] as $filekey => $file){
+							$x['image_url'] = $CONFIG['admin']['app_url'].$image[$filekey]['folder_name'].$image[$filekey]['full_name'];
+							$x['image'] = $image[$filekey]['full_name'];
+							$data = $this->gallery->gallery_inp($x);
+						}
+					}
+					
+		   		}
+			   	
+		   }catch (Exception $e){}
+        
+        $redirect = $CONFIG['admin']['base_url'].'home';
+        if(isset($x['gallerytype'])){
+            if($x['gallerytype']=='9'){
+				$redirect = $CONFIG['admin']['base_url'].'gallery/album/?album='.$x['otherid'];
+			}
+        }
+        
+        echo "<script>alert('Data berhasil di simpan');window.location.href='".$redirect."'</script>";
+        }
 	}
 }
 
