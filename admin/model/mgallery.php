@@ -110,7 +110,6 @@ class mgallery extends Database {
 		
 		return $result;
 	}
-	
 	function article_del($id)
 	{
 		foreach ($id as $key => $value) {
@@ -124,7 +123,35 @@ class mgallery extends Database {
 		return true;
 		
 	}
-	
+	function gallery_del($id)
+	{
+		//pr($id);
+		foreach ($id as $key => $value) {
+			
+			$query = "UPDATE {$this->prefix}_news_content SET n_status = '2' WHERE id = '{$value}'";
+		
+			$result = $this->query($query);
+		
+		}
+
+		return true;
+		
+	}
+
+	function image_del($id)
+	{
+		//pr($id);
+		foreach ($id as $key => $value) {
+			
+			$query = "UPDATE {$this->prefix}_news_content_repo SET n_status = '2' WHERE id = '{$value}'";
+		
+			$result = $this->query($query);
+		
+		}
+
+		return true;
+		
+	}
 	function article_delpermanent($id)
 	{
 		$query = "DELETE FROM cdc_news_content WHERE id = '{$id}'";

@@ -46,13 +46,23 @@ class gallery extends Controller {
 	public function gallerydel(){
 
 		global $CONFIG;
-		pr($_POST);exit;
+
 		$data = $this->gallery->gallery_del($_POST['ids']);
 		
 		echo "<script>alert('Data berhasil dihapus');window.location.href='".$CONFIG['admin']['base_url']."gallery'</script>";
 		
 	}
-	
+	public function imagedel(){
+
+		global $CONFIG;
+		$albumid=$_POST['album'];
+		//pr($_POST);
+		//exit;
+		$data = $this->gallery->image_del($_POST['ids']);
+		
+		echo "<script>alert('Data berhasil dihapus');window.location.href='".$CONFIG['admin']['base_url']."gallery/album/?album=".$albumid."'</script>";
+		
+	}
 	public function addImages(){
 		$albumId = $_GET['album'];
 		$this->view->assign('albumId',$albumId);
@@ -78,7 +88,7 @@ class gallery extends Controller {
 					if(!empty($_FILES)){
 						
 						if($x['gallerytype'] == '9'){
-							$path_upload = 'gallery/images/test';
+							$path_upload = 'gallery/images';
 						}else{
 							$path_upload = '';
 						}

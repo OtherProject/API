@@ -175,7 +175,7 @@ function uploadFile($data,$path=null,$ext){
             'full_name' => '',
             'raw_name' => '',
             'real_name' => ''
-        );
+       );
         return $result;
     }
 	

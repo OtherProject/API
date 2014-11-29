@@ -49,7 +49,6 @@ class article extends Controller {
     
 	public function articleinp(){
 		global $CONFIG;
-		
 		if(isset($_POST['n_status'])){
 			if($_POST['n_status']=='on') $_POST['n_status']=1;
 		} else {
@@ -80,8 +79,8 @@ class article extends Controller {
 						if($x['id'] != ''){
 							$x['action'] = 'update';
 						}
-                        
-                        //pr($x);exit;
+                        // pr($_FILES);
+                        // pr($x);
 						//upload file
 						if(!empty($_FILES)){
 							if($_FILES['file_image']['name'] != ''){
@@ -95,11 +94,14 @@ class article extends Controller {
                                 $delete = deleteFile($x['image'],$path_upload);
 								//if($x['action'] == 'update') deleteFile($x['image']);
 								$image = uploadFile('file_image',$path_upload,'image');
-								
+								// echo "image";
+								// pr($image);
+								// echo "end image";
 								$x['image_url'] = $CONFIG['admin']['app_url'].$image['folder_name'].$image['full_name'];
 								$x['image'] = $image['full_name'];
 							}
 						}
+						// pr($x);exit;
 						$data = $this->models->article_inp($x);
 			   		}
 				   	
