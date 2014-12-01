@@ -1,34 +1,16 @@
 <div class="container api-content">  
 
     <div class="pull-right"><a href="{$basedomain}gallery" class="btn api-btn"><span class="glyphicon glyphicon-chevron-left"></span> Back</a></div>
-        <h3>Album Name</h3>
+        <h3>{$data_album.title}</h3>
         
         
         <div id="links">
-            <a href="{$basedomain}public_assets/gallery/images/1.jpg" title="Contoh Judul Foto" data-gallery>
-                <img src="{$basedomain}public_assets/gallery/thumbs/1.jpg" alt="" class="api-gallery">
+        {foreach $data as $var}
+            <a href="{$basedomain}public_assets/gallery/images/{$var.content}" title="Contoh Judul Foto" data-gallery>
+                <img src="{$basedomain}public_assets/gallery/images/{$var.content}" alt="" class="api-gallery">
             </a>
-            <a href="{$basedomain}public_assets/gallery/images/2.jpg" title="" data-gallery>
-                <img src="{$basedomain}public_assets/gallery/thumbs/2.jpg" alt="" class="api-gallery">
-            </a>
-            <a href="{$basedomain}public_assets/gallery/images/3.jpg" title="" data-gallery>
-                <img src="{$basedomain}public_assets/gallery/thumbs/3.jpg" alt="" class="api-gallery">
-            </a>
-            <a href="{$basedomain}public_assets/gallery/images/4.jpg" title="" data-gallery>
-                <img src="{$basedomain}public_assets/gallery/thumbs/4.jpg" alt="" class="api-gallery">
-            </a>
-            <a href="{$basedomain}public_assets/gallery/images/5.jpg" title="" data-gallery>
-                <img src="{$basedomain}public_assets/gallery/thumbs/5.jpg" alt="" class="api-gallery">
-            </a>
-            <a href="{$basedomain}public_assets/gallery/images/6.jpg" title="" data-gallery>
-                <img src="{$basedomain}public_assets/gallery/thumbs/6.jpg" alt="" class="api-gallery">
-            </a>
-            <a href="{$basedomain}public_assets/gallery/images/7.jpg" title="" data-gallery>
-                <img src="{$basedomain}public_assets/gallery/thumbs/7.jpg" alt="" class="api-gallery">
-            </a>
-            <a href="{$basedomain}public_assets/gallery/images/8.jpg" title="" data-gallery>
-                <img src="{$basedomain}public_assets/gallery/thumbs/8.jpg" alt="" class="api-gallery">
-            </a>
+        {/foreach}
+
         </div>
 
 </div>

@@ -2,17 +2,19 @@
     <h3>Gallery</h3>
         
         <div class="row" style="margin: 0;">
+            {foreach $data as $var}
             <div class="col-md-3" style="margin-bottom: 10px;">
                 <div class="api-album">
-                <a href="{$basedomain}gallery/view_ACIKITA">
-                    <img src="{$basedomain}public_assets/gallery/thumbs/1.JPG">
+                <a href="{$basedomain}gallery/view/?album={$var.id}">
+                    <img src="{$basedomain}public_assets/gallery/images/{$var.image}">
                 </a>
                 <div class="caption_album">
-                    <a href="{$basedomain}gallery/view_ACIKITA">ACIKITA-KITA</a>
-                    <p class="text-muted">5 foto</p>
+                    <a href="{$basedomain}gallery/view/?album={$var.id}">{$var.title}</a>
+                    <p class="text-muted">{$var.count} foto</p>
                 </div>
                 </div>
             </div>
+            {/foreach}
             {*}
             <div class="col-md-3" style="margin-bottom: 10px;">
                 <div class="api-album">
