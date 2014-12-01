@@ -56,8 +56,7 @@ class gallery extends Controller {
 
 		global $CONFIG;
 		$albumid=$_POST['album'];
-		//pr($_POST);
-		//exit;
+        
 		$data = $this->gallery->image_del($_POST['ids']);
 		
 		echo "<script>alert('Data berhasil dihapus');window.location.href='".$CONFIG['admin']['base_url']."gallery/album/?album=".$albumid."'</script>";
