@@ -10,6 +10,7 @@ class marticle extends Database {
         
 		if(!empty($data['postdate'])) $data['postdate'] = date("Y-m-d H:i:s",strtotime($data['postdate']));
         if(!empty($data['expired_date'])) $data['expired_date'] = date("Y-m-d H:i:s",strtotime($data['expired_date']));
+        else $data['expired_date'] = '0000-00-00';
         
 		if($data['action'] == 'insert'){
 			
