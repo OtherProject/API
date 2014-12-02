@@ -48,10 +48,9 @@
                         <select class="form-control">
                           <option>All</option>
                           <option disabled>By Project</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                          <option>5</option>
+                          {foreach $data as $var}
+                          <option>{$var.category_name}</option>
+                          {/foreach}
                         </select>
                     </div>
                     

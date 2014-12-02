@@ -31,7 +31,47 @@
             <a href="#">Z</a>
         
         </div>
-    <!--START ANGGOTA-->    
+    <!--START ANGGOTA-->    {*}
+             {foreach $data as $var}
+            <div class="api-anggota col-md-4">
+                <div class="row">
+                    <div class="col-md-5 image">
+                        <img src="{$basedomain}public_assets/anggota/1.jpg" class="img-responsive" />
+                    </div>
+                
+                    <div class="col-md-7 title">
+                        <p>{$var.name}</p>
+                        <div class="content">
+                            <p>
+                                {$var.description}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <a href="{$basedomain}organisasi/anggota_view" class="pull-right more">Detail ...</a>
+                <div class="clearfix"></div>
+            </div>
+             {/foreach}
+          {/*}
+            <div class="api-anggota col-md-4">
+                <div class="row">
+                    <div class="col-md-5 image">
+                        <img src="{$basedomain}public_assets/anggota/1.jpg" class="img-responsive" />
+                    </div>
+                
+                    <div class="col-md-7 title">
+                        <p>Anna</p>
+                        <div class="content">
+                            <p>
+                                Profesor Aging and Human Physiology, KNSU, Seoul Korea
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <a href="{$basedomain}organisasi/anggota_view" class="pull-right more">Detail ...</a>
+                <div class="clearfix"></div>
+            </div>
+            <!--
             <div class="api-anggota col-md-4">
                 <div class="row">
                     <div class="col-md-5 image">
@@ -106,45 +146,7 @@
                 </div>
                 <a href="{$basedomain}organisasi/anggota_view" class="pull-right more">Detail ...</a>
                 <div class="clearfix"></div>
-            </div>
-            
-            <div class="api-anggota col-md-4">
-                <div class="row">
-                    <div class="col-md-5 image">
-                        <img src="{$basedomain}public_assets/anggota/1.jpg" class="img-responsive" />
-                    </div>
-                
-                    <div class="col-md-7 title">
-                        <p>Nama</p>
-                        <div class="content">
-                            <p>
-                                Profesor Aging and Human Physiology, KNSU, Seoul Korea
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <a href="{$basedomain}organisasi/anggota_view" class="pull-right more">Detail ...</a>
-                <div class="clearfix"></div>
-            </div>
-            
-            <div class="api-anggota col-md-4">
-                <div class="row">
-                    <div class="col-md-5 image">
-                        <img src="{$basedomain}public_assets/anggota/1.jpg" class="img-responsive" />
-                    </div>
-                
-                    <div class="col-md-7 title">
-                        <p>Nama</p>
-                        <div class="content">
-                            <p>
-                                Profesor Aging and Human Physiology, KNSU, Seoul Korea
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <a href="{$basedomain}organisasi/anggota_view" class="pull-right more">Detail ...</a>
-                <div class="clearfix"></div>
-            </div>
+            </div>-->
     </div>
             
              
@@ -159,6 +161,7 @@
           <li><a href="#">&raquo;</a></li>
         </ul>
     </div>
+
     <div class="clearfix"></div>
                       
     </div>

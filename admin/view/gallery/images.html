@@ -1,0 +1,64 @@
+<script type="text/javascript">
+	function AreAnyCheckboxesChecked () {
+	  if ($("#Form2 input:checkbox:checked").length > 0)
+		{
+		    $("#btn-dis").removeAttr("disabled");
+		}
+		else
+		{
+		   $('#btn-dis').attr("disabled","disabled");
+		}
+	}
+</script>
+<div id="content-header">
+	<h1>Galeri</h1>
+</div> <!-- #content-header -->	
+
+<div id="content-container">
+
+	<div class="row">
+
+		<div class="col-md-12">
+                
+            <div class="portlet">
+
+				<div class="portlet-header">
+
+					<h3>
+						<i class="fa fa-table"></i>
+						List Album
+					</h3>
+
+				</div> <!-- /.portlet-header -->
+                
+                <div class="portlet-content">
+                	<form action="{$basedomain}gallery/imagedel" method=POST name="checks" ID="Form2" onsubmit="return confirm('Yakin ingin menghapus gambar?');">
+
+                	<a class="btn btn-default btn-sm" href="{$basedomain}gallery/addImages/?album={$albumId}"><i class="fa fa-plus"></i> Tambah Gambar</a>
+					<button type="submit" class="btn btn-primary btn-sm" id="btn-dis" disabled><i class="fa fa-trash-o"></i> Delete</button>
+					<hr/>
+					<input type="hidden" name="album" value="{$albumId}"/>
+					{foreach $data as $var}
+                    <div class="col-md-3 portfolio-item">
+                       <a class="preview" href="{$var.files}" rel="prettyPhoto">
+                            <img class="img-responsive thumbnail" src="{$var.files}" alt="" />
+                        </a>
+                        <h3>
+                        	<input type="checkbox" class="icheck-input" name="ids[]" value="{$var.id}" onchange="return AreAnyCheckboxesChecked();" />
+                            <a href="{$basedomain}gallery/images/album={$var.id}">{$var.title}</a>
+                        </h3>
+                        <p class="gallery-caption" >{$var.brief}</p>
+						<hr/>
+                    </div>
+					
+					{/foreach}
+                    </form>
+                </div>
+                
+            </div>
+            
+		</div> <!-- /.col -->
+
+	</div> <!-- /.row -->
+
+</div>

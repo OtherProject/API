@@ -1,0 +1,30 @@
+<div class="container api-content">  
+    <h3>Gallery</h3>
+        
+        <div class="row" style="margin: 0;">
+            <div class="col-md-3" style="margin-bottom: 10px;">
+                <div class="api-album">
+                <a href="{$basedomain}gallery/view_ACIKITA">
+                    <img src="{$basedomain}public_assets/gallery/thumbs/1.JPG">
+                </a>
+                <div class="caption_album">
+                    <a href="{$basedomain}gallery/view_ACIKITA">ACIKITA</a>
+                    <p class="text-muted">5 foto</p>
+                </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3" style="margin-bottom: 10px;">
+                <div class="api-album">
+                <a href="{$basedomain}gallery/view_RAKORLOK">
+                    <img src="{$basedomain}public_assets/gallery/thumbs/2.JPG">
+                </a>
+                <div class="caption_album">
+                    <a href="{$basedomain}gallery/view_RAKORLOK">RAKORLOK 7 BHMN</a>
+                    <p class="text-muted">4 foto</p>
+                </div>
+                </div>
+            </div>
+        </div>
+
+</div>

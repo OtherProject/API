@@ -284,13 +284,86 @@ body p,a{
     border: 5px solid #A0CAEC;
     border-radius: 5px;
 }
-#api-login #login-form .form-control, #api-register #register-form .form-control{height: 40px;}
-#api-login #login-btn, #api-register #register-btn {
+#api-login #login-form .form-control, #api-register #register-form .form-control, .stepReg #register-form .form-control, .stepReg #register-form2 .form-control, .stepReg #register-form3 .form-control{height: 40px;}
+#api-login #login-btn, #api-register #register-btn, .stepReg #register-btn {
     padding-top: 5px;
     padding-bottom: 5px;
     font-size: 20px;
 }
 #api-login h3, #api-register h3{border: none;}
+
+.stepReg{
+    border: 1px solid #A0CAEC !important;
+    padding: 0 !important;
+    margin-bottom: 20px;
+}
+.stepReg h3{background-color: #A0CAEC; color: #FFF; border:none;margin-top:0;}
+
+/* STEP CSS */
+.wizard{margin-bottom:20px;}
+.wizard a {
+    padding: 10px 12px 10px;
+    margin-right: 5px;
+    background: #efefef;
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    color: #1C4298;
+}
+.wizard a:before {
+    width: 0;
+    height: 0;
+    border-top: 20px inset transparent;
+    border-bottom: 20px inset transparent;
+    border-left: 20px solid #fff;
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+}
+.wizard a:after {
+    width: 0;
+    height: 0;
+    border-top: 20px inset transparent;
+    border-bottom: 20px inset transparent;
+    border-left: 20px solid #efefef;
+    position: absolute;
+    content: "";
+    top: 0;
+    right: -20px;
+    z-index: 2;
+}
+.wizard a:first-child:before,
+.wizard a:last-child:after {
+    border: none;
+}
+.wizard a:first-child {
+    -webkit-border-radius: 4px 0 0 4px;
+       -moz-border-radius: 4px 0 0 4px;
+            border-radius: 4px 0 0 4px;
+}
+.wizard a:last-child {
+    -webkit-border-radius: 0 4px 4px 0;
+       -moz-border-radius: 0 4px 4px 0;
+            border-radius: 0 4px 4px 0;
+}
+.wizard .badge {
+    margin: 0 5px 0 18px;
+    position: relative;
+    top: -1px;
+    background-color: #A0CAEC;
+}
+.wizard a:first-child .badge {
+    margin-left: 0;
+}
+.wizard .current {
+    background: #1C4298;
+    color: #fff;
+}
+.wizard .current:after {
+    border-left-color: #1C4298;
+}
+/* END OF STEP CSS */
 
 @media (min-width: 768px) {
   #api-loginContainer {
@@ -299,7 +372,7 @@ body p,a{
   #api-loginContainer .row > div {
     margin-bottom: 0;
   }
-  #api-login #login-form, #api-register #register-form {
+  #api-login #login-form, #api-register #register-form, .stepReg #register-form, .stepReg #register-form2, .stepReg #register-form3 {
     padding: 0 25px;
     text-align: left;
   }

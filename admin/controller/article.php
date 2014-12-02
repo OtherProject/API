@@ -68,7 +68,7 @@ class article extends Controller {
 			$_POST['articletype']=0;
 		}
  		
-		if(isset($_POST)){
+			if(isset($_POST)){
                 // validasi value yang masuk
                $x = form_validation($_POST);
 			   try
@@ -85,9 +85,16 @@ class article extends Controller {
 						//upload file
 						if(!empty($_FILES)){
 							if($_FILES['file_image']['name'] != ''){
-                                $delete = deleteFile($x['image'],'news');
-								if($x['action'] == 'update') deleteFile($x['image']);
-								$image = uploadFile('file_image','news','image');
+							
+								if($x['categoryid'] == '9'){
+									$path_upload = 'gallery/images';
+								}else{
+									$path_upload = 'news';
+								}
+							
+                                $delete = deleteFile($x['image'],$path_upload);
+								//if($x['action'] == 'update') deleteFile($x['image']);
+								$image = uploadFile('file_image',$path_upload,'image');
 								
 								$x['image_url'] = $CONFIG['admin']['app_url'].$image['folder_name'].$image['full_name'];
 								$x['image'] = $image['full_name'];
@@ -110,7 +117,15 @@ class article extends Controller {
                     }elseif($x['articletype']=='2'){
                         $redirect = $CONFIG['admin']['base_url'].'about/struktur';
                     }
-                }
+                }elseif($x['categoryid']=='9'){
+					if($x['articletype']=='1'){
+                        $redirect = $CONFIG['admin']['base_url'].'gallery';
+                    }elseif($x['articletype']=='2'){
+                        $redirect = $CONFIG['admin']['base_url'].'gallery';
+                    }
+				}elseif($x['categoryid']=='8'){
+					$redirect = $CONFIG['admin']['base_url'].'direktori/repository/listCategory';
+				}
             }
             
             echo "<script>alert('Data berhasil di simpan');window.location.href='".$redirect."'</script>";
@@ -120,10 +135,26 @@ class article extends Controller {
 	public function articledel(){
 
 		global $CONFIG;
-		// pr($_POST);exit;
-		$data = $this->models->article_del($_POST['ids']);
-		
-		echo "<script>alert('Data dipindahkan ke trash');window.location.href='".$CONFIG['admin']['base_url']."home'</script>";
+		//pr($_POST);exit;
+        $post = $_POST;
+		$data = $this->models->article_del($post['ids']);
+        
+        $redirect = $CONFIG['admin']['base_url'].'home';
+        $message  = 'Data dipindahkan ke trash';
+        if(isset($post['categoryid'])){
+            if($post['categoryid'] == '1'){
+                $redirect = $CONFIG['admin']['base_url'].'home';
+            }elseif($post['categoryid']=='2'){
+                $redirect = $CONFIG['admin']['base_url'].'agenda';
+            }elseif($post['categoryid']=='9'){
+				$redirect = $CONFIG['admin']['base_url'].'gallery';
+                $message  = 'Data berhasil dihapus';
+			}elseif($post['categoryid']=='8'){
+				$redirect = $CONFIG['admin']['base_url'].'direktori/repository/listCategory';
+                $message  = 'Data berhasil dihapus';
+			}
+        }
+		echo "<script>alert('".$message."');window.location.href='".$redirect."'</script>";
 		
 	}
 	
