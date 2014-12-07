@@ -166,19 +166,19 @@ function uploadFile($data,$path=null,$ext){
         'real_name' => ''
     );
     */
-    
-    if (!in_array($_FILES[$data]['type'], $CONFIG[$key][$ext])){
-        $result = array(
-            'status' => '0',
-            'message' => 'File type is not allowed.',
-            'full_path' => '',
-            'full_name' => '',
-            'raw_name' => '',
-            'real_name' => ''
-        );
-        return $result;
-    }
-	
+    if($ext){
+        if (!in_array($_FILES[$data]['type'], $CONFIG[$key][$ext])){
+            $result = array(
+                'status' => '0',
+                'message' => 'File type is not allowed.',
+                'full_path' => '',
+                'full_name' => '',
+                'raw_name' => '',
+                'real_name' => ''
+            );
+            return $result;
+        }
+	}
 	logFile(serialize($_FILES[$data]));
 
 	if ($path!='') $path = $path.'/';

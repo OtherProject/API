@@ -36,12 +36,19 @@
 
 					<div class="table-responsive">
 
-					<form action="{$basedomain}article/articledel" method=POST name="checks" ID="Form2" onsubmit="return confirm('Are you sure want to delete?');">
+					<form action="{$basedomain}article/articledel" method=POST name="checks" ID="Form2" onsubmit="return confirm('Yakin ingin menghapus data?');">
                     
 					<a href="{$basedomain}direktori/addcategory"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-plus"></i> Tambah Kategori</button></a>
                     
 
 					<button type="submit" class="btn btn-primary btn-sm" id="btn-dis" disabled><i class="fa fa-trash-o"></i> Delete</button>
+                    
+                    <select id="artikel" class="btn btn-default btn-sm">
+                        <option value="">All</option>
+                        {foreach $listactivity as $activity}
+                        <option value="{$activity.title}">{$activity.title}</option>
+                        {/foreach}
+                    </select>
                     
                     <a href="{$basedomain}direktori/repository"><button type="button" class="btn btn-default btn-sm">Kembali</button></a>
                     
@@ -57,18 +64,23 @@
 									<th class="checkbox-column">
 										<input type="checkbox" class="icheck-input" onchange="return AreAnyCheckboxesChecked();">
 									</th>
-									<th data-filterable="true" data-sortable="true" >Nama Kategori</th>
-									<th data-filterable="true" data-sortable="false">Deskripsi Singkat</th>
+                                    <th data-filterable="true" data-sortable="true" >Nama Kegiatan</th>
+                                    <th data-filterable="true" data-sortable="true" >Jenis Kegiatan</th>
+									<th data-filterable="true" data-sortable="true" >Tanggal</th>
+									<th data-filterable="true" data-sortable="false">Tempat Kegiatan</th>
 								</tr>
 							</thead>
 							<tbody>
 								{foreach $data as $var}
 								<tr>
 									<td class="checkbox-column">
-                                        <input type="hidden" name="categoryid" value="{$var.catedoryid}" />
+                                        <input type="hidden" name="categoryid" value="{$var.categoryid}" />
+                                        <input type="hidden" name="action" value="delete" />
 										<input type="checkbox" class="icheck-input" name="ids[]" value="{$var.id}" onchange="return AreAnyCheckboxesChecked();" />
 									</td>
-									<td><a href="{$basedomain}article/addarticle/?id={$var.id}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title}">{$var.title}</a></td>
+                                    <td><a href="{$basedomain}direktori/addcategory/?id={$var.id}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.content}">{$var.content}</a></td>
+                                    <td>{$var.title}</td>
+                                    <td>{$var.posted_date} - {$var.expired_date}</td>
 									<td>{$var.brief}</td>
 								</tr>
 								{/foreach}

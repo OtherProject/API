@@ -1,7 +1,7 @@
 <script>
 $(function () {
 	$('#postdate').datepicker ();
-	$('#expiredate').datepicker ();
+	$('#expired_date').datepicker ();
 	
 	$("#isi").jqte();
 	
@@ -14,7 +14,7 @@ $(function () {
 </script>
 
 <div id="content-header">
-	<h1>Tambah Kategori</h1>
+	<h1>Tambah Kegiatan</h1>
 </div> <!-- #content-header -->	
 
 <div id="content-container">
@@ -28,23 +28,29 @@ $(function () {
 
 						<h3>
 							<i class="fa fa-tasks"></i>
-							Form Kategori
+							Form Kegiatan
 						</h3>
 
 					</div> <!-- /.portlet-header -->
 				
 					<div class="portlet-content">
-				
-						<div class="col-sm-9">
+                        <div class="col-sm-10">
 							<div class="form-group">
-                                <label for="text-input">Nama Kategori</label>
+                                <label for="text-input">Nama Kegiatan</label>
+                                <input type="text" name="content" class="form-control" value="{$data.content}" data-required="true"/>
+							</div>
+						</div>
+                        
+						<div class="col-sm-10">
+							<div class="form-group">
+                                <label for="text-input">Jenis Kegiatan</label>
                                 <input type="text" name="title" class="form-control" value="{$data.title}" data-required="true"/>
 							</div>
 						</div>
 						
-						<div class="col-sm-9">
+						<div class="col-sm-10">
 							<div class="form-group">
-							<label for="text-input">Deskripsi Singkat</label>
+							<label for="text-input">Tempat Kegiatan</label>
 									<input type="text" name="brief" class="form-control" value="{$data.brief}" />
 							</div>
 							
@@ -55,8 +61,38 @@ $(function () {
 							<input type="hidden" name="authorid" value="{$admin.id}" />
 							<!-- hidden -->
                             
-                            <input type="submit" class="btn btn-primary" value="Submit" id="submit" />
+                            
 						</div>
+                        
+                        <div class="col-sm-5">
+                            <div class="form-group">
+    							<label for="select-input">Tanggal Mulai</label>
+    							<div id="postdate" class="input-group date" data-auto-close="true" data-date-autoclose="true">
+    								<input class="form-control" type="text" name="postdate" value="{$data.posted_date}" data-required="true" />
+    								<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                    
+    							</div>
+    							
+    						</div>
+                        </div>
+                        
+                        <div class="col-sm-5">
+                            <div class="form-group">
+    							<label for="select-input">Tanggal Akhir</label>
+    							<div id="expired_date" class="input-group date" data-auto-close="true" data-date-autoclose="true">
+    								<input class="form-control" type="text" name="expired_date" value="{$data.expired_date}" data-required="true" />
+    								<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                    
+    							</div>
+    							
+    						</div>
+                            
+                            
+                        </div>
+                        
+                        <div class="col-sm-12">
+                            <input type="submit" class="btn btn-primary" value="Submit" id="submit" />
+                        </div>
                                        
                         
 					</div>

@@ -32,14 +32,14 @@ class mgallery extends Database {
 						SET 
 							title = '{$data['title']}',
 							brief = '{$data['brief']}',
-							content = '{$data['content']}',
-							typealbum = '{$data['image']}',
-							gallerytype = '{$data['gallerytypes']}',
+							content = '{$data['image']}',
+							typealbum = '{$data['typealbum']}',
+							gallerytype = '{$data['gallerytype']}',
 							files = '{$data['image_url']}',
                             thumbnail = '{$data['thumbnail']}',
                             fromwho = '{$data['fromwho']}',
 							otherid = '{$data['otherid']}',
-							userid = '{$data['userid']}',
+							userid = '{$data['authorid']}',
 							created_date = '".$date."',
 							n_status = {$data['n_status']}
 						WHERE
@@ -52,7 +52,7 @@ class mgallery extends Database {
 	
 	function get_images($albumid=null,$type=1)
 	{
-		$query = "SELECT * FROM {$this->prefix}_news_content_repo WHERE n_status = '1' AND otherid = '{$albumid}' OR n_status = '0' AND otherid = '{$albumid}' ORDER BY created_date DESC";
+		$query = "SELECT * FROM {$this->prefix}_news_content_repo WHERE n_status != '2' AND otherid = '{$albumid}' AND typealbum = '2' ORDER BY created_date DESC";
 		
 		$result = $this->fetch($query,1);
 

@@ -24,7 +24,7 @@ class marticle extends Database {
                         //pr($query);exit;
 
 		} else {
-            if($data['categoryid']=='1' && $data['articletype']=='2') $date = $data['postdate'];
+            if($data['categoryid']=='1' && $data['articletype']=='2' || $data['categoryid']=='8') $date = $data['postdate'];
 			$query = "UPDATE {$this->prefix}_news_content
 						SET 
 							title = '{$data['title']}',
@@ -107,12 +107,14 @@ class marticle extends Database {
 		return $result;
 	}
 	
-	function article_del($id)
+	function article_del($id, $action=null)
 	{
 		foreach ($id as $key => $value) {
-			
-			$query = "UPDATE {$this->prefix}_news_content SET n_status = '2' WHERE id = '{$value}'";
-		
+			if($action == 'delete'){
+                $query = "DELETE FROM {$this->prefix}_news_content WHERE id = '{$value}'";
+			}else{
+                $query = "UPDATE {$this->prefix}_news_content SET n_status = '2' WHERE id = '{$value}'";
+            }
 			$result = $this->query($query);
 		
 		}

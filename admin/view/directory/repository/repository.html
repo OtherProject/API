@@ -35,7 +35,7 @@
 
 					<div class="table-responsive">
 
-					<form action="{$basedomain}article/articledel" method=POST name="checks" ID="Form2" onsubmit="return confirm('Are you sure want to delete?');">
+					<form action="{$basedomain}direktori/imagedel" method=POST name="checks" ID="Form2" onsubmit="return confirm('Yakin ingin menghapus file?');">
                     
 					<a href="{$basedomain}direktori/addfiles"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-plus"></i> Tambah File</button></a>
 
@@ -43,12 +43,13 @@
 					
 					<select id="artikel" class="btn btn-default btn-sm">
                         <option value="">All</option>
-                        <option value="Berita">Berita</option>
-                        <option value="Kliping Kegiatan">Kliping Kegiatan</option>
+                        {foreach $listactivity as $activity}
+                        <option value="{$activity.title}">{$activity.title}</option>
+                        {/foreach}
                     </select>
 					
                     <a class="btn btn-link btn-sm" href="http://localhost/api/admin/direktori/listCategory">
-                        <i class="fa fa-file-text"></i> Daftar Kategori
+                        <i class="fa fa-file-text"></i> Daftar Kegiatan
                     </a>
                     
 					<table 
@@ -63,10 +64,11 @@
 									<th class="checkbox-column">
 										<input type="checkbox" class="icheck-input" onchange="return AreAnyCheckboxesChecked();">
 									</th>
-									<th data-filterable="true" data-sortable="true" >No</th>
 									<th data-filterable="true" data-sortable="true" >Tipe File</th>
 									<th data-filterable="true" data-sortable="true">Nama File</th>
-									<th data-filterable="true" data-sortable="true">Kategori</th>
+									<th data-filterable="true" data-sortable="true">Nama Kegiatan</th>
+                                    <th data-filterable="true" data-sortable="true">Jenis Kegiatan</th>
+                                    <th data-filterable="true" data-sortable="true" >Status</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -75,10 +77,13 @@
 									<td class="checkbox-column">
 										<input type="checkbox" class="icheck-input" name="ids[]" value="{$var.id}" onchange="return AreAnyCheckboxesChecked();" />
 									</td>
-									<td><a href="{$basedomain}article/addarticle/?id={$var.id}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title}">{$var.title}</a></td>
-									<td style="color:{$var.status_color}">{$var.n_status}</td>
-									<td>{$var.created_date}</td>
-									<td></td>
+									<td>{$var.brief}</td>
+									<td><a href="{$basedomain}direktori/addfiles/?id={$var.id}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title}">{$var.title}</a></td>
+                                    
+									<td>{$var.activity.title}</td>
+									<td>{$var.activity.content}</td>
+                                    <td style="color:{$var.status_color}">{$var.n_status}</td>
+                                    
 								</tr>
 								{/foreach}
 							</tbody>

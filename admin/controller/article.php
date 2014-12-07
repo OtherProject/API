@@ -124,7 +124,7 @@ class article extends Controller {
                         $redirect = $CONFIG['admin']['base_url'].'gallery';
                     }
 				}elseif($x['categoryid']=='8'){
-					$redirect = $CONFIG['admin']['base_url'].'direktori/repository/listCategory';
+					$redirect = $CONFIG['admin']['base_url'].'direktori/listCategory';
 				}
             }
             
@@ -137,7 +137,11 @@ class article extends Controller {
 		global $CONFIG;
 		//pr($_POST);exit;
         $post = $_POST;
-		$data = $this->models->article_del($post['ids']);
+        
+        $action = 'delete';
+        if($post['action']) $action = $post['action'];
+        
+        $data = $this->models->article_del($post['ids'], $action);
         
         $redirect = $CONFIG['admin']['base_url'].'home';
         $message  = 'Data dipindahkan ke trash';
@@ -150,7 +154,7 @@ class article extends Controller {
 				$redirect = $CONFIG['admin']['base_url'].'gallery';
                 $message  = 'Data berhasil dihapus';
 			}elseif($post['categoryid']=='8'){
-				$redirect = $CONFIG['admin']['base_url'].'direktori/repository/listCategory';
+				$redirect = $CONFIG['admin']['base_url'].'direktori/listCategory';
                 $message  = 'Data berhasil dihapus';
 			}
         }

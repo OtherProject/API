@@ -33,6 +33,7 @@
                 
                 <div class="portlet-content">
 					<form action="{$basedomain}gallery/gallerydel" method=POST name="checks" ID="Form2" onsubmit="return confirm('Yakin ingin menghapus album?');">
+                        <input type="hidden" name="action" value="delete" />
 	                	<a class="btn btn-default btn-sm" href="{$basedomain}gallery/add"><i class="fa fa-plus"></i> Tambah Album</a>
 						<button type="submit" class="btn btn-primary btn-sm" id="btn-dis" disabled><i class="fa fa-trash-o"></i> Delete</button>
 						<hr/>
