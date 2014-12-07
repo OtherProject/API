@@ -6,6 +6,7 @@ libs/*
 logs/*
 cache/*
 admin/config/config.php
+admin/config/access.php
 admin/cache/*
 admin/CACHE/*
 admin/logs/*
