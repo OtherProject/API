@@ -140,7 +140,7 @@ class direktori extends Controller {
 							$path_upload = '';
 						}
 						
-                        $delete = deleteFile($x['image'],$path_upload);
+                        if($x['action'] == 'update') deleteFile($x['image'],$path_upload);
 						$image = uploadFile('file_image',$path_upload);
                         
 						$x['image_url'] = $CONFIG['admin']['app_url'].$image['folder_name'].$image['full_name'];
