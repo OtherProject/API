@@ -6,7 +6,12 @@
        
              <div id="alphabet" class="alphabet text-center" style="margin-bottom: 10px;">
                 {foreach $alphabet as $key => $value}
-                  <a class='page-numbers' href='{$basedomain}organisasi/anggota/?page=1&kategori={$value}'> {$key}</a>
+
+                    {if $kategori==$value}
+                        <a class='page-numbers actived' href='{$basedomain}organisasi/anggota/?page=1&kategori={$value}'> <strong>{$key}</strong></a>
+                    {else}
+                        <a class='page-numbers' href='{$basedomain}organisasi/anggota/?page=1&kategori={$value}'>{$key}</a>
+                    {/if}
                 {/foreach}
             </div>
 

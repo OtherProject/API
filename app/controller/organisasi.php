@@ -51,10 +51,11 @@ class organisasi extends Controller {
           
             $dataShow =  $this->showData($_POST,$limit,$adjacent);
         }
-
+        // pr($_POST['kategori']);exit;
         $this->view->assign('datamember',$dataShow['data']);
         $this->view->assign('alphabet',$dataShow['pageAbjad']);
         $this->view->assign('paging',$dataShow['pagination']);
+        $this->view->assign('kategori',$_POST['kategori']);
 
         $data['data']=$this->loadView('organisasi/anggota_Ajax');
 
@@ -118,7 +119,7 @@ function pagination($limit,$adjacents,$rows,$page,$kategori){
         
         //previous button
         if ($page > 1) 
-            $prev_.= "<li><a class='page-numbers' href=\"$url?page=$prev\">&laquo;</a></li>";
+            $prev_.= "<li><a class='page-numbers' href=\"$url?page=$prev&kategori=$kategori\">&laquo;</a></li>";
         else{
             //$pagination.= "<span class=\"disabled\">previous</span>"; 
             }
@@ -149,13 +150,13 @@ function pagination($limit,$adjacents,$rows,$page,$kategori){
                     else
                         $pagination.= "<li><a class='page-numbers' href=\"$url?page=$counter&kategori=$kategori\">$counter</a></li>";                    
                 }
-            $last.= "<li><a class='page-numbers' href=\"$url?page=$lastpage\">Last</a></li>";            
+            $last.= "<li><a class='page-numbers' href=\"$url?page=$lastpage&kategori=$kategori\">Last</a></li>";            
             }
             
             //in middle; hide some front and some back
             elseif($lastpage - ($adjacents * 2) > $page && $page > ($adjacents * 2))
             {
-               $first.= "<li><a class='page-numbers' href=\"$url?page=1\">First</a></li>";   
+               $first.= "<li><a class='page-numbers' href=\"$url?page=1&kategori=$kategori\">First</a></li>";   
             for ($counter = $page - $adjacents; $counter <= $page + $adjacents; $counter++)
                 {
                     if ($counter == $page)
@@ -163,7 +164,7 @@ function pagination($limit,$adjacents,$rows,$page,$kategori){
                     else
                         $pagination.= "<li><a class='page-numbers' href=\"$url?page=$counter&kategori=$kategori\">$counter</a></li>";                    
                 }
-                $last.= "<li><a class='page-numbers' href=\"?page=$lastpage\">Last</a><li>";            
+                $last.= "<li><a class='page-numbers' href=\"$url?page=$lastpage&kategori=$kategori\">Last</a><li>";            
             }
             //close to end; only hide early pages
             else
@@ -181,7 +182,7 @@ function pagination($limit,$adjacents,$rows,$page,$kategori){
             
             }
         if ($page < $counter - 1) 
-            $next_.= "<li><a class='page-numbers' href=\"$url?page=$next\">&raquo;</a></li>";
+            $next_.= "<li><a class='page-numbers' href=\"$url?page=$next&kategori=$kategori\">&raquo;</a></li>";
         else{
             //$pagination.= "<span class=\"disabled\">next</span>";
             }
