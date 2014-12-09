@@ -25,11 +25,11 @@ class anggota extends Controller {
     
     
     
-    function anggota(){
+    function index(){
 
-        $data = $this->modelsMember->get_member();
-        pr($data);
-        $this->view->assign('data',$data);
+        // $data = $this->modelsMember->get_member();
+        // pr($data);
+        // $this->view->assign('data',$data);
 
         return $this->loadView('organisasi/anggota');
     }

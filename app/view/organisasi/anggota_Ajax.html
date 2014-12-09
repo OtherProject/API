@@ -1,0 +1,78 @@
+
+
+        <div class="col-md-12" style="padding-right: 0;">
+       
+      
+       
+             <div id="alphabet" class="alphabet text-center" style="margin-bottom: 10px;">
+                {foreach $alphabet as $key => $value}
+                  <a class='page-numbers' href='{$basedomain}organisasi/anggota/?page=1&kategori={$value}'> {$key}</a>
+                {/foreach}
+            </div>
+
+    <!--START ANGGOTA-->   
+            {if $datamember}
+             {foreach $datamember as $var}
+            <div class="api-anggota col-md-4">
+                <div class="row">
+                    <div class="col-md-5 image">
+                        <img src="{$basedomain}public_assets/anggota/1.jpg" class="img-responsive" />
+                    </div>
+                
+                    <div class="col-md-7 title">
+                        <p>{$var.name}</p>
+                        <div class="content">
+                            <p>
+                                {$var.description}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <a href="{$basedomain}organisasi/anggota_view/?id={$var.id}" class="pull-right more">Detail ...</a>
+                <div class="clearfix"></div>
+            </div>
+             {/foreach}
+             {else}
+             <div class="col-md-12" align="center">
+                <h4>~ Data Tidak Ditemukan ~ </h4>
+                </div>
+             {/if}
+          {*}
+            <div class="api-anggota col-md-4">
+                <div class="row">
+                    <div class="col-md-5 image">
+                        <img src="{$basedomain}public_assets/anggota/1.jpg" class="img-responsive" />
+                    </div>
+                
+                    <div class="col-md-7 title">
+                        <p>Anna</p>
+                        <div class="content">
+                            <p>
+                                Profesor Aging and Human Physiology, KNSU, Seoul Korea
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <a href="{$basedomain}organisasi/anggota_view" class="pull-right more">Detail ...</a>
+                <div class="clearfix"></div>
+            </div>{/*}
+        
+    </div>
+            
+            <div class="col-md-12 text-center">  
+                {if $paging}
+                    {$paging}
+                {/if}
+            </div> 
+ {*} <div class="col-md-12 text-center">    
+        <ul class="pagination">
+          <li><a href="#">&laquo;</a></li>
+          <li class="active"><a href="#" ><span class="active">1</span></a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><a href="#">4</a></li>
+          <li><a href="#">5</a></li>
+          <li><a href="#">&raquo;</a></li>
+        </ul>
+    </div>{/*}
+

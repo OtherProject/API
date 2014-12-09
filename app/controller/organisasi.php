@@ -17,6 +17,7 @@ class organisasi extends Controller {
 	function loadmodule()
 	{
         $this->contentHelper = $this->loadModel('contentHelper');
+        $this->modelmember = $this->loadModel('modelmember');
 	}
 	
 	/**function index(){
@@ -40,14 +41,158 @@ class organisasi extends Controller {
         return $this->loadView('organisasi/struktur_organisasi');
     }
     
-    function anggota(){
-        return $this->loadView('organisasi/anggota');
+    function anggotaAjax(){
+
+        $limit ='1';
+        $adjacent ='3';
+
+        if(isset($_REQUEST['actionfunction']) && $_REQUEST['actionfunction']!=''){
+        $actionfunction = $_REQUEST['actionfunction'];
+          
+            $dataShow =  $this->showData($_POST,$limit,$adjacent);
+        }
+
+        $this->view->assign('datamember',$dataShow['data']);
+        $this->view->assign('alphabet',$dataShow['pageAbjad']);
+        $this->view->assign('paging',$dataShow['pagination']);
+
+        $data['data']=$this->loadView('organisasi/anggota_Ajax');
+
+        if ($dataShow){
+            print json_encode(array('status'=>true, 'data'=>$data['data']));
+        }else{
+            print json_encode(array('status'=>false));
+        }
+        
+        exit;
     }
     
+    function anggota(){
+
+        
+        return $this->loadView('organisasi/anggota');
+    }
     function anggota_view(){
         return $this->loadView('organisasi/anggota-view');
     }
-    
+
+    function showData($data,$limit,$adjacent){
+
+        $page = $data['page']; 
+        $kategori = $data['kategori'];
+        $pageAbjad=array('A' => a,'B' => b,'C' => c,'D' => d,'E' => e,'F' => f,'G' => g,'H' => h,'I' => i,'J' => j,'K' => k,'L' => l,'M' => m,'N' => n,'O' => o,'P' => p,'Q' => q,'R' => r,'S' => s,'T' => t,'U' => u,'V' => v,'W' => w,'X' => x,'Y' => y,'Z' => z,);  
+          
+        if($page==1){
+           $start = 0;  
+        }
+        else{
+          $start = ($page-1)*$limit;
+        }
+        $dataAllmember =  $this->modelmember->Allmember($kategori,"0");
+          
+        $rows=count($dataAllmember);
+          
+        $dataKategorimember =  $this->modelmember->Allmember($kategori,"1",$start,$limit);
+          
+        $data['pageAbjad']=$pageAbjad;
+        $data['data'] = $dataKategorimember; 
+        $data['pagination'] =  $this->pagination($limit,$adjacent,$rows,$page,$kategori);  
+
+        return $data;
+    }
+
+function pagination($limit,$adjacents,$rows,$page,$kategori){   
+    global $basedomain;
+    $pagination='';
+    if ($page == 0) $page = 1;                  //if no page var is given, default to 1.
+    $prev = $page - 1;                          //previous page is page - 1
+    $next = $page + 1;                          //next page is page + 1
+    $prev_='';
+    $first='';
+    $lastpage = ceil($rows/$limit); 
+    $next_='';
+    $last='';
+    $url=$basedomain."organisasi/anggota/";
+    if($lastpage > 1)
+    {   
+        
+        //previous button
+        if ($page > 1) 
+            $prev_.= "<li><a class='page-numbers' href=\"$url?page=$prev\">&laquo;</a></li>";
+        else{
+            //$pagination.= "<span class=\"disabled\">previous</span>"; 
+            }
+        
+        //pages 
+        if ($lastpage < 5 + ($adjacents * 2))   //not enough pages to bother breaking it up
+        {   
+        $first='';
+            for ($counter = 1; $counter <= $lastpage; $counter++)
+            {
+                if ($counter == $page)
+                    $pagination.= "<li class=\"active\"><span class=\"current\">$counter</span></li>";
+                else
+                    $pagination.= "<li><a class='page-numbers' href=\"$url?page=$counter&kategori=$kategori\">$counter</a></li>";                    
+            }
+            $last='';
+        }
+        elseif($lastpage > 3 + ($adjacents * 2))    //enough pages to hide some
+        {
+            //close to beginning; only hide later pages
+            $first='';
+            if($page < 1 + ($adjacents * 2))        
+            {
+                for ($counter = 1; $counter < 4 + ($adjacents * 2); $counter++)
+                {
+                    if ($counter == $page)
+                        $pagination.= "<li class=\"active\"><span class=\"current\">$counter</span></li>";
+                    else
+                        $pagination.= "<li><a class='page-numbers' href=\"$url?page=$counter&kategori=$kategori\">$counter</a></li>";                    
+                }
+            $last.= "<li><a class='page-numbers' href=\"$url?page=$lastpage\">Last</a></li>";            
+            }
+            
+            //in middle; hide some front and some back
+            elseif($lastpage - ($adjacents * 2) > $page && $page > ($adjacents * 2))
+            {
+               $first.= "<li><a class='page-numbers' href=\"$url?page=1\">First</a></li>";   
+            for ($counter = $page - $adjacents; $counter <= $page + $adjacents; $counter++)
+                {
+                    if ($counter == $page)
+                        $pagination.= "<li class=\"active\"><span class=\"current\">$counter</span></li>";
+                    else
+                        $pagination.= "<li><a class='page-numbers' href=\"$url?page=$counter&kategori=$kategori\">$counter</a></li>";                    
+                }
+                $last.= "<li><a class='page-numbers' href=\"?page=$lastpage\">Last</a><li>";            
+            }
+            //close to end; only hide early pages
+            else
+            {
+                $first.= "<li><a class='page-numbers' href=\"$url?page=1\">First</a></li>";  
+                for ($counter = $lastpage - (2 + ($adjacents * 2)); $counter <= $lastpage; $counter++)
+                {
+                    if ($counter == $page)
+                        $pagination.= "<li class=\"active\"><span class=\"current\">$counter</span></li>";
+                    else
+                        $pagination.= "<li><a class='page-numbers' href=\"$url?page=$counter&kategori=$kategori\">$counter</a></li>";                    
+                }
+                $last='';
+            }
+            
+            }
+        if ($page < $counter - 1) 
+            $next_.= "<li><a class='page-numbers' href=\"$url?page=$next\">&raquo;</a></li>";
+        else{
+            //$pagination.= "<span class=\"disabled\">next</span>";
+            }
+        $pagination = "<ul class=\"pagination\">".$first.$prev_.$pagination.$next_.$last;
+        //next button
+        
+        $pagination.= "</ul>\n";       
+    }
+
+   return $pagination;  
+}
     function afiliasi(){
         return $this->loadView('organisasi/afiliasi');
     }
