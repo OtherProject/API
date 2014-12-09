@@ -189,7 +189,7 @@ class contentHelper extends Database {
     	// pr($sql);exit;
         if ($sql){
         	foreach ($sql as $value) {
-        		$this->query($value);
+        		$res = $this->query($value);
         	}
 
         	if ($res)return true;
@@ -214,6 +214,26 @@ class contentHelper extends Database {
         if ($res){
 
         	return true;
+        }
+        return false;
+    }
+
+    function updatePersetujuan($data,$debug=false)
+    {
+
+        $userid = $_SESSION['newuser']['id'];
+        $persetujuan = $data['full_name'];
+        $sql = array(
+                'table'=>'social_member',
+                'field'=>"img = '{$persetujuan}'",
+                'condition' => "id = '{$userid}'",
+                );
+
+        $res = $this->lazyQuery($sql,$debug,2);
+
+        if ($res){
+
+            return true;
         }
         return false;
     }
