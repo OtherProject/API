@@ -82,9 +82,9 @@ class user extends Controller {
 
         
         global $basedomain;
-        pr($_POST);
+        // pr($_POST);
         if ($_POST){
-            pr($_POST);
+            // pr($_POST);
 
             if(!empty($_FILES)){
                 if($_FILES['file_image']['name'] != ''){
