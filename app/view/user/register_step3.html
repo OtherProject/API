@@ -8,7 +8,7 @@
             <a><span class="badge">1</span> Akun API</a>
             <a><span class="badge">2</span> Identitas Lengkap</a>
             <a class="current"><span class="badge">3</span> Riwayat</a>
-            <a><span class="badge">4</span> Keberhasilan</a>
+            <a><span class="badge">4</span> Persetujuan</a>
         </div>
         </div>
         
@@ -44,7 +44,7 @@
     		<h3>Publikasi (Penelitian/Buku/Artikel/Karya Seni/Paten)</h3>
     
   		  
-              <div class="row"> 
+              <div class="row" style="padding: 0 25px;"> 
                 <div class="form-group col-md-3">
     				<label>Tahun</label>
     				<input type="text" class="form-control" placeholder="Tahun" name="tahun_2[]" style="margin-bottom: 10px;">
@@ -72,7 +72,7 @@
     		<h3>Riwayat Pekerjaan (Lima Tahun Terakhir)</h3>
     
   		  
-              <div class="row"> 
+              <div class="row" style="padding: 0 25px;"> 
                 <div class="form-group col-md-3">
     				<label>Tahun</label>
     				<input type="text" class="form-control" placeholder="Tahun" name="tahun_3[]" style="margin-bottom: 10px;">
@@ -93,7 +93,19 @@
                     <input type="text" class="form-control" placeholder="Jabatan" name="keterangan_3[]" style="margin-bottom: 10px;">
     			</div>
                </div>
-             </div> <!-- /#login -->                         
+             </div> <!-- /#login -->   
+
+             <div class="stepReg">
+            <h3>Keunggulan dan Keberhasilan</h3>
+    
+          
+              <div class="row" style="padding: 0 25px;"> 
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label for="register-keunggulan">Keunggulan atau keberhasilan</label>
+                    <textarea type="text" class="form-control" id="register-keunggulan" placeholder="Keunggulan atau keberhasilan yang pernah dicapai (ruang tulisan dapat diperluas)" name="keberhasilan"></textarea>
+                </div>
+               </div>
+             </div> <!-- /#login -->                        
                                                     
                <div class="row"> 
     			<div class="form-group">

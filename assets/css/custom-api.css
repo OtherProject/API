@@ -3,12 +3,7 @@ body p,a{
     font-size: 13px;
     line-height: 150%;
 }
-.page-numbers.actived{
-    background-color:#428BCA;
-    padding:5px;
-    border-radius:3px;
-    color:#FFFFFF
-}
+
 .api-btn{
     background-color: #96B0FA;
     color: #FFF;
