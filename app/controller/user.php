@@ -68,9 +68,10 @@ class user extends Controller {
             // pr($_POST);
 
             $save = $this->contentHelper->updateRiwayat($_POST);
+            // pr($save);
             if ($save){
-                
-                redirect($basedomain.'user/register_step4');
+                $keberhasilan = $this->contentHelper->updateKeberhasilan($_POST);
+                if ($keberhasilan) redirect($basedomain.'user/register_step4');
             }
         }
 
@@ -81,14 +82,29 @@ class user extends Controller {
 
         
         global $basedomain;
+        // pr($_POST);
         if ($_POST){
             // pr($_POST);
 
-            $save = $this->contentHelper->updateKeberhasilan($_POST);
-            if ($save){
+            if(!empty($_FILES)){
+                if($_FILES['file_image']['name'] != ''){
+                    if($x['action'] == 'update') deleteFile($x['image']);
+                    $image = uploadFile('file_image',null,'image');
+                    $x['image'] = $image['full_name'];
+                }
+
+                if ($image){
+                    $save = $this->contentHelper->updatePersetujuan($image);
+                    if ($save){
+                        
+                        redirect($basedomain);
+                    }
+                }
                 
-                redirect($basedomain);
             }
+
+            exit;
+            
         }
     	return $this->loadView('user/register_step4');
     }
