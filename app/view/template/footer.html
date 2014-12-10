@@ -97,111 +97,70 @@
 
 {/literal}
     </script>
-    {literal}
-<script type="text/javascript">
- $(function(){
-   
-    $(document).ready(function(){
-            // var category = 'a';
-            // var category_edit =$("#category_edit").val();
-        // if(category!=category_edit){
-                    // alert('ada');
 
-           // console.log(basedomain);
-            $.post(basedomain+"organisasi/anggotaAjax", {actionfunction: 'showData', page:'1',kategori:'a'}, function(data){
-                // console.log(data);
-                    // alert('ada1');
-                if (data.status==true) {
-                    // alert(data.dataReload);
-                    // alert(data.data);
-                    // $('.category_val').html('Category are already exist.');
-                    // $('#btnsbmt').attr('disabled','disabled');
-                    // console.log(data);
-                        $('#dataAjax').html(data.data); 
-                        // $('#pagination').html(data);
+    {if $page.page=="organisasi" && $page.function=="anggota"}
+        {literal}
+            <script type="text/javascript">
+             $(function(){
+               
+                $(document).ready(function(){
+                       // alert("ada");
+                        $.post(basedomain+"organisasi/anggotaAjax", {actionfunction: 'showData', page:'1',kategori:'a'}, function(data){
+                            
+                            if (data.status==true) {
+                               
+                                    $('#dataAjax').html(data.data); 
+                                   
+                            }else{
+                                // $('.category_val').html('');
+                                // alert('already existnot');
+                            }
+                        }, "JSON")
+                    
+                    })
+                
+                $('#dataAjax').on('click','.page-numbers',function(){
 
-                }else{
-                    // $('.category_val').html('');
-                    // alert('already existnot');
-                }
-            }, "JSON")
-        // }else{
-        //     $('.category_val').html('');
-        // }
-        })
-    
-    $('#dataAjax').on('click','.page-numbers',function(){
-//         function getUrlParameter(sParam)
-// {
-//     // var sPageURL = window.location.search.substring(1);
-//     // alert(sPageURL);
-//     $page = $('.page-numbers').attr('href');
-//     alert($page);
-//      $sPageURL = $page.indexOf('');
-//      alert($sPageURL);
-//     var sURLVariables = sPageURL.split('&');
-//     for (var i = 0; i < sURLVariables.length; i++) 
-//     {
-//         var sParameterName = sURLVariables[i].split('=');
-//         if (sParameterName[0] == sParam) 
-//         {   
-//             // alert(sParameterName[0]);
-//             // alert(sParameterName[1]);
-//             return sParameterName[1];
-//         }
-//     }
-// }    
-// var tech = getUrlParameter('kategori');
-// var tech2 = getUrlParameter('page');
-// alert(tech);
-       $page = $(this).attr('href');
-       // alert($page);
-       $pageind = $page.indexOf('page=');
-       $sPageURL = $page.substring(($pageind));
-       
-       // alert($pageind);
-       // alert($sPageURL);
-       var sURLVariables = $sPageURL.split('&');
-       // alert();
-    for (var i = 0; i < sURLVariables.length; i++) 
-    {   
-        var sParameterName = sURLVariables[i].split('=');
-        if (sParameterName[0] == 'page') 
-        {   
-            // alert(sParameterName[0]);
-           var paging =sParameterName[1];
-            // return sParameterName[1];
-        }else if (sParameterName[0] == 'kategori') {
+                   $page = $(this).attr('href');
+                  
+                   $pageind = $page.indexOf('page=');
+                   $sPageURL = $page.substring(($pageind));
+                   
+                   var sURLVariables = $sPageURL.split('&');
+                 
+                    for (var i = 0; i < sURLVariables.length; i++) 
+                    {   
+                        var sParameterName = sURLVariables[i].split('=');
+                        if (sParameterName[0] == 'page') 
+                        {   
+                           
+                           var paging =sParameterName[1];
 
-           var kategori =sParameterName[1];
-        }
-    }
-    // alert(paging);
-    // alert(kategori);
-        $.post(basedomain+"organisasi/anggotaAjax", {actionfunction: 'showData', page:paging ,kategori:kategori}, function(data){
-                // console.log(data);
-                    // alert('ada1');
-                if (data.status==true) {
-                    // alert(data.data);
-                    // alert("asa");
-                    // $('.category_val').html('Category are already exist.');
-                    // $('#btnsbmt').attr('disabled','disabled');
-                    // console.log(data);
-                        $('#dataAjax').html(data.data); 
-                        // $('#pagination').html(data);
+                        }else if (sParameterName[0] == 'kategori') {
 
-                }else{
-                    // $('.category_val').html('');
-                    // alert('already existnot');
-                }
-            }, "JSON")
-    return false;
-    });
-    
-    
-});
+                           var kategori =sParameterName[1];
+                        }
+                    }
+                
+                    $.post(basedomain+"organisasi/anggotaAjax", {actionfunction: 'showData', page:paging ,kategori:kategori}, function(data){
+                            
+                            if (data.status==true) {
+                               
+                                    $('#dataAjax').html(data.data); 
+                                
+                            }else{
+                                // $('.category_val').html('');
+                                // alert('already existnot');
+                            }
+                        }, "JSON")
+                return false;
+                });
+                
+                
+            });
 
-</script>
-{/literal}
+            </script>
+        {/literal}
+    {/if}
 </body>
 </html>
