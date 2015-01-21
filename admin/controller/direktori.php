@@ -276,7 +276,7 @@ class direktori extends Controller {
 	}
 	public function direktoriinp(){
 		global $CONFIG;
-		pr($_POST);exit;
+		// pr($_POST);exit;
 		if(isset($_POST['n_status'])){
 			if($_POST['n_status']=='on') $_POST['n_status']=1;
 		} else {
