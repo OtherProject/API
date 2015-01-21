@@ -17,6 +17,7 @@ class direktori extends Controller {
 	function loadmodule()
 	{
         //$this->models = $this->loadModel('frontend');
+        $this->models = $this->loadModel('modeldirektori');
 	}
 	
 	function index(){
@@ -24,7 +25,10 @@ class direktori extends Controller {
     }
     
     function kepakaran(){
-    	return $this->loadView('direktori/kepakaran');
+
+        $data = $this->models->get_category();
+        $this->view->assign('data',$data);
+        return $this->loadView('direktori/kepakaran');
     }
     
     function search_result(){

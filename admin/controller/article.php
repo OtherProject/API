@@ -135,7 +135,7 @@ class article extends Controller {
 	public function articledel(){
 
 		global $CONFIG;
-		//pr($_POST);exit;
+		// pr($_POST);exit;
         $post = $_POST;
         
         $action = 'delete';
