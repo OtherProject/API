@@ -162,5 +162,28 @@
             </script>
         {/literal}
     {/if}
+
+    <script type="text/javascript">
+
+        {literal}
+        $(document).on('click','#login-btn', function(){
+
+            var user = $('#login-username').val();
+            var pass = $('#login-password').val();
+
+            $.post(basedomain+'user/local',{token:true, user:user, pass:pass}, function(data){
+
+                var html = "";
+
+                if (data.status==false){
+                    $('.error').html('Invalid username or password');
+                }else{
+                    window.location.href=basedomain;
+                } 
+            }, "JSON")
+        })
+
+        {/literal}
+    </script>
 </body>
 </html>

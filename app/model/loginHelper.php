@@ -22,7 +22,7 @@ class loginHelper extends Database {
 		
 		$salt = '12345678PnD';
 		$password = sha1($data['password'].$salt);
-		$sql = "SELECT * FROM login where username = '{$data['username']}' AND password = '{$password}' LIMIT 1";
+		$sql = "SELECT * FROM social_member where username = '{$data['username']}' AND password = '{$password}' LIMIT 1";
 		$res = $this->fetch($sql, 0);
 		// pr($sql);
 		if ($res) return $res;

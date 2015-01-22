@@ -5,8 +5,8 @@
     		<h3>API</h3>
     
     		<h5>Please sign in to get access.</h5>
-    
-    		<form id="login-form" action="http://localhost/API/admin/login/local" class="form" method="post">
+            <h5 style="color:red" class="error"></h5>
+    		<form id="login-form" action="{$basedomain}user/login" class="form" method="post">
     
     			<div class="form-group">
     				<label for="login-username">Username</label>
@@ -20,7 +20,7 @@
     
     			<div class="form-group">
     				<input type="hidden" name="token" value="1">
-    				<button type="submit" id="login-btn" class="btn btn-primary btn-block">Sign In &nbsp; <i class="fa fa-play-circle"></i></button>
+    				<button type="button" id="login-btn" class="btn btn-primary btn-block">Sign In &nbsp; <i class="fa fa-play-circle"></i></button>
     
     			</div>
     		</form>
@@ -36,3 +36,4 @@
     </div>
     
 </div>
+

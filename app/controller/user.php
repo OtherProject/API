@@ -17,13 +17,36 @@ class user extends Controller {
 	function loadmodule()
 	{
         $this->contentHelper = $this->loadModel('contentHelper');
+        $this->loginHelper = $this->loadModel('loginHelper');
 	}
 	
 	function index(){
     	//return $this->loadView('gallery/gallery');
     }
     
+    function local()
+    {
+        if (isset($_POST['token'])){
+
+            $validateData = $this->loginHelper->local($_POST);
+            if ($validateData){
+                $_SESSION['user'] = $validateData;
+                print json_encode(array('status'=>true));
+            }else{
+                print json_encode(array('status'=>false));
+            }
+
+        }
+
+        exit;
+    }
+
     function login(){
+
+        global $basedomain;
+
+        
+
     	return $this->loadView('user/login');
     }
     
