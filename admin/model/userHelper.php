@@ -96,5 +96,20 @@ class userHelper extends Database {
         if ($res) return true;
         return false;
     }
+
+    function getUserAccount($data=array(), $debug=false)
+    {
+
+        $sql = array(
+                'table'=>"social_member",
+                'field'=>"name, email, last_name, pendidikan, kepakaran, n_status" ,
+                'condition'=>"1",
+                );
+
+        $res = $this->lazyQuery($sql,$debug);
+
+        if ($res) return $res;
+        return false;
+    }
 }
 ?>

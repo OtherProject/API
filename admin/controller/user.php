@@ -1,5 +1,5 @@
 <?php
-defined ('TATARUANG') or exit ( 'Forbidden Access' );
+// defined ('TATARUANG') or exit ( 'Forbidden Access' );
 
 class user extends Controller {
 	
@@ -7,10 +7,12 @@ class user extends Controller {
 	
 	public function __construct()
 	{
-		parent::__construct();
 		global $app_domain;
-		
 		$this->loadmodule();
+		$this->view = $this->setSmarty();
+		$sessionAdmin = new Session;
+		$this->admin = $sessionAdmin->get_session();
+		$this->view->assign('app_domain',$app_domain);
 		
 	}
 	public function loadmodule()
@@ -22,8 +24,12 @@ class user extends Controller {
 	public function index(){
        
 		
-		$data['listuser'] = $this->userHelper->getListUser();
-		return $this->loadView('user/user-list',$data);
+		$data = $this->userHelper->getUserAccount();
+		
+		// pr($data);
+		$this->view->assign('data',$data);
+
+		return $this->loadView('member/user-member'); 
 
 	}
     
