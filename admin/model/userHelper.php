@@ -103,7 +103,7 @@ class userHelper extends Database {
         $sql = array(
                 'table'=>"social_member",
                 'field'=>"name, email, last_name, pendidikan, kepakaran, n_status" ,
-                'condition'=>"1",
+                'condition'=>"name IS NOT NULL or name !=''",
                 );
 
         $res = $this->lazyQuery($sql,$debug);

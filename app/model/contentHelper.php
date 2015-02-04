@@ -21,7 +21,17 @@ class contentHelper extends Database {
 				AND articleType = {$type} {$filter} LIMIT {$start},{$limit}";
 		// pr($sql);
 		$res = $this->fetch($sql,1);
-		if ($res) return $res;
+		if ($res){
+
+            
+            foreach ($res as $key => $value) {
+                $res[$key]['changeDate'] = changeDate($value['posted_date']);
+            }
+
+            // pr($res);
+            return $res;
+
+        } 
 		return false;
 	}
 	

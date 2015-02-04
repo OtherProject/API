@@ -14,14 +14,18 @@
     <div class="latest_news">
         <div class="row">
         <h3>Berita Terbaru</h3>  
+        {if $berita}
+            {foreach $berita as $val}
             <div class="col-md-4 latest_news">
                 <a href="{$basedomain}news/berita_detail" title="Banana">
-                    <img src="{$basedomain}public_assets/news/thumbs/sample.jpg" class="img-responsive">
+                    <img src="{$basedomain}public_assets/news/{$val.image}" class="img-responsive">
                 </a>
-                <div class="time-ago"><a href="{$basedomain}news/berita_detail"> 1 jam lalu lalu</a></div>
-                <a href="{$basedomain}news/berita_detail">Donec id elit non mi porta gravida at eget metus. Fusce dapibus...</a>
+                <div class="time-ago"><a href="{$basedomain}news/berita_detail"> {$val.changeDate}</a></div>
+                <a href="{$basedomain}news/berita_detail/?id={$val.id}">{$val.title}</a>
             </div>
-            
+            {/foreach}
+        {/if}
+            {*}
             <div class="col-md-4 latest_news">
                 <a href="{$basedomain}news/berita_detail" title="Banana">
                     <img src="{$basedomain}public_assets/news/thumbs/sample.jpg" class="img-responsive">
@@ -37,6 +41,7 @@
                 <div class="time-ago"><a href="{$basedomain}news/berita_detail"> 1 jam lalu</a></div>
                 <a href="{$basedomain}news/berita_detail">Donec id elit non mi porta gravida at eget metus. Fusce dapibus...</a>
             </div>
+            {/*}
             </div>
     </div>
     

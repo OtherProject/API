@@ -16,10 +16,14 @@ class home extends Controller {
 	
 	function loadmodule()
 	{
-        //$this->models = $this->loadModel('frontend');
+        $this->contentHelper = $this->loadModel('contentHelper');
 	}
 	
 	function index(){
+
+		$berita = $this->contentHelper->getNews($id=false,$cat=1);
+    	$this->view->assign('berita',$berita);
+    	
     	return $this->loadView('home');
     }
 }
