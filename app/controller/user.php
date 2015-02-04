@@ -18,6 +18,7 @@ class user extends Controller {
 	{
         $this->contentHelper = $this->loadModel('contentHelper');
         $this->loginHelper = $this->loadModel('loginHelper');
+        $this->userHelper = $this->loadModel('userHelper');
 	}
 	
 	function index(){
@@ -130,6 +131,21 @@ class user extends Controller {
             
         }
     	return $this->loadView('user/register_step4');
+    }
+
+    function ajax()
+    {
+        $email = _p('email');
+
+        $validate = $this->userHelper->validateEmail($email);
+        if ($validate){
+
+            print json_encode(array('status'=>true));
+        }else{
+            print json_encode(array('status'=>false));
+        }
+
+        exit;
     }
 }
 
