@@ -94,6 +94,19 @@ class userHelper extends Database {
         return $res; 
     }
 
-   
+    function validateEmail($email, $debug=false)
+    {
+
+        $sql = array(
+                'table'=>'social_member',
+                'field'=>"COUNT(email) AS total",
+                'condition' => "email = '{$email}'",
+                );
+
+        $res = $this->lazyQuery($sql,$debug);
+        if ($res[0]['total']>0) return true;
+        return false;
+
+    } 
 }
 ?>

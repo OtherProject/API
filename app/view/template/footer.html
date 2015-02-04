@@ -38,7 +38,7 @@
     
     <!-- Jquery JS -->
     <script type="text/javascript" src="{$basedomain}assets/js/jquery-2.1.0.min.js"></script>
-    
+    <script src="{$basedomain}assets/js/helper.js"></script>
     <!-- Bootstrap JS -->
     <script src="{$basedomain}plugin/bootstrap-3.1.1/js/bootstrap.min.js"></script>
     
@@ -183,7 +183,58 @@
             }, "JSON")
         })
 
+        /* validasi register */
+
+        $(document).on('blur','#register-email', function(){
+
+            var email = $(this).val();
+            var validate = IsEmail(email);
+            if (validate==false){
+                $('#email-error').html('Email tidak valid');
+                $('#email-error').css('color','red');
+
+            }else{
+
+                $.post(basedomain+'user/ajax',{token:true, email:email}, function(data){
+
+                    var html = "";
+
+                    if (data.status==true){
+                        $('#email-error').html('Email sudah terdaftar');
+                        $('#email-error').css('color','red');
+
+                    }else{
+
+                        $('#email-error').html('');
+                        $('#email-error').css('color','white');
+                    }
+                }, "JSON")
+
+                
+            }
+            console.log(validate);
+            
+        })
+
+        function validatePassword()
+        {
+            var pass1 = $('#register-password').val();
+            var pass2 = $('#register-rePassword').val();
+
+            var validate = compare(pass1, pass2);
+            log('data ='+validate);
+
+            if (validate==false){
+                
+                $('#password-error').html('Password tidak sama');
+                $('#password-error').css('color','red');
+                return false;
+
+            }
+        }
+
         {/literal}
     </script>
 </body>
 </html>
+

@@ -12,6 +12,10 @@ class marticle extends Database {
         if(!empty($data['expired_date'])) $data['expired_date'] = date("Y-m-d H:i:s",strtotime($data['expired_date']));
         else $data['expired_date'] = '0000-00-00';
         
+        $data['title'] = mysql_escape_string($data['title']);
+        $data['brief'] = mysql_escape_string($data['brief']);
+        $data['content'] = mysql_escape_string($data['content']);
+
 		if($data['action'] == 'insert'){
 			
 			$query = "INSERT INTO  
