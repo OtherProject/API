@@ -18,7 +18,7 @@ class contentHelper extends Database {
 		if ($id) $filter = " AND id = {$id} ";
 
 		$sql = "SELECT * FROM {$this->prefix}_news_content WHERE n_status = 1 AND categoryid = {$categoryid}
-				AND articleType = {$type} {$filter} LIMIT {$start},{$limit}";
+				AND articleType = {$type} {$filter} ORDER BY posted_date DESC LIMIT {$start},{$limit}";
 		// pr($sql);
 		$res = $this->fetch($sql,1);
 		if ($res){

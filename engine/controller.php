@@ -48,6 +48,8 @@ class Controller extends Application{
 		if ($this->configkey=='default'){
 			$this->view->assign('dateToday',date('Y-m-d'));
 			$this->view->assign('agenda',$this->getAgenda());
+			$this->view->assign('kliping',$this->getKliping());
+
 		}
 		
 		
@@ -334,6 +336,18 @@ class Controller extends Application{
 
 	}
 	
+	function getKliping()
+	{
+		$contentHelper = $this->loadModel('contentHelper');
+
+		$data = $contentHelper->getNews($id=false,$cat=1,$type=2, 0, 3);
+	 	
+        // pr($data);
+		if ($data) return $data;
+		return false;
+
+	}
+
 }
 
 ?>

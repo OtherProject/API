@@ -38,6 +38,15 @@
         
         <div class="api-kliping-side">
             <h4 class="text-center">Kliping Kegiatan</h4>
+            {if $kliping}
+              {foreach $kliping as $val}
+            <div class="kegiatan">
+                <p class="date">{$val.changeDate}</p>
+                <a href="{$basedomain}news/kliping_detail/?id={$val.id}">{$val.title}</a>
+            </div>
+              {/foreach}
+            {/if}
+            {*}
             <div class="kegiatan">
                 <p class="date">Jumat, 29 Agustus 2014</p>
                 <a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</a>
@@ -46,12 +55,9 @@
                 <p class="date">Jumat, 29 Agustus 2014</p>
                 <a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</a>
             </div>
-            <div class="kegiatan">
-                <p class="date">Jumat, 29 Agustus 2014</p>
-                <a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</a>
-            </div>
+            {/*}
             <div class="kegiatan text-center">
-                <a href="#" style="color: #212121;">Semua Kegiatan</a>
+                <a href="{$basedomain}news/kliping_kegiatan" style="color: #212121;">Semua Kegiatan</a>
             </div>
         </div>
         

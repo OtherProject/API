@@ -20,10 +20,10 @@ class home extends Controller {
 	}
 	
 	function index(){
-
+		
 		$berita = $this->contentHelper->getNews($id=false,$cat=1);
     	$this->view->assign('berita',$berita);
-    	
+
     	return $this->loadView('home');
     }
 }
