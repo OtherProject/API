@@ -1,0 +1,29 @@
+<div class="col-md-8">             
+    {if $berita}
+        {foreach $berita as $val}
+    <div class="api-news">
+        <div class="title">
+            <a href="#"><h3>{$val.title}</h3></a>
+        </div>
+        <div class="dateposted">
+            <p>Posted by <a href="#">admin</a> at {$val.posted_date}</p>
+        </div>
+        <div class="content">
+            <div class="col-md-12" style="padding-left: 0;">
+                <img src="{$basedomain}public_assets/{$path}/{$val.image}" class="img-responsive" />
+            </div>
+            <p class="text-justify">
+                {$val.content|html_entity_decode}
+            </p>
+            
+            
+            </div>
+        </div>
+        {/foreach}
+    {/if}
+    </div>
+</div>
+
+</div>
+
+</div>

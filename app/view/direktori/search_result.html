@@ -43,27 +43,47 @@
         <div class="col-md-9">
             <div class="api-search text-center">
                 <h3>Search Project</h3>
-                <form class="form-inline" role="form">
+               <form class="form-inline" role="form" method="POST" action="{$basedomain}direktori/search_result">
                     <div class="form-group">
-                        <select class="form-control">
-                          <option>All</option>
+                        <select class="form-control" name="kategori" required>
+                          <option value="">All</option>
                           <option disabled>By Project</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                          <option>5</option>
+                        {foreach $data_category as $var}
+                          <option value="{$var.id}">{$var.category_name}</option>
+                        {/foreach}
                         </select>
                     </div>
                     
                     <div class="form-group">
-                        <input type="search" class="form-control" id="k" name="k" placeholder="Enter search terms">
+                        <input type="search" class="form-control" id="k" name="teks" placeholder="Enter search terms" required>
                         <button type="submit" id="s" class="btn api-btn"><span class="glyphicon glyphicon-search"></span></button>
                     </div>
                 </form>
             </div>
             
             <p>Results 1 - 10 of 475</p>
+     {if $kepakaran}
+        {foreach $kepakaran as $value}
+            <div class="api-result">
+                <a href="{$basedomain}direktori/result_detail/?id={$value.id}" class="title">{$value.title}</a>
+                <p>{$value.brief}</p>
+                <div class="row info">
+                    <strong><p class="col-md-2">Penulis:</p></strong>
+                    <p class="col-md-4">{$value.authorid}</p>
+                </div>
+                <div class="row info">
+                    <strong><p class="col-md-2">Diposting:</p></strong>
+                    <p class="col-md-4">{$value.created_date}</p>
+                </div>
                 
+                <div class="subject">
+                   {$value.articleType}
+                </div>
+            </div>
+        {/foreach}
+    {/if}
+
+            {*}
             <div class="api-result">
                 <a href="{$basedomain}direktori/result_detail" class="title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</a>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
@@ -115,24 +135,7 @@
                 </div>
             </div>
             
-            <div class="api-result">
-                <a href="{$basedomain}direktori/result_detail" class="title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</a>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <div class="row info">
-                    <strong><p class="col-md-2">Penulis:</p></strong>
-                    <p class="col-md-4">Lorem ipsum dolor sit amet</p>
-                </div>
-                <div class="row info">
-                    <strong><p class="col-md-2">Diposting:</p></strong>
-                    <p class="col-md-4">10 Oktober 2014</p>
-                </div>
-                
-                <div class="subject">
-                    Informatics Engineering
-                </div>
-            </div>
-            
-            
+            {/*}
             <ul class="pagination">
               <li><a href="#">&laquo;</a></li>
               <li><a href="#">1</a></li>

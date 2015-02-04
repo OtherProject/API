@@ -11,6 +11,31 @@ class modeldirektori extends Database {
 		
 		return $result;
 	}
+
+	function getKepakaran($categoryid=1, $content=false, $type=1, $start=0, $limit=5)
+	{
+		
+		$filter = "";
+		if ($content) $filter = " AND content LIKE '%{$content}%' ";
+
+		$sql = "SELECT * FROM {$this->prefix}_news_content WHERE n_status = 1 AND categoryid = {$categoryid}
+				AND articleType = {$type} {$filter} LIMIT {$start},{$limit}";
+		// pr($sql);
+
+		$res = $this->fetch($sql,1);
+
+		$sqlC = "SELECT * FROM {$this->prefix}_news_content WHERE n_status = 1 AND categoryid = {$categoryid}
+				AND articleType = {$type} {$filter}";
+		// pr($sql);
+
+		$resC = $this->fetch($sqlC,1);
+
+		$dataCount['countData']=count($resC);
+		$dataCount['limit']=$limit;
+
+		if ($res) return array('dataArr'=>$res, 'dataCount'=>$dataCount);;
+		return false;
+	}
 	
 }
 ?>
