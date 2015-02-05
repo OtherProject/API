@@ -15,15 +15,17 @@
         <div class="col-md-12">
         <h3>Berita Terbaru</h3>  
         {if $berita}
+            <div class="row">
             {foreach $berita as $val}
-            <div class="col-md-4 latest_news">
-                <a href="{$basedomain}news/berita_detail" title="Banana">
-                    <img src="{$basedomain}public_assets/news/{$val.image}" class="img-responsive">
-                </a>
-                <div class="time-ago"><a href="{$basedomain}news/berita_detail"> {$val.changeDate}</a></div>
-                <a href="{$basedomain}news/berita_detail/?id={$val.id}">{$val.title}</a>
-            </div>
+                <div class="col-md-4 latest_news">
+                    <a href="{$basedomain}news/berita_detail/?id={$val.id}" title="{$val.title}">
+                        <img src="{$basedomain}public_assets/news/{$val.image}" class="img-responsive">
+                    </a>
+                    <div class="time-ago"><a href="{$basedomain}news/berita_detail/?id={$val.id}"> {$val.changeDate}</a></div>
+                    <a href="{$basedomain}news/berita_detail/?id={$val.id}">{$val.title}</a>
+                </div>
             {/foreach}
+            </div>
         {/if}
             {*}
             <div class="col-md-4 latest_news">

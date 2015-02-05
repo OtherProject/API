@@ -1,8 +1,28 @@
+@font-face {
+    font-family: 'Lato';
+    src: url('../font/Lato/Lato-Regular.ttf') format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
 body p,a{
-    font-family: Arial,Helvetica,Sans-Serif;
-    font-size: 13px;
+    font-family: 'Lato',Helvetica,Sans-Serif;
+    font-size: 14px;
     line-height: 150%;
 }
+
+.nomargin{
+    margin:0;
+}
+.nomargin-l{
+    margin-left: 0;
+}
+
+.nopadding-l{
+    padding-left: 0;
+}
+
+
 .page-numbers.actived{
     background-color: #428BCA;
     padding:5px;
@@ -39,6 +59,7 @@ body p,a{
     font-weight: bold; 
     color:#1C4298;
     margin-right: 20px;
+    font-size: 16px;
 }
 .navbar-nav > li > a, .navbar-nav > li.active > a, .navbar-nav > li > a:hover {
     padding: 15px 20px 15px !important;
@@ -64,9 +85,11 @@ body p,a{
     line-height: 35px;
 }
 
+.latest_news img{height: 125px;}
+
 .time-ago{
     line-height: 20px;
-    margin-top: -41px;
+    margin-top: -40px;
     padding: 0 10px;
     position: absolute;
     z-index: 10;
@@ -76,9 +99,6 @@ body p,a{
 
 .api-calendar{margin-bottom:20px;}
 
-.api-news, .api-kliping, .api-buah_pikir, .api-perundangan{
-    margin-bottom: 10px;
-}
 .api-news .title h4, .api-kliping .title h4, .api-buah_pikir .title h4, .api-perundangan .title h4{
     width: 85%;
     color:#333;
@@ -160,10 +180,6 @@ body p,a{
 }    
 .api-anggota_detail p.information{
     font-weight: bold;
-}
-
-.api-result{
-    width: 100%;
 }
 
 .education{margin-left: 10px;}
@@ -256,17 +272,13 @@ body p,a{
     padding: 10px;
     border: 1px solid #EDF2FF;
     margin-bottom: 15px;
+    width: 100%;
+    margin-left: 0;
+    padding-bottom: 14px;
 }
-.api-result .title{font-weight: bold;}
-.api-result .info p{margin:0;}
-.api-result .subject{
-    position: absolute;
-    padding: 5px;
-    background-color: #1C4298;
-    color: #FFF;
-    font-size: 11px;
-    margin-left: 76%;
-    margin-top: -15px;
+.api-result .title{
+    font-weight: bold;
+    font-size: 16px;
 }
 
 .api-result_detail h4, .api-result_detail h5{
@@ -274,6 +286,11 @@ body p,a{
     border-bottom: 1px solid #A0CAEC;
     color:#333;
     padding-bottom: 5px;
+}
+
+.api-result .detail{
+    border-radius: 0;
+    margin-right: -10px;
 }
 
 #api-loginContainer, #api-registerContainer{
@@ -408,7 +425,7 @@ body p,a{
 .api-footerLink{border-left: 1px solid #FFF;}
 .api-footerLink:last-child{border-right: 1px solid #FFF;}
 
-.api-separator{border:1px dotted #F6831F; margin-bottom:0;}
+.api-separator{border:1px dotted #F6831F; margin-bottom:0; margin-top: 10px;}
 
 /** CUSTOM CLNDR CSS **/
 #mini-clndr .clndr .controls {background-color: #4472F7;}
@@ -439,6 +456,17 @@ body p,a{
     background-color: rgb(255, 255, 255);
 }
 
+.carousel-caption {
+    background-color: rgba(0,0,0,0.5);
+    max-width: 100%;
+    padding: 10px 20px;
+    margin: 0 auto;
+    margin-bottom: -20px;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
 .carousel-inner > .item > img, .carousel-inner > .item > a > img {width: 100%;}
 
 @media (min-width: 768px){
@@ -448,7 +476,7 @@ body p,a{
 }
 
 @media (max-width: 991px) {
-    .navbar-header {
+    .container .navbar-header {
         float: none;
     }
     .navbar-toggle {
@@ -484,6 +512,12 @@ body p,a{
     }
 }
 
+@media (min-width: 992px){
+    .container {
+        width: 1100px;
+    }
+}
+
 @media (max-width: 1199px){
     .api-navbar .navbar-brand{padding-right: 0px;}
 }
@@ -491,6 +525,7 @@ body p,a{
     .api-result .subject{
         margin-left: 77.6%;
     }
+    .latest_news img{height: auto;}
 }
 @media (max-width: 768px){
     .api-result .subject{
