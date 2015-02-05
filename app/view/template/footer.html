@@ -38,7 +38,10 @@
     
     <!-- Jquery JS -->
     <script type="text/javascript" src="{$basedomain}assets/js/jquery-2.1.0.min.js"></script>
+    
+    <!-- Helper -->
     <script src="{$basedomain}assets/js/helper.js"></script>
+
     <!-- Bootstrap JS -->
     <script src="{$basedomain}plugin/bootstrap-3.1.1/js/bootstrap.min.js"></script>
     
@@ -59,17 +62,23 @@
     <script src="{$basedomain}plugin/datatable/js/jquery.dataTables.min.js"></script>
     <script src="{$basedomain}plugin/datatable/js/dataTables.bootstrap.js"></script>
     
-    
+    <!-- Datepicker JS -->
+    <script src="{$basedomain}plugin/datepicker/bootstrap-datepicker.js"></script>
     
     <script type="text/javascript">
 
     var agenda = {$agenda};
-
-    
-	var dateToday = "{$dateToday}";
+    var dateToday = "{$dateToday}";
    	
-    // console.log(agenda);
-{literal}    
+    
+{literal}
+
+    $(function() {
+        $('#birthday').datepicker ();
+        
+    });
+
+
     $(document).ready(function() {
         // INITIATE clndr PLUGIN
         $('#mini-clndr').clndr({

@@ -72,6 +72,10 @@ class user extends Controller {
     function register_step2(){
         global $basedomain;
 
+        
+        $isUserSet = $_SESSION['newuser']['email'];
+        if ($isUserSet=="") {redirect($basedomain.'user/register_step1');exit;}
+
         // pr($_SESSION);
         if ($_POST){
             // pr($_POST);
@@ -80,6 +84,8 @@ class user extends Controller {
             if ($save){
                 
                 redirect($basedomain.'user/register_step3');
+            }else{
+                redirect($basedomain.'user/register_step2');exit;
             }
         }
     	return $this->loadView('user/register_step2');
@@ -88,6 +94,11 @@ class user extends Controller {
     function register_step3(){
 
         global $basedomain;
+
+        $isUserSet = $_SESSION['newuser']['email'];
+        if ($isUserSet=="") {redirect($basedomain.'user/register_step1');exit;}
+
+
         if ($_POST){
             // pr($_POST);
 
@@ -95,7 +106,13 @@ class user extends Controller {
             // pr($save);
             if ($save){
                 $keberhasilan = $this->contentHelper->updateKeberhasilan($_POST);
-                if ($keberhasilan) redirect($basedomain.'user/register_step4');
+                if ($keberhasilan){
+                    redirect($basedomain.'user/register_step4');
+                }else{
+                    redirect($basedomain.'user/register_step3');exit;
+                } 
+            }else{
+                redirect($basedomain.'user/register_step3');exit;
             }
         }
 
@@ -106,31 +123,50 @@ class user extends Controller {
 
         
         global $basedomain;
-        // pr($_POST);
+        $isUserSet = $_SESSION['newuser']['email'];
+        if ($isUserSet=="") {redirect($basedomain.'user/register_step1');exit;}
+
         if ($_POST){
             // pr($_POST);
 
             if(!empty($_FILES)){
                 if($_FILES['file_image']['name'] != ''){
-                    if($x['action'] == 'update') deleteFile($x['image']);
+                    
                     $image = uploadFile('file_image',null,'image');
                     $x['image'] = $image['full_name'];
+
+                    if ($image){
+                        $save = $this->contentHelper->updatePersetujuan($image);
+                        if ($save){
+                            
+                            redirect($basedomain.'user/register_step5');
+                        }
+                    }else{
+                        redirect($basedomain.'user/register_step4');exit;
+                    }
+
                 }
 
-                if ($image){
-                    $save = $this->contentHelper->updatePersetujuan($image);
-                    if ($save){
-                        
-                        redirect($basedomain);
-                    }
-                }
                 
+                
+            }else{
+                redirect($basedomain.'user/register_step4');exit;
             }
 
             exit;
             
         }
     	return $this->loadView('user/register_step4');
+    }
+
+    function register_step5(){
+
+        global $basedomain;
+
+        $isUserSet = $_SESSION['newuser']['email'];
+        if ($isUserSet=="") {redirect($basedomain.'user/register_step1');exit;}
+
+        return $this->loadView('user/register_step5');
     }
 
     function ajax()

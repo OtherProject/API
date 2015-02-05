@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 04, 2015 at 07:24 PM
+-- Generation Time: Feb 05, 2015 at 01:57 PM
 -- Server version: 5.5.40-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.5
 
@@ -39,10 +39,11 @@ CREATE TABLE IF NOT EXISTS `social_member` (
   `small_img` varchar(200) DEFAULT NULL,
   `username` varchar(46) DEFAULT NULL,
   `last_login` datetime DEFAULT NULL,
-  `city` int(11) DEFAULT NULL,
+  `city1` int(11) NOT NULL DEFAULT '0',
   `zipcode` int(10) NOT NULL,
   `sex` varchar(11) DEFAULT NULL,
   `birthday` date DEFAULT NULL,
+  `place_of_birth` varchar(100) DEFAULT NULL,
   `description` text,
   `middle_name` varchar(46) DEFAULT NULL,
   `last_name` varchar(46) DEFAULT NULL,
@@ -58,13 +59,13 @@ CREATE TABLE IF NOT EXISTS `social_member` (
   `verified` tinyint(3) DEFAULT '0' COMMENT '0->no hp blm verified, 1->sudah verified.',
   `usertype` int(11) NOT NULL COMMENT '0:online;1:offline;2;existing',
   `email_token` varchar(50) DEFAULT NULL,
-  `photo_moderation` int(11) NOT NULL,
+  `register_step` int(11) NOT NULL DEFAULT '0',
   `salt` varchar(200) DEFAULT NULL,
   `password` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -24,14 +24,22 @@
                 
                 <div class="form-group">
     				<label for="register-nip">NIP/NIDN</label>
-    				<input type="text" class="form-control" id="register-nip" placeholder="NIP/NIDN" name="nip">
+    				<input type="text" class="form-control" id="register-nip" placeholder="NIP/NIDN" name="nip" onkeypress="validateNumber(this)">
     			</div>
                 
                 <div class="form-group">
-    				<label for="register-ttl">Tempat Tanggal Lahir</label>
-    				<input type="text" class="form-control" id="register-ttl" placeholder="Tempat Tanggal Lahir" name="birthday">
+    				<label for="register-ttl">Tempat Lahir</label>
+    				<input type="text" class="form-control" id="register-ttl" placeholder="Tempat Lahir" name="city">
     			</div>
                 
+                <div class="form-group">
+                    <label for="register-ttl">Tanggal Lahir</label>
+                    <div id="birthday" class="input-group date" data-auto-close="true" data-date-format="yyyy-mm-dd" data-date-autoclose="true">
+                        <input type="text" class="form-control" placeholder="Tanggal Lahir" name="birthday" data-required="true">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                </div>
+
                 <div class="form-group">
     				<label for="register-alamatRumah">Alamat Rumah</label>
     				<textarea type="text" class="form-control" id="register-alamatRumah" placeholder="Alamat Rumah" name="StreetName"></textarea>
@@ -39,7 +47,7 @@
                 
                 <div class="form-group">
     				<label for="register-tlp">No.Telepon</label>
-    				<input type="text" class="form-control" id="register-tlp" placeholder="No.Telepon" name="phone_number">
+    				<input type="text" class="form-control" id="register-tlp" placeholder="No.Telepon" name="phone_number" onkeypress="validateNumber(this)">
     			</div>
                 
                 <div class="form-group">
@@ -49,7 +57,7 @@
                 
                 <div class="form-group">
     				<label for="register-tlpKantor">No.Telepon Kantor</label>
-    				<input type="text" class="form-control" id="register-tlpKantor" placeholder="No.Telepon Kantor" name="tlpKantor">
+    				<input type="text" class="form-control" id="register-tlpKantor" placeholder="No.Telepon Kantor" name="tlpKantor" onkeypress="validateNumber(this)">
     			</div>
                 
                 <div class="form-group">
@@ -63,9 +71,11 @@
     			</div>
     
     			<div class="form-group">
-    				<div class="col-md-6">
-                        <button type="submit" id="register-btn" class="btn btn-primary btn-block">Kembali &nbsp; <i class="fa fa-play-circle"></i></button>
+                    <input type="hidden" name="register_step" value="2">
+    				<div class="col-md-6">{*}
+                        <button type="submit" id="register-btn" class="btn btn-primary btn-block">Kembali &nbsp; <i class="fa fa-play-circle"></i></button>{/*}
                     </div>
+
                     <div class="col-md-6">
                         <button type="submit" id="register-btn" class="btn btn-primary btn-block">Lanjut &nbsp; <i class="fa fa-play-circle"></i></button>
                     </div>
@@ -77,3 +87,4 @@
     </div>
     
 </div>
+

@@ -22,3 +22,7 @@ function compare(data1, data2)
 	if (data1==data2) return true;
 	return false;
 }
+
+function validateNumber(evt){
+     evt.value = evt.value.replace(/[^0-9]/g,"");
+}
