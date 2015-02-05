@@ -1,15 +1,17 @@
 <div class="container api-content">
-    <div class="col-md-12 text-justify">
-        <img src="{$basedomain}assets/img/header-profile.jpg" class="img-responsive"/>
-        
-        <h3>ASOSIASI PROFESOR INDONESIA</h3>
-        
-    <!--START LATEST NEWS-->    
-        {if $profil}
-        	{foreach $profil as $val}
-        		{$val.content|html_entity_decode}
-        	{/foreach}
-        {/if}
+    <div class="row">
+        <div class="col-md-12 text-justify">
+            <img src="{$basedomain}assets/img/header-profile.jpg" class="img-responsive"/>
+            
+            <h3>ASOSIASI PROFESOR INDONESIA</h3>
+            
+        <!--START LATEST NEWS-->    
+            {if $profil}
+            	{foreach $profil as $val}
+            		{$val.content|html_entity_decode}
+            	{/foreach}
+            {/if}
+        </div>
     </div>
 
 </div>
