@@ -1,13 +1,13 @@
 <div id="api-footerTop">
     <div class="container api-footerContainer">
         <div class="row">
-            <div class="col-md-4 text-center api-footerLink">
+            <div class="col-xs-4 text-center api-footerLink">
                 <a href="#">About API</a>
             </div>
-            <div class="col-md-4 text-center api-footerLink">
+            <div class="col-xs-4 text-center api-footerLink">
                 <a href="#">Privacy</a>
             </div>
-            <div class="col-md-4 text-center api-footerLink">
+            <div class="col-xs-4 text-center api-footerLink">
                 <a href="#">Site Map</a>
             </div>
             <!--<div class="col-md-2 text-center api-footerLink">
@@ -192,13 +192,15 @@
             }, "JSON")
         })
 
-        /* validasi register */
+        /* validasi register #1 */
 
         $(document).on('blur','#register-email', function(){
 
+            //Validate Email
             var email = $(this).val();
             var validate = IsEmail(email);
             if (validate==false){
+                $('input#register-email').css('border','1px dotted red');
                 $('#email-error').html('Email tidak valid');
                 $('#email-error').css('color','red');
 
@@ -209,11 +211,11 @@
                     var html = "";
 
                     if (data.status==true){
+                        $('input#register-email').css('border','1px dotted red')
                         $('#email-error').html('Email sudah terdaftar');
                         $('#email-error').css('color','red');
 
                     }else{
-
                         $('#email-error').html('');
                         $('#email-error').css('color','white');
                     }
@@ -225,6 +227,7 @@
             
         })
 
+        //Validate Password
         function validatePassword()
         {
             var pass1 = $('#register-password').val();
@@ -234,7 +237,7 @@
             log('data ='+validate);
 
             if (validate==false){
-                
+                $('input#register-rePassword').css('border','1px dotted red')
                 $('#password-error').html('Password tidak sama');
                 $('#password-error').css('color','red');
                 return false;

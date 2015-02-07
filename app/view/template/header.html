@@ -40,7 +40,17 @@
               </ul>
             </li>
             <li class="{if $page.page=='gallery'}active{/if}"><a href="{$basedomain}gallery">GALLERY</a></li>
-            <li class="{if $page.page=='user'}active{/if}"><a href="{$basedomain}user/login">LOGIN</a></li>
+            {if $page.function=='setting'} <!-- Later condition isLogin -->
+              <li class="dropdown {if $page.page=='user'}active{/if}">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">USERNAME <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="{$basedomain}direktori/kepakaran">Setting</a></li>
+                  <li><a href="{$basedomain}direktori/buah_pikir">Logout</a></li>
+                </ul>
+              </li>
+            {else}
+              <li class="{if $page.page=='user'}active{/if}"><a href="{$basedomain}user/login">LOGIN</a></li>
+            {/if}
           </ul>
         </div><!--/.nav-collapse -->
       </div>

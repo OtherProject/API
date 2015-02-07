@@ -1,0 +1,248 @@
+<div class="container api-content">
+    <div class="api-tabs" role="tabpanel">
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#akunAPI" aria-controls="akunAPI" role="tab" data-toggle="tab">Akun API</a></li>
+            <li role="presentation"><a href="#identitasLengkap" aria-controls="identitasLengkap" role="tab" data-toggle="tab">Identitas Lengkap</a></li>
+            <li role="presentation"><a href="#riwayat" aria-controls="riwayat" role="tab" data-toggle="tab">Riwayat</a></li>
+            <li role="presentation"><a href="#persetujuan" aria-controls="persetujuan" role="tab" data-toggle="tab">Persetujuan</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="akunAPI">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form id="register-form" action="" class="form" method="post" onsubmit="return validatePassword()">
+                
+                            <div class="form-group">
+                                <label for="register-email">Email</label>
+                                <input type="email" class="form-control" id="register-email" placeholder="Email" name="email" required>
+                                <span id="email-error"></span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="register-password">Password</label>
+                                <input type="password" class="form-control" id="register-password" placeholder="Password" name="password" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="register-rePassword">Retype Password</label>
+                                <input type="password" class="form-control" id="register-rePassword" placeholder="Retype Password" name="rePassword" required>
+                                <span id="password-error"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" name="register_step" value="1">
+                                <button type="submit" id="register-btn" class="btn btn-primary btn-block">Simpan &nbsp; <i class="fa fa-play-circle"></i></button>
+                
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="identitasLengkap">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form id="register-form" action="" class="form" method="post">
+                
+                            <div class="form-group">
+                                <label for="register-namaLengkap">Nama Lengkap</label>
+                                <input type="text" class="form-control" id="register-namaLengkap" placeholder="Nama Lengkap" name="name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="register-nip">NIP/NIDN</label>
+                                <input type="text" class="form-control" id="register-nip" placeholder="NIP/NIDN" name="nip" onkeypress="validateNumber(this)">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="register-ttl">Tempat Lahir</label>
+                                <input type="text" class="form-control" id="register-ttl" placeholder="Tempat Lahir" name="city" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="register-ttl">Tanggal Lahir</label>
+                                <div id="birthday" class="input-group date" data-auto-close="true" data-date-format="yyyy-mm-dd" data-date-autoclose="true">
+                                    <input type="text" class="form-control" placeholder="Tanggal Lahir" name="birthday" data-required="true" required>
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="register-alamatRumah">Alamat Rumah</label>
+                                <textarea type="text" class="form-control" id="register-alamatRumah" placeholder="Alamat Rumah" name="StreetName"></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="register-tlp">No.Telepon</label>
+                                <input type="text" class="form-control" id="register-tlp" placeholder="No.Telepon" name="phone_number" onkeypress="validateNumber(this)">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="register-alamatKantor">Alamat Kantor</label>
+                                <textarea type="text" class="form-control" id="register-alamatKantor" placeholder="Alamat Kantor" name="alamatKantor"></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="register-tlpKantor">No.Telepon Kantor</label>
+                                <input type="text" class="form-control" id="register-tlpKantor" placeholder="No.Telepon Kantor" name="tlpKantor" onkeypress="validateNumber(this)">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="register-pendTerakhir">Pendidikan Terakhir</label>
+                                <input type="text" class="form-control" id="register-pendTerakhir" placeholder="Pendidikan Terakhir" name="pendidikan">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="register-kepakaran">Kepakaran</label>
+                                <input type="text" class="form-control" id="register-kepakaran" placeholder="Kepakaran" name="kepakaran">
+                            </div>
+                
+                            <div class="form-group">
+                                <input type="hidden" name="register_step" value="2">
+                                <button type="submit" id="register-btn" class="btn btn-primary btn-block">Simpan &nbsp; <i class="fa fa-play-circle"></i></button>
+                                <div class="clearfix"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="riwayat">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="stepReg">
+                            <h3 class="text-center">Mata Kuliah yang Diampu</h3>
+
+                            <form id="register-form" action="" class="form" method="post">
+                                <div class="row"> 
+                                    <div class="form-group col-xs-3">
+                                        <label>Tahun</label>
+                                        <input type="text" class="form-control" placeholder="Tahun" name="tahun_1[]" style="margin-bottom: 10px;" onkeypress="validateNumber(this)" maxlength="4">
+                                        <input type="text" class="form-control" placeholder="Tahun" name="tahun_1[]" style="margin-bottom: 10px;" onkeypress="validateNumber(this)" maxlength="4">
+                                        <input type="text" class="form-control" placeholder="Tahun" name="tahun_1[]" style="margin-bottom: 10px;" onkeypress="validateNumber(this)" maxlength="4">
+                                    </div>
+
+                                    <div class="form-group col-xs-5">
+                                        <label>Mata Kuliah</label>
+                                        <input type="text" class="form-control" placeholder="Nama Mata Kuliah" name="judul_1[]" style="margin-bottom: 10px;">
+                                        <input type="text" class="form-control" placeholder="Nama Mata Kuliah" name="judul_1[]" style="margin-bottom: 10px;">
+                                        <input type="text" class="form-control" placeholder="Nama Mata Kuliah" name="judul_1[]" style="margin-bottom: 10px;">
+                                    </div>
+                                    <div class="form-group col-xs-4">
+                                        <label>Keterangan</label>
+                                        <input type="text" class="form-control" placeholder="Keterangan" name="keterangan_1[]" style="margin-bottom: 10px;">
+                                        <input type="text" class="form-control" placeholder="Keterangan" name="keterangan_1[]" style="margin-bottom: 10px;">
+                                        <input type="text" class="form-control" placeholder="Keterangan" name="keterangan_1[]" style="margin-bottom: 10px;">
+                                    </div>
+                                </div>
+                        </div>
+                           
+                             
+                        <div class="stepReg">
+                            <h3>Publikasi (Penelitian/Buku/Artikel/Karya Seni/Paten)</h3>
+                            <div class="row"> 
+                                <div class="form-group col-xs-3">
+                                    <label>Tahun</label>
+                                    <input type="text" class="form-control" placeholder="Tahun" name="tahun_2[]" style="margin-bottom: 10px;" onkeypress="validateNumber(this)" maxlength="4">
+                                    <input type="text" class="form-control" placeholder="Tahun" name="tahun_2[]" style="margin-bottom: 10px;" onkeypress="validateNumber(this)" maxlength="4">
+                                    <input type="text" class="form-control" placeholder="Tahun" name="tahun_2[]" style="margin-bottom: 10px;" onkeypress="validateNumber(this)" maxlength="4">
+                                </div>
+
+                                <div class="form-group col-xs-5">
+                                    <label>Judul</label>
+                                    <input type="text" class="form-control" placeholder="Judul" name="judul_2[]" style="margin-bottom: 10px;">
+                                    <input type="text" class="form-control" placeholder="Judul" name="judul_2[]" style="margin-bottom: 10px;">
+                                    <input type="text" class="form-control" placeholder="Judul" name="judul_2[]" style="margin-bottom: 10px;">
+                                </div>
+                                <div class="form-group col-xs-4">
+                                    <label>Keterangan</label>
+                                    <input type="text" class="form-control" placeholder="Keterangan" name="keterangan_2[]" style="margin-bottom: 10px;">
+                                    <input type="text" class="form-control" placeholder="Keterangan" name="keterangan_2[]" style="margin-bottom: 10px;">
+                                    <input type="text" class="form-control" placeholder="Keterangan" name="keterangan_2[]" style="margin-bottom: 10px;">
+                                </div>
+                            </div>
+                        </div>
+                            
+                             
+                        <div class="stepReg">
+                            <h3>Riwayat Pekerjaan (Lima Tahun Terakhir)</h3>
+
+
+                            <div class="row"> 
+                                <div class="form-group col-xs-3">
+                                    <label>Tahun</label>
+                                    <input type="text" class="form-control" placeholder="Tahun" name="tahun_3[]" style="margin-bottom: 10px;" onkeypress="validateNumber(this)" maxlength="4">
+                                    <input type="text" class="form-control" placeholder="Tahun" name="tahun_3[]" style="margin-bottom: 10px;" onkeypress="validateNumber(this)" maxlength="4">
+                                    <input type="text" class="form-control" placeholder="Tahun" name="tahun_3[]" style="margin-bottom: 10px;" onkeypress="validateNumber(this)" maxlength="4">
+                                </div>
+
+                                <div class="form-group col-xs-5">
+                                    <label>Institusi</label>
+                                    <input type="text" class="form-control" placeholder="Institusi" name="judul_3[]" style="margin-bottom: 10px;">
+                                    <input type="text" class="form-control" placeholder="Institusi" name="judul_3[]" style="margin-bottom: 10px;">
+                                    <input type="text" class="form-control" placeholder="Institusi" name="judul_3[]" style="margin-bottom: 10px;">
+                                </div>
+                                <div class="form-group col-xs-4">
+                                    <label>Jabatan</label>
+                                    <input type="text" class="form-control" placeholder="Jabatan" name="keterangan_3[]" style="margin-bottom: 10px;">
+                                    <input type="text" class="form-control" placeholder="Jabatan" name="keterangan_3[]" style="margin-bottom: 10px;">
+                                    <input type="text" class="form-control" placeholder="Jabatan" name="keterangan_3[]" style="margin-bottom: 10px;">
+                                </div>
+                            </div>
+                        </div>  
+
+                        <div class="stepReg">
+                            <h3>Keunggulan dan Keberhasilan</h3>
+
+
+                            <div class="row"> 
+                                <div class="col-md-12">
+                                    <div class="form-group" style="margin-bottom: 20px;">
+                                        <label for="register-keunggulan">Keunggulan atau keberhasilan</label>
+                                        <textarea type="text" class="form-control" id="register-keunggulan" placeholder="Keunggulan atau keberhasilan yang pernah dicapai (ruang tulisan dapat diperluas)" name="keberhasilan"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                        
+                                                                
+                        <div class="row"> 
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <input type="hidden" name="register_step" value="3">
+                                    <button type="submit" id="register-btn" class="btn btn-primary btn-block">Simpan &nbsp; <i class="fa fa-play-circle"></i></button>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="persetujuan">
+                <div class="row">
+                    <div class="col-md-12">
+                        
+                        <h3 class="text-center">Persetujuan</h3>
+                
+                        <form id="register-form" action="" class="form" method="post" enctype="multipart/form-data">
+                            
+                            <div class="form-group">
+                                <label for="register-keunggulan">Form Persetujuan</label>
+                                <input type="file" class="form-control" id="exampleInputFile" name="file_image" required="required">
+                            </div>
+                
+                            <div class="form-group">
+                                <input type="hidden" name="register_step" value="4">
+                                <button type="submit" id="register-btn" class="btn btn-primary btn-block">Simpan &nbsp; <i class="fa fa-play-circle"></i></button>
+                
+                            </div>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
