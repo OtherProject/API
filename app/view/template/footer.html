@@ -43,16 +43,10 @@
     <script src="{$basedomain}assets/js/helper.js"></script>
 
     <!-- Bootstrap JS -->
-    <script src="{$basedomain}plugin/bootstrap-3.1.1/js/bootstrap.min.js"></script>
-    
-    <!-- Clndr JS -->
-    <script src="{$basedomain}plugin/clndr/js/moment.min.js"></script>     
-    <script src="{$basedomain}plugin/clndr/js/clndr.min.js"></script>
-    <script src="{$basedomain}plugin/clndr/js/underscore-min.js"></script>
-    <script src="{$basedomain}plugin/clndr/js/site-miniclndr.js"></script>
-    
-    <!-- FullCalendar JS-->
-    <script src='{$basedomain}plugin/fullcalendar-2.1.1/fullcalendar.min.js'></script>
+    <script src="{$basedomain}plugin/bootstrap-3.3.2/js/bootstrap.min.js"></script>
+
+    <!-- Responsive Calendar JS -->
+    <script src="{$basedomain}plugin/responsive-calendar/0.8/js/responsive-calendar.js"></script> 
     
     <!-- Bootstrap Image Gallery JS -->
     <script src="{$basedomain}plugin/bootstrap-image-gallery-3.1.1/js/jquery.blueimp-gallery.min.js"></script>
@@ -64,7 +58,6 @@
     
     <!-- Datepicker JS -->
     <script src="{$basedomain}plugin/datepicker/bootstrap-datepicker.js"></script>
-    
     <script type="text/javascript">
 
     var agenda = {$agenda};
@@ -75,33 +68,25 @@
 
     $(function() {
         $('#birthday').datepicker ();
-        
     });
 
-
     $(document).ready(function() {
-        // INITIATE clndr PLUGIN
-        $('#mini-clndr').clndr({
-            template: $('#mini-clndr-template').html()
-        }); 
         
+        // INITIATE RESPONSIVE CALENDAR
+        $(".responsive-calendar").responsiveCalendar({
+          time: dateToday,
+          monthChangeAnimation: false,
+          events: {
+            "2015-02-08": {"number": 5, "url": basedomain+"news/agenda"},
+            "2015-02-18": {"number": 1, "url": basedomain+"news/agenda"}, 
+            "2015-02-05":{"number": 1, "url": basedomain+"news/agenda"}}
+        });
+
         // INITIATE GALLERY PLUGIN
             $('#blueimp-gallery').toggleClass('blueimp-gallery-controls', true);
-            
-        // INITIATE fullCalendar PLUGIN    
-        $('#calendar').fullCalendar({
-			header: {
-				left: 'prev,next today',
-				center: 'title',
-				right: 'month,basicWeek,basicDay'
-			},
-			defaultDate: dateToday,
-			editable: false,
-			eventLimit: true, // allow "more" link when too many events
-			events: agenda
-		});
+
         // INITIATE DATATABLE
-            $('.table').dataTable();   
+        $('.table').dataTable();   
     });
 
 {/literal}

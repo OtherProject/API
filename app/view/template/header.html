@@ -39,7 +39,13 @@
                 <li><a href="{$basedomain}direktori/repository">Repository</a></li>
               </ul>
             </li>
-            <li class="{if $page.page=='gallery'}active{/if}"><a href="{$basedomain}gallery">GALLERY</a></li>
+            <li class="dropdown {if $page.page=='gallery'}active{/if}">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">GALLERY <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="{$basedomain}gallery/foto">Foto</a></li>
+                <li><a href="{$basedomain}gallery/video">Video</a></li>
+              </ul>
+            </li>
             {if $page.function=='setting'} <!-- Later condition isLogin -->
               <li class="dropdown {if $page.page=='user'}active{/if}">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">USERNAME <span class="caret"></span></a>

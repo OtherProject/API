@@ -98,6 +98,42 @@ body p,a{
 .time-ago a{color: #FFFFFF;}
 
 .api-calendar{margin-bottom:20px;}
+.api-calendar h4.title{
+    margin-bottom: 0;
+    margin-top: 20px;
+    border-top: 7px solid #1C4298;
+    background-color: #B6DFFF;
+    border-bottom: 1px solid #FFF;
+    padding: 10px 0;
+    border-radius: 5px 5px 0 0;
+}
+
+/* Responsive Calendar CSS */
+
+.responsive-calendar{
+    background-color: #B6DFFF;
+    padding: 0 5px;
+    border-radius: 0 0 5px 5px;
+}
+.responsive-calendar .controls{padding-top: 5px;}
+.responsive-calendar .day.not-current a {
+    color: #EEF7FF;
+}
+.responsive-calendar .day {padding: 2px;}
+.responsive-calendar .day .badge {
+    top: 0px;
+    right: 1px;
+    font-size: 10px;
+    z-index: 1;
+    background-color: #FFF;
+    color: #282828;
+    border-radius: 0 0 0 5px;
+    padding: 2px 5px;
+}
+.responsive-calendar .day a {
+    border-radius: 5px;
+}
+/* Responsive Calendar CSS END */
 
 .api-news .title h4, .api-kliping .title h4, .api-buah_pikir .title h4, .api-perundangan .title h4{
     width: 85%;
@@ -111,10 +147,10 @@ body p,a{
 .api-news h3, .api-kliping h3, .api-buah_pikir h3, .api-perundangan h3{color: #333;border: none;font-weight: bold;}
 
 .api-kliping-side{
-    background-color: #D0DCFF;
-    margin-left: 6px;
-    width: 95.2%;
-    border-top: 7px solid #4663B8;
+    background-color: #B6DFFF;
+    border-top: 7px solid #1C4298;
+    margin-bottom: 20px;
+    border-radius: 5px;
 }
 .api-kliping-side p.date{
     font-size: 12px;
@@ -130,6 +166,9 @@ body p,a{
     -webkit-transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
     -o-transition: all .2s ease-in-out;
+}
+.api-kliping-side .all:hover{
+    border-radius: 0 0 5px 5px;
 }
 .api-kliping-side .kegiatan:hover a{color: #FFF;}
 
@@ -196,6 +235,7 @@ body p,a{
 
 .api-album img{
     width: 100%;
+    height: 120px;
 }
 
 .api-gallery{
@@ -206,6 +246,8 @@ body p,a{
     border-radius: 4px;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
+    height: 120px;
+    width: 100%;
 }
 
 .kepakaran h4.title{
@@ -427,8 +469,10 @@ body p,a{
 #api-footerTop{
     width: 100%;
     background-color: #d8dfdd;
-    padding: 10px;
-    font-size: 10px;
+    padding: 5px;
+}
+#api-footerTop a{
+    font-size: 12px;
 }
 #api-footerDown{
     width: 100%;
@@ -451,6 +495,10 @@ body p,a{
 #mini-clndr .clndr .controls {background-color: #4472F7;}
 #mini-clndr .clndr .days-container .days .headers, #mini-clndr .clndr .days-container .events .event-header {background-color: #B2C5FF;}
 #mini-clndr .clndr {border-bottom: 7px solid #4663B8;}
+#mini-clndr .clndr .controls .clndr-previous-button:hover,
+#mini-clndr .clndr .controls .clndr-next-button:hover {
+  background-color: #B2C5FF;
+}
 
 /** Custom Full Calendar CSS **/
 .fc-event {
@@ -549,6 +597,8 @@ body p,a{
         margin-left: 77.6%;
     }
     .latest_news img{height: auto;}
+    .api-album img{height: auto;}
+    .api-gallery{height: auto;}
 }
 @media (max-width: 768px){
     .api-result .subject{
