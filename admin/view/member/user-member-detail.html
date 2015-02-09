@@ -1,0 +1,219 @@
+<script>
+$(function () {
+	$('#postdate').datepicker ();
+	$('#expiredate').datepicker ();
+	
+	$("#isi").jqte();
+	
+	$('input:checkbox, input:radio').iCheck({
+		checkboxClass: 'icheckbox_minimal-blue',
+		radioClass: 'iradio_minimal-blue',
+		inheritClass: true
+	})
+})
+</script>
+
+<div id="content-header">
+	<h1>Member Detail</h1>
+</div> <!-- #content-header -->	
+
+<div id="content-container">
+	<form id="validate-enhanced" class="form parsley-form" method="post" action="{$basedomain}kepakaran/categoryinp" enctype="multipart/form-data">
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="portlet">
+				
+					<div class="portlet-header">
+
+						<h3>
+							<i class="fa fa-tasks"></i>
+							Member
+						</h3>
+
+					</div> <!-- /.portlet-header -->
+				
+					<div class="portlet-content">
+						
+						<div class="col-sm-6">
+							<div class="form-group">
+							<label for="text-input">Nama</label>
+									<input type="text" name="category_name" class="form-control" value="{$data.name}" data-required="true"/>
+							</div>
+							<div class="form-group">
+							<label for="text-input">NIP</label>
+									<input type="text" name="category_name" class="form-control" value="{$data.nip}" data-required="true"/>
+							</div>
+							<div class="form-group">
+							<label for="text-input">Email</label>
+									<input type="text" name="category_name" class="form-control" value="{$data.email}" data-required="true"/>
+							</div>
+							<div class="form-group">
+							<label for="text-input">Alamat</label>
+									<input type="text" name="category_name" class="form-control" value="{$data.StreetName}" data-required="true"/>
+							</div>
+						</div>	
+						<div class="col-sm-6">
+							<div class="form-group">
+							<label for="text-input">Pendidikan</label>
+									<input type="text" name="category_name" class="form-control" value="{$data.pendidikan}" data-required="true"/>
+							</div>
+							<div class="form-group">
+							<label for="text-input">Kepakaran</label>
+									<input type="text" name="category_name" class="form-control" value="{$data.kepakaran}" data-required="true"/>
+							</div>
+							<div class="form-group">
+							<label for="text-input">Alamat Kantor</label>
+									<input type="text" name="category_name" class="form-control" value="{$data.alamatKantor}" data-required="true"/>
+							</div>
+							<div class="form-group">
+							<label for="text-input">Tlp Kantor</label>
+									<input type="text" name="category_name" class="form-control" value="{$data.tlpKantor}" data-required="true"/>
+							</div>
+						</div>
+
+						<div class="col-sm-12">
+							
+							{if $data.riwayat_pendidikan}
+							<div class="stepReg">
+					    		<h3 class="text-center">Mata Kuliah yang Diampu</h3>
+
+					    		<form id="register-form" action="" class="form" method="post">
+					                <div class="row"> 
+					                    <div class="form-group col-xs-3">
+					                    	<label>Tahun</label>
+					                    	{if $data.riwayat_pendidikan}
+						                    	{foreach $data.riwayat_pendidikan as $val}
+						                    		{if $val.type==0}
+						                    		<input type="text" class="form-control" placeholder="Tahun" name="tahun_1[]" style="margin-bottom: 10px;" onkeypress="validateNumber(this)" maxlength="4" value="{$val.tahun}">
+						                    		{/if}
+						                    	{/foreach}
+					                        {/if}
+					                    </div>
+
+					                    <div class="form-group col-xs-5">
+					                    	<label>Mata Kuliah</label>
+					                    	{if $data.riwayat_pendidikan}
+						                    	{foreach $data.riwayat_pendidikan as $val}
+						                    		{if $val.type==0}
+					                    			<input type="text" class="form-control" placeholder="Nama Mata Kuliah" name="judul_1[]" style="margin-bottom: 10px;" value="{$val.judul}">
+					                        		{/if}
+						                    	{/foreach}
+					                        {/if}
+					                    </div>
+					                    <div class="form-group col-xs-4">
+					                    	<label>Keterangan</label>
+					                    	{if $data.riwayat_pendidikan}
+						                    	{foreach $data.riwayat_pendidikan as $val}
+						                    		{if $val.type==0}
+					                    			<input type="text" class="form-control" placeholder="Keterangan" name="keterangan_1[]" style="margin-bottom: 10px;" value="{$val.keterangan}">
+					                        		{/if}
+						                    	{/foreach}
+					                        {/if}
+					                    </div>
+					                </div>
+					        </div>
+
+					        <div class="stepReg">
+					            <h3>Publikasi (Penelitian/Buku/Artikel/Karya Seni/Paten)</h3>
+					            <div class="row"> 
+					                <div class="form-group col-xs-3">
+					                	<label>Tahun</label>
+					                	{if $data.riwayat_pendidikan}
+					                    	{foreach $data.riwayat_pendidikan as $val}
+					                    		{if $val.type==1}
+					                			<input type="text" class="form-control" placeholder="Tahun" name="tahun_2[]" style="margin-bottom: 10px;" onkeypress="validateNumber(this)" maxlength="4" value="{$val.tahun}">
+				                    			{/if}
+					                    	{/foreach}
+				                        {/if}
+					                </div>
+
+					                <div class="form-group col-xs-5">
+					                	<label>Judul</label>
+					                	{if $data.riwayat_pendidikan}
+					                    	{foreach $data.riwayat_pendidikan as $val}
+					                    		{if $val.type==1}
+					                			<input type="text" class="form-control" placeholder="Judul" name="judul_2[]" style="margin-bottom: 10px;" value="{$val.judul}">
+					                    		{/if}
+					                    	{/foreach}
+				                        {/if}
+					                </div>
+					                <div class="form-group col-xs-4">
+					                	<label>Keterangan</label>
+					                	{if $data.riwayat_pendidikan}
+					                    	{foreach $data.riwayat_pendidikan as $val}
+					                    		{if $val.type==1}
+					                			<input type="text" class="form-control" placeholder="Keterangan" name="keterangan_2[]" style="margin-bottom: 10px;" value="{$val.keterangan}">
+					                    		{/if}
+					                    	{/foreach}
+				                        {/if}
+					                </div>
+					            </div>
+					        </div>
+					            
+					             
+					        <div class="stepReg">
+					            <h3>Riwayat Pekerjaan (Lima Tahun Terakhir)</h3>
+
+
+					            <div class="row"> 
+					                <div class="form-group col-xs-3">
+					                	<label>Tahun</label>
+					                	{if $data.riwayat_pendidikan}
+					                    	{foreach $data.riwayat_pendidikan as $val}
+					                    		{if $val.type==2}
+					                			<input type="text" class="form-control" placeholder="Tahun" name="tahun_3[]" style="margin-bottom: 10px;" onkeypress="validateNumber(this)" maxlength="4" value="{$val.tahun}">
+					                    		{/if}
+					                    	{/foreach}
+				                        {/if}
+					                </div>
+
+					                <div class="form-group col-xs-5">
+					                	<label>Institusi</label>
+					                	{if $data.riwayat_pendidikan}
+					                    	{foreach $data.riwayat_pendidikan as $val}
+					                    		{if $val.type==2}
+					                			<input type="text" class="form-control" placeholder="Institusi" name="judul_3[]" style="margin-bottom: 10px;" value="{$val.judul}">
+					                    		{/if}
+					                    	{/foreach}
+				                        {/if}
+					                </div>
+					                <div class="form-group col-xs-4">
+					                	<label>Jabatan</label>
+					                	{if $data.riwayat_pendidikan}
+					                    	{foreach $data.riwayat_pendidikan as $val}
+					                    		{if $val.type==2}
+					                			<input type="text" class="form-control" placeholder="Jabatan" name="keterangan_3[]" style="margin-bottom: 10px;" value="{$val.keterangan}">
+					                    		{/if}
+					                    	{/foreach}
+				                        {/if}
+					                </div>
+					            </div>
+					        </div>  
+					        {/if}
+					        <div class="stepReg">
+					            <h3>Keunggulan dan Keberhasilan</h3>
+
+
+					            <div class="row"> 
+					                <div class="col-md-12">
+					                    <div class="form-group" style="margin-bottom: 20px;">
+					                        <label for="register-keunggulan">Keunggulan atau keberhasilan</label>
+					                        <textarea type="text" class="form-control" id="register-keunggulan" placeholder="Keunggulan atau keberhasilan yang pernah dicapai (ruang tulisan dapat diperluas)" name="keberhasilan">{$data.keberhasilan}</textarea>
+					                    </div>
+					                </div>
+					            </div>
+					        </div>   
+
+						</div>
+						
+					</div>
+				</div>
+				
+			</div>
+		
+		
+		</div>
+	
+	</form>
+</div>
