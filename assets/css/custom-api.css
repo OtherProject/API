@@ -133,6 +133,11 @@ body p,a{
 .responsive-calendar .day a {
     border-radius: 5px;
 }
+.responsive-calendar .days .today a{
+    border: 1px solid #1D86C8;
+    border-radius: 5px;
+}
+
 /* Responsive Calendar CSS END */
 
 .api-news .title h4, .api-kliping .title h4, .api-buah_pikir .title h4, .api-perundangan .title h4{
