@@ -1,6 +1,11 @@
 <script>
 $(function () {
     //eonasdan datetimepicker
+    
+    $('.date_icon_postdate').on('click', function(){
+        $('.bootstrap-datetimepicker-widget').hide()
+    });
+    
 	$('.agenda_date').datetimepicker (
         {
             use24hours: true,
@@ -60,9 +65,9 @@ $(function () {
                         <div class="col-sm-6">
                             <div class="form-group">
     							<label for="select-input">Tanggal Mulai</label>
-    							<div id="postdate" class="input-group date" data-auto-close="true" data-date-autoclose="true">
+    							<div id="postdate" class="input-group date agenda_date" data-auto-close="true" data-date-autoclose="true">
     								<input class="form-control agenda_date" type="text" name="postdate" value="{$data.posted_date}" data-required="true" />
-    								<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+    								<span class="input-group-addon date_icon_postdate"><i class="fa fa-calendar"></i></span>
                                     
     							</div>
     							
@@ -72,9 +77,9 @@ $(function () {
                         <div class="col-sm-6">
                             <div class="form-group">
     							<label for="select-input">Tanggal Akhir</label>
-    							<div id="expired_date" class="input-group date" data-auto-close="true" data-date-autoclose="true">
+    							<div id="expired_date" class="input-group date agenda_date" data-auto-close="true" data-date-autoclose="true">
     								<input class="form-control agenda_date" type="text" name="expired_date" value="{$data.expired_date}" data-required="true" />
-    								<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+    								<span class="input-group-addon date_icon_expired_date"><i class="fa fa-calendar"></i></span>
                                     
     							</div>
     							

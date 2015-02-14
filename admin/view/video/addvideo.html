@@ -1,0 +1,146 @@
+<script type="text/javascript">
+$(function () {
+	$('#postdate').datepicker ();
+	$('#expiredate').datepicker ();
+	
+	$("#isi").jqte();
+    $("#isi_en").jqte();
+    $("#isi_uzbek").jqte();
+	
+	$('input:checkbox, input:radio').iCheck({
+		checkboxClass: 'icheckbox_minimal-blue',
+		radioClass: 'iradio_minimal-blue',
+		inheritClass: true
+	})
+})
+</script>
+
+<div id="content-header">
+	<h1>Video</h1>
+</div> <!-- #content-header -->
+
+<div id="content-container">
+
+	<form id="validate-enhanced" class="form parsley-form" method="post" action="{$basedomain}video/videoinp" enctype="multipart/form-data">
+
+		<div class="row">
+			<div class="col-md-9">
+            
+				<div class="portlet">
+				
+					<div class="portlet-header">
+
+						<h3>
+							<i class="fa fa-tasks"></i>
+							Add New Video
+						</h3>
+
+					</div> <!-- /.portlet-header -->
+				
+					<div class="portlet-content">
+                    
+                        <div class="col-sm-12">
+            				<div class="form-group">
+                				<label for="text-input">Title</label>
+                				<input type="text" name="title_en" class="form-control" value="{$data.title_en}" data-required="true" />
+            				</div>
+            			</div>
+                        
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="textarea-input">Description</label>
+    							<textarea name="brief_en" id="isi"  cols="10" rows="20" class="form-control">{$data.brief_en}</textarea>
+    						</div>
+                        </div>
+                        
+                        <div class="col-sm-5">
+                            <div class="form-group">
+                                <label for="video_type" >Type</label>
+    							<select id="type_video" name="video_type" class="form-control" >
+                                    <option value="file" {if $data.video_type==file}selected{/if} >File</option>
+                                    <option value="embed" {if $data.video_type==embed}selected{/if} >Embed</option>
+                                </select>
+    						</div>
+                        </div>
+                        
+                        <div class="col-sm-12" id="video_embed" style="display: none;">
+                            <div class="form-group">
+                                <label for="textarea-input">Embed Code</label>
+    							<textarea name="content_en" class="form-control">{$data.content_en}</textarea>
+    						</div>
+                        </div>
+                        
+                        <div class="col-sm-8" id="upload_video">
+                            <div class="form-group">
+                                <label>Video</label>
+                                <input id="video_file" type="file" name="file_video" class="btn btn-default btn-file"/>
+                            </div>
+                        </div>
+                        
+                        {if $data.video_type=='file'}
+                        <script>
+                        $(document).ready(function() {
+                            $('#upload_video').show();
+                        } );
+                        </script>
+                        {elseif $data.video_type=='embed'}
+                        <script>
+                        $(document).ready(function() {
+                            $('#video_embed').show();
+                            $('#upload_video').hide();
+                        } );
+                        </script>
+                        {/if}
+                            
+                        <div class="col-sm-8">
+                        
+                            <!-- hidden -->
+        					<input type="hidden" name="id" value="{$data.id}" />
+        					<input type="hidden" name="authorid" value="{$admin.id}" />
+        					<input type="hidden" name="video_name" value="{$data.video}" />
+        					<input type="hidden" name="video_url" value="{$data.file}" />
+        					<!-- hidden -->
+                        	
+                        	<div class="form-group">
+                        			<div class="checkbox">
+                        				<label>
+                        					<input type="checkbox" name="n_stats" class="" {$data.n_stats} >
+                        					Publish
+                        				</label>
+                        			</div>
+                        	</div>
+                        	
+                        	<input type="submit" class="btn btn-primary" value="Submit" id="submit" />
+                        	
+                        </div>
+			    
+			                   
+                                                                                                                        
+					</div>
+				</div>
+                                
+			</div>
+            
+            
+		</div>
+	
+	</form>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    /* Add event listener to the dropdown input */
+    $('#type_video').change( function() {
+        var content = $( this ).val();
+        if(content == 'file'){
+            $('#upload_video').show();
+            $('#video_embed').hide();
+            $('#video_file').prop('disabled', false);
+        }else if (content == 'embed'){
+            $('#upload_video').hide();
+            $('#video_embed').show();
+            $('#video_file').prop('disabled', true);
+        }
+    });
+} );
+</script>

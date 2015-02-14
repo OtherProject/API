@@ -1,14 +1,16 @@
 <div class="container api-content">  
 
-    <div class="pull-right"><a href="{$basedomain}gallery" class="btn api-btn"><span class="glyphicon glyphicon-chevron-left"></span> Back</a></div>
+    <div class="pull-right"><a href="{$basedomain}gallery/foto" class="btn api-btn"><span class="glyphicon glyphicon-chevron-left"></span> Back</a></div>
         <h3>{$data_album.title}</h3>
         
         
-        <div id="links">
+        <div id="row links">
         {foreach $data as $var}
-            <a href="{$basedomain}public_assets/gallery/images/{$var.content}" title="Contoh Judul Foto" data-gallery>
-                <img src="{$basedomain}public_assets/gallery/images/{$var.content}" alt="" class="api-gallery col-sm-3" >
-            </a>
+            <div class="col-md-3">
+                <a href="{$basedomain}public_assets/gallery/images/{$var.content}" title="Contoh Judul Foto" data-gallery>
+                    <img src="{$basedomain}public_assets/gallery/images/{$var.content}" alt="" class="api-gallery img-responsive" >
+                </a>
+            </div>
         {/foreach}
 
         </div>

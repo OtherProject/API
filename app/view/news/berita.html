@@ -5,23 +5,27 @@
         {foreach $berita as $val}
 
             <!--START KLIPING-->    
-            <div class="api-kliping">
-                <div class="title">
-                    <a href="{$basedomain}news/berita_detail"><h4>{$val.title}</h4></a>
-                </div>
-                <div class="dateposted">
-                    <p>Posted by <a href="#">admin</a> at {$val.posted_date}</p>
-                </div>
-                <div class="content">
-                    <div class="col-md-3" style="padding-left: 0;">
-                        <img src="{$basedomain}public_assets/news/{$val.image}" class="img-responsive" />
+            <div class="row api-kliping">
+                <div class="col-md-12">
+                    <div class="title">
+                        <a href="{$basedomain}news/berita_detail/?id={$val.id}"><h4>{$val.title}</h4></a>
                     </div>
-                    <p class="text-justify">
-                        {$val.brief|html_entity_decode}
-                    </p>
+                    <div class="dateposted">
+                        <p>Posted by <a href="#">admin</a> at {$val.posted_date}</p>
+                    </div>
+                    <div class="row content">
+                        <div class="col-md-3">
+                            <img src="{$basedomain}public_assets/news/{$val.image}" class="img-responsive" />
+                        </div>
+                        <div class="col-md-9">
+                            <p class="text-justify">
+                                {$val.brief|html_entity_decode}
+                            </p>
+                        </div>
                     </div>
                 </div>
-                <a href="{$basedomain}news/berita_detail/?id={$val.id}" class="pull-right more btn api-btn">Read more...</a>
+            </div>
+                <a href="{$basedomain}news/berita_detail/?id={$val.id}" class="pull-right more btn-xs btn api-btn">Read more...</a>
                 <div class="clearfix"></div>
                 <!--END KLIPING--> 
                 <hr class="api-separator"/>

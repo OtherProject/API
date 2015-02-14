@@ -6,6 +6,7 @@ class userHelper extends Database {
         $session = new Session;
         $getSessi = $session->get_session();
         $this->user = $getSessi['ses_user']['login'];
+        $this->prefix = "api";
     }
 
     function editProfile($data=false){
@@ -97,16 +98,42 @@ class userHelper extends Database {
         return false;
     }
 
-    function getUserAccount($data=array(), $debug=false)
+    function getUserAccount($data=array(), $debug=false, $detail=false)
     {
 
-        $sql = array(
-                'table'=>"social_member",
-                'field'=>"name, email, last_name, pendidikan, kepakaran, n_status" ,
-                'condition'=>"name IS NOT NULL or name !=''",
-                );
+        $filter = "";
+        $id = $data['id'];
+        if ($id) $filter .= " AND sm.id = {$id}";
 
-        $res = $this->lazyQuery($sql,$debug);
+        if (!$detail){
+
+            $sql = array(
+                    'table'=>"social_member AS sm",
+                    'field'=>"sm.id, sm.name, sm.email, sm.last_name, sm.pendidikan, sm.kepakaran, sm.n_status" ,
+                    'condition'=>" sm.name !='' {$filter}",
+                    );
+            $res = $this->lazyQuery($sql,$debug);
+        }else{
+
+            $sql = array(
+                    'table'=>"social_member AS sm",
+                    'field'=>"sm.*" ,
+                    'condition'=>" sm.name !='' {$filter}",
+                    );
+            $res = $this->lazyQuery($sql,$debug);
+            if ($res){
+                foreach ($res as $key => $value) {
+
+                    $sql1 = array(
+                            'table'=>"{$this->prefix}_riwayat_pendidikan AS rp",
+                            'field'=>"rp.*" ,
+                            'condition'=>" rp.userID = {$value['id']} AND rp.tahun != ''",
+                            );
+                    $res[$key]['riwayat_pendidikan'] = $this->lazyQuery($sql1,$debug);
+                }
+            }
+        }
+       
 
         if ($res) return $res;
         return false;

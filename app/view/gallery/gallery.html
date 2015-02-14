@@ -1,33 +1,41 @@
 <div class="container api-content">  
-    <h3>Gallery</h3>
-        
-        <div class="row" style="margin: 0;">
-            {foreach $data as $var}
-            <div class="col-md-3" style="margin-bottom: 10px;">
-                <div class="api-album">
-                <a href="{$basedomain}gallery/view/?album={$var.id}">
-                    <img src="{$basedomain}public_assets/gallery/images/{$var.image}">
-                </a>
-                <div class="caption_album">
-                    <a href="{$basedomain}gallery/view/?album={$var.id}">{$var.title}</a>
-                    <p class="text-muted">{$var.count} foto</p>
-                </div>
-                </div>
-            </div>
-            {/foreach}
-            {*}
-            <div class="col-md-3" style="margin-bottom: 10px;">
-                <div class="api-album">
-                <a href="{$basedomain}gallery/view_RAKORLOK">
-                    <img src="{$basedomain}public_assets/gallery/thumbs/2.JPG">
-                </a>
-                <div class="caption_album">
-                    <a href="{$basedomain}gallery/view_RAKORLOK">RAKORLOK 7 BHMN</a>
-                    <p class="text-muted">4 foto</p>
-                </div>
-                </div>
-            </div>
-		{/*}
+            
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Gallery</h3>
         </div>
+    </div>
+
+    <div class="row">
+        {foreach $data as $var}
+        <div class="col-md-3" style="margin-bottom: 10px;">
+            <div class="api-album">
+            <a href="{$basedomain}gallery/view/?album={$var.id}">
+                <img src="{$basedomain}public_assets/gallery/images/{$var.image}">
+            </a>
+            <div class="caption_album">
+                <a href="{$basedomain}gallery/view/?album={$var.id}">{$var.title}</a>
+                <p class="text-muted">{$var.count} foto</p>
+            </div>
+            </div>
+        </div>
+        {/foreach}
+        
+
+        {*}
+        <div class="col-md-3" style="margin-bottom: 10px;">
+            <div class="api-album">
+            <a href="{$basedomain}gallery/view_RAKORLOK">
+                <img src="{$basedomain}public_assets/gallery/thumbs/2.JPG">
+            </a>
+            <div class="caption_album">
+                <a href="{$basedomain}gallery/view_RAKORLOK">RAKORLOK 7 BHMN</a>
+                <p class="text-muted">4 foto</p>
+            </div>
+            </div>
+        </div>
+       {/*}
+
+    </div>
 
 </div>

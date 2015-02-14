@@ -183,6 +183,12 @@ class user extends Controller {
 
         exit;
     }
+
+    function setting(){
+
+        return $this->loadView('user/setting');
+    }
+
 }
 
 ?>

@@ -19,25 +19,24 @@ class gallery extends Controller {
         $this->models = $this->loadModel('modelgallery');
 	}
 	
-	function index(){
-
-
+	function foto(){
 		$data = $this->models->get_article(9);
-		
 		$this->view->assign('data',$data);
-    	return $this->loadView('gallery/gallery');
+    	return $this->loadView('gallery/foto');
     }
     
-    function view(){
+    function view_foto(){
     	$albumId=$_GET['album'];
 
 		$data = $this->models->get_images($albumId);
-
 		$data_album = $this->models->get_article_id($albumId);
-		// pr($data_album);exit;
 		$this->view->assign('data',$data);
 		$this->view->assign('data_album',$data_album);
     	return $this->loadView('gallery/image-view');
+    }
+
+    function video(){
+		return $this->loadView('gallery/video');
     }
     
     /* TEMP DATA */

@@ -1,8 +1,28 @@
+@font-face {
+    font-family: 'Lato';
+    src: url('../font/Lato/Lato-Regular.ttf') format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
 body p,a{
-    font-family: Arial,Helvetica,Sans-Serif;
-    font-size: 13px;
+    font-family: 'Lato',Helvetica,Sans-Serif;
+    font-size: 14px;
     line-height: 150%;
 }
+
+.nomargin{
+    margin:0;
+}
+.nomargin-l{
+    margin-left: 0;
+}
+
+.nopadding-l{
+    padding-left: 0;
+}
+
+
 .page-numbers.actived{
     background-color: #428BCA;
     padding:5px;
@@ -38,7 +58,8 @@ body p,a{
 .navbar-default .navbar-nav > li > a{
     font-weight: bold; 
     color:#1C4298;
-    margin-right: 20px;
+    margin-right: 10px;
+    font-size: 15px;
 }
 .navbar-nav > li > a, .navbar-nav > li.active > a, .navbar-nav > li > a:hover {
     padding: 15px 20px 15px !important;
@@ -64,9 +85,11 @@ body p,a{
     line-height: 35px;
 }
 
+.latest_news img{height: 125px;}
+
 .time-ago{
     line-height: 20px;
-    margin-top: -41px;
+    margin-top: -40px;
     padding: 0 10px;
     position: absolute;
     z-index: 10;
@@ -75,10 +98,43 @@ body p,a{
 .time-ago a{color: #FFFFFF;}
 
 .api-calendar{margin-bottom:20px;}
-
-.api-news, .api-kliping, .api-buah_pikir, .api-perundangan{
-    margin-bottom: 10px;
+.api-calendar h4.title{
+    margin-bottom: 0;
+    margin-top: 20px;
+    border-top: 7px solid #1C4298;
+    background-color: #B6DFFF;
+    border-bottom: 1px solid #FFF;
+    padding: 10px 0;
+    border-radius: 5px 5px 0 0;
 }
+
+/* Responsive Calendar CSS */
+
+.responsive-calendar{
+    background-color: #B6DFFF;
+    padding: 0 5px;
+    border-radius: 0 0 5px 5px;
+}
+.responsive-calendar .controls{padding-top: 5px;}
+.responsive-calendar .day.not-current a {
+    color: #EEF7FF;
+}
+.responsive-calendar .day {padding: 2px;}
+.responsive-calendar .day .badge {
+    top: 0px;
+    right: 1px;
+    font-size: 10px;
+    z-index: 1;
+    background-color: #FFF;
+    color: #282828;
+    border-radius: 0 0 0 5px;
+    padding: 2px 5px;
+}
+.responsive-calendar .day a {
+    border-radius: 5px;
+}
+/* Responsive Calendar CSS END */
+
 .api-news .title h4, .api-kliping .title h4, .api-buah_pikir .title h4, .api-perundangan .title h4{
     width: 85%;
     color:#333;
@@ -91,10 +147,10 @@ body p,a{
 .api-news h3, .api-kliping h3, .api-buah_pikir h3, .api-perundangan h3{color: #333;border: none;font-weight: bold;}
 
 .api-kliping-side{
-    background-color: #D0DCFF;
-    margin-left: 6px;
-    width: 95.2%;
-    border-top: 7px solid #4663B8;
+    background-color: #B6DFFF;
+    border-top: 7px solid #1C4298;
+    margin-bottom: 20px;
+    border-radius: 5px;
 }
 .api-kliping-side p.date{
     font-size: 12px;
@@ -110,6 +166,9 @@ body p,a{
     -webkit-transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
     -o-transition: all .2s ease-in-out;
+}
+.api-kliping-side .all:hover{
+    border-radius: 0 0 5px 5px;
 }
 .api-kliping-side .kegiatan:hover a{color: #FFF;}
 
@@ -162,10 +221,6 @@ body p,a{
     font-weight: bold;
 }
 
-.api-result{
-    width: 100%;
-}
-
 .education{margin-left: 10px;}
 .alphabet a{margin-right: 5px; font-size: 14px;}
 
@@ -180,6 +235,7 @@ body p,a{
 
 .api-album img{
     width: 100%;
+    height: 120px;
 }
 
 .api-gallery{
@@ -190,6 +246,8 @@ body p,a{
     border-radius: 4px;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
+    height: 120px;
+    width: 100%;
 }
 
 .kepakaran h4.title{
@@ -256,17 +314,13 @@ body p,a{
     padding: 10px;
     border: 1px solid #EDF2FF;
     margin-bottom: 15px;
+    width: 100%;
+    margin-left: 0;
+    padding-bottom: 14px;
 }
-.api-result .title{font-weight: bold;}
-.api-result .info p{margin:0;}
-.api-result .subject{
-    position: absolute;
-    padding: 5px;
-    background-color: #1C4298;
-    color: #FFF;
-    font-size: 11px;
-    margin-left: 76%;
-    margin-top: -15px;
+.api-result .title{
+    font-weight: bold;
+    font-size: 16px;
 }
 
 .api-result_detail h4, .api-result_detail h5{
@@ -276,11 +330,15 @@ body p,a{
     padding-bottom: 5px;
 }
 
+.api-result .detail{
+    border-radius: 0;
+    margin-right: -10px;
+}
+
 #api-loginContainer, #api-registerContainer{
     position: relative;
     width: 90%;
     margin: 0 auto;
-    text-align: center;
 }
 #api-loginContainer .row > div, #api-registerContainer .row > div {margin-bottom: 1em;}
 #api-loginContainer .row > div:last-child, #api-registerContainer .row > div:last-child {margin-bottom: 0;}
@@ -303,10 +361,14 @@ body p,a{
 
 .stepReg{
     border: 1px solid #A0CAEC !important;
-    padding: 0 !important;
     margin-bottom: 20px;
+    padding: 0 15px;
 }
-.stepReg h3{background-color: #A0CAEC; color: #FFF; border:none;margin-top:0;}
+.stepReg h3{
+    background-color: #A0CAEC; 
+    color: #FFF; 
+    border:none;
+    margin: 0 -15px 15px -15px;}
 
 /* STEP CSS */
 .wizard{margin-bottom:20px;}
@@ -374,6 +436,27 @@ body p,a{
 }
 /* END OF STEP CSS */
 
+/* TABS CUSTOM CSS */
+.api-tabs .nav-tabs{border:none;}
+.api-tabs .tab-content{
+    border: 1px solid #DDD;
+    padding: 15px;
+}
+.api-tabs .nav-tabs > li > a{
+    background-color: #F2F2F2;
+    color: #282828;
+}
+.api-tabs .nav-tabs > li > a:hover{
+    background-color: #A0CAEC;
+    color: #FFF;
+}
+.api-tabs .nav-tabs > li.active > a{
+    background-color: #A0CAEC;
+    color: #FFF;
+}
+
+/* END TABS CUSTOM CSS */
+
 @media (min-width: 768px) {
   #api-loginContainer {
     width: 450px;
@@ -381,17 +464,15 @@ body p,a{
   #api-loginContainer .row > div {
     margin-bottom: 0;
   }
-  #api-login #login-form, #api-register #register-form, .stepReg #register-form, .stepReg #register-form2, .stepReg #register-form3 {
-    padding: 0 25px;
-    text-align: left;
-  }
 }
 
 #api-footerTop{
     width: 100%;
     background-color: #d8dfdd;
-    padding: 10px;
-    font-size: 10px;
+    padding: 5px;
+}
+#api-footerTop a{
+    font-size: 12px;
 }
 #api-footerDown{
     width: 100%;
@@ -408,12 +489,16 @@ body p,a{
 .api-footerLink{border-left: 1px solid #FFF;}
 .api-footerLink:last-child{border-right: 1px solid #FFF;}
 
-.api-separator{border:1px dotted #F6831F; margin-bottom:0;}
+.api-separator{border:1px dotted #F6831F; margin-bottom:0; margin-top: 10px;}
 
 /** CUSTOM CLNDR CSS **/
 #mini-clndr .clndr .controls {background-color: #4472F7;}
 #mini-clndr .clndr .days-container .days .headers, #mini-clndr .clndr .days-container .events .event-header {background-color: #B2C5FF;}
 #mini-clndr .clndr {border-bottom: 7px solid #4663B8;}
+#mini-clndr .clndr .controls .clndr-previous-button:hover,
+#mini-clndr .clndr .controls .clndr-next-button:hover {
+  background-color: #B2C5FF;
+}
 
 /** Custom Full Calendar CSS **/
 .fc-event {
@@ -437,6 +522,18 @@ body p,a{
 /** Custom Bootstrap CSS **/
 .navbar-collapse.collapse.in { 
     background-color: rgb(255, 255, 255);
+    border: 1px solid #CCC;
+}
+
+.carousel-caption {
+    background-color: rgba(0,0,0,0.5);
+    max-width: 100%;
+    padding: 10px 20px;
+    margin: 0 auto;
+    margin-bottom: -20px;
+    left: 0;
+    right: 0;
+    text-align: center;
 }
 
 .carousel-inner > .item > img, .carousel-inner > .item > a > img {width: 100%;}
@@ -448,7 +545,7 @@ body p,a{
 }
 
 @media (max-width: 991px) {
-    .navbar-header {
+    .container .navbar-header {
         float: none;
     }
     .navbar-toggle {
@@ -482,6 +579,14 @@ body p,a{
     .navbar-default .navbar-nav > li > a {
         margin-left: 20px;
     }
+
+    .dropdown-menu{left: 20px;}
+}
+
+@media (min-width: 992px){
+    .container {
+        width: 1100px;
+    }
 }
 
 @media (max-width: 1199px){
@@ -491,6 +596,9 @@ body p,a{
     .api-result .subject{
         margin-left: 77.6%;
     }
+    .latest_news img{height: auto;}
+    .api-album img{height: auto;}
+    .api-gallery{height: auto;}
 }
 @media (max-width: 768px){
     .api-result .subject{

@@ -42,6 +42,19 @@ class user extends Controller {
 
 	}
 	
+	function detail()
+	{
+		global $basedomain;
+
+		$data['id'] = _g('id');
+
+		$getData = $this->userHelper->getUserAccount($data,$debug=false,$getall=true);
+		// pr($getData);
+		$this->view->assign('data',$getData[0]);
+		return $this->loadView('member/user-member-detail');
+
+	}
+
 	function add(){
        
 		global $basedomain;
