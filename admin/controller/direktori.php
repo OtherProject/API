@@ -42,7 +42,7 @@ class direktori extends Controller {
 
 			}
         }
-        //pr($data);exit;
+        // pr($data);exit;
         $this->view->assign('listactivity', $activity);
 		$this->view->assign('data',$data);
         return $this->loadView('directory/repository/listCategory');

@@ -1,6 +1,31 @@
 <div class="col-md-8">
     <h3>Perundang-undangan</h3>
-    
+    <div class="row kepakaran">
+               
+        
+        <div class="col-md-12">
+            <div class="api-search text-center">
+                <h3>Search</h3>
+                <form class="form-inline" role="form" method="POST" action="{$basedomain}direktori/search_result">
+                    <div class="form-group">
+                        <select class="form-control" name="kategori" required>
+                          <option value="">All</option>
+                          <option disabled>By Project</option>
+                        {foreach $data_category as $var}
+                          <option value="{$var.id}">{$var.category_name}</option>
+                        {/foreach}
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="search" class="form-control" id="k" name="teks" placeholder="Enter search terms" required>
+                        <button type="submit" id="s" class="btn api-btn"><span class="glyphicon glyphicon-search"></span></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <p>Results 1 - 10 of 475</p>
     {if $perundangan}
         {foreach $perundangan as $val}
 
