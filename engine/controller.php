@@ -324,16 +324,29 @@ class Controller extends Application{
 
 	}
 
+	function modified_array_column($data, $param)
+	{
+		if ($data){
+			foreach ($data as $key => $value) {
+				$newData[] = $value[$param];
+			}
+			return $newData;
+		}
+		
+		return false;
+		
+	}
+
 	function getAgenda()
 	{
 		global $basedomain;
 		$getHelper = new helper_model;
 		$data = $getHelper->getNews(false,$cat=2, $type=0,0,100);
-        //pr($data);
+        // pr($data);
 
         foreach ($data as $key => $value) {
         	$start = $value['start'];
-        	$count = array_count_values(array_column($data, 'start'));
+        	$count = array_count_values($this->modified_array_column($data, 'start'));
 		}
 
 		foreach ($count as $key => $value) {
