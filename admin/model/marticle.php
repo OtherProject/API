@@ -83,6 +83,31 @@ class marticle extends Database {
 		return $result;
 	}
 	
+	function getData($categoryid=null,$articletype=null,$type=1, $id=false)
+	{
+
+		$filter = "";
+		if ($id) $filter .= " AND id = {$id}";
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE n_status = '1' AND categoryid = '{$categoryid}' AND articleType = '{$articletype}' OR n_status = '0' AND categoryid = '{$categoryid}' AND articleType = '{$articletype}' {$filter} ORDER BY created_date DESC";
+		
+		$result = $this->fetch($query,1);
+        
+        // pr($result);
+        if($result){
+
+        	foreach ($result as $key => $value) {
+
+        		$query = "SELECT username FROM admin_member WHERE id={$value['authorid']} LIMIT 1";
+    
+	    		$username = $this->fetch($query,0);
+	    
+	    		$result[$key]['username'] = $username['username'];
+        	}
+    		
+		}
+		return $result;
+	}
+
 	function get_article_slide()
 	{
 		$query = "SELECT nc.*, cc.category, ct.type FROM cdc_news_content nc LEFT JOIN cdc_news_content_category cc 

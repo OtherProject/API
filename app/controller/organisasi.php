@@ -195,6 +195,21 @@ function pagination($limit,$adjacents,$rows,$page,$kategori){
    return $pagination;  
 }
     function afiliasi(){
+
+        
+        $data = $this->contentHelper->getData(3,3);
+        // pr($data);
+        if($data){
+            foreach ($data as $key => $value) {
+                $data[$key]['created_date'] = dateFormat($data[$key]['created_date'],'dd-mm-yyyy');
+                $data[$key]['posted_date'] = dateFormat($data[$key]['posted_date'],'dd-mm-yyyy');
+                $data[$key]['expired_date'] = dateFormat($data[$key]['expired_date'],'dd-mm-yyyy');
+            }
+            
+        }
+        
+        $this->view->assign('data',$data);
+        
         return $this->loadView('organisasi/afiliasi');
     }
 }

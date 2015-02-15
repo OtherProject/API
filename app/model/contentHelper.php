@@ -11,6 +11,31 @@ class contentHelper extends Database {
 		$this->date = date('Y-m-d H:i:s');
 	}
 
+    function getData($categoryid=null,$articletype=null,$type=1, $id=false)
+    {
+
+        $filter = "";
+        if ($id) $filter .= " AND id = {$id}";
+        $query = "SELECT * FROM {$this->prefix}_news_content WHERE n_status = '1' AND categoryid = '{$categoryid}' AND articleType = '{$articletype}' OR n_status = '0' AND categoryid = '{$categoryid}' AND articleType = '{$articletype}' {$filter} ORDER BY created_date DESC";
+        
+        $result = $this->fetch($query,1);
+        
+        // pr($result);
+        if($result){
+
+            foreach ($result as $key => $value) {
+
+                $query = "SELECT username FROM admin_member WHERE id={$value['authorid']} LIMIT 1";
+    
+                $username = $this->fetch($query,0);
+        
+                $result[$key]['username'] = $username['username'];
+            }
+            
+        }
+        return $result;
+    }
+    
 	function getNews($id=false, $categoryid=1, $type=1, $start=0, $limit=5)
 	{
 		

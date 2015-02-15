@@ -58,6 +58,55 @@ class about extends Controller {
 		$this->view->assign('admin',$this->admin['admin']);
         return $this->loadView('about/inputstruktur');
     }
+
+    public function addafiliasi(){
+        $this->view->assign('active','active');
+
+        $id = _g('id');
+        if ($id){
+        	$data = $this->models->getData(3,3,1,$id);
+	        // pr($data);
+	        if($data[0]){
+	            $data[0]['created_date'] = dateFormat($data[0]['created_date'],'dd-mm-yyyy');
+	            $data[0]['posted_date'] = dateFormat($data[0]['posted_date'],'dd-mm-yyyy');
+	            $data[0]['expired_date'] = dateFormat($data[0]['expired_date'],'dd-mm-yyyy');
+	        }
+	        
+			$this->view->assign('data',$data[0]);
+        }
+		
+
+		$this->view->assign('admin',$this->admin['admin']);
+        return $this->loadView('about/inputafiliasi');
+    }
+
+    public function afiliasi(){
+
+        $this->view->assign('active','active');
+		$data = $this->models->getData(3,3);
+
+		// pr($data);
+		if ($data){
+			foreach ($data as $key => $val){
+                
+                $data[$key]['created_date'] = date('d M Y H:i',strtotime($val['created_date']));
+    			$data[$key]['posted_date'] = date('d M Y H:i',strtotime($val['posted_date']));
+                $data[$key]['expired_date'] = date('d M Y H:i',strtotime($val['expired_date']));
+
+				if($val['n_status'] == '1') {
+					$data[$key]['n_status'] = 'Publish';
+					$data[$key]['status_color'] = 'green';
+				} else {
+					$data[$key]['n_status'] = 'Unpublish';
+					$data[$key]['status_color'] = 'red'; 
+				}
+			}
+		}
+		
+		// pr($data);exit;
+		$this->view->assign('data',$data);
+		return $this->loadView('about/listafiliasi');
+	}
 }
 
 ?>
