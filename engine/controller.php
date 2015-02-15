@@ -353,7 +353,7 @@ class Controller extends Application{
         	
         	$result[] = array($key => array('number'=>$value,'url'=>$basedomain.'news/agenda/?tgl='.$key));
 		}
-
+		logFile(serialize($result));
 		if (!empty($data)) {return json_encode($result);}
         else if (empty($data)){return json_encode('empty');}
 		else return false;
