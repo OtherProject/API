@@ -34,6 +34,29 @@ class contentHelper extends Database {
         } 
 		return false;
 	}
+
+    function getAgenda($id=false, $categoryid=1, $type=1, $start, $end){
+        $sql = "SELECT * FROM contacts WHERE contact_id BETWEEN 100 AND 200";
+
+        $sql = "SELECT * FROM {$this->prefix}_news_content WHERE n_status = 1 AND categoryid = {$categoryid} AND articleType = {$type} AND posted_date BETWEEN CAST('".$start."' AS DATE) AND CAST('".$end."' AS DATE) ORDER BY posted_date DESC";
+        //pr($sql);exit;
+        $res = $this->fetch($sql,1);
+        if ($res){
+
+            
+            foreach ($res as $key => $value) {
+                $res[$key]['changeDate'] = changeDate($value['posted_date']);
+                $res[$key]['start'] = date("H:i", strtotime($value['posted_date']));
+                $res[$key]['end'] = date("H:i", strtotime($value['expired_date']));
+
+            }
+
+            //pr($res);
+            return $res;
+
+        } 
+        return false;
+    }
 	
 	function readNews($url=false)
 	{

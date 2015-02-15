@@ -1,27 +1,28 @@
 <div class="col-md-8">
 	<div class="contentBerita">
-		<h3 class="text-center">Senin, 10 November 2014</h3>
+		{*}{foreach $agenda as $val}{/*}
+		<!--<h3 class="text-center">{$val.changeDate}</h3>-->
 		<table class="table table-bordered table-hover">
 			<thead>
 				<tr>
-					<td>No</td>
+					<td>Tanggal</td>
 					<td>Jam</td>
 					<td>Deskripsi Kegiatan/Tempat</td>
 				</tr>
 			</thead>
 			<tbody>
+				{if $agenda}
+				{foreach $agenda as $val}
 				<tr>
-					<td>1</td>
-					<td>10:12 WIB</td>
-					<td>123</td>
+					<td>{$val.changeDate}</td>
+					<td>{$val.start} {if $val.end} - {$val.end}{/if}</td>
+					<td>{$val.title}</td>
 				</tr>
-				<tr>
-					<td>2</td>
-					<td>15:56 WIB</td>
-					<td>asdadasdasdasd</td>
-				</tr>
+				{/foreach}
+				{/if}
 			</tbody>
 		</table>
+		{*}{/foreach}{/*}
 	</div>
     
 </div>
