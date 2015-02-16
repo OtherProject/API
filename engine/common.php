@@ -187,7 +187,7 @@ function uploadFile($data,$path=null,$ext){
 	$countExt = count($ext);
 	$getExt = $ext[$countExt-1];
 	$shufflefilename = md5(str_shuffle('codekir-v0.3'.$CONFIG[$key]['max_filesize']));
-	$filename = $shufflefilename.'.'.$getExt;
+	$filename = $shufflefilename.'.'.strtolower($getExt);
 	
 	/* Host Folder path */
 	list($root_path, $dummy) = explode('admin',$CONFIG[$key]['root_path']);
@@ -285,7 +285,7 @@ function uploadFileMultiple($data,$path=null,$ext){
 		$countExt = count($extfile);
 		$getExt = $extfile[$countExt-1];
 		$shufflefilename = md5(str_shuffle('codekir-v0.3'.$CONFIG[$key]['max_filesize']));
-		$filename = $shufflefilename.'.'.$getExt;
+		$filename = $shufflefilename.'.'.strtolower($getExt);
 		
 		/* Host Folder path */
 		list($root_path, $dummy) = explode('admin',$CONFIG[$key]['root_path']);
