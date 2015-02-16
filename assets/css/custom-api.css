@@ -7,7 +7,7 @@
 
 body p,a{
     font-family: 'Lato',Helvetica,Sans-Serif;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 150%;
 }
 
@@ -98,7 +98,7 @@ body p,a{
 
 .time-ago{
     line-height: 20px;
-    margin-top: -40px;
+    top: 101px;
     padding: 0 10px;
     position: absolute;
     z-index: 10;
