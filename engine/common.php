@@ -187,7 +187,7 @@ function uploadFile($data,$path=null,$ext){
 	$countExt = count($ext);
 	$getExt = $ext[$countExt-1];
 	$shufflefilename = md5(str_shuffle('codekir-v0.3'.$CONFIG[$key]['max_filesize']));
-	$filename = $shufflefilename.'.'.strtolower($getExt);
+	$filename = $shufflefilename.'.'.$getExt;
 	
 	/* Host Folder path */
 	list($root_path, $dummy) = explode('admin',$CONFIG[$key]['root_path']);
@@ -216,16 +216,28 @@ function uploadFile($data,$path=null,$ext){
 		// 	return $result;
 		// }else{
 		
-			move_uploaded_file($_FILES[$data]["tmp_name"],$pathFile . $filename);
-			$result = array(
-				'status' => '1',
-				'message' => 'Upload Succeed.',
-				'full_path' => $pathFile,
-				'full_name' => $filename,
-				'raw_name' => $shufflefilename,
-                'real_name' => $_FILES[$data]["name"],
-                'folder_name' => $pathFolder
-			);
+			$moved = move_uploaded_file($_FILES[$data]["tmp_name"],$pathFile . $filename);
+    		if($moved){
+            	$result = array(
+    				'status' => '1',
+    				'message' => 'Upload Succeed.',
+    				'full_path' => $pathFile,
+    				'full_name' => $filename,
+    				'raw_name' => $shufflefilename,
+                    'real_name' => $_FILES[$data]["name"],
+                    'folder_name' => $pathFolder
+    			);
+            }else{
+                $result[] = array(
+    				'status' => '0',
+    				'message' => 'Move Uploaded File Failed.',
+    				'full_path' => $pathFile,
+    				'full_name' => $filename,
+    				'raw_name' => $shufflefilename,
+                    'real_name' => $_FILES[$data]["name"][$filekey],
+                    'folder_name' => $pathFolder
+    			);
+            }
 
 			// pr($result);exit;
 			return $result;
@@ -285,7 +297,7 @@ function uploadFileMultiple($data,$path=null,$ext){
 		$countExt = count($extfile);
 		$getExt = $extfile[$countExt-1];
 		$shufflefilename = md5(str_shuffle('codekir-v0.3'.$CONFIG[$key]['max_filesize']));
-		$filename = $shufflefilename.'.'.strtolower($getExt);
+		$filename = $shufflefilename.'.'.$getExt;
 		
 		/* Host Folder path */
 		list($root_path, $dummy) = explode('admin',$CONFIG[$key]['root_path']);
@@ -301,16 +313,29 @@ function uploadFileMultiple($data,$path=null,$ext){
 			($_FILES[$data]["size"][$filekey] / $CONFIG[$key]['max_filesize']);
 			$_FILES[$data]["tmp_name"][$filekey];
 			
-			move_uploaded_file($_FILES[$data]["tmp_name"][$filekey],$pathFile . $filename);
-			$result[] = array(
-				'status' => '1',
-				'message' => 'Upload Succeed.',
-				'full_path' => $pathFile,
-				'full_name' => $filename,
-				'raw_name' => $shufflefilename,
-                'real_name' => $_FILES[$data]["name"][$filekey],
-                'folder_name' => $pathFolder
-			);
+			$moved = move_uploaded_file($_FILES[$data]["tmp_name"][$filekey],$pathFile . $filename);
+			if($moved){
+            
+                $result[] = array(
+    				'status' => '1',
+    				'message' => 'Upload Succeed.',
+    				'full_path' => $pathFile,
+    				'full_name' => $filename,
+    				'raw_name' => $shufflefilename,
+                    'real_name' => $_FILES[$data]["name"][$filekey],
+                    'folder_name' => $pathFolder
+    			);
+            }else{
+                $result[] = array(
+    				'status' => '0',
+    				'message' => 'Move Uploaded File Failed.',
+    				'full_path' => $pathFile,
+    				'full_name' => $filename,
+    				'raw_name' => $shufflefilename,
+                    'real_name' => $_FILES[$data]["name"][$filekey],
+                    'folder_name' => $pathFolder
+    			);
+            }
 			
 		}
 		

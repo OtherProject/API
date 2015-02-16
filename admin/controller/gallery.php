@@ -93,6 +93,7 @@ class gallery extends Controller {
 						}
 						
 						$image = uploadFileMultiple('file_image',$path_upload,'image');
+                        print_r($image);
 						foreach ($_FILES['file_image']['name'] as $filekey => $file){
 							$x['image_url'] = $CONFIG['admin']['app_url'].$image[$filekey]['folder_name'].$image[$filekey]['full_name'];
 							$x['image'] = $image[$filekey]['full_name'];
@@ -103,6 +104,7 @@ class gallery extends Controller {
 		   		}
 			   	
 		   }catch (Exception $e){}
+           exit;
         
         $redirect = $CONFIG['admin']['base_url'].'home';
         if(isset($x['gallerytype'])){
