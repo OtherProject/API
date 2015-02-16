@@ -35,16 +35,16 @@ class direktori extends Controller {
     
     function search_result(){
         //pr($_POST);
-        $type=_p('kategori');
-        $teks=_p('teks');
-        //pr($type);
-        $data = $this->models->get_category();
-        $this->view->assign('data_category',$data);
+        // $type=_p('kategori');
+        // $teks=_p('teks');
+        // //pr($type);
+        // $data = $this->models->get_category();
+        // $this->view->assign('data_category',$data);
 
-        $kepakaran = $this->models->getKepakaran($cat=5,$kontent=$teks,$type=$type);
-        // //pr($kepakaran);
-        $this->view->assign('kepakaran',$kepakaran['dataArr']);
-        // //pr($kepakaran);
+        // $kepakaran = $this->models->getKepakaran($cat=5,$kontent=$teks,$type=$type);
+        // // //pr($kepakaran);
+        // $this->view->assign('kepakaran',$kepakaran['dataArr']);
+        // // //pr($kepakaran);
         return $this->loadView('direktori/search_result');
     }
     
