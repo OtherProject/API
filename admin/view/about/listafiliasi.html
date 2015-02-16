@@ -1,0 +1,97 @@
+<script type="text/javascript">
+	function AreAnyCheckboxesChecked () {
+	  if ($("#Form2 input:checkbox:checked").length > 0)
+		{
+		    $("#btn-dis").removeAttr("disabled");
+		}
+		else
+		{
+		   $('#btn-dis').attr("disabled","disabled");
+		}
+	}
+</script>
+<div id="content-header">
+	<h1>Agenda</h1>
+</div> <!-- #content-header -->	
+
+<div id="content-container">
+
+	<div class="row">
+
+		<div class="col-md-12">
+
+			<div class="portlet">
+
+				<div class="portlet-header">
+
+					<h3>
+						<i class="fa fa-table"></i>
+						List Agenda
+					</h3>
+
+				</div> <!-- /.portlet-header -->
+
+				<div class="portlet-content">						
+
+					<div class="table-responsive">
+
+					<form action="{$basedomain}article/articledel" method=POST name="checks" ID="Form2" onsubmit="return confirm('Yakin ingin menghapus agenda?');">
+
+					<a class="btn btn-default btn-sm" href="{$basedomain}about/addafiliasi"><i class="fa fa-plus"></i> Tambah Afiliasi</a>
+					{*}
+					<button type="submit" class="btn btn-primary btn-sm" id="btn-dis" disabled><i class="fa fa-trash-o"></i> Delete</button>
+                    
+                    <a class="btn btn-link btn-sm" href="{$basedomain}agenda/trash"><i class="fa fa-trash-o"></i> Lihat Trash</a>
+					{/*}
+					<table 
+						class="table table-striped table-bordered table-hover table-highlight table-checkable"
+						data-provide="datatable" 
+						data-display-rows="10"
+						data-info="true"
+						data-paginate="true"
+					>
+							<thead>
+								<tr>
+									<th class="checkbox-column">
+										<input type="checkbox" class="icheck-input" onchange="return AreAnyCheckboxesChecked();">
+									</th>
+									<th data-filterable="true" data-sortable="true" >Judul</th>
+									<th data-filterable="true" data-sortable="true" >Status</th>
+									{*}
+									<th data-filterable="true" data-sortable="true">Tanggal Mulai</th>
+                                    <th data-filterable="true" data-sortable="true">Tanggal Akhir</th>
+									<th data-filterable="true" data-sortable="true">Author</th>{/*}
+								</tr>
+							</thead>
+							<tbody>
+								{foreach $data as $var}
+								<tr>
+									<td class="checkbox-column">
+										<input type="checkbox" class="icheck-input" name="ids[]" value="{$var.id}" onchange="return AreAnyCheckboxesChecked();" />
+									</td>
+									<td><a href="{$basedomain}about/addafiliasi/?id={$var.id}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title}">{$var.title}</a></td>
+									<td style="color:{$var.status_color}">{$var.n_status}</td>
+									{*}
+									<td>{$var.posted_date}</td>
+                                    <td>{$var.expired_date}</td>
+									<td>{$var.username}</td>
+									{/*}
+								</tr>
+								{/foreach}
+							</tbody>
+						</table>
+					</form>
+					</div> <!-- /.table-responsive -->
+					
+
+				</div> <!-- /.portlet-content -->
+
+			</div> <!-- /.portlet -->
+
+		
+
+		</div> <!-- /.col -->
+
+	</div> <!-- /.row -->
+
+</div>

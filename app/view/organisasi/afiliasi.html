@@ -1,6 +1,12 @@
 <div class="col-md-8">
     <h3>Afiliasi</h3>
     <ol>
+        {if $data}
+        {foreach $data as $val}
+        <li><a href="{$val.content}">{$val.title}</a></li>
+        {/foreach}
+        {/if}
+        {*}
         <li><a href="#">Aliquam lacinia ipsum ut risus dapibus ullamcorper congue risus feugiat</a></li>
         <li><a href="#">Aliquam lacinia ipsum ut risus dapibus ullamcorper congue risus feugiat</a></li>
         <li><a href="#">Aliquam lacinia ipsum ut risus dapibus ullamcorper congue risus feugiat</a></li>
@@ -8,8 +14,7 @@
         <li><a href="#">Aliquam lacinia ipsum ut risus dapibus ullamcorper congue risus feugiat</a></li>
         <li><a href="#">Aliquam lacinia ipsum ut risus dapibus ullamcorper congue risus feugiat</a></li>
         <li><a href="#">Aliquam lacinia ipsum ut risus dapibus ullamcorper congue risus feugiat</a></li>
-        <li><a href="#">Aliquam lacinia ipsum ut risus dapibus ullamcorper congue risus feugiat</a></li>
-        <li><a href="#">Aliquam lacinia ipsum ut risus dapibus ullamcorper congue risus feugiat</a></li>
+        <li><a href="#">Aliquam lacinia ipsum ut risus dapibus ullamcorper congue risus feugiat</a></li>{/*}
     </ol>
 </div>
 

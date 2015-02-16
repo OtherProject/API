@@ -34,11 +34,29 @@ class organisasi extends Controller {
     }
     
     function struktur_organisasi(){
-        $struktur =  $this->contentHelper->getNews($id=false,$cat=3,$type=2,$start=0,$limit=1);
-        // pr($profil);
+        $type = $_GET['type'];
+        $kabid = $_GET['kabid'];
+        $perwakilan = $_GET['perwakilan'];
+        //$struktur =  $this->contentHelper->getNews($id=false,$cat=3,$type=2,$start=0,$limit=1);
         
-        $this->view->assign('struktur',$struktur);
-        return $this->loadView('organisasi/struktur_organisasi');
+        if($type == 'dewan_kehormatan'){
+            return $this->loadView('organisasi/so-dewan_kehormatan');
+        }
+        else if($type == 'dewan_penasihat'){
+            return $this->loadView('organisasi/so-dewan_penasihat');
+        }
+        else if($type == 'dewan_pengurus_umum'){
+            return $this->loadView('organisasi/so-dewan_pengurus_umum');
+        }
+        else if($type == 'kabid'){
+            return $this->loadView('organisasi/so-kabid_'.$kabid);
+        }
+        else if($type == 'perwakilan'){
+            return $this->loadView('organisasi/so-perwakilan_'.$perwakilan);
+        }
+
+        //$this->view->assign('struktur',$struktur);
+        //return $this->loadView('organisasi/struktur_organisasi');
     }
     
     function anggotaAjax(){
@@ -197,6 +215,21 @@ function pagination($limit,$adjacents,$rows,$page,$kategori){
    return $pagination;  
 }
     function afiliasi(){
+
+        
+        $data = $this->contentHelper->getData(3,3);
+        // pr($data);
+        if($data){
+            foreach ($data as $key => $value) {
+                $data[$key]['created_date'] = dateFormat($data[$key]['created_date'],'dd-mm-yyyy');
+                $data[$key]['posted_date'] = dateFormat($data[$key]['posted_date'],'dd-mm-yyyy');
+                $data[$key]['expired_date'] = dateFormat($data[$key]['expired_date'],'dd-mm-yyyy');
+            }
+            
+        }
+        
+        $this->view->assign('data',$data);
+        
         return $this->loadView('organisasi/afiliasi');
     }
 }

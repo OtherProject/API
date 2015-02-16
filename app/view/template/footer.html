@@ -30,8 +30,6 @@
     </div>
 </div>
     
-    
-    
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -61,8 +59,9 @@
     <script type="text/javascript">
 
     var agenda = {$agenda};
-    var dateToday = "{$dateToday}";
-   	
+
+    var dateToday = "{$dateToday}";  
+    	
     
 {literal}
 
@@ -71,16 +70,45 @@
     });
 
     $(document).ready(function() {
-        
+        var dataAgenda = JSON.stringify(agenda);
+        var newStr = dataAgenda.substring(1, dataAgenda .length-1);
+        var mystring = newStr.replace('},{',',');
+        var agendaResult = JSON.parse(mystring);
+
+        console.log(agendaResult);
+
         // INITIATE RESPONSIVE CALENDAR
         $(".responsive-calendar").responsiveCalendar({
-          time: dateToday,
           monthChangeAnimation: false,
-          events: {
-            "2015-02-08": {"number": 5, "url": basedomain+"news/agenda"},
-            "2015-02-18": {"number": 1, "url": basedomain+"news/agenda"}, 
-            "2015-02-05":{"number": 1, "url": basedomain+"news/agenda"}}
+          events: agendaResult,
+          onDayClick: function(events) {
+            var link = $(this).attr("data-link");
+            window.location.href = link;
+          }
         });
+
+        //INITIATE SUBMENU
+        $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
+        // Avoid following the href location when clicking
+        event.preventDefault(); 
+        // Avoid having the menu to close when clicking
+        event.stopPropagation(); 
+        // If a menu is already open we close it
+        //$('ul.dropdown-menu [data-toggle=dropdown]').parent().removeClass('open');
+        // opening the one you clicked on
+        $(this).parent().addClass('open');
+
+        var menu = $(this).parent().find("ul");
+        var menupos = menu.offset();
+      
+        if ((menupos.left + menu.width()) + 30 > $(window).width()) {
+            var newpos = - menu.width();      
+        } else {
+            var newpos = $(this).parent().width();
+        }
+        menu.css({ left:newpos });
+
+    });
 
         // INITIATE GALLERY PLUGIN
             $('#blueimp-gallery').toggleClass('blueimp-gallery-controls', true);
