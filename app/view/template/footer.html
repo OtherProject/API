@@ -41,10 +41,10 @@
     <script src="{$basedomain}assets/js/helper.js"></script>
 
     <!-- Bootstrap JS -->
-    <script src="{$basedomain}plugin/bootstrap-3.3.2/js/bootstrap.min.js"></script>
+    <script src="{$basedomain}plugin/bootstrap-3.3.2/js/bootstrap.min.js"></script> 
 
-    <!-- Responsive Calendar JS -->
-    <script src="{$basedomain}plugin/responsive-calendar/0.8/js/responsive-calendar.js"></script> 
+    <!-- Calendar -->
+    <script src="{$basedomain}plugin/calendar/zabuto_calendar.min.js"></script>
     
     <!-- Bootstrap Image Gallery JS -->
     <script src="{$basedomain}plugin/bootstrap-image-gallery-3.1.1/js/jquery.blueimp-gallery.min.js"></script>
@@ -58,66 +58,56 @@
     <script src="{$basedomain}plugin/datepicker/bootstrap-datepicker.js"></script>
     <script type="text/javascript">
 
-    var agenda = {$agenda};
+        var agenda = {$agenda};
+        var basedomain = "{$basedomain}";
+        var dateToday = "{$dateToday}";  
+        	
+        
+        {literal}
 
-    var dateToday = "{$dateToday}";  
-    	
-    
-{literal}
-
-    $(function() {
-        $('#birthday').datepicker ();
-    });
-
-    $(document).ready(function() {
-        var dataAgenda = JSON.stringify(agenda);
-        var newStr = dataAgenda.substring(1, dataAgenda .length-1);
-        var mystring = newStr.replace('},{',',');
-        var agendaResult = JSON.parse(mystring);
-
-        console.log(agendaResult);
-
-        // INITIATE RESPONSIVE CALENDAR
-        $(".responsive-calendar").responsiveCalendar({
-          monthChangeAnimation: false,
-          events: agendaResult,
-          onDayClick: function(events) {
-            var link = $(this).attr("data-link");
-            window.location.href = link;
-          }
+        $(function() {
+            $('#birthday').datepicker ();
         });
+        $(document).ready(function() {
 
         //INITIATE SUBMENU
-        $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
-        // Avoid following the href location when clicking
-        event.preventDefault(); 
-        // Avoid having the menu to close when clicking
-        event.stopPropagation(); 
-        // If a menu is already open we close it
-        //$('ul.dropdown-menu [data-toggle=dropdown]').parent().removeClass('open');
-        // opening the one you clicked on
-        $(this).parent().addClass('open');
+            $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
+            event.preventDefault(); 
+            event.stopPropagation(); 
+            $(this).parent().addClass('open');
 
-        var menu = $(this).parent().find("ul");
-        var menupos = menu.offset();
-      
-        if ((menupos.left + menu.width()) + 30 > $(window).width()) {
-            var newpos = - menu.width();      
-        } else {
-            var newpos = $(this).parent().width();
-        }
-        menu.css({ left:newpos });
+            var menu = $(this).parent().find("ul");
+            var menupos = menu.offset();
+          
+            if ((menupos.left + menu.width()) + 30 > $(window).width()) {
+                var newpos = - menu.width();      
+            } else {
+                var newpos = $(this).parent().width();
+            }
+            menu.css({ left:newpos });
 
-    });
+        });
 
         // INITIATE GALLERY PLUGIN
             $('#blueimp-gallery').toggleClass('blueimp-gallery-controls', true);
 
         // INITIATE DATATABLE
-        $('.table').dataTable();   
-    });
+            $('.table').dataTable(); 
+            
+        // INITIATE CALENDAR
+            function myDateFunction(id) {
+                var date = $("#" + id).data("date");
+                var hasEvent = $("#" + id).data("hasEvent");
+                window.location.href = basedomain+"news/agenda/?tgl="+date;
+            }
+            $(".calendar").zabuto_calendar({
+                data: agenda,
+                legend: false,
+                action: function() { myDateFunction(this.id); }
+            });  
+        });
 
-{/literal}
+        {/literal}
     </script>
 
     {if $page.page=="organisasi" && $page.function=="anggota"}

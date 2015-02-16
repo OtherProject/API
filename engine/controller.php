@@ -13,6 +13,7 @@ class Controller extends Application{
 
 			if ($this->configkey=='default'){
 				$this->loadModel('helper_model');
+				$this->loadModel('contentHelper');
 				$GLOBALS['CODEKIR']['LOGS'] = new helper_model;	
 			}
 			
@@ -48,6 +49,7 @@ class Controller extends Application{
 		if ($this->configkey=='default'){
 			$this->view->assign('dateToday',date('Y-m-d'));
 			$this->view->assign('agenda',$this->getAgenda());
+			$this->view->assign('kliping_index',$this->getKliping());
 		}
 		
 		
@@ -322,16 +324,64 @@ class Controller extends Application{
 
 	}
 
+	function modified_array_column($data, $param)
+	{
+		if ($data){
+			foreach ($data as $key => $value) {
+				$newData[] = $value[$param];
+			}
+			return $newData;
+		}
+		
+		return false;
+		
+	}
+
+	function array_flatten($array) { 
+	  if (!is_array($array)) { 
+	    return FALSE; 
+	  } 
+	  $result = array(); 
+	  foreach ($array as $key => $value) { 
+	    if (is_array($value)) { 
+	      $result = array_merge($result, array_flatten($value)); 
+	    } 
+	    else { 
+	      $result[$key] = $value; 
+	    } 
+	  } 
+	  return $result; 
+	}
+
 	function getAgenda()
 	{
+		global $basedomain;
 		$getHelper = new helper_model;
-
 		$data = $getHelper->getNews(false,$cat=2, $type=0,0,100);
-        //pr($data);
-		if (!empty($data)) {return json_encode($data);}
+        // pr($data);
+
+        foreach ($data as $key => $value) {
+        	$start = $value['start'];
+        	$count = array_count_values($this->modified_array_column($data, 'start'));
+		}
+
+		foreach ($count as $key => $value) {
+        	$result[] = array('date'=>$key,'badge'=>false, 'title'=> 'dasd');
+		}
+
+		//pr($result);
+		logFile(serialize($result));
+		if (!empty($data)) {return json_encode($result);}
         else if (empty($data)){return json_encode('empty');}
 		else return false;
+	}
 
+	function getKliping(){
+		$getHelper = new contentHelper;
+		$data = $getHelper->getNews($id=false,$cat=1,$type=2,0,3);
+		//pr($data);exit;
+		if (!empty($data)) {return $data;}
+		else return false;
 	}
 	
 }
