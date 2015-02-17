@@ -45,7 +45,10 @@
             </div>
             <div class="content">
                 <div class="col-md-3" style="padding-left: 0;">
+                    &nbsp;
+                    {if $val.image!=''}
                             <img src="{$basedomain}public_assets/perundangan/{$val.image}" class="img-responsive" />
+                    {/if}
                         </div>
                 <p class="text-justify">
                     {$val.brief|html_entity_decode}
