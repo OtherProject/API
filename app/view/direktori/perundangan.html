@@ -36,7 +36,12 @@
                 <a href="{$basedomain}direktori/prdDetail/?id={$val.id}"><h4>{$val.title}</h4></a>
             </div>
             <div class="dateposted">
-                <p>Posted by <a href="#">admin</a> at {$val.posted_date}</p>
+                <p>Posted by <a href="#">admin</a> at {$val.posted_date}
+                    &nbsp;&nbsp;
+                    {if $val.file!=''}
+                    <a href="{$basedomain}public_assets/perundangan/{$val.file}"  target="_blank"><img src="{$basedomain}assets/img/pdf-blue.png" style="height: 25px;" title="download" /><small>Download File</small></a>
+                    {/if}
+                </p>
             </div>
             <div class="content">
                 <div class="col-md-3" style="padding-left: 0;">
