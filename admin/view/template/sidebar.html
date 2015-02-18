@@ -36,6 +36,21 @@
 				</ul>
 			</li>
             
+            <li class="button {if $page.page=='banner'}active{/if}">
+				<a href="{$basedomain}banner">
+					<i class="fa fa-file-text"></i>
+					Banner
+				</a>				
+			</li>
+            
+            <li class="button {if $page.page=='headlines'}active{/if}">
+				<a href="{$basedomain}headlines">
+					<i class="fa fa-file-text"></i>
+					Kata Pembuka
+					<!--span class="caret"></span-->
+				</a>				
+			</li>
+            
             <li class="dropdown {if $page.page=='gallery'}active{/if}">
 				<a href="javascript:;">
 					<i class="fa fa-picture-o"></i>

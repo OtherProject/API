@@ -32,7 +32,7 @@ $(function () {
 
 						<h3>
 							<i class="fa fa-tasks"></i>
-							Add New Video
+							Tambah Video Baru
 						</h3>
 
 					</div> <!-- /.portlet-header -->
@@ -41,21 +41,21 @@ $(function () {
                     
                         <div class="col-sm-12">
             				<div class="form-group">
-                				<label for="text-input">Title</label>
+                				<label for="text-input">Judul</label>
                 				<input type="text" name="title_en" class="form-control" value="{$data.title_en}" data-required="true" />
             				</div>
             			</div>
                         
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label for="textarea-input">Description</label>
+                                <label for="textarea-input">Deskripsi</label>
     							<textarea name="brief_en" id="isi"  cols="10" rows="20" class="form-control">{$data.brief_en}</textarea>
     						</div>
                         </div>
                         
                         <div class="col-sm-5">
                             <div class="form-group">
-                                <label for="video_type" >Type</label>
+                                <label for="video_type" >Tipe Video</label>
     							<select id="type_video" name="video_type" class="form-control" >
                                     <option value="file" {if $data.video_type==file}selected{/if} >File</option>
                                     <option value="embed" {if $data.video_type==embed}selected{/if} >Embed</option>
@@ -65,7 +65,7 @@ $(function () {
                         
                         <div class="col-sm-12" id="video_embed" style="display: none;">
                             <div class="form-group">
-                                <label for="textarea-input">Embed Code</label>
+                                <label for="textarea-input">Kode Embed</label>
     							<textarea name="content_en" class="form-control">{$data.content_en}</textarea>
     						</div>
                         </div>
