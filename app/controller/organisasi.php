@@ -34,11 +34,29 @@ class organisasi extends Controller {
     }
     
     function struktur_organisasi(){
-        $struktur =  $this->contentHelper->getNews($id=false,$cat=3,$type=2,$start=0,$limit=1);
-        // pr($profil);
+        $type = $_GET['type'];
+        $kabid = $_GET['kabid'];
+        $perwakilan = $_GET['perwakilan'];
+        //$struktur =  $this->contentHelper->getNews($id=false,$cat=3,$type=2,$start=0,$limit=1);
         
-        $this->view->assign('struktur',$struktur);
-        return $this->loadView('organisasi/struktur_organisasi');
+        if($type == 'dewan_kehormatan'){
+            return $this->loadView('organisasi/so-dewan_kehormatan');
+        }
+        else if($type == 'dewan_penasihat'){
+            return $this->loadView('organisasi/so-dewan_penasihat');
+        }
+        else if($type == 'dewan_pengurus_umum'){
+            return $this->loadView('organisasi/so-dewan_pengurus_umum');
+        }
+        else if($type == 'kabid'){
+            return $this->loadView('organisasi/so-kabid_'.$kabid);
+        }
+        else if($type == 'perwakilan'){
+            return $this->loadView('organisasi/so-perwakilan_'.$perwakilan);
+        }
+
+        //$this->view->assign('struktur',$struktur);
+        //return $this->loadView('organisasi/struktur_organisasi');
     }
     
     function anggotaAjax(){
@@ -74,6 +92,8 @@ class organisasi extends Controller {
         return $this->loadView('organisasi/anggota');
     }
     function anggota_view(){
+        
+        
         return $this->loadView('organisasi/anggota-view');
     }
 

@@ -76,12 +76,13 @@ $(function () {
                                     <input type="hidden" name="categoryid" value="7" />
 									<input type="hidden" name="authorid" value="{$admin.id}" />
 									<input type="hidden" name="image" value="{$data.image}" />
+									<input type="hidden" name="file" value="{$data.file}" />
 									<input type="hidden" name="image_url" value="{$data.file}" />
 									<!-- hidden -->
 							
 						</div>
                                                 
-                        <div class="col-sm-12">
+                        <!-- <div class="col-sm-12">
                             <div class="form-group">                        
                                 <label for="file_image">Cover Image</label>                        
                                 <div class="fileupload fileupload-new" data-provides="fileupload">
@@ -98,9 +99,9 @@ $(function () {
         						  </div>
         						</div>
                             </div>
-                        </div>
+                        </div> -->
                         
-                        <div class="col-sm-6">
+                        <!-- <div class="col-sm-6">
                             <div class="form-group">
     							<label for="select-input">Postdate</label>
     							<div id="postdate" class="input-group date" data-auto-close="true" data-date-format="dd-mm-yyyy" data-date-autoclose="true">
@@ -120,11 +121,106 @@ $(function () {
     						</div>
     						
     						<input type="submit" class="btn btn-primary" value="Submit" id="submit" />
-                        </div>                        
+                        </div>       -->                  
                                                                                                                         
 					</div>
 				</div>
                                 
+			</div>
+			<div class="col-md-3">
+				<div class="portlet">
+					<div class="portlet-header">
+
+						<h3>
+							<i class="fa fa-calendar"></i>
+							Publish Date
+						</h3>
+
+					</div> <!-- /.portlet-header -->
+					<div class="portlet-content">
+						 <div class="form-group">
+							<label for="select-input">Postdate</label>
+							<div id="postdate" class="input-group date" data-auto-close="true" data-date-format="dd-mm-yyyy" data-date-autoclose="true">
+								<input class="form-control" type="text" name="postdate" value="{$data.posted_date}" data-required="true">
+								<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+							</div>
+							
+						</div>
+						<div class="form-group">
+								<div class="checkbox">
+									<label>
+										<input type="checkbox" name="n_status" class="" {$data.n_status} >
+										Publikasikan
+									</label>
+								</div>
+						</div>
+						
+						<input type="submit" class="btn btn-primary" value="Submit" id="submit" />
+					</div>
+				</div>
+			
+				<div class="portlet">
+					<div class="portlet-header">
+
+						<h3>
+							<i class="fa fa-picture-o"></i>
+							Cover Image
+						</h3>
+
+					</div> 
+					<div class="portlet-content">
+						<!-- <div class="fileupload fileupload-new" data-provides="fileupload">
+        						  <div class="fileupload-new thumbnail" style="width: 200px; height: 180px;">
+                                    <img src="{$data.file}" alt="{$data.image}" /></div>
+        						  <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; line-height: 20px;"></div>
+        						  <div>
+        							<span class="btn btn-default btn-file">
+                                        <span class="fileupload-new">Select image</span>
+                                        <span class="fileupload-exists">Change</span>
+                                        <input type="file" name="file_image"/>
+                                    </span>
+        							<a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Remove</a>
+        						  </div>
+        						</div> -->
+						<div class="fileupload fileupload-new" data-provides="fileupload">
+						  <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+						  	{if $data.image==''}
+						  	<img src="{$app_domain}assets/img/no-images.gif" alt="{$app_domain}assets/img/no-images.gif" />
+						  	{else}
+						  	<img src="{$app_domain}public_assets/perundangan/{$data.image}" alt="{$data.image}" />
+						  	{/if}
+						  </div>
+						  <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+						  <div>
+							<span class="btn btn-default btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input type="file" name="file_image"/></span>
+							<a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Remove</a>
+						  </div>
+						</div>
+					</div>
+				</div>
+				<div class="portlet">
+					<div class="portlet-header">
+
+						<h3>
+							<i class="fa fa-picture-o"></i>
+							upload dokumen
+						</h3>
+
+					</div> 
+					<div class="portlet-content">
+						{if $data.file==''}
+						<a href="#" disabled class="btn btn-info"> Empty File</a>
+						{else}
+						<a href="{$app_domain}public_assets/perundangan/{$data.file}" target="_blank"class="btn btn-info"> Download File</a>
+						{/if}
+						<div class="fileupload fileupload-new" data-provides="fileupload">
+						 <div>
+							<input type="file" name="file_pdf"/>
+							<a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Remove</a>
+						  </div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	

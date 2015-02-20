@@ -337,6 +337,22 @@ class Controller extends Application{
 		
 	}
 
+	function array_flatten($array) { 
+	  if (!is_array($array)) { 
+	    return FALSE; 
+	  } 
+	  $result = array(); 
+	  foreach ($array as $key => $value) { 
+	    if (is_array($value)) { 
+	      $result = array_merge($result, array_flatten($value)); 
+	    } 
+	    else { 
+	      $result[$key] = $value; 
+	    } 
+	  } 
+	  return $result; 
+	}
+
 	function getAgenda()
 	{
 		global $basedomain;
@@ -350,9 +366,10 @@ class Controller extends Application{
 		}
 
 		foreach ($count as $key => $value) {
-        	
-        	$result[] = array($key => array('number'=>$value,'url'=>$basedomain.'news/agenda/?tgl='.$key));
+        	$result[] = array('date'=>$key,'badge'=>false, 'title'=> 'dasd');
 		}
+
+		//pr($result);
 		logFile(serialize($result));
 		if (!empty($data)) {return json_encode($result);}
         else if (empty($data)){return json_encode('empty');}

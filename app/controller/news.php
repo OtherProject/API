@@ -25,15 +25,18 @@ class news extends Controller {
 	    	$addOneDay = strtotime($start.'+ 1 day');
 			$end = date('Y-m-d',$addOneDay);
     		$agenda = $this->contentHelper->getAgenda(false,$cat=2, $type=0,$start,$end);
+            $title = date("d F Y", strtotime($start));
     	}
     	else{
     		$start = date('Y-m-01'); // hard-coded '01' for first day
 			$end  = date('Y-m-t');
-
-    		$agenda = $this->contentHelper->getAgenda(false,$cat=2, $type=0,$start,$end);
+            $agenda = $this->contentHelper->getAgenda(false,$cat=2, $type=0,$start,$end);
+            $title = date("F Y", strtotime("now"));
     	}
     	
     	//pr($agenda);
+        
+        $this->view->assign('title',$title);
 	 	$this->view->assign('agenda',$agenda);
     	return $this->loadView('news/agenda');
     }

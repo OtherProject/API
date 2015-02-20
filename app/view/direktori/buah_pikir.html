@@ -1,6 +1,31 @@
 <div class="col-md-8">
     <h3>Buah Pikir</h3>
-    
+    <div class="row kepakaran">
+               
+        
+        <div class="col-md-12">
+            <div class="api-search text-center">
+                <h3>Search</h3>
+                <form class="form-inline" role="form" method="POST" action="{$basedomain}direktori/search_result">
+                    <div class="form-group">
+                        <select class="form-control" name="kategori" required>
+                          <option value="">All</option>
+                          <option disabled>By Project</option>
+                        {foreach $data_category as $var}
+                          <option value="{$var.id}">{$var.category_name}</option>
+                        {/foreach}
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="search" class="form-control" id="k" name="teks" placeholder="Enter search terms" required>
+                        <button type="submit" id="s" class="btn api-btn"><span class="glyphicon glyphicon-search"></span></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <p>Results 1 - 10 of 475</p>
 {if $buahpikir}
         {foreach $buahpikir as $val}
 
@@ -11,11 +36,18 @@
                 <a href="{$basedomain}direktori/bpDetail/?id={$val.id}"><h4>{$val.title}</h4></a>
             </div>
             <div class="dateposted">
-                <p>Posted by <a href="#">admin</a> at {$val.posted_date}</p>
+                <p>Posted by <a href="#">admin</a> at {$val.posted_date}
+                    &nbsp;&nbsp;
+                    {if $val.file!=''}
+                    <a href="{$basedomain}public_assets/buahpikir/{$val.file}"  target="_blank"><img src="{$basedomain}assets/img/pdf-blue.png" style="height: 25px;" title="download" /><small>Download File</small></a>
+                    {/if}</p>
             </div>
             <div class="content">
                 <div class="col-md-3" style="padding-left: 0;">
+                    &nbsp;
+                    {if $val.image!=''}
                             <img src="{$basedomain}public_assets/buahpikir/{$val.image}" class="img-responsive" />
+                    {/if}
                         </div>
                 <p class="text-justify">
                     {$val.brief|html_entity_decode}

@@ -65,8 +65,8 @@
 									<th data-filterable="true" data-sortable="true" >Judul</th>
 									<th data-filterable="true" data-sortable="true" >Status</th>
 									<th data-filterable="true" data-sortable="true">Tanggal Buat</th>
-									<th data-filterable="true" data-sortable="true">Author</th>
-                                    <th data-filterable="false">Jenis Artikel</th>
+									<th data-filterable="true" data-sortable="true">File</th>
+                                    <!-- <th data-filterable="false">Jenis Artikel</th> -->
 								</tr>
 							</thead>
 							<tbody>
@@ -78,14 +78,21 @@
 									<td><a href="{$basedomain}direktori/adddirektori/?page=7&id={$var.id}" data-toggle="tooltip" data-placement="right" title="Edit or view {$var.title}">{$var.title}</a></td>
 									<td style="color:{$var.status_color}">{$var.n_status}</td>
 									<td>{$var.posted_date}</td>
-									<td>{$var.username}</td>
+									<!-- <td>{$var.username}</td> -->
                                     <td>
+                                    	{if $var.file==''}
+										<a href="#" disabled class="btn btn-info"> Empty File</a>
+										{else}
+										<a href="{$app_domain}public_assets/perundangan/{$var.file}" target="_blank"class="btn btn-info"> Download File</a>
+										{/if}
+                                    </td>
+                                   <!--  <td>
                                         {if $var.articleType=='1'}
                                             Berita
                                         {elseif $var.articleType=='2'}
                                             Kliping Kegiatan
                                         {/if}
-                                    </td>
+                                    </td> -->
 								</tr>
 								{/foreach}
 							</tbody>

@@ -42,7 +42,7 @@ class direktori extends Controller {
 
 			}
         }
-        //pr($data);exit;
+        // pr($data);exit;
         $this->view->assign('listactivity', $activity);
 		$this->view->assign('data',$data);
         return $this->loadView('directory/repository/listCategory');
@@ -308,8 +308,10 @@ class direktori extends Controller {
 							$x['action'] = 'update';
 						}
                         
-                        //pr($x);exit;
+                        // pr($x);
+                        // exit;
 						//upload file
+						// pr($_FILES);
 						if(!empty($_FILES)){
 							if($_FILES['file_image']['name'] != ''){
 							
@@ -322,12 +324,41 @@ class direktori extends Controller {
                                 if($x['action'] == 'update') deleteFile($x['image'],$path_upload);
 								//if($x['action'] == 'update') deleteFile($x['image']);
 								$image = uploadFile('file_image',$path_upload,'image');
-								
+								// $uploaddoc = uploadFile('file_pdf',$path_upload, 'doc');
+								// pr($image);
+								// pr($uploaddoc);
+								// exit;
 								$x['image_url'] = $CONFIG['admin']['app_url'].$image['folder_name'].$image['full_name'];
 								$x['image'] = $image['full_name'];
+								// $x['file']= $uploaddoc['full_name'];
+								// pr($x);
+								// exit;
+
+							}
+							if($_FILES['file_pdf']['name'] != ''){
+							
+								if($x['categoryid'] == '6'){
+									$path_upload = 'buahpikir';
+								}else{
+									$path_upload = 'perundangan';
+								}
+							
+                                if($x['action'] == 'update') deleteFile($x['file'],$path_upload);
+								//if($x['action'] == 'update') deleteFile($x['image']);
+								// $image = uploadFile('file_image',$path_upload,'image');
+								$uploaddoc = uploadFile('file_pdf',$path_upload, 'doc');
+								// pr($image);
+								// pr($uploaddoc);
+								// exit;
+								// $x['image_url'] = $CONFIG['admin']['app_url'].$image['folder_name'].$image['full_name'];
+								// $x['image'] = $image['full_name'];
+								$x['file']= $uploaddoc['full_name'];
+								// pr($x);
+								// exit;
+
 							}
 						}
-						$data = $this->models->article_inp($x);
+						$data = $this->mdirectory->directory_inp($x);
 			   		}
 				   	
 			   }catch (Exception $e){}
