@@ -73,8 +73,9 @@
         var dataAgenda = JSON.stringify(agenda);
         var newStr = dataAgenda.substring(1, dataAgenda .length-1);
         var mystring = newStr.replace('},{',',');
-        var agendaResult = JSON.parse(mystring);
+        var agendaResult = JSON.parse(mystring.toString());
 
+        console.log(mystring);
         console.log(agendaResult);
 
         // INITIATE RESPONSIVE CALENDAR
