@@ -60,7 +60,12 @@
 
         var agenda = {$agenda};
         var basedomain = "{$basedomain}";
-        var dateToday = "{$dateToday}"
+        var dateToday = "{$dateToday}";
+        var tech = getUrlParameter('tgl');
+        // var dateToday = "{$dateToday}";  
+
+
+        {literal}
 
         function getUrlParameter(sParam)
         {
@@ -75,10 +80,6 @@
                 }
             }
         } 
-
-        var tech = getUrlParameter('tgl');
-        
-        {literal}
 
         
         if(jQuery.isEmptyObject(tech)){
@@ -111,10 +112,6 @@
             });
 
 
-    var dateToday = "{$dateToday}";  
-    	
-    
-{literal}
 
     $(function() {
         $('#birthday').datepicker ();
