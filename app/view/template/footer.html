@@ -39,6 +39,7 @@
     
     <!-- Helper -->
     <script src="{$basedomain}assets/js/helper.js"></script>
+    <script src="{$basedomain}assets/js/pace.min.js"></script>
 
     <!-- Bootstrap JS -->
     <script src="{$basedomain}plugin/bootstrap-3.3.2/js/bootstrap.min.js"></script> 
@@ -56,6 +57,7 @@
     
     <!-- Datepicker JS -->
     <script src="{$basedomain}plugin/datepicker/bootstrap-datepicker.js"></script>
+
     <script type="text/javascript">
 
         var agenda = {$agenda};
@@ -155,15 +157,30 @@
                
                 $(document).ready(function(){
                        // alert("ada");
+                       
+            //        $('.progresBar').html("<div class='pace pace-activity'>
+            // </div>"); 
+
+                   // $('.ajax-spinner-bars').css("display:block"); 
+                   // alert("ada");
+
+                   $('.ajax-spinner-bars').css("display","block"); 
+
                         $.post(basedomain+"organisasi/anggotaAjax", {actionfunction: 'showData', page:'1',kategori:'a'}, function(data){
                             
                             if (data.status==true) {
                                
                                     $('#dataAjax').html(data.data); 
+                                     // $('.loadir').html("");
+                                     $('.ajax-spinner-bars').css("display","none"); 
+
                                    
                             }else{
+
+                   // $('.ajax-spinner-bars').css("display","block"); 
                                 // $('.category_val').html('');
                                 // alert('already existnot');
+                                     // $('.loadir').html(""); 
                             }
                         }, "JSON")
                     
@@ -171,6 +188,13 @@
                 
                 $('#dataAjax').on('click','.page-numbers',function(){
 
+             
+                   // $('.loadir').html("<img src='"+basedomain+"assets/img/ajax_clock_small.gif' />please wait..."); 
+                   // alert("ada");
+                   // $('.progresBar').html("<div class='pace pace-activity'>
+            // </div>"); 
+                
+                   $('.ajax-spinner-bars').css("display","block"); 
                    $page = $(this).attr('href');
                   
                    $pageind = $page.indexOf('page=');
@@ -191,18 +215,25 @@
                            var kategori =sParameterName[1];
                         }
                     }
-                
+                    // alert("data");
+                // setTimeout(function() {
                     $.post(basedomain+"organisasi/anggotaAjax", {actionfunction: 'showData', page:paging ,kategori:kategori}, function(data){
                             
                             if (data.status==true) {
                                
                                     $('#dataAjax').html(data.data); 
+                                     // $('.loadir').html(""); 
+// alert("ada");
+                   $('.ajax-spinner-bars').css("display","none"); 
                                 
                             }else{
                                 // $('.category_val').html('');
                                 // alert('already existnot');
+                                 // $('.loadir').html(""); 
                             }
                         }, "JSON")
+                    // }, 100);
+                                 // $('.loadir').html(""); 
                 return false;
                 });
                 
