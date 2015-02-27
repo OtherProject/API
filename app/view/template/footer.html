@@ -62,7 +62,12 @@
 
         var agenda = {$agenda};
         var basedomain = "{$basedomain}";
-        var dateToday = "{$dateToday}"
+        var dateToday = "{$dateToday}";
+        var tech = getUrlParameter('tgl');
+        // var dateToday = "{$dateToday}";  
+
+
+        {literal}
 
         function getUrlParameter(sParam)
         {
@@ -77,10 +82,6 @@
                 }
             }
         } 
-
-        var tech = getUrlParameter('tgl');
-        
-        {literal}
 
         
         if(jQuery.isEmptyObject(tech)){
@@ -102,26 +103,16 @@
         $(function() {
             $('#birthday').datepicker ();
         });
-        $(document).ready(function() {
 
+    $(document).ready(function() {
         //INITIATE SUBMENU
             $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
-            event.preventDefault(); 
-            event.stopPropagation(); 
-            $(this).parent().addClass('open');
-
-            var menu = $(this).parent().find("ul");
-            var menupos = menu.offset();
-          
-            if ((menupos.left + menu.width()) + 30 > $(window).width()) {
-                var newpos = - menu.width();      
-            } else {
-                var newpos = $(this).parent().width();
-            }
-            menu.css({ left:newpos });
-
-        });
-
+                event.preventDefault(); 
+                event.stopPropagation(); 
+                $(this).parent().siblings().removeClass('open');
+                $(this).parent().toggleClass('open');
+            });
+            
         // INITIATE GALLERY PLUGIN
             $('#blueimp-gallery').toggleClass('blueimp-gallery-controls', true);
 
@@ -134,8 +125,6 @@
                 var hasEvent = $("#" + id).data("hasEvent");
                 window.location.href = basedomain+"news/agenda/?tgl="+date;
             }
-
-
 
             $(".calendar").zabuto_calendar({
                 year: dataYear,

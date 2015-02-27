@@ -1,0 +1,98 @@
+<script>
+$(function () {
+	$('#postdate').datepicker ();
+	$('#expiredate').datepicker ();
+	
+	$("#isi").jqte();
+    $("#isi_en").jqte();
+    $("#isi_uzbek").jqte();
+	
+	$('input:checkbox, input:radio').iCheck({
+		checkboxClass: 'icheckbox_minimal-blue',
+		radioClass: 'iradio_minimal-blue',
+		inheritClass: true
+	})
+})
+</script>
+
+<div id="content-header">
+	<h1>Banner</h1>
+</div> <!-- #content-header -->
+
+<div id="content-container">
+
+	<form id="validate-enhanced" class="form parsley-form" method="post" action="{$basedomain}banner/bannerinp" enctype="multipart/form-data">
+
+		<div class="row">
+			<div class="col-md-9">
+            
+				<div class="portlet">
+				
+					<div class="portlet-header">
+
+						<h3>
+							<i class="fa fa-tasks"></i>
+							Tambah Banner
+						</h3>
+
+					</div> <!-- /.portlet-header -->
+				
+					<div class="portlet-content">
+                        
+                        <div class="col-sm-12">
+            				<div class="form-group">
+            				<label for="text-input">Keterangan Gambar</label>
+            				<input type="text" name="brief_bhs" class="form-control" value="{$data.brief_bhs}" />
+            				</div>
+            			</div>
+                            
+                        <div class="col-sm-6">
+                        
+                            <!-- hidden -->
+        					<input type="hidden" name="id" value="{$data.id}" />
+        					<input type="hidden" name="authorid" value="{$admin.id}" />
+        					<input type="hidden" name="image" value="{$data.image}" />
+        					<input type="hidden" name="image_url" value="{$data.file}" />
+        					<!-- hidden -->
+                        
+                            <div class="form-group">                       
+                                <div class="fileupload fileupload-new" data-provides="fileupload">
+        						  <div class="fileupload-new thumbnail" style="width: 208px; min-height: 120px;">
+                                    <img src="{$data.file}" alt="{$data.image}" /></div>
+        						  <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; line-height: 20px;"></div>
+        						  <div>
+        							<span class="btn btn-default btn-file">
+                                        <span class="fileupload-new">Select image</span>
+                                        <span class="fileupload-exists">Change</span>
+                                        <input type="file" name="file_image"/>
+                                    </span>
+        							<a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Remove</a>
+        						  </div>
+        						</div>
+                            </div>
+                        	
+                        	<div class="form-group">
+                        			<div class="checkbox">
+                        				<label>
+                        					<input type="checkbox" name="n_stats" class="" {$data.n_stats} >
+                        					Publish
+                        				</label>
+                        			</div>
+                        	</div>
+                        	
+                        	<input type="submit" class="btn btn-primary" value="Submit" id="submit" />
+                        	
+                        </div>
+			    
+			                   
+                                                                                                                        
+					</div>
+				</div>
+                                
+			</div>
+            
+            
+		</div>
+	
+	</form>
+</div>

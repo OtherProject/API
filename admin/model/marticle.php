@@ -8,7 +8,11 @@ class marticle extends Database {
 		$date = date('Y-m-d H:i:s');
 		$datetime = array();
         
-		if(!empty($data['postdate'])) $data['postdate'] = date("Y-m-d H:i:s",strtotime($data['postdate']));
+		if(!empty($data['postdate'])){
+            $data['postdate'] = date("Y-m-d H:i:s",strtotime($data['postdate']));
+		}else{
+            $data['postdate'] = $date;
+		}
         if(!empty($data['expired_date'])) $data['expired_date'] = date("Y-m-d H:i:s",strtotime($data['expired_date']));
         else $data['expired_date'] = '0000-00-00';
         
@@ -37,7 +41,7 @@ class marticle extends Database {
 							image = '{$data['image']}',
 							file = '{$data['image_url']}',
                             articletype = '{$data['articletype']}',
-							posted_date = '".$date."',
+							posted_date = '{$data['postdate']}',
                             expired_date = '{$data['expired_date']}',
 							authorid = '{$data['authorid']}',
 							n_status = {$data['n_status']}
