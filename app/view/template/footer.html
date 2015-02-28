@@ -101,50 +101,16 @@
         $(function() {
             $('#birthday').datepicker ();
         });
-        $(document).ready(function() {
-
-        //INITIATE SUBMENU
-            $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
-            event.preventDefault(); 
-            event.stopPropagation(); 
-            $(this).parent().addClass('open');
-
-            var menu = $(this).parent().find("ul");
-            var menupos = menu.offset();
-          
-            if ((menupos.left + menu.width()) + 30 > $(window).width()) {
-                var newpos = - menu.width();      
-            } else {
-                var newpos = $(this).parent().width();
-            }
-            menu.css({ left:newpos });
-
-
-
-    $(function() {
-        $('#birthday').datepicker ();
-    });
 
     $(document).ready(function() {
-        var dataAgenda = JSON.stringify(agenda);
-        var newStr = dataAgenda.substring(1, dataAgenda .length-1);
-        var mystring = newStr.replace('},{',',');
-        var agendaResult = JSON.parse(mystring.toString());
-
-        console.log(mystring);
-        console.log(agendaResult);
-
-        // INITIATE RESPONSIVE CALENDAR
-        $(".responsive-calendar").responsiveCalendar({
-          monthChangeAnimation: false,
-          events: agendaResult,
-          onDayClick: function(events) {
-            var link = $(this).attr("data-link");
-            window.location.href = link;
-          }
-
-        });
-
+        //INITIATE SUBMENU
+            $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
+                event.preventDefault(); 
+                event.stopPropagation(); 
+                $(this).parent().siblings().removeClass('open');
+                $(this).parent().toggleClass('open');
+            });
+            
         // INITIATE GALLERY PLUGIN
             $('#blueimp-gallery').toggleClass('blueimp-gallery-controls', true);
 
@@ -157,8 +123,6 @@
                 var hasEvent = $("#" + id).data("hasEvent");
                 window.location.href = basedomain+"news/agenda/?tgl="+date;
             }
-
-
 
             $(".calendar").zabuto_calendar({
                 year: dataYear,
