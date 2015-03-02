@@ -15,15 +15,13 @@
                     </div>
                     <div class="row content">
                         {if {$val.image}}
-                        <div class="col-md-3">
+                        <div class="col-md-3" style="padding-left: 0;">
                             <img src="{$basedomain}public_assets/news/{$val.image}" class="img-responsive" />
                         </div>
                         {/if}
-                        <div class="col-md-9">
                             <p class="text-justify">
                                 {$val.brief|html_entity_decode}
                             </p>
-                        </div>
                     </div>
                 </div>
             </div>
