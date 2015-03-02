@@ -859,5 +859,147 @@ function ImageCreateFromBMP($filename)
 	return $res;
 }
 
+function pagination($urlpage,$limit,$adjacents,$rows,$page,$AddParameter=false){   
+    global $basedomain;
+    $pagination='';
+    if ($page == 0) $page = 1;                  //if no page var is given, default to 1.
+    $prev = $page - 1;                          //previous page is page - 1
+    $next = $page + 1;                          //next page is page + 1
+    $prev_='';
+    $first='';
+    $lastpage = ceil($rows/$limit); 
+    $next_='';
+    $last='';
+    $url=$basedomain.$urlpage;//"organisasi/anggota/";
+    if($lastpage > 1)
+    {   
+        
+        //previous button
+        if ($page > 1) 
+            $prev_.= "<li><a class='page-numbers' href=\"$url?page=$prev{$AddParameter}\">&laquo;</a></li>";
+        else{
+            //$pagination.= "<span class=\"disabled\">previous</span>"; 
+            }
+        
+        //pages 
+        if ($lastpage < 5 + ($adjacents * 2))   //not enough pages to bother breaking it up
+        {   
+        $first='';
+            for ($counter = 1; $counter <= $lastpage; $counter++)
+            {
+                if ($counter == $page)
+                    $pagination.= "<li class=\"active\"><a href=\"#\" class=\"current\">$counter</a></li>";
+                else
+                    $pagination.= "<li><a class='page-numbers' href=\"$url?page=$counter{$AddParameter}\">$counter</a></li>";                    
+            }
+            $last='';
+        }
+        elseif($lastpage > 3 + ($adjacents * 2))    //enough pages to hide some
+        {
+            //close to beginning; only hide later pages
+            $first='';
+            if($page < 1 + ($adjacents * 2))        
+            {
+                for ($counter = 1; $counter < 4 + ($adjacents * 2); $counter++)
+                {
+                    if ($counter == $page)
+                        $pagination.= "<li class=\"active\"><a href=\"#\" class=\"current\">$counter</a></li>";
+                    else
+                        $pagination.= "<li><a class='page-numbers' href=\"$url?page=$counter{$AddParameter}\">$counter</a></li>";                    
+                }
+            $last.= "<li><a class='page-numbers' href=\"$url?page=$lastpage{$AddParameter}\">Last</a></li>";            
+            }
+            
+            //in middle; hide some front and some back
+            elseif($lastpage - ($adjacents * 2) > $page && $page > ($adjacents * 2))
+            {
+               $first.= "<li><a class='page-numbers' href=\"$url?page=1{$AddParameter}\">First</a></li>";   
+            for ($counter = $page - $adjacents; $counter <= $page + $adjacents; $counter++)
+                {
+                    if ($counter == $page)
+                        $pagination.= "<li class=\"active\"><a href=\"#\" class=\"current\">$counter</a></li>";
+                    else
+                        $pagination.= "<li><a class='page-numbers' href=\"$url?page=$counter{$AddParameter}\">$counter</a></li>";                    
+                }
+                $last.= "<li><a class='page-numbers' href=\"$url?page=$lastpage{$AddParameter}\">Last</a><li>";            
+            }
+            //close to end; only hide early pages
+            else
+            {
+                $first.= "<li><a class='page-numbers' href=\"$url?page=1{$AddParameter}\">First</a></li>";  
+                for ($counter = $lastpage - (2 + ($adjacents * 2)); $counter <= $lastpage; $counter++)
+                {
+                    if ($counter == $page)
+                        $pagination.= "<li class=\"active\"><a href=\"#\" class=\"current\">$counter</a></li>";
+                    else
+                        $pagination.= "<li><a class='page-numbers' href=\"$url?page=$counter{$AddParameter}\">$counter</a></li>";                    
+                }
+                $last='';
+            }
+            
+            }
+        if ($page < $counter - 1) 
+            $next_.= "<li><a class='page-numbers' href=\"$url?page=$next{$AddParameter}\">&raquo;</a></li>";
+        else{
+            //$pagination.= "<span class=\"disabled\">next</span>";
+            }
+        $pagination = "<ul class=\"pagination\">".$first.$prev_.$pagination.$next_.$last;
+        //next button
+        
+        $pagination.= "</ul>\n";       
+    }
 
+   return $pagination;  
+}
+function dateRangeConvert($start,$end){
+	$spaceStart=explode(" ", $start);
+	$spaceEnd=explode(" ", $end);
+	$bulan = array('01' => Januari, 
+	              '02' => Febuari,
+	              '03' => Maret,
+	              '04' => April,
+	              '05' => Mei,
+	              '06' => Juni,
+	              '07' => Juli,
+	              '08' => Agustus,
+	              '09' => September,
+	              '10' => Oktober,
+	              '11' => November,
+	              '12' => Desember,
+	              );
+	$explodeStart=explode("-", $spaceStart[0]);
+	$explodeEnd=explode("-", $spaceEnd[0]);
+
+	//tahun
+	if($explodeStart[0]==$explodeEnd[0]){
+	  $tahunAwal="";
+	  $tahunAkhir=" ".$explodeEnd[0]." ";
+
+	  if($explodeStart[1]==$explodeEnd[1]){
+	    $bulanAwal="";
+	    $bulanAkhir=" ".$bulan[$explodeEnd[1]];
+	  }else{
+	    $bulanAwal=" ".$bulan[$explodeStart[1]];
+	    $bulanAkhir=" ".$bulan[$explodeEnd[1]];
+	  }
+	}else{
+	  $tahunAwal=" ".$explodeStart[0]." ";
+	  $tahunAkhir=" ".$explodeEnd[0]." ";
+	    $bulanAwal=" ".$bulan[$explodeStart[1]];
+	    $bulanAkhir=" ".$bulan[$explodeEnd[1]];
+	}
+	if($explodeStart[2]==$explodeEnd[2]){
+	  $tanggalAwal="";
+	  $tanggalAkhir=$explodeEnd[2];
+	}else{
+	  $tanggalAwal=$explodeStart[2];
+	  $tanggalAkhir=$explodeEnd[2];
+	}
+	if($start==$end){
+		echo $tanggalAkhir.$bulanAkhir.$tahunAkhir;
+	}else{
+		echo $tanggalAwal.$bulanAwal.$tahunAwal."-".$tanggalAkhir.$bulanAkhir.$tahunAkhir;
+	}
+
+}
 ?>

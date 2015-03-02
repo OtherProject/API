@@ -2,39 +2,15 @@
     
     <div class="row kepakaran">
         <div class="col-md-3">
-            <h4 class="title">Browse by</h4>
+            <h4 class="title">RUMPUN ILMU</h4>
             <div id="menu_kepakaran">
             <div class="list-group panel">
-                <a href="#subject" class="list-group-item" data-toggle="collapse" data-parent="#menu_kepakaran"><i class="glyphicon glyphicon-chevron-right"></i> Subjek</a>
-                    <div class="collapse" id="subject">
-                      <a href="" class="subitem">Subitem 1</a>
-                      <a href="" class="subitem">Subitem 2</a>
-                      <a href="" class="subitem">Subitem 3</a>
-                    </div>
-                <a href="#penulis" class="list-group-item" data-toggle="collapse" data-parent="#menu_kepakaran"><i class="glyphicon glyphicon-chevron-right"></i> Penulis</a>
-                    <div class="collapse list-group-submenu" id="penulis">
-                      <a href="#SubMenu1" class="subitem" data-toggle="collapse" data-parent="#penulis"><i class="glyphicon glyphicon-play"></i> Subitem 1 <i class="fa fa-caret-down"></i></a>
-                        <div class="collapse list-group-submenu" id="SubMenu1">
-                            <a href="#" class="sub subitem" data-parent="#SubMenu1">Subitem 1 a</a>
-                        </div>
-                      <a href="#SubMenu2" class="subitem" data-toggle="collapse" data-parent="#penulis"><i class="glyphicon glyphicon-play"></i> Subitem 2 <i class="fa fa-caret-down"></i></a>
-                        <div class="collapse list-group-submenu" id="SubMenu2">
-                            <a href="#" class="sub subitem" data-parent="#SubMenu2">Subitem 2 a</a>
-                        </div>
-                      <a href="#SubMenu3" class="subitem" data-toggle="collapse" data-parent="#penulis"><i class="glyphicon glyphicon-play"></i> Subitem 3 <i class="fa fa-caret-down"></i></a>
-                        <div class="collapse list-group-submenu" id="SubMenu3">
-                            <a href="#" class="sub subitem" data-parent="#SubMenu3">Subitem 3 a</a>
-                        </div>
-                    </div>
-                    
-                  
-                
-                <a href="#konten" class="list-group-item" data-toggle="collapse" data-parent="#menu_kepakaran"><i class="glyphicon glyphicon-chevron-right"></i> Konten</a>
-                    <div class="collapse" id="konten">
-                      <a href="" class="subitem">Subitem 1</a>
-                      <a href="" class="subitem">Subitem 2</a>
-                      <a href="" class="subitem">Subitem 3</a>
-                    </div>
+                <a href="javascript:void(0)" class="list-group-item" data-toggle="collapse" data-parent="#menu_kepakaran" onclick="return getId('1')"><i class="glyphicon glyphicon-chevron-right"></i>ILMU AGAMA</a> 
+                <a href="javascript:void(0)" class="list-group-item" data-toggle="collapse" data-parent="#menu_kepakaran" onclick="return getId('2')"><i class="glyphicon glyphicon-chevron-right"></i>ILMU HUMANIORA</a> 
+                <a href="javascript:void(0)" class="list-group-item" data-toggle="collapse" data-parent="#menu_kepakaran" onclick="return getId('3')"><i class="glyphicon glyphicon-chevron-right"></i>ILMU SOSIAL</a> 
+                <a href="javascript:void(0)" class="list-group-item" data-toggle="collapse" data-parent="#menu_kepakaran" onclick="return getId('4')"><i class="glyphicon glyphicon-chevron-right"></i>ILMU ALAM</a> 
+                <a href="javascript:void(0)" class="list-group-item" data-toggle="collapse" data-parent="#menu_kepakaran" onclick="return getId('5')"><i class="glyphicon glyphicon-chevron-right"></i>ILMU FORMAT</a> 
+                <a href="javascript:void(0)" class="list-group-item" data-toggle="collapse" data-parent="#menu_kepakaran" onclick="return getId('6')"><i class="glyphicon glyphicon-chevron-right"></i>ILMU TERAPAN</a>
             </div>
             </div>
         </div>
@@ -42,25 +18,25 @@
         
         <div class="col-md-9">
             <div class="api-search text-center">
-                <h3>Search Project</h3>
+                <h3>Pencarian Kepakaran Berdasarkan :</h3>
                 <form class="form-inline" role="form" method="POST" action="{$basedomain}direktori/search_result">
-                    <div class="form-group">
-                        <select class="form-control" name="kategori" required>
-                          <option value="">All</option>
-                          <option disabled>By Project</option>
-                        {foreach $data_category as $var}
-                          <option value="{$var.id}">{$var.category_name}</option>
-                        {/foreach}
-                        </select>
+                    <div id="titleRumpun">
+
                     </div>
-                    
                     <div class="form-group">
-                        <input type="search" class="form-control" id="k" name="teks" placeholder="Enter search terms" required>
+                       <input type="hidden" name="rumpun" id="rumpun" />
+                      <input id="kepakaran" name="bayu" type="hidden" style="width:300px" />
                         <button type="submit" id="s" class="btn api-btn"><span class="glyphicon glyphicon-search"></span></button>
                     </div>
+
                 </form>
             </div>
+            <div id="dataAjax">
+            
+          </div>
+
         </div>
+        
     </div>
     
     

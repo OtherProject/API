@@ -1,5 +1,7 @@
 
-
+    <div class="row">
+        <div class="col-md-12">
+                <h3>Anggota</h3>
         <div class="col-md-12" style="padding-right: 0;">
        
       
@@ -18,7 +20,7 @@
     <!--START ANGGOTA-->   
             {if $datamember}
              {foreach $datamember as $var}
-            <div class="api-anggota col-md-4">
+            <div class="api-anggota col-md-4 fadeIn animated">
                 <div class="row">
                     <div class="col-md-5 image">
                         <img src="{$basedomain}public_assets/anggota/1.jpg" class="img-responsive" />
@@ -33,7 +35,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="{$basedomain}organisasi/anggota_view/?id={$var.id}" class="pull-right more">Detail ...</a>
+                <a href="{$basedomain}organisasi/anggota_view/?page={$page}&kategori={$kategori}&id={$var.id}" class="pull-right more" id="more">Detail ...</a>
                 <div class="clearfix"></div>
             </div>
              {/foreach}
@@ -42,7 +44,20 @@
                 <h4>~ Data Tidak Ditemukan ~ </h4>
                 </div>
              {/if}
-          {*}
+         
+        
+    </div>
+            
+            <div class="col-md-12 text-center">  
+                {if $paging}
+                    {$paging}
+                {/if}
+            </div> 
+
+     </div>     
+
+</div>   
+ {*}
             <div class="api-anggota col-md-4">
                 <div class="row">
                     <div class="col-md-5 image">
@@ -61,14 +76,6 @@
                 <a href="{$basedomain}organisasi/anggota_view" class="pull-right more">Detail ...</a>
                 <div class="clearfix"></div>
             </div>{/*}
-        
-    </div>
-            
-            <div class="col-md-12 text-center">  
-                {if $paging}
-                    {$paging}
-                {/if}
-            </div> 
  {*} <div class="col-md-12 text-center">    
         <ul class="pagination">
           <li><a href="#">&laquo;</a></li>

@@ -1,0 +1,18 @@
+        {if $datamember}
+        {foreach $datamember as $val}
+        <div class="api-result">
+                <div class="row nomargin">
+                    <div class="col-md-3 nopadding-l">
+                        <img src="{$basedomain}public_assets/anggota/1.jpg" class="img-responsive" />
+                    </div>
+                    <div class="col-md-9">
+                        <a href="{$basedomain}direktori/result_detail" class="title">Nama Lengkap</a>
+                        <p class="nomargin">Profesor Aging and Human Physiology, KNSU, Seoul Korea</p>
+                        <p class="nomargin">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    </div>
+                </div>
+                <a href="#" class="pull-right detail btn api-btn">Detail</a>
+                <div class="clearfix"></div>
+            </div>
+        {/foreach}
+        {/if}
