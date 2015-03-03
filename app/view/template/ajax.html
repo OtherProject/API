@@ -29,7 +29,7 @@ function getId(val){
   $(document).ready(function() {
     // alert("ada");
         $("#kepakaran").select2({
-                  placeholder: "Rumpun Ilmu",
+                  placeholder: "RUMPUN ILMU AGAMA",
                   dropdownAutoWidth: 'true',
             ajax: {
                 url: basedomain+"direktori/rumpun/",
@@ -47,7 +47,7 @@ function getId(val){
                         results: $.map(data, function (item) {
                             return {
                                 // text: item.rumpun_id+"  "+item.nmps_lama,
-                                text: item.nmps_lama,
+                                text: item.jen_lama+"-"+item.nmps_lama+"("+item.internasional_term+")",
                                 id: item.id
                             } 
                         })
