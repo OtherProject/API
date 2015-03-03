@@ -30,7 +30,11 @@ function getId(val){
     // alert("ada");
         $("#kepakaran").select2({
                   placeholder: "RUMPUN ILMU AGAMA",
-                  dropdownAutoWidth: 'true',
+                  dropdownAutoWidth: 'true', 
+                  formatResult: function (item)
+                  {
+                      return item.text;
+                  },
             ajax: {
                 url: basedomain+"direktori/rumpun/",
                 dataType: 'json',
@@ -47,7 +51,7 @@ function getId(val){
                         results: $.map(data, function (item) {
                             return {
                                 // text: item.rumpun_id+"  "+item.nmps_lama,
-                                text: item.jen_lama+"-"+item.nmps_lama+"("+item.internasional_term+")",
+                                text: item.jen_lama+"-"+item.nmps_lama+" (<i>"+item.internasional_term+"</i>)",
                                 id: item.id
                             } 
                         })
@@ -619,7 +623,7 @@ function getId(val){
                 $(document).ready(function(){
 
                         
-                        $.post(basedomain+"direktori/kepakaranAjax", {actionfunction: 'showDataKepakaran', page:'1',kategori:'a'}, function(data){
+                        $.post(basedomain+"direktori/kepakaranAjax", {actionfunction: 'showDataKepakaran', page:'1',kategori:''}, function(data){
                             
                             if (data.status==true) {
                                

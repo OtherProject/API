@@ -25,7 +25,19 @@ class modelmember extends Database {
 		if($fleg==0){
 			$query = "SELECT * FROM social_member WHERE name LIKE '".$kategori."%' AND n_status = '1' ORDER BY name ASC";
 		}else{
-			$query = "SELECT * FROM social_member WHERE name LIKE '".$kategori."%' AND n_status = '1' ORDER BY name ASC limit $start,$limit";
+			$query = "SELECT sm.*, nmkl.nmps_lama ,nmkl.internasional_term,nmkl.rumpun_txt FROM social_member as sm left join api_nomenklatur as nmkl on sm.kepakaran=nmkl.id  WHERE sm.name LIKE '".$kategori."%' AND sm.n_status = '1' ORDER BY sm.name ASC limit $start,$limit";
+		
+		}
+		$result = $this->fetch($query,1);
+		
+		return $result;
+	}
+	function Allmemberkepakaran($kategori,$fleg,$start=false,$limit=false)
+	{
+		if($fleg==0){
+			$query = "SELECT * FROM social_member WHERE name LIKE '".$kategori."%' AND n_status = '1' ORDER BY name ASC";
+		}else{
+			$query = "SELECT sm.*, nmkl.nmps_lama ,nmkl.internasional_term,nmkl.rumpun_txt FROM social_member as sm left join api_nomenklatur as nmkl on sm.kepakaran=nmkl.id  WHERE sm.n_status = '1' ORDER BY sm.name ASC limit $start,$limit";
 		
 		}
 		$result = $this->fetch($query,1);
@@ -35,8 +47,10 @@ class modelmember extends Database {
 
 	function detailmember($id)
 	{
-		
-		$query = "SELECT * FROM social_member WHERE id='{$id}'AND n_status = '1'";
+		// $query="select K.noKontrak,K.tglKontrak,K.keterangan, S.nosp2d, S.tglsp2d from kontrak K "
+                  // . " left join sp2d S on K.id=S.idKontrak where K.noKontrak='$noKontrak'";
+
+		$query = "SELECT sm.*, nmkl.nmps_lama ,nmkl.internasional_term,nmkl.rumpun_txt FROM social_member as sm left join api_nomenklatur as nmkl on sm.kepakaran=nmkl.id WHERE sm.id='{$id}' AND sm.n_status = '1'";
 		
 		$result = $this->fetch($query,1);
 		

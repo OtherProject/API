@@ -1,3 +1,4 @@
+
         {if $datamember}
         {foreach $datamember as $val}
         <div class="api-result">
@@ -7,7 +8,7 @@
                     </div>
                     <div class="col-md-9">
                         <a href="{$basedomain}direktori/result_detail" class="title">{$val.name}</a>
-                        <p class="nomargin">Profesor Aging and Human Physiology, KNSU, Seoul Korea</p>
+                        <p class="nomargin">{$val.nmps_lama}(<i>{$val.internasional_term}</i>),&nbsp;&nbsp;{$val.rumpun_txt}</p>
                         <p class="nomargin">{$val.description}</p>
                     </div>
                 </div>

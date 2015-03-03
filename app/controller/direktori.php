@@ -84,11 +84,11 @@ class direktori extends Controller {
         else{
           $start = ($page-1)*$limit;
         }
-        $dataAllmember =  $this->modelmember->Allmember($kategori,"0");
+        $dataAllmember =  $this->modelmember->Allmemberkepakaran($kategori,"0");
           
         $rows=count($dataAllmember);
           
-        $dataKategorimember =  $this->modelmember->Allmember($kategori,"1",$start,$limit);
+        $dataKategorimember =  $this->modelmember->Allmemberkepakaran($kategori,"1",$start,$limit);
           
         // $data['pageAbjad']=$pageAbjad;
         $data['data'] = $dataKategorimember; 
