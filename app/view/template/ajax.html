@@ -695,11 +695,11 @@ function getId(val){
                 return false;
                 });
 
-                 $('#dataAjax').on('click','#btnsearch',function(){
+                 $('.api-search').on('click','#btnsearch',function(){
 
-                   var parameter =$('#parameter').val();
-                   var valueparameter =$('#valueparameter').val();
-
+                   var kepakaran =$('#kepakaran').val();
+                   var rumpun =$('#rumpun').val();
+                   // alert(kepakaran);
                    $page = $(this).attr('href');
                   
                    $pageind = $page.indexOf('page=');
@@ -724,7 +724,7 @@ function getId(val){
                         }
                     }
 
-                    $.post(basedomain+"direktori/dataAjax", {actionfunction: 'showDataAjax', page:paging ,kategori:kategori,param :parameter,valueparam:valueparameter,search:search}, function(data){
+                    $.post(basedomain+"direktori/kepakaranAjax", {actionfunction: 'showDataKepakaran', page:paging ,kategori:kepakaran}, function(data){
                             
                             if (data.status==true) {
                                

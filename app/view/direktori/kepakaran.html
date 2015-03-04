@@ -19,17 +19,17 @@
         <div class="col-md-9">
             <div class="api-search text-center">
                 <h3>Pencarian Kepakaran Berdasarkan :</h3>
-                <form class="form-inline" role="form" method="POST" action="{$basedomain}direktori/search_result">
+                <!-- <form class="form-inline" role="form" method="POST" action="#"> -->
                     <div id="titleRumpun">
                         <h4>RUMPUN ILMU AGAMA</h4>
                     </div>
                     <div class="form-group">
                        <input type="hidden" name="rumpun" id="rumpun" value="1"/>
                       <input id="kepakaran" name="bayu" type="hidden" style="width:300px" />
-                        <button type="submit" id="s" class="btn api-btn"><span class="glyphicon glyphicon-search"></span></button>
+                      <a href="{$basedomain}direktori/kepakaranAjax/?page=1&kategori={$kategori}&search=1" id="btnsearch" class="btn api-btn"><span class="glyphicon glyphicon-search"></span></a>
                     </div>
 
-                </form>
+                <!-- </form> -->
             </div>
             <div id="dataAjax">
             

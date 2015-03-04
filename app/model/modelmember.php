@@ -33,11 +33,16 @@ class modelmember extends Database {
 		return $result;
 	}
 	function Allmemberkepakaran($kategori,$fleg,$start=false,$limit=false)
-	{
+	{	
+		$queryKepakaran="";
+		if($kategori){
+			$queryKepakaran=" AND sm.kepakaran={$kategori} ";
+		}
 		if($fleg==0){
-			$query = "SELECT * FROM social_member WHERE name LIKE '".$kategori."%' AND n_status = '1' ORDER BY name ASC";
+			$query = "SELECT * FROM social_member as sm WHERE sm.n_status = '1' {$queryKepakaran} ORDER BY sm.name ASC";
 		}else{
-			$query = "SELECT sm.*, nmkl.nmps_lama ,nmkl.internasional_term,nmkl.rumpun_txt FROM social_member as sm left join api_nomenklatur as nmkl on sm.kepakaran=nmkl.id  WHERE sm.n_status = '1' ORDER BY sm.name ASC limit $start,$limit";
+
+			$query = "SELECT sm.*, nmkl.nmps_lama ,nmkl.internasional_term,nmkl.rumpun_txt FROM social_member as sm left join api_nomenklatur as nmkl on sm.kepakaran=nmkl.id  WHERE sm.n_status = '1' {$queryKepakaran} ORDER BY sm.name ASC limit $start,$limit";
 		
 		}
 		$result = $this->fetch($query,1);

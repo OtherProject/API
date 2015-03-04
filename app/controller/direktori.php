@@ -56,11 +56,13 @@ class direktori extends Controller {
             $dataShow =  $this->showDataKepakaran($_POST,$limit,$adjacent);
         }
         // pr($_POST['kategori']);exit;
+        $this->view->assign('data',$dataShow);
         $this->view->assign('datamember',$dataShow['data']);
         $this->view->assign('alphabet',$dataShow['pageAbjad']);
         $this->view->assign('paging',$dataShow['pagination']);
         $this->view->assign('kategori',$_POST['kategori']);
         $this->view->assign('page',$_POST['page']);
+        $this->view->assign('post',$_POST);
 
         $data['data']=$this->loadView('direktori/dataKepakaran');
 
