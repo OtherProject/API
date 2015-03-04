@@ -31,9 +31,13 @@ function getId(val){
         $("#kepakaran").select2({
                   placeholder: "RUMPUN ILMU AGAMA",
                   dropdownAutoWidth: 'true', 
-                  formatResult: function (item)
+                   formatResult: function (item)
                   {
-                      return item.text;
+                      return  item.text+"(<i>"+item.interm+"</i>)" ;
+                  },
+                  formatSelection: function (item)
+                  {
+                      return  item.text+"(<i>"+item.interm+"</i>)" ;
                   },
             ajax: {
                 url: basedomain+"direktori/rumpun/",
@@ -51,8 +55,9 @@ function getId(val){
                         results: $.map(data, function (item) {
                             return {
                                 // text: item.rumpun_id+"  "+item.nmps_lama,
-                                text: item.jen_lama+"-"+item.nmps_lama+" ("+item.internasional_term+")",
-                                id: item.id
+                                text: item.jen_lama+"-"+item.nmps_lama,
+                                id: item.id,
+                                interm: item.internasional_term
                             } 
                         })
                     };
