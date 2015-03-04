@@ -14,6 +14,23 @@ class modeldirektori extends Database {
 
 		
 		return $result;
+
+	}
+	function get_rumpunid($id)
+	{	
+		// pr($id);
+		// $id="";
+		// if($id)	$queryidrumpun=" WHERE id={$id} ";
+
+		$query = "SELECT * FROM api_nomenklatur WHERE id={$id}  LIMIT 1";
+		// pr($query);
+		// $result = $link->query($query); 
+		// $query = "SELECT * FROM {$this->prefix}_category WHERE n_status = '1' ORDER BY create_date DESC";
+		
+		$result = $this->fetch($query,1);
+
+		
+		return $result;
 	}
 
 	function getKepakaran($categoryid=1, $content=false, $type=1, $start=0, $limit=5)

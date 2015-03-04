@@ -58,7 +58,7 @@ class direktori extends Controller {
         // pr($_POST['kategori']);exit;
         $this->view->assign('data',$dataShow);
         $this->view->assign('jumlahData',$dataShow['jumlahData']);
-        // $this->view->assign('textpencarian',$dataShow['textpencarian']);
+        $this->view->assign('textpencarian',$dataShow['textpencarian']);
         $this->view->assign('rangeStart',$dataShow['rangeStart']);
         $this->view->assign('rangeEnd',$dataShow['rangeEnd']);
         $this->view->assign('datamember',$dataShow['data']);
@@ -114,7 +114,13 @@ class direktori extends Controller {
                 $rangeEnd = $rows;  
             }
         }
-         
+        // pr($data);
+        $textpencarian="";
+        if($kategori){
+             $datarumpun = $this->models->get_rumpunid($kategori);
+             $textpencarian=$datarumpun[0];
+        }
+
         $dataKategorimember =  $this->modelmember->Allmemberkepakaran($kategori,"1",$start,$limit);
           
         // $data['pageAbjad']=$pageAbjad;
@@ -122,7 +128,7 @@ class direktori extends Controller {
         $data['rangeStart']=$rangeStart;
         $data['rangeEnd']=$rangeEnd;
         $data['jumlahData']=$rows;
-        // $data['textpencarian']=$textpencarian;
+        $data['textpencarian']=$textpencarian;
         $AddParameter="&kategori=".$kategori;
         $urlpage="direktori/kepakaranAjax/";
         $data['pagination'] =pagination($urlpage,$limit,$adjacent,$rows,$page,$AddParameter);  
@@ -238,7 +244,7 @@ class direktori extends Controller {
         $dataCount=  $this->models->getCountData($categoryid=$kategori, $type=1,$where);
           
         $rows=count($dataCount);
-        
+
         if($page==1){
             $rangeStart = 1;  
 

@@ -1,6 +1,9 @@
-        
+
+    {if $textpencarian}
+    <p class="fadeIn animated">Pencarian Berdasarkan <strong><i>{$textpencarian.rumpun_txt}</i></strong> dengan kategori <strong><i>{$textpencarian.jen_lama}-{$textpencarian.nmps_lama}</i></strong><i>({$textpencarian.internasional_term})</i>  </p>     
+    {/if} 
     <p>Results {$rangeStart} - {$rangeEnd} of {$jumlahData}</p>
-    
+
         {if $datamember}
         {foreach $datamember as $val}
         <div class="api-result">
