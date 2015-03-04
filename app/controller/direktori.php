@@ -57,6 +57,10 @@ class direktori extends Controller {
         }
         // pr($_POST['kategori']);exit;
         $this->view->assign('data',$dataShow);
+        $this->view->assign('jumlahData',$dataShow['jumlahData']);
+        // $this->view->assign('textpencarian',$dataShow['textpencarian']);
+        $this->view->assign('rangeStart',$dataShow['rangeStart']);
+        $this->view->assign('rangeEnd',$dataShow['rangeEnd']);
         $this->view->assign('datamember',$dataShow['data']);
         $this->view->assign('alphabet',$dataShow['pageAbjad']);
         $this->view->assign('paging',$dataShow['pagination']);
@@ -89,11 +93,36 @@ class direktori extends Controller {
         $dataAllmember =  $this->modelmember->Allmemberkepakaran($kategori,"0");
           
         $rows=count($dataAllmember);
-          
+        
+        if($page==1){
+            $rangeStart = 1;  
+
+            if($rangeStart > $rows){
+                $rangeStart = $rows;  
+            }
+            $rangeEnd = $limit;  
+
+            if($rangeEnd > $rows){
+                $rangeEnd = $rows;  
+            }
+        }
+        else{
+            $rangeStart = (($page-1)*$limit)+1;  
+            $rangeEnd = $rangeStart+($limit-1);
+
+            if($rangeEnd > $rows){
+                $rangeEnd = $rows;  
+            }
+        }
+         
         $dataKategorimember =  $this->modelmember->Allmemberkepakaran($kategori,"1",$start,$limit);
           
         // $data['pageAbjad']=$pageAbjad;
         $data['data'] = $dataKategorimember; 
+        $data['rangeStart']=$rangeStart;
+        $data['rangeEnd']=$rangeEnd;
+        $data['jumlahData']=$rows;
+        // $data['textpencarian']=$textpencarian;
         $AddParameter="&kategori=".$kategori;
         $urlpage="direktori/kepakaranAjax/";
         $data['pagination'] =pagination($urlpage,$limit,$adjacent,$rows,$page,$AddParameter);  
@@ -209,7 +238,7 @@ class direktori extends Controller {
         $dataCount=  $this->models->getCountData($categoryid=$kategori, $type=1,$where);
           
         $rows=count($dataCount);
-
+        
         if($page==1){
             $rangeStart = 1;  
 
