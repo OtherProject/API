@@ -67,6 +67,49 @@ function getId(val){
         
 
   } );
+$(document).ready(function() {
+ 
+        $("#register-kepakaran").select2({
+                  placeholder: "RUMPUN ILMU",
+                  dropdownAutoWidth: 'false', 
+                  tags:'true',
+                  tokenSeparators: [',', ' '],
+                   formatResult: function (item)
+                  {
+                      return  item.text+" (<i>"+item.interm+"</i>)" ;
+                  },
+                  formatSelection: function (item)
+                  {
+                      return  item.text+" (<i>"+item.interm+"</i>)" ;
+                  },
+            ajax: {
+                url: basedomain+"direktori/rumpun/",
+                dataType: 'json',
+                type: "GET",
+                quietMillis: 50,
+                data: function (term) {
+                    return {
+                        rumpunid : '',
+                        term: term
+                    };
+                },
+                results: function (data) {
+                    return {
+                        results: $.map(data, function (item) {
+                            return {
+                                // text: item.rumpun_id+"  "+item.nmps_lama,
+                                text: item.jen_lama+"-"+item.nmps_lama,
+                                id: item.id,
+                                interm: item.internasional_term
+                            } 
+                        })
+                    };
+                }
+            }
+        });
+        
+
+  } );
   {/literal}
   </script>
  {if $page.page=="organisasi" && $page.function=="anggota"}
