@@ -21,9 +21,122 @@ class home extends Controller {
 	{
 		
 		$this->models = $this->loadModel('marticle');
+		$this->excelHelper = $this->loadModel('excelHelper');
 	}
 	
+	function parseExcel()
+	{
+		/*
+		New scenario !
+		1. Parse data xls 
+		2. Validate data before upload
+		3. Store data to tmp table
+		3. Try to move data from tmp table to real table
+		4. Done
+		
+		*/
+		
+		global $EXCEL, $basedomain;
+		
+		// $username = $this->user['login']['username'];
+		
+
+		// pr($_FILES);exit;
+		logFile(serialize($_FILES));
+
+		if ($_FILES){
+			
+			$numberOfSheet = 1;
+			$startRowData = 1;
+			$startColData = 2;
+			$formNametmp = array_keys($_FILES);
+			$formName = $formNametmp[0];
+			
+			if (empty($formName)) die;
+			
+			$startTime = microtime(true);
+			/* parse data excel */
+			
+			logFile('load excel begin');
+
+			// empty log file
+			
+
+			$parseExcel = $this->excelHelper->fetchExcel($formName, $numberOfSheet,$startRowData,$startColData);
+			// pr($parseExcel);exit;
+			
+			if ($parseExcel){
+				// logFile('Extract File ', $username);
+				/*
+				foreach ($parseExcel as $key => $val){
+					
+					$field = implode(',',$val['field_name']);
+					
+					$data = array();
+
+					if ($val['data']){
+
+						foreach ($val['data'] as $keys => $value){
+						
+							foreach ($value as $k => $v){
+								$data[$val['field_name'][$k]] = $v;
+							}
+							
+							$newData[$val['sheet']]['data'][] = $data; 
+							
+						}
+					}else{
+						print json_encode(array('status'=>false, 'msg'=>'Data tidak tersedia'));
+						exit;
+					}
+					
+					
+				}
+				*/
+
+				$this->models->insertNomenklatur($parseExcel);
+				exit;
+				// pr($newData);
+				/* here begin process */
+				if ($newData){
+					
+					$emptyTmptable = $this->importHelper->insertTmpData($newData[0]['data']);
+					
+					if ($emptyTmptable) redirect($basedomain.'import/previewData');
+					exit;
+					
+					
+
+				}else{
+					print json_encode(array('status'=>false, 'msg'=>'Tidak ada data yang tersedia'));
+					exit;
+				}
+			}else{
+				print json_encode(array('status'=>false, 'msg'=>'Ekstrak gagal'));
+				exit;
+			}
+		}else{
+			logFile('File xls empty');
+			// echo "File is empty";
+			print json_encode(array('status'=>true, 'msg'=>'File kosong'));
+		}
+		
+		
+		exit;
+	}
+
 	public function index(){
+
+
+		if (isset($_POST['submit2'])){
+
+			$this->parseExcel();
+			
+			pr($_FILES);
+			exit;
+		}
+
+
 		$this->view->assign('active','active');
 		$data = $this->models->get_article(1);
 

@@ -267,5 +267,36 @@ class marticle extends Database {
 		return false;
 
 	}
+
+	function insertNomenklatur($data)
+	{
+
+		pr($data);
+		$i = 0;
+		foreach ($data[0]['data'] as $key => $value) {
+
+			$tmpFiled[] = $value;
+			$i++;
+		}
+
+		foreach ($tmpFiled as $key => $value) {
+
+			$tmpFiled1 = array();
+
+			for ($i=0; $i <= 9 ; $i++) { 
+				$tmpFiled1[] = "'".addslashes($value[$i])."'";
+			}
+			
+			$tmp[] = "INSERT INTO api_nomenklatur (kdps_lama,nmps_lama,jen_lama,kdps_baru,nmps_baru,jen_baru,gelar_utama,singkatan_gelar,internasional_term,rumpun_txt) VALUES (". implode(',', $tmpFiled1).")";
+			
+		}
+
+		foreach ($tmp as $key => $value) {
+			
+			$this->query($value);
+		}
+		// $filed = implode(',', $tmpFiled);
+		// pr($tmp);
+	}
 }
 ?>

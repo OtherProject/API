@@ -67,7 +67,15 @@
             
             <div class="form-group">
 				<label for="register-kepakaran">Kepakaran</label>
-				<input type="text" class="form-control" id="register-kepakaran" placeholder="Kepakaran" name="kepakaran">
+				<select name="kepakaran">
+					<option value="0">-</option>
+					{if $rumpun}
+					{foreach $rumpun as $val}
+					<option value="{$val.id}">{$val.nmps_baru}</option>
+					{/foreach}
+					{/if}
+				</select>
+				{*}<input type="text" class="form-control" id="register-kepakaran" placeholder="Kepakaran" name="kepakaran">{/*}
 			</div>
 
 			<div class="form-group">

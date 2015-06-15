@@ -27,6 +27,7 @@ class user extends Controller {
     
     function local()
     {
+        
         if (isset($_POST['token'])){
 
             $validateData = $this->loginHelper->local($_POST);
@@ -76,7 +77,8 @@ class user extends Controller {
         $isUserSet = $_SESSION['newuser']['email'];
         if ($isUserSet=="") {redirect($basedomain.'user/register_step1');exit;}
 
-        // pr($_SESSION);
+        $getNomenklatur = $this->contentHelper->getNomenklatur();
+        // pr($getNomenklatur);
         if ($_POST){
             // pr($_POST);
 
@@ -88,6 +90,8 @@ class user extends Controller {
                 redirect($basedomain.'user/register_step2');exit;
             }
         }
+
+        $this->view->assign('rumpun',$getNomenklatur);
     	return $this->loadView('user/register_step2');
     }
     

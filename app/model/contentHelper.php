@@ -295,5 +295,30 @@ class contentHelper extends Database {
         }
         return false;
     }
+
+
+    function getNomenklatur($id=false, $rumpunid=false, $debug=false)
+    {
+
+        $filter = "";
+        if ($id) $filter .= " AND n.id = {$id}";
+        if ($rumpunid) $filter .= " AND n.rumpun_id = {$rumpunid}";
+        
+        $sql = array(
+                'table'=>'api_nomenklatur AS n, api_nomenklatur_rumpun AS nr',
+                'field'=>"n.*, nr.rumpun",
+                'condition' => "n.n_status = 1 {$filter}",
+                'joinmethod' => 'LEFT JOIN',
+                'join'=> "n.rumpun_id = nr.id"
+                );
+
+        $res = $this->lazyQuery($sql,$debug);
+
+        if ($res){
+
+            return $res;
+        }
+        return false;
+    }
 }
 ?>
