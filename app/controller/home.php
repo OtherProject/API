@@ -21,6 +21,7 @@ class home extends Controller {
 	
 	function index(){
 		
+		// pr($_SESSION);		
 		//$berita = $this->contentHelper->getNews($id=false,$cat=1);
 		$berita = $this->contentHelper->getNews($id=false,$cat=1,$type=1, 0, 3);
     	$this->view->assign('berita',$berita);

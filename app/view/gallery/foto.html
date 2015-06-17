@@ -1,41 +1,39 @@
 <div class="container api-content">  
-            
-    <div class="row">
-        <div class="col-md-12">
-            <h3>Foto</h3>
+   <div id="dataAjax">
+
+   </div>
+
+</div>
+<div id="blueimp-gallery" class="blueimp-gallery" data-use-bootstrap-modal="false">
+    <!-- The container for the modal slides -->
+    <div class="slides"></div>
+    <!-- Controls for the borderless lightbox -->
+    <h3 class="title"></h3>
+    <a class="prev">&laquo;</a>
+    <a class="next">&raquo;</a>
+    <a class="close">x</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+    <!-- The modal dialog, which will be used to wrap the lightbox content -->
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body next"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left prev">
+                        <i class="glyphicon glyphicon-chevron-left"></i>
+                        Previous
+                    </button>
+                    <button type="button" class="btn btn-primary next">
+                        Next
+                        <i class="glyphicon glyphicon-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
-
-    <div class="row">
-        {foreach $data as $var}
-        <div class="col-md-3" style="margin-bottom: 10px;">
-            <div class="api-album">
-            <a href="{$basedomain}gallery/view_foto/?album={$var.id}">
-                <img src="{$basedomain}public_assets/gallery/images/{$var.image}">
-            </a>
-            <div class="caption_album">
-                <a href="{$basedomain}gallery/view_foto/?album={$var.id}">{$var.title|truncate:25}</a>
-                <p class="text-muted">{$var.count} foto</p>
-            </div>
-            </div>
-        </div>
-        {/foreach}
-        
-
-        {*}
-        <div class="col-md-3" style="margin-bottom: 10px;">
-            <div class="api-album">
-            <a href="{$basedomain}gallery/view_RAKORLOK">
-                <img src="{$basedomain}public_assets/gallery/thumbs/2.JPG">
-            </a>
-            <div class="caption_album">
-                <a href="{$basedomain}gallery/view_RAKORLOK">RAKORLOK 7 BHMN</a>
-                <p class="text-muted">4 foto</p>
-            </div>
-            </div>
-        </div>
-       {/*}
-
-    </div>
-
 </div>

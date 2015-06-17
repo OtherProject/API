@@ -64,18 +64,16 @@
 				<label for="register-pendTerakhir">Pendidikan Terakhir</label>
 				<input type="text" class="form-control" id="register-pendTerakhir" placeholder="Pendidikan Terakhir" name="pendidikan">
 			</div>
-            
+            {*}
             <div class="form-group">
 				<label for="register-kepakaran">Kepakaran</label>
-				<select name="kepakaran">
-					<option value="0">-</option>
-					{if $rumpun}
-					{foreach $rumpun as $val}
-					<option value="{$val.id}">{$val.nmps_baru}</option>
-					{/foreach}
-					{/if}
-				</select>
-				{*}<input type="text" class="form-control" id="register-kepakaran" placeholder="Kepakaran" name="kepakaran">{/*}
+
+				<input type="text" class="form-control" id="register-kepakaran2" placeholder="Kepakaran" name="kepakaran">
+			</div>{/*}
+			<div class="form-group">
+				<label for="register-kepakaran">Kepakaran</label>
+				<textarea class="form-control2" id="register-kepakaran" placeholder="Kepakaran" name="kepakaran"></textarea>
+
 			</div>
 
 			<div class="form-group">

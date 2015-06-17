@@ -1,3 +1,84 @@
+<!-- <div class="container api-content"> -->
+
+    <div class="pull-right"><a href="{$basedomain}organisasi/anggota/?page={$page}&kategori={$kategori}" class="btn api-btn page-numbers zoomIn animated"><span class="glyphicon glyphicon-chevron-left"></span> Back</a></div>
+    <h3>{$detailmember.name}</h3>
+    <div class="row zoomIn animated">
+        <div class="col-md-3 api-anggota_detail">
+            <img src="{$basedomain}public_assets/anggota/2.jpg" class="img-responsive"/>
+        </div>
+        <div class="col-md-9 api-anggota_detail">
+            
+            <h4>Bio</h4>
+            
+            <div class="col-md-4">
+                <p class="information">Kepakaran</p>
+            </div>
+            <div class="col-md-8">
+                <p>{$detailmember.nmps_lama}(<i>{$detailmember.internasional_term}</i>)&nbsp;&nbsp;<br/>{$detailmember.rumpun_txt}</p>
+            </div>
+            
+            <div class="col-md-4">
+                <p class="information">Contact Address</p>
+            </div>
+            <div class="col-md-8">
+                <p>{$detailmember.StreetName}&nbsp;&nbsp;</p>
+            </div>
+            
+            <div class="col-md-4">
+                <p class="information">Phone</p>
+            </div>
+            <div class="col-md-8">
+                <p>{$detailmember.phone_number}&nbsp;&nbsp;</p>
+            </div>
+            
+            <div class="col-md-4">
+                <p class="information">Email</p>
+            </div>
+            <div class="col-md-8">
+                <a href="mailto:"><p>{$detailmember.email}&nbsp;&nbsp;</p></a>
+            </div>
+            
+        </div>
+    </div>
+    
+    <div class="row zoomIn animated">
+        <div class="api-anggota_detail">
+            {if $riwayatpekerjaan}
+            <h4>Current Activity</h4>
+            <ul>
+                {foreach $riwayatpekerjaan as $valrp}
+                <li>{$valrp.judul}, {$valrp.keterangan}</li>
+                {/foreach}
+            </ul>
+            {/if}
+
+            {if $publikasi}
+
+            <h4>Research Interest</h4>
+            <ul>
+                {foreach $publikasi as $valpublikasi}
+                <li>{$valpublikasi.judul}, {$valpublikasi.keterangan}</li>
+                {/foreach}
+            </ul>
+            {/if}
+            
+            
+            
+            {if $matkul}
+            <h4 style="margin-top: 10px;">Teaching Experiences</h4>
+            <ul>
+                {foreach $matkul as $valmatkul}
+
+                    <li><strong>{$valmatkul.judul}</strong>, {$valmatkul.keterangan} ({$valmatkul.tahun})</li>
+                {/foreach}
+            </ul>
+            {/if}
+
+        </div>
+    </div>
+<!-- </div> -->
+
+{*}
 <div class="container api-content">
     <h3>Hyo Jeong Kim (Joanna), Ph.D.</h3>
     <div class="row">
@@ -99,3 +180,4 @@
         </div>
     </div>
 </div>
+{/*}

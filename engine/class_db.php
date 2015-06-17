@@ -372,7 +372,7 @@ class Database
 					$sql = "SELECT {$field} FROM {$table} WHERE {$whereCondition} {$limit}";
 				}
 
-				
+				logFile($sql);
 				if ($debug){
 					if ($debug>1){
 						pr($sql);
@@ -398,6 +398,7 @@ class Database
 				$value = $data['value'];
 
 				$sql = "INSERT INTO {$table} ({$field}) VALUES ({$value})";
+				logFile($sql);
 				if ($debug){
 					if ($debug>1){
 						pr($sql);
@@ -426,6 +427,7 @@ class Database
 				else $limit = "";
 
 				$sql = "UPDATE {$table} SET {$field} WHERE {$condition} {$limit}";
+				logFile($sql);
 				if ($debug){
 					if ($debug>1){
 						pr($sql);

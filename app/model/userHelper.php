@@ -6,6 +6,9 @@ class userHelper extends Database {
         $session = new Session;
         $getSessi = $session->get_session();
         $this->user = $getSessi['login'];
+        $this->salt = "ovancop1234";
+        $this->token = str_shuffle('cmsaj23y4ywdni237yeisa');
+        $this->date = date('Y-m-d H:i:s');
     }
     
     /**
@@ -108,5 +111,111 @@ class userHelper extends Database {
         return false;
 
     } 
+
+    function emailBlast($data)
+    {
+
+        global $basedomain;
+
+        $field = array('email', 'name'); 
+
+        foreach ($data as $key => $value) {
+            
+            if (in_array($key, $field)){
+                $tmpF[] = $key;
+                $tmpV[] = "'".$value."'";
+            }
+        }
+
+        $tmpF[] = "register_date";
+        $tmpF[] = "usertype";
+        $tmpF[] = "email_token";
+        $tmpF[] = "salt";
+        $tmpF[] = "password";
+
+        $pass = sha1($this->salt.$data['password']);
+        $tmpV[] = "'".$this->date."'";
+        $tmpV[] = 1;
+        $tmpV[] = "'".$this->token."'";
+        $tmpV[] = "'".$this->salt."'";
+        $tmpV[] = "'{$pass}'";
+
+
+        // pr($tmpV);
+        $impField = implode(',', $tmpF);
+        $impData = implode(',', $tmpV);
+
+        // $sql = "INSERT IGNORE INTO social_member ({$impField}) VALUES ({$impData})";
+        $sql = array(
+                'table'=>'social_member',
+                'field'=>"{$impField}",
+                'value' => "{$impData}",
+                );
+
+        $res = $this->lazyQuery($sql,$debug,1);
+
+        if ($res){
+
+            $dataencode = array('email'=>$data['email'], 'token'=>$this->token);
+            $msg = encode(serialize($dataencode));
+
+            $dataArr['encode'] = $msg;
+            $dataArr['email'] = $data['email'];
+            $dataArr['name'] = $data['name'];
+
+            
+            // logFile($msg);
+            // $html = "klik link berikut ini {$basedomain}register/validate/?ref={$msg}";
+            // $send = sendGlobalMail($data['email'],false,$html);
+            return $dataArr;
+        } 
+
+        
+        return false;
+    }
+
+    function getEmailToken($email=false, $all=false)
+    {
+
+        $filter = "";
+
+        if($email==false) return false;
+        
+        if($all) $filter = " * ";
+        else $filter = " email_token ";
+
+        $sql = "SELECT {$filter} FROM social_member WHERE `email` = '".$email."' LIMIT 1";
+        // logFile($sql);
+        $res = $this->fetch($sql);
+        if ($res) return $res;
+        return false;
+    }
+
+    function updateRegisterStep($data, $debug=false)
+    {
+
+        $pass = sha1($this->salt.$data['password']);
+
+        $sql = array(
+                'table'=>'social_member',
+                'field'=>"register_step = '4', username = '{$data['username']}', n_status = 1, login_count = (login_count+1), password = '{$pass}', usertype = 2",
+                'condition' => "email = '{$data['email']}'",
+                );
+
+        $res = $this->lazyQuery($sql,$debug,2);
+
+        if ($res){
+
+            $sql = array(
+                'table'=>'social_member',
+                'field'=>"*",
+                'condition' => "email = '{$data['email']}' LIMIT 1",
+                );
+
+            $result = $this->lazyQuery($sql,$debug);
+            return $result;
+        }
+        return false;
+    }
 }
 ?>

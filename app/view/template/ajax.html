@@ -1,0 +1,851 @@
+<script type="text/javascript">
+  {literal}
+function getId(val){
+  $("#rumpun").val(val);
+  
+            var user = $('#rumpun').val();
+   if(user==1){
+              var textku ="RUMPUN ILMU AGAMA";
+            }else if(user==2){
+              var textku ="RUMPUN ILMU HUMANIORA";
+
+            }else if(user==3){
+              var textku ="RUMPUN ILMU SOSIAL";
+
+            }else if(user==4){
+              var textku ="RUMPUN  ILMU ALAM";
+
+            }else if(user==5){
+              var textku ="RUMPUN  ILMU FORMAT";
+
+            }else if(user==6){
+              var textku ="RUMPUN  ILMU TERAPAN";
+
+            }
+
+            $('#select2-chosen-1').html(textku); 
+            $('#titleRumpun').html("<h4>"+textku+"</h4>"); 
+}
+  $(document).ready(function() {
+    // alert("ada");
+        $("#kepakaran").select2({
+                  placeholder: "RUMPUN ILMU AGAMA",
+                  dropdownAutoWidth: 'true', 
+                   formatResult: function (item)
+                  {
+                      return  item.text+" (<i>"+item.interm+"</i>)" ;
+                  },
+                  formatSelection: function (item)
+                  {
+                      return  item.text+" (<i>"+item.interm+"</i>)" ;
+                  },
+            ajax: {
+                url: basedomain+"direktori/rumpun/",
+                dataType: 'json',
+                type: "GET",
+                quietMillis: 50,
+                data: function (term) {
+                    return {
+                        rumpunid : $("#rumpun").val(),
+                        term: term
+                    };
+                },
+                results: function (data) {
+                    return {
+                        results: $.map(data, function (item) {
+                            return {
+                                // text: item.rumpun_id+"  "+item.nmps_lama,
+                                text: item.jen_lama+"-"+item.nmps_lama,
+                                id: item.id,
+                                interm: item.internasional_term
+                            } 
+                        })
+                    };
+                }
+            }
+        });
+        
+
+  } );
+$(document).ready(function() {
+ 
+        $("#register-kepakaran").select2({
+                  placeholder: "RUMPUN ILMU",
+                  dropdownAutoWidth: 'false', 
+                  tags:'true',
+                  tokenSeparators: [',', ' '],
+                   formatResult: function (item)
+                  {
+                      return  item.text+" (<i>"+item.interm+"</i>)" ;
+                  },
+                  formatSelection: function (item)
+                  {
+                      return  item.text+" (<i>"+item.interm+"</i>)" ;
+                  },
+            ajax: {
+                url: basedomain+"direktori/rumpun/",
+                dataType: 'json',
+                type: "GET",
+                quietMillis: 50,
+                data: function (term) {
+                    return {
+                        rumpunid : '',
+                        term: term
+                    };
+                },
+                results: function (data) {
+                    return {
+                        results: $.map(data, function (item) {
+                            return {
+                                // text: item.rumpun_id+"  "+item.nmps_lama,
+                                text: item.jen_lama+"-"+item.nmps_lama,
+                                id: item.id,
+                                interm: item.internasional_term
+                            } 
+                        })
+                    };
+                }
+            }
+        });
+        
+
+  } );
+  {/literal}
+  </script>
+ {if $page.page=="organisasi" && $page.function=="anggota"}
+        {literal}
+            <script type="text/javascript">
+             $(function(){
+               
+                $(document).ready(function(){
+
+                        $.post(basedomain+"organisasi/anggotaAjax", {actionfunction: 'showData', page:'1',kategori:'a'}, function(data){
+                            
+                            if (data.status==true) {
+                               
+                                    $('#dataAjax').html(data.data); 
+
+                                   
+                            }else{
+                                 $('.ajax-spinner-bars').css("display","none"); 
+                            }
+                        }, "JSON")
+                    
+                    })
+                
+                $('#dataAjax').on('click','.page-numbers',function(){
+             
+                
+                   $('.ajax-spinner-bars').css("display","block"); 
+                   $page = $(this).attr('href');
+                  
+                   $pageind = $page.indexOf('page=');
+                   $sPageURL = $page.substring(($pageind));
+                   
+                   var sURLVariables = $sPageURL.split('&');
+                 
+                    for (var i = 0; i < sURLVariables.length; i++) 
+                    {   
+                        var sParameterName = sURLVariables[i].split('=');
+                        if (sParameterName[0] == 'page') 
+                        {   
+                           
+                           var paging =sParameterName[1];
+
+                        }else if (sParameterName[0] == 'kategori') {
+
+                           var kategori =sParameterName[1];
+                        }
+                    }
+
+                    $.post(basedomain+"organisasi/anggotaAjax", {actionfunction: 'showData', page:paging ,kategori:kategori}, function(data){
+                            
+                            if (data.status==true) {
+                               
+                                    $('#dataAjax').html(data.data); 
+
+                                    $('.ajax-spinner-bars').css("display","none"); 
+                                
+                            }else{
+                                 $('.ajax-spinner-bars').css("display","none"); 
+                            }
+                        }, "JSON")
+
+                return false;
+                });
+                $('#dataAjax').on('click','#more',function(){
+
+
+                   $('.ajax-spinner-bars').css("display","block"); 
+                   $page = $(this).attr('href');
+                  
+                   $pageind = $page.indexOf('page=');
+                   $sPageURL = $page.substring(($pageind));
+                   
+                   var sURLVariables = $sPageURL.split('&');
+                 
+                    for (var i = 0; i < sURLVariables.length; i++) 
+                    {   
+                        var sParameterName = sURLVariables[i].split('=');
+                        if (sParameterName[0] == 'page') 
+                        {   
+                           
+                           var paging =sParameterName[1];
+
+                        }else if (sParameterName[0] == 'kategori') {
+
+                           var kategori =sParameterName[1];
+                        }else if (sParameterName[0] == 'id') {
+
+                           var id =sParameterName[1];
+                        }
+                    }
+
+                    $.post(basedomain+"organisasi/anggota_view", {actionfunction: 'showDataDetail',id :id, page:paging ,kategori:kategori}, function(data){
+                            
+                            if (data.status==true) {
+                               
+                                    $('#dataAjax').html(data.data); 
+
+                                    $('.ajax-spinner-bars').css("display","none"); 
+                                
+                            }else{
+                                   $('.ajax-spinner-bars').css("display","none"); 
+                            }
+                        }, "JSON")
+
+                return false;
+                });
+                
+            });
+
+            </script>
+        {/literal}
+    {/if}
+
+
+    {if $page.page=="direktori" AND ($page.function=="perundangan" OR $page.function=="buah_pikir") }
+
+            <script type="text/javascript">
+        
+            var pageFunction = "{$page.function}";
+            {literal}
+             $(function(){
+                
+                $(document).ready(function(){
+
+                         if (pageFunction=="buah_pikir") {
+                            var kategori = 6;
+                         }else if(pageFunction=="perundangan"){
+                             var kategori = 7;
+                         }
+                        $.post(basedomain+"direktori/dataAjax", {actionfunction: 'showDataAjax', page:'1',kategori:kategori,param :'',valueparam:''}, function(data){
+                            
+                            if (data.status==true) {
+                               
+                                    $('#dataAjax').html(data.data); 
+                                    
+                                   
+                            }else{
+                                 $('.ajax-spinner-bars').css("display","none"); 
+                            }
+                        }, "JSON")
+                    
+                    })
+                
+                $('#dataAjax').on('click','.page-numbers',function(){
+
+                
+                   $('.ajax-spinner-bars').css("display","block"); 
+
+                   $page = $(this).attr('href');
+                  
+                   $pageind = $page.indexOf('page=');
+                   $sPageURL = $page.substring(($pageind));
+                   
+                   var sURLVariables = $sPageURL.split('&');
+                 
+                    for (var i = 0; i < sURLVariables.length; i++) 
+                    {   
+                        var sParameterName = sURLVariables[i].split('=');
+                        if (sParameterName[0] == 'page') 
+                        {   
+                           
+                           var paging =sParameterName[1];
+
+                        }else if (sParameterName[0] == 'kategori') {
+
+                           var kategori =sParameterName[1];
+
+                        }else if (sParameterName[0] == 'parameter') {
+
+                           var parameter =sParameterName[1];
+
+                        }else if (sParameterName[0] == 'valueparameter') {
+
+                           var valueparameter =sParameterName[1];
+                        }else if (sParameterName[0] == 'search') {
+
+                           var search =sParameterName[1];
+                        }
+                    }
+
+                    $.post(basedomain+"direktori/dataAjax", {actionfunction: 'showDataAjax', page:paging ,kategori:kategori,param :parameter,valueparam:valueparameter,search :search}, function(data){
+                            
+                            if (data.status==true) {
+                               
+                                    $('#dataAjax').html(data.data); 
+
+                                 $('.ajax-spinner-bars').css("display","none"); 
+                                
+                            }else{
+                                 $('.ajax-spinner-bars').css("display","none"); 
+                            }
+                        }, "JSON")
+
+                return false;
+                });
+
+                 $('#dataAjax').on('click','#btnsearch',function(){
+
+                   var parameter =$('#parameter').val();
+                   var valueparameter =$('#valueparameter').val();
+
+                   $page = $(this).attr('href');
+                  
+                   $pageind = $page.indexOf('page=');
+                   $sPageURL = $page.substring(($pageind));
+                   
+                   var sURLVariables = $sPageURL.split('&');
+                 
+                    for (var i = 0; i < sURLVariables.length; i++) 
+                    {   
+                        var sParameterName = sURLVariables[i].split('=');
+                        if (sParameterName[0] == 'page') 
+                        {   
+                           
+                           var paging =sParameterName[1];
+
+                        }else if (sParameterName[0] == 'kategori') {
+
+                           var kategori =sParameterName[1];
+                        }else if (sParameterName[0] == 'search') {
+
+                           var search =sParameterName[1];
+                        }
+                    }
+
+                    $.post(basedomain+"direktori/dataAjax", {actionfunction: 'showDataAjax', page:paging ,kategori:kategori,param :parameter,valueparam:valueparameter,search:search}, function(data){
+                            
+                            if (data.status==true) {
+                               
+                                    $('#dataAjax').html(data.data); 
+
+                                 $('.ajax-spinner-bars').css("display","none"); 
+                                
+                            }else{
+                                   $('.ajax-spinner-bars').css("display","none"); 
+                            }
+                        }, "JSON")
+
+                return false;
+                });
+                 $('#dataAjax').on('click','#more',function(){
+
+
+                   var parameter =$('#parameter').val();
+                   var valueparameter =$('#valueparameter').val();
+
+                   $page = $(this).attr('href');
+                  
+                   $pageind = $page.indexOf('page=');
+                   $sPageURL = $page.substring(($pageind));
+                   
+                   var sURLVariables = $sPageURL.split('&');
+                 
+                    for (var i = 0; i < sURLVariables.length; i++) 
+                    {   
+                        var sParameterName = sURLVariables[i].split('=');
+                        if (sParameterName[0] == 'page') 
+                        {   
+                           
+                           var paging =sParameterName[1];
+
+                        }else if (sParameterName[0] == 'kategori') {
+
+                           var kategori =sParameterName[1];
+                        }else if (sParameterName[0] == 'search') {
+
+                           var search =sParameterName[1];
+                        }else if (sParameterName[0] == 'id') {
+
+                           var id =sParameterName[1];
+                        }else if (sParameterName[0] == 'parameter') {
+
+                           var parameter =sParameterName[1];
+
+                        }else if (sParameterName[0] == 'valueparameter') {
+
+                           var valueparameter =sParameterName[1];
+                        }
+                    }
+
+                    $.post(basedomain+"direktori/beritaDetail", {actionfunction: 'showDataAjax', page:paging ,kategori:kategori,param :parameter,valueparam:valueparameter,search:search,id:id}, function(data){
+                            
+                            if (data.status==true) {
+                               
+                                    $('#dataAjax').html(data.data); 
+
+                                 $('.ajax-spinner-bars').css("display","none"); 
+                                
+                            }else{
+                                 $('.ajax-spinner-bars').css("display","none"); 
+                            }
+                        }, "JSON")
+
+                return false;
+                });
+                
+            });
+            // $(document).on('keyup', '#valueparameter', function(e) {
+            //   if (e.keyCode == 13) { // 27 = Escape
+            //     // Do something
+            //     console.log('bisa');
+            //      $('#valueparameter').blur();
+            // }
+            // });
+            {/literal}
+            </script>
+    {/if}
+
+    {if $page.page=="news" && ($page.function=="berita" OR $page.function=="kliping_kegiatan")}
+       
+            <script type="text/javascript">
+
+            var pageFunction = "{$page.function}";
+             {literal}
+             $(function(){
+                
+                $(document).ready(function(){
+// alert("data");
+                      if (pageFunction=="berita") {
+                            var kategori = 1;
+                         }else if(pageFunction=="kliping_kegiatan"){
+                             var kategori = 2;
+                         }
+
+                        $.post(basedomain+"news/get_news", {actionfunction: 'showData', page:'1',kategori:kategori}, function(data){
+                            
+                            if (data.status==true) {
+                               
+                                    $('#dataAjax').html(data.data); 
+
+                                   
+                            }else{
+                                     $('.ajax-spinner-bars').css("display","none"); 
+                            }
+                        }, "JSON")
+                    
+                    })
+                
+                $('#dataAjax').on('click','.page-numbers',function(){
+             
+                
+                   $('.ajax-spinner-bars').css("display","block"); 
+                   $page = $(this).attr('href');
+                  
+                   $pageind = $page.indexOf('page=');
+                   $sPageURL = $page.substring(($pageind));
+                   
+                   var sURLVariables = $sPageURL.split('&');
+                 
+                    for (var i = 0; i < sURLVariables.length; i++) 
+                    {   
+                        var sParameterName = sURLVariables[i].split('=');
+                        if (sParameterName[0] == 'page') 
+                        {   
+                           
+                           var paging =sParameterName[1];
+
+                        }else if (sParameterName[0] == 'kategori') {
+
+                           var kategori =sParameterName[1];
+                        }
+                    }
+
+                    $.post(basedomain+"news/get_news", {actionfunction: 'showData', page:paging ,kategori:kategori}, function(data){
+                            
+                            if (data.status==true) {
+                               
+                                    $('#dataAjax').html(data.data); 
+
+                                    $('.ajax-spinner-bars').css("display","none"); 
+                                
+                            }else{
+                                     $('.ajax-spinner-bars').css("display","none"); 
+                            }
+                        }, "JSON")
+
+                return false;
+                });
+                $('#dataAjax').on('click','#more',function(){
+
+
+                   $('.ajax-spinner-bars').css("display","block"); 
+                   $page = $(this).attr('href');
+                  
+                   $pageind = $page.indexOf('page=');
+                   $sPageURL = $page.substring(($pageind));
+                   
+                   var sURLVariables = $sPageURL.split('&');
+                 
+                    for (var i = 0; i < sURLVariables.length; i++) 
+                    {   
+                        var sParameterName = sURLVariables[i].split('=');
+                        if (sParameterName[0] == 'page') 
+                        {   
+                           
+                           var paging =sParameterName[1];
+
+                        }else if (sParameterName[0] == 'kategori') {
+
+                           var kategori =sParameterName[1];
+                        }else if (sParameterName[0] == 'id') {
+
+                           var id =sParameterName[1];
+                        }
+                    }
+
+                    $.post(basedomain+"news/get_newsDetail", {actionfunction: 'showData',id :id, page:paging ,kategori:kategori}, function(data){
+                            
+                            if (data.status==true) {
+                               
+                                    $('#dataAjax').html(data.data); 
+
+                                    $('.ajax-spinner-bars').css("display","none"); 
+                                
+                            }else{
+                                     $('.ajax-spinner-bars').css("display","none"); 
+                            }
+                        }, "JSON")
+
+                return false;
+                });
+                
+            });
+
+        {/literal}
+
+            </script>
+    {/if}
+
+    {if $page.page=="gallery" && $page.function=="foto"}
+       
+            <script type="text/javascript">
+
+            // var pageFunction = "{$page.function}";
+             {literal}
+             $(function(){
+                
+                $(document).ready(function(){
+// alert("data");
+                      // if (pageFunction=="berita") {
+                      //       var kategori = 1;
+                      //    }else if(pageFunction=="kliping_kegiatan"){
+                      //        var kategori = 2;
+                      //    }
+
+                        $.post(basedomain+"gallery/getfoto", {actionfunction: 'showData', page:'1',kategori:'9'}, function(data){
+                            
+                            if (data.status==true) {
+                               
+                                    $('#dataAjax').html(data.data); 
+
+                                   
+                            }else{
+                                     $('.ajax-spinner-bars').css("display","none"); 
+                            }
+                        }, "JSON")
+                    
+                    })
+                
+                $('#dataAjax').on('click','.page-numbers',function(){
+             
+                
+                   $('.ajax-spinner-bars').css("display","block"); 
+                   $page = $(this).attr('href');
+                  
+                   $pageind = $page.indexOf('page=');
+                   $sPageURL = $page.substring(($pageind));
+                   
+                   var sURLVariables = $sPageURL.split('&');
+                 
+                    for (var i = 0; i < sURLVariables.length; i++) 
+                    {   
+                        var sParameterName = sURLVariables[i].split('=');
+                        if (sParameterName[0] == 'page') 
+                        {   
+                           
+                           var paging =sParameterName[1];
+
+                        }else if (sParameterName[0] == 'kategori') {
+
+                           var kategori =sParameterName[1];
+                        }
+                    }
+
+                    $.post(basedomain+"gallery/getfoto", {actionfunction: 'showData', page:paging ,kategori:kategori}, function(data){
+                            
+                            if (data.status==true) {
+                               
+                                    $('#dataAjax').html(data.data); 
+
+                                    $('.ajax-spinner-bars').css("display","none"); 
+                                
+                            }else{
+                                     $('.ajax-spinner-bars').css("display","none"); 
+                            }
+                        }, "JSON")
+
+                return false;
+                });
+                $('#dataAjax').on('click','#more',function(){
+
+
+                   $('.ajax-spinner-bars').css("display","block"); 
+                   $page = $(this).attr('href');
+                  
+                   $pageind = $page.indexOf('page=');
+                   $sPageURL = $page.substring(($pageind));
+                   
+                   var sURLVariables = $sPageURL.split('&');
+                 
+                    for (var i = 0; i < sURLVariables.length; i++) 
+                    {   
+                        var sParameterName = sURLVariables[i].split('=');
+                        if (sParameterName[0] == 'page') 
+                        {   
+                           
+                           var paging =sParameterName[1];
+
+                        }else if (sParameterName[0] == 'kategori') {
+
+                           var kategori =sParameterName[1];
+                        }else if (sParameterName[0] == 'id') {
+
+                           var id =sParameterName[1];
+                        }
+                    }
+
+                    $.post(basedomain+"gallery/view_foto", {actionfunction: 'showData',id :id, page:paging ,kategori:kategori}, function(data){
+                            
+                            if (data.status==true) {
+                               
+                                    $('#dataAjax').html(data.data); 
+
+                                    $('.ajax-spinner-bars').css("display","none"); 
+                                
+                            }else{
+                                    $('.ajax-spinner-bars').css("display","none"); 
+                            }
+                        }, "JSON")
+
+                return false;
+                });
+                
+            });
+
+        {/literal}
+
+            </script>
+    {/if}
+
+    {if $page.page=="direktori" AND $page.function=="kepakaran"}
+
+            <script type="text/javascript">
+        
+            // var pageFunction = "{$page.function}";
+            {literal}
+             $(function(){
+                
+                $(document).ready(function(){
+
+                        
+                        $.post(basedomain+"direktori/kepakaranAjax", {actionfunction: 'showDataKepakaran', page:'1',kategori:''}, function(data){
+                            
+                            if (data.status==true) {
+                               
+                                    $('#dataAjax').html(data.data); 
+                                    
+                                   
+                            }else{
+                                 $('.ajax-spinner-bars').css("display","none"); 
+                            }
+                        }, "JSON")
+                    
+                    })
+                
+                $('#dataAjax').on('click','.page-numbers',function(){
+
+                
+                   $('.ajax-spinner-bars').css("display","block"); 
+
+                   $page = $(this).attr('href');
+                  
+                   $pageind = $page.indexOf('page=');
+                   $sPageURL = $page.substring(($pageind));
+                   
+                   var sURLVariables = $sPageURL.split('&');
+                 
+                    for (var i = 0; i < sURLVariables.length; i++) 
+                    {   
+                        var sParameterName = sURLVariables[i].split('=');
+                        if (sParameterName[0] == 'page') 
+                        {   
+                           
+                           var paging =sParameterName[1];
+
+                        }else if (sParameterName[0] == 'kategori') {
+
+                           var kategori =sParameterName[1];
+
+                        }else if (sParameterName[0] == 'parameter') {
+
+                           var parameter =sParameterName[1];
+
+                        }else if (sParameterName[0] == 'valueparameter') {
+
+                           var valueparameter =sParameterName[1];
+                        }else if (sParameterName[0] == 'search') {
+
+                           var search =sParameterName[1];
+                        }
+                    }
+
+                    $.post(basedomain+"direktori/kepakaranAjax", {actionfunction: 'showDataKepakaran', page:paging ,kategori:kategori,param :parameter,valueparam:valueparameter,search :search}, function(data){
+                            
+                            if (data.status==true) {
+                               
+                                    $('#dataAjax').html(data.data); 
+
+                                 $('.ajax-spinner-bars').css("display","none"); 
+                                
+                            }else{
+                                 $('.ajax-spinner-bars').css("display","none"); 
+                            }
+                        }, "JSON")
+
+                return false;
+                });
+
+                 $('.api-search').on('click','#btnsearch',function(){
+
+                   var kepakaran =$('#kepakaran').val();
+                   var rumpun =$('#rumpun').val();
+                   // alert(kepakaran);
+                   $page = $(this).attr('href');
+                  
+                   $pageind = $page.indexOf('page=');
+                   $sPageURL = $page.substring(($pageind));
+                   
+                   var sURLVariables = $sPageURL.split('&');
+                 
+                    for (var i = 0; i < sURLVariables.length; i++) 
+                    {   
+                        var sParameterName = sURLVariables[i].split('=');
+                        if (sParameterName[0] == 'page') 
+                        {   
+                           
+                           var paging =sParameterName[1];
+
+                        }else if (sParameterName[0] == 'kategori') {
+
+                           var kategori =sParameterName[1];
+                        }else if (sParameterName[0] == 'search') {
+
+                           var search =sParameterName[1];
+                        }
+                    }
+
+                    $.post(basedomain+"direktori/kepakaranAjax", {actionfunction: 'showDataKepakaran', page:paging ,kategori:kepakaran}, function(data){
+                            
+                            if (data.status==true) {
+                               
+                                    $('#dataAjax').html(data.data); 
+
+                                 $('.ajax-spinner-bars').css("display","none"); 
+                                
+                            }else{
+                                   $('.ajax-spinner-bars').css("display","none"); 
+                            }
+                        }, "JSON")
+
+                return false;
+                });
+                 $('#dataAjax').on('click','#more',function(){
+
+
+                   var parameter =$('#parameter').val();
+                   var valueparameter =$('#valueparameter').val();
+
+                   $page = $(this).attr('href');
+                  
+                   $pageind = $page.indexOf('page=');
+                   $sPageURL = $page.substring(($pageind));
+                   
+                   var sURLVariables = $sPageURL.split('&');
+                 
+                    for (var i = 0; i < sURLVariables.length; i++) 
+                    {   
+                        var sParameterName = sURLVariables[i].split('=');
+                        if (sParameterName[0] == 'page') 
+                        {   
+                           
+                           var paging =sParameterName[1];
+
+                        }else if (sParameterName[0] == 'kategori') {
+
+                           var kategori =sParameterName[1];
+                        }else if (sParameterName[0] == 'search') {
+
+                           var search =sParameterName[1];
+                        }else if (sParameterName[0] == 'id') {
+
+                           var id =sParameterName[1];
+                        }else if (sParameterName[0] == 'parameter') {
+
+                           var parameter =sParameterName[1];
+
+                        }else if (sParameterName[0] == 'valueparameter') {
+
+                           var valueparameter =sParameterName[1];
+                        }
+                    }
+
+                    $.post(basedomain+"direktori/beritaDetail", {actionfunction: 'showDataAjax', page:paging ,kategori:kategori,param :parameter,valueparam:valueparameter,search:search,id:id}, function(data){
+                            
+                            if (data.status==true) {
+                               
+                                    $('#dataAjax').html(data.data); 
+
+                                 $('.ajax-spinner-bars').css("display","none"); 
+                                
+                            }else{
+                                 $('.ajax-spinner-bars').css("display","none"); 
+                            }
+                        }, "JSON")
+
+                return false;
+                });
+                
+            });
+            // $(document).on('keyup', '#valueparameter', function(e) {
+            //   if (e.keyCode == 13) { // 27 = Escape
+            //     // Do something
+            //     console.log('bisa');
+            //      $('#valueparameter').blur();
+            // }
+            // });
+            {/literal}
+            </script>
+    {/if}

@@ -41,7 +41,7 @@ class Controller extends Application{
 		if ($this->configkey=='dashboard')$this->view->assign('dashboard',$this->isAdminOnline());
 		if ($this->configkey=='services')$this->view->assign('services',$this->isAdminOnline());
 		// $this->inject();
-		// pr($filePath);
+		// pr($this->isUserOnline());
 		// exit;
 
 		//inject Data

@@ -12,6 +12,7 @@ class user extends Controller {
 		$this->loadmodule();
 		$this->view = $this->setSmarty();
 		$this->view->assign('basedomain',$basedomain);
+        $this->loadSession = new Session;
     }
 	
 	function loadmodule()
@@ -32,7 +33,8 @@ class user extends Controller {
 
             $validateData = $this->loginHelper->local($_POST);
             if ($validateData){
-                $_SESSION['user'] = $validateData;
+                // $_SESSION['user'] = $validateData;
+                $setSession = $this->loadSession->set_session($validateData);
                 print json_encode(array('status'=>true));
             }else{
                 print json_encode(array('status'=>false));
@@ -193,6 +195,92 @@ class user extends Controller {
         return $this->loadView('user/setting');
     }
 
+    function emailblast()
+    {
+        if (isset($_POST['submit'])){
+
+            $insertData = $this->userHelper->emailBlast($_POST);
+            
+            $this->view->assign('email', $insertData['email']);
+            $this->view->assign('name', $insertData['name']);
+            $this->view->assign('encode', $insertData['encode']);
+            
+            $html = $this->loadView('user/emailTemplate');
+
+            logFile($msg);
+            // $html = "klik link berikut ini {$basedomain}register/validate/?ref={$msg}";
+            $send = sendGlobalMail($insertData['email'],false,$html);
+            
+        }
+        return $this->loadView('user/emailblast');
+    }
+
+    function validate()
+    {
+
+        $data = _g('ref');
+        
+        // exit;
+        logFile($data);
+        if ($data){
+
+            $decode = unserialize(decode($data));
+           
+            // check if token is valid
+           
+            $salt = "register";
+            $userMail = $decode['email'];
+            $origToken = sha1($salt.$userMail);
+
+            // pr($decode);
+            $getToken = $this->userHelper->getEmailToken($decode['email']);
+
+            // db($getToken);
+            if ($getToken['email_token']==$decode['token']){
+
+                
+                // is valid, then create account and set status to validate
+                $this->view->assign('validate','Validate account Success');
+                $this->view->assign('status',true);
+                $this->view->assign('email',$userMail);
+
+            }else{
+
+                // invalid token
+                $this->view->assign('validate','Validate account error');
+                $this->view->assign('status',false);
+                logFile('token mismatch');
+            }
+
+            
+
+        }
+        
+        return $this->loadView('user/activate-account');
+    }
+
+    function activate()
+    {
+        global $basedomain;
+        if (isset($_POST['token'])){
+
+            // pr($_POST);
+            $updateUser = $this->userHelper->updateRegisterStep($_POST);
+            if ($updateUser){
+                $newData = array();
+                foreach ($updateUser[0] as $key => $value) {
+                    $newData[$key] = $value;
+                }
+                // pr($newData);
+                // exit;
+                $setSession = $this->loadSession->set_session($newData);
+            }
+            redirect($basedomain);
+            exit;
+        }
+
+        
+    }
 }
 
 ?>

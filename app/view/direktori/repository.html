@@ -13,7 +13,17 @@
         </thead>
  
         <tbody>
-            <tr>
+            {if $repository}
+                {$no=1}
+              {foreach $repository as $val}
+              <tr>
+                <td class="text-center">{$no++}</td>
+                <td>{dateRangeConvert($val.posted_date,$val.expired_date)}</td>
+                <td>{$val.title}</td>
+                <td><a href="{$basedomain}direktori/repository_view/?id={$val.id}">{$val.content}</a></td>
+                <td>{$val.brief}</td>
+            </tr>
+           {*} <tr>
                 <td class="text-center">1</td>
                 <td>1-2 Juni 2013</td>
                 <td>Kongres</td>
@@ -26,7 +36,9 @@
                 <td>Forum</td>
                 <td><a href="{$basedomain}direktori/repository_view_2">Forum IPIMA 2013</a></td>
                 <td>Bogor, Indonesia</td>
-            </tr>
+            </tr>{/*}
+              {/foreach}
+            {/if}
         </tbody>
     </table>
 

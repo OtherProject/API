@@ -1,0 +1,143 @@
+<div class="col-md-8">
+    <h3>Perundang-undangan</h3>
+    <div class="row kepakaran">
+               
+        
+        <div class="col-md-12">
+            <div class="api-search text-center">
+                <h3>Search</h3>
+                <form class="form-inline" role="form" method="POST" action="{$basedomain}direktori/search_result">
+                    <div class="form-group">
+                        <select class="form-control" name="kategori" required>
+                          <option value="">All</option>
+                          <option disabled>By Project</option>
+                          <option value="1">Judul</option>
+                          <option value="2">Penulis</option>
+                          <option value="3">Kontent</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="search" class="form-control" id="k" name="teks" placeholder="Enter search terms" required>
+                        <button type="submit" id="s" class="btn api-btn"><span class="glyphicon glyphicon-search"></span></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- <p>Results 1 - 10 of 475</p> -->
+
+    <div id="dataAjax">
+    {if $perundangan}
+        {foreach $perundangan as $val}
+
+<!--START PERUNDANGAN-->    
+    <div class="row api-perundangan">
+        <div class="col-md-12">
+            <div class="title">
+                <a href="{$basedomain}direktori/prdDetail/?id={$val.id}"><h4>{$val.title}</h4></a>
+            </div>
+            <div class="dateposted">
+                <p>Posted by <a href="#">admin</a> at {$val.posted_date}
+                    &nbsp;&nbsp;
+                    {if $val.file!=''}
+                    <a href="{$basedomain}public_assets/perundangan/{$val.file}"  target="_blank"><img src="{$basedomain}assets/img/pdf-blue.png" style="height: 25px;" title="download" /><small>Download File</small></a>
+                    {/if}
+                </p>
+            </div>
+            <div class="content">
+
+                {if $val.image!=''}
+                <div class="col-md-3" style="padding-left: 0;">
+                    &nbsp;
+                            <img src="{$basedomain}public_assets/perundangan/{$val.image}" class="img-responsive" />
+                
+                        </div>
+                    {/if}
+                <p class="text-justify">
+                    {$val.brief|html_entity_decode}
+                </p>
+            </div>
+        </div>
+    </div>
+    <a href="{$basedomain}direktori/prdDetail/?id={$val.id}" class="pull-right more btn-xs btn api-btn">Read more...</a>
+    <div class="clearfix"></div>
+<!--END PERUNDANGAN--> 
+        <hr class="api-separator"/>
+        {/foreach}
+{/if}
+</div>
+{*}
+<!--START PERUNDANGAN-->    
+    <div class="api-perundangan">
+        <div class="title">
+            <a href="{$basedomain}news/berita_detail"><h4>Contoh Perundang-undangan</h4></a>
+        </div>
+        <div class="dateposted">
+            <p>Posted by <a href="#">admin</a> at 11:20 am August 30, 2014</p>
+        </div>
+        <div class="content">
+            <p class="text-justify">
+                Integer nibh orci, elementum quis adipiscing non, tristique ut risus. Cras elementum, nunc vel egestas tincidunt, magna sem tristique dolor, vel molestie enim nibh non lectus. Aliquam lacinia ipsum ut risus dapibus ullamcorper congue risus feugiat. Praesent venenatis nibh id est egestas sagittis.
+            </p>
+        </div>
+    </div>
+    <a href="{$basedomain}news/berita_detail" class="pull-right more btn api-btn">Read more...</a>
+    <div class="clearfix"></div>
+<!--END PERUNDANGAN--> 
+        <hr class="api-separator"/>
+        
+<!--START PERUNDANGAN-->    
+    <div class="api-perundangan">
+        <div class="title">
+            <a href="{$basedomain}news/berita_detail"><h4>Contoh Perundang-undangan</h4></a>
+        </div>
+        <div class="dateposted">
+            <p>Posted by <a href="#">admin</a> at 11:20 am August 30, 2014</p>
+        </div>
+        <div class="content">
+            <p class="text-justify">
+                Integer nibh orci, elementum quis adipiscing non, tristique ut risus. Cras elementum, nunc vel egestas tincidunt, magna sem tristique dolor, vel molestie enim nibh non lectus. Aliquam lacinia ipsum ut risus dapibus ullamcorper congue risus feugiat. Praesent venenatis nibh id est egestas sagittis.
+            </p>
+        </div>
+    </div>
+    <a href="{$basedomain}news/berita_detail" class="pull-right more btn api-btn">Read more...</a>
+    <div class="clearfix"></div>
+<!--END PERUNDANGAN--> 
+        <hr class="api-separator"/>
+        
+<!--START PERUNDANGAN-->    
+    <div class="api-perundangan">
+        <div class="title">
+            <a href="{$basedomain}news/berita_detail"><h4>{$val.title}</h4></a>
+        </div>
+        <div class="dateposted">
+            <p>Posted by <a href="#">admin</a> at {$val.posted_date}</p>
+        </div>
+        <div class="content">
+            <p class="text-justify">
+                 {$val.brief|html_entity_decode}
+            </p>
+        </div>
+    </div>
+    <a href="{$basedomain}news/berita_detail" class="pull-right more btn api-btn">Read more...</a>
+    <div class="clearfix"></div>
+<!--END PERUNDANGAN--> 
+{/*}
+{*}
+    <ul class="pagination">
+      <li><a href="#">&laquo;</a></li>
+      <li><a href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">4</a></li>
+      <li><a href="#">5</a></li>
+      <li><a href="#">&raquo;</a></li>
+    </ul>
+{/*}
+</div>
+</div>
+
+</div>
+
+</div>

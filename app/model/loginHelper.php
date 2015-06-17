@@ -6,7 +6,7 @@ class loginHelper extends Database {
     {
         global $basedomain;
         $this->loadmodule();
-        $this->salt = '12345678PnD';
+        $this->salt = 'ovancop1234';
     }
     
     function loadmodule()
@@ -19,12 +19,11 @@ class loginHelper extends Database {
 	function local($data=false)
 	{
 		if($data== false) return false;
-		
-		$salt = '12345678PnD';
-		$password = sha1($data['password'].$salt);
-		$sql = "SELECT * FROM social_member where email = '{$data['username']}' AND password = '{$password}' LIMIT 1";
+		// pr($data);
+		$password = sha1($this->salt . $data['pass']);
+		$sql = "SELECT * FROM social_member where (email = '{$data['user']}' OR username = '{$data['user']}') AND password = '{$password}' LIMIT 1";
 		$res = $this->fetch($sql, 0);
-		pr($sql);
+		// pr($sql);
 		if ($res) return $res;
 		return false;
 	}

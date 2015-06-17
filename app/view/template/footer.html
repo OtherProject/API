@@ -39,6 +39,7 @@
     
     <!-- Helper -->
     <script src="{$basedomain}assets/js/helper.js"></script>
+    <script src="{$basedomain}assets/js/pace.min.js"></script>
 
     <!-- Bootstrap JS -->
     <script src="{$basedomain}plugin/bootstrap-3.3.2/js/bootstrap.min.js"></script> 
@@ -56,6 +57,9 @@
     
     <!-- Datepicker JS -->
     <script src="{$basedomain}plugin/datepicker/bootstrap-datepicker.js"></script>
+ 
+    <script type="text/javascript" src="{$basedomain}assets/select2/select2.js"></script>
+
     <script type="text/javascript">
 
         var agenda = {$agenda};
@@ -137,70 +141,9 @@
         {/literal}
     </script>
 
-    {if $page.page=="organisasi" && $page.function=="anggota"}
-        {literal}
-            <script type="text/javascript">
-             $(function(){
-               
-                $(document).ready(function(){
-                       // alert("ada");
-                        $.post(basedomain+"organisasi/anggotaAjax", {actionfunction: 'showData', page:'1',kategori:'a'}, function(data){
-                            
-                            if (data.status==true) {
-                               
-                                    $('#dataAjax').html(data.data); 
-                                   
-                            }else{
-                                // $('.category_val').html('');
-                                // alert('already existnot');
-                            }
-                        }, "JSON")
-                    
-                    })
-                
-                $('#dataAjax').on('click','.page-numbers',function(){
-
-                   $page = $(this).attr('href');
-                  
-                   $pageind = $page.indexOf('page=');
-                   $sPageURL = $page.substring(($pageind));
-                   
-                   var sURLVariables = $sPageURL.split('&');
-                 
-                    for (var i = 0; i < sURLVariables.length; i++) 
-                    {   
-                        var sParameterName = sURLVariables[i].split('=');
-                        if (sParameterName[0] == 'page') 
-                        {   
-                           
-                           var paging =sParameterName[1];
-
-                        }else if (sParameterName[0] == 'kategori') {
-
-                           var kategori =sParameterName[1];
-                        }
-                    }
-                
-                    $.post(basedomain+"organisasi/anggotaAjax", {actionfunction: 'showData', page:paging ,kategori:kategori}, function(data){
-                            
-                            if (data.status==true) {
-                               
-                                    $('#dataAjax').html(data.data); 
-                                
-                            }else{
-                                // $('.category_val').html('');
-                                // alert('already existnot');
-                            }
-                        }, "JSON")
-                return false;
-                });
-                
-                
-            });
-
-            </script>
-        {/literal}
-    {/if}
+    <!-- script ajax paging-->
+        {include file="template/ajax.html"}
+    <!-- script ajax paging-->
 
     <script type="text/javascript">
 

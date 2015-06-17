@@ -1,0 +1,40 @@
+
+    <h3>{$titleNews}</h3>
+    
+    {if $datanews}
+        {foreach $datanews as $val}
+
+            <!--START KLIPING-->    
+            <div class="row api-kliping zoomIn animated">
+                <div class="col-md-12">
+                    <div class="title">
+                        <a href="{$basedomain}news/kliping_detail/?id={$val.id}"><h4>{$val.title}</h4></a>
+                    </div>
+                    <div class="dateposted">
+                        <p>Posted by <a href="#">admin</a> at {$val.posted_date}</p>
+                    </div>
+                    <div class="row content">
+                        {if {$val.image}}
+                        <div class="col-md-3" style="padding-left: 0;">
+                            <img src="{$basedomain}public_assets/news/{$val.image}" class="img-responsive" />
+                        </div>
+                        {/if}
+                            <p class="text-justify">
+                                {$val.brief|html_entity_decode}
+                            </p>
+                    </div>
+                </div>
+            </div>
+                <a href="{$basedomain}news/get_newsDetail/?page={$page}&kategori={$kategori}&id={$val.id}" class="pull-right more btn-xs btn api-btn zoomIn animated" id="more">Read more...</a>
+                <div class="clearfix"></div>
+                <!--END KLIPING--> 
+                <hr class="api-separator"/>
+                
+            
+        {/foreach}
+    {/if}
+             <div class="col-md-12 text-center">  
+                {if $paging}
+                    {$paging}
+                {/if}
+            </div> 

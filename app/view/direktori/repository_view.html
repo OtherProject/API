@@ -1,5 +1,4 @@
 <div class="container api-content">
-    
     <div class="pull-right"><a href="{$basedomain}direktori/repository" class="btn api-btn"><span class="glyphicon glyphicon-chevron-left"></span> Back</a></div>
     
     <h3>Repository</h3>
@@ -13,16 +12,22 @@
         </thead>
  
         <tbody>
+            
+        {if $repo}
+        {$no=1}
+            {foreach $repo as $val}
             <tr>
-                <td class="text-center">1</td>
-                <td>PDF</td>
-                <td><a href="{$basedomain}public_assets/repo/1.pdf">Holistic Management: Misinformation on the Science of Grazed Ecosystems.pdf</a></td>
+                <td class="text-center">{$no}</td>
+                <td>{$val.brief}</td>
+                <td>
+                    <a target="_blank"href="{$basedomain}public_assets/repo/{$val.content}">{$val.title}</a>
+                </td>
             </tr>
-            <tr>
-                <td class="text-center">2</td>
-                <td>Image</td>
-                <td><a href="{$basedomain}public_assets/repo/1.JPG">Lorem.jpg</a></td>
-            </tr>
+            {$no=$no+1}
+            {/foreach}
+        {/if}
+
+
         </tbody>
     </table>
 

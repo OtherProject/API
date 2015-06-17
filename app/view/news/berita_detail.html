@@ -1,4 +1,6 @@
-<div class="col-md-8">             
+<!-- <div class="col-md-8">              -->
+
+   <div class="pull-right"><a href="{$basedomain}{$urlpage}?page={$page}&kategori={$kategori}" class="btn api-btn page-numbers"><span class="glyphicon glyphicon-chevron-left"></span> Back</a></div>     
     {if $berita}
         {foreach $berita as $val}
     <div class="api-news">
@@ -9,23 +11,24 @@
             <p>Posted by <a href="#">admin</a> at {$val.posted_date}</p>
         </div>
         <div class="content">
+            {if {$val.image}}
             <div class="col-md-12" style="padding-left: 0;">
-                {if {$val.image}}
+               
                 <img src="{$basedomain}public_assets/news/{$val.image}" class="img-responsive" />
-                {/if}
             </div>
-            <p class="text-justify">
+            {/if}
+            <div class="text-justify">
                 {$val.content|html_entity_decode}
-            </p>
+            </div>
             
             
             </div>
         </div>
         {/foreach}
     {/if}
-    </div>
+    <!-- </div>
 </div>
 
 </div>
 
-</div>
+</div> -->

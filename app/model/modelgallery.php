@@ -12,9 +12,10 @@ class modelgallery extends Database {
 		return $result;
 	}
 
-    function get_article($categoryid=null,$type=1)
+    function get_article($categoryid=false,$type=1,$start=0, $limit=5)
 	{
-		$query = "SELECT * FROM {$this->prefix}_news_content WHERE n_status = '1' AND categoryid = '{$categoryid}' OR n_status = '0' AND categoryid = '{$categoryid}' ORDER BY created_date DESC";
+		
+		$query = "SELECT * FROM {$this->prefix}_news_content WHERE categoryid = '{$categoryid}' ORDER BY created_date DESC LIMIT {$start},{$limit}";
 		
 		$result = $this->fetch($query,1);
 		// pr($result);
@@ -38,6 +39,18 @@ class modelgallery extends Database {
 		$result = $this->fetch($query,0);
 		
 		return $result;
+	}
+	function getCountDatafoto($categoryid=1, $type=1,$where=false)
+	{
+
+		$filter = "";
+		if ($where) $filter =$where;
+		$sql = "SELECT id FROM {$this->prefix}_news_content WHERE categoryid = {$categoryid}
+				AND articleType = {$type} {$filter}";
+		// pr($sql);
+		$res = $this->fetch($sql,1);
+		
+		return $res;
 	}
 	
 	

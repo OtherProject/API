@@ -20,9 +20,10 @@ class organisasi extends Controller {
         $this->modelmember = $this->loadModel('modelmember');
 	}
 	
-	/**function index(){
-    	return $this->loadView('profile');
-    }**/
+	// function index(){
+
+ //        return $this->profil();
+ //    }
     
     function profil(){
         
@@ -61,8 +62,8 @@ class organisasi extends Controller {
     
     function anggotaAjax(){
 
-        $limit ='1';
-        $adjacent ='3';
+        $limit ='6';
+        $adjacent ='2';
 
         if(isset($_REQUEST['actionfunction']) && $_REQUEST['actionfunction']!=''){
         $actionfunction = $_REQUEST['actionfunction'];
@@ -74,6 +75,7 @@ class organisasi extends Controller {
         $this->view->assign('alphabet',$dataShow['pageAbjad']);
         $this->view->assign('paging',$dataShow['pagination']);
         $this->view->assign('kategori',$_POST['kategori']);
+        $this->view->assign('page',$_POST['page']);
 
         $data['data']=$this->loadView('organisasi/anggota_Ajax');
 
@@ -90,11 +92,37 @@ class organisasi extends Controller {
 
         
         return $this->loadView('organisasi/anggota');
+
     }
     function anggota_view(){
         
+        // pr($_GET);
+
+         if(isset($_REQUEST['actionfunction']) && $_REQUEST['actionfunction']!=''){
+        $actionfunction = $_REQUEST['actionfunction'];
+          
+            $dataShow =  $this->showDataDetail($_POST);
+        }
+       // pr($dataShow);
+        // pr($matkul);
+        // pr($publikasi);
+        // pr($riwayatpekerjaan);
+        $this->view->assign('detailmember',$dataShow['data'][0]);
+        $this->view->assign('matkul',$dataShow['matkul']);
+        $this->view->assign('publikasi',$dataShow['publikasi']);
+        $this->view->assign('riwayatpekerjaan',$dataShow['riwayatpekerjaan']);
+        $this->view->assign('kategori',$_POST['kategori']);
+        $this->view->assign('page',$_POST['page']);
+
+        $data['data']=$this->loadView('organisasi/anggota-view');
+
+        if ($dataShow){
+            print json_encode(array('status'=>true, 'data'=>$data['data']));
+        }else{
+            print json_encode(array('status'=>false));
+        }
         
-        return $this->loadView('organisasi/anggota-view');
+        exit;
     }
 
     function showData($data,$limit,$adjacent){
@@ -117,103 +145,33 @@ class organisasi extends Controller {
           
         $data['pageAbjad']=$pageAbjad;
         $data['data'] = $dataKategorimember; 
-        $data['pagination'] =  $this->pagination($limit,$adjacent,$rows,$page,$kategori);  
+        $AddParameter="&kategori=".$kategori;
+        $urlpage="organisasi/anggota/";
+        $data['pagination'] =pagination($urlpage,$limit,$adjacent,$rows,$page,$AddParameter);  
 
         return $data;
     }
 
-function pagination($limit,$adjacents,$rows,$page,$kategori){   
-    global $basedomain;
-    $pagination='';
-    if ($page == 0) $page = 1;                  //if no page var is given, default to 1.
-    $prev = $page - 1;                          //previous page is page - 1
-    $next = $page + 1;                          //next page is page + 1
-    $prev_='';
-    $first='';
-    $lastpage = ceil($rows/$limit); 
-    $next_='';
-    $last='';
-    $url=$basedomain."organisasi/anggota/";
-    if($lastpage > 1)
-    {   
+    function showDataDetail($data){
+        // pr($data);
+        $id=$data['id'];
+        $page = $data['page']; 
+        $kategori = $data['kategori'];
         
-        //previous button
-        if ($page > 1) 
-            $prev_.= "<li><a class='page-numbers' href=\"$url?page=$prev&kategori=$kategori\">&laquo;</a></li>";
-        else{
-            //$pagination.= "<span class=\"disabled\">previous</span>"; 
-            }
-        
-        //pages 
-        if ($lastpage < 5 + ($adjacents * 2))   //not enough pages to bother breaking it up
-        {   
-        $first='';
-            for ($counter = 1; $counter <= $lastpage; $counter++)
-            {
-                if ($counter == $page)
-                    $pagination.= "<li class=\"active\"><span class=\"current\">$counter</span></li>";
-                else
-                    $pagination.= "<li><a class='page-numbers' href=\"$url?page=$counter&kategori=$kategori\">$counter</a></li>";                    
-            }
-            $last='';
-        }
-        elseif($lastpage > 3 + ($adjacents * 2))    //enough pages to hide some
-        {
-            //close to beginning; only hide later pages
-            $first='';
-            if($page < 1 + ($adjacents * 2))        
-            {
-                for ($counter = 1; $counter < 4 + ($adjacents * 2); $counter++)
-                {
-                    if ($counter == $page)
-                        $pagination.= "<li class=\"active\"><span class=\"current\">$counter</span></li>";
-                    else
-                        $pagination.= "<li><a class='page-numbers' href=\"$url?page=$counter&kategori=$kategori\">$counter</a></li>";                    
-                }
-            $last.= "<li><a class='page-numbers' href=\"$url?page=$lastpage&kategori=$kategori\">Last</a></li>";            
-            }
-            
-            //in middle; hide some front and some back
-            elseif($lastpage - ($adjacents * 2) > $page && $page > ($adjacents * 2))
-            {
-               $first.= "<li><a class='page-numbers' href=\"$url?page=1&kategori=$kategori\">First</a></li>";   
-            for ($counter = $page - $adjacents; $counter <= $page + $adjacents; $counter++)
-                {
-                    if ($counter == $page)
-                        $pagination.= "<li class=\"active\"><span class=\"current\">$counter</span></li>";
-                    else
-                        $pagination.= "<li><a class='page-numbers' href=\"$url?page=$counter&kategori=$kategori\">$counter</a></li>";                    
-                }
-                $last.= "<li><a class='page-numbers' href=\"$url?page=$lastpage&kategori=$kategori\">Last</a><li>";            
-            }
-            //close to end; only hide early pages
-            else
-            {
-                $first.= "<li><a class='page-numbers' href=\"$url?page=1\">First</a></li>";  
-                for ($counter = $lastpage - (2 + ($adjacents * 2)); $counter <= $lastpage; $counter++)
-                {
-                    if ($counter == $page)
-                        $pagination.= "<li class=\"active\"><span class=\"current\">$counter</span></li>";
-                    else
-                        $pagination.= "<li><a class='page-numbers' href=\"$url?page=$counter&kategori=$kategori\">$counter</a></li>";                    
-                }
-                $last='';
-            }
-            
-            }
-        if ($page < $counter - 1) 
-            $next_.= "<li><a class='page-numbers' href=\"$url?page=$next&kategori=$kategori\">&raquo;</a></li>";
-        else{
-            //$pagination.= "<span class=\"disabled\">next</span>";
-            }
-        $pagination = "<ul class=\"pagination\">".$first.$prev_.$pagination.$next_.$last;
-        //next button
-        
-        $pagination.= "</ul>\n";       
+        $detailmember =  $this->modelmember->detailmember($id);
+
+        $matkul=$this->modelmember->getRiwayat($id,0);
+        $publikasi=$this->modelmember->getRiwayat($id,1);
+        $riwayatpekerjaan=$this->modelmember->getRiwayat($id,2);
+
+        $data['data'] = $detailmember; 
+        $data['matkul'] = $matkul; 
+        $data['publikasi'] = $publikasi; 
+        $data['riwayatpekerjaan'] = $riwayatpekerjaan; 
+
+        return $data;
     }
 
-   return $pagination;  
-}
     function afiliasi(){
 
         

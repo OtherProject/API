@@ -14,13 +14,26 @@ body p,a{
 .nomargin{
     margin:0;
 }
+.nomargin-t{
+    margin-top: 0;
+}
 .nomargin-l{
     margin-left: 0;
+}
+.margin-r{
+    margin-right: 15px;
 }
 
 .nopadding-l{
     padding-left: 0;
 }
+.padding-all{
+    padding: 15px;
+}
+.padding-r{
+    padding-right: 15px;
+}
+
 
 
 .page-numbers.actived{
@@ -165,6 +178,13 @@ body p,a{
 .api-news .more, .api-kliping .more, .api-buah_pikir .more, .api-perundangan .more{margin:0 10px 5px 0;}
 .api-news .content img, .api-kliping .content img, .api-buah_pikir .content img, .api-perundangan .content img{margin-bottom: 10px;}
 .api-news h3, .api-kliping h3, .api-buah_pikir h3, .api-perundangan h3{color: #333;border: none;font-weight: bold;}
+
+.api-table_so td{
+    vertical-align:top;
+    padding: 15px;
+    border: 1px solid #CCC;
+}
+
 
 .api-kliping-side{
     background-color: #B6DFFF;
