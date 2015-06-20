@@ -186,6 +186,14 @@ class user extends Controller {
         global $basedomain;
 
         $isUserSet = $_SESSION['newuser']['email'];
+        $insertData = $this->userHelper->getUserData('email',$isUserSet);
+        
+        if ($insertData[0]['usertype']==1){
+            $this->view->assign('usertype', 1);
+        }else{
+            $this->view->assign('usertype', 2);
+        }
+        
         if ($isUserSet=="") {redirect($basedomain.'user/register_step1');exit;}
 
         return $this->loadView('user/register_step5');
