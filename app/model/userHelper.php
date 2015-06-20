@@ -162,7 +162,7 @@ class userHelper extends Database {
 
         $pass = sha1($this->salt.$data['password']);
         $tmpV[] = "'".$this->date."'";
-        $tmpV[] = 1;
+        $tmpV[] = 2;
         $tmpV[] = "'".$this->token."'";
         $tmpV[] = "'".$this->salt."'";
         $tmpV[] = "'{$pass}'";
