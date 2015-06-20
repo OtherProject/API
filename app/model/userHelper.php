@@ -109,6 +109,21 @@ class userHelper extends Database {
         return $res; 
     }
 
+    function updateStatusUser($email=false)
+    {
+
+        $sql = array(
+                'table'=>'social_member',
+                'field'=>"n_status = 1",
+                'condition' => "email = '{$email}'",
+                );
+
+        $res = $this->lazyQuery($sql,$debug,2);
+        if ($res) return true;
+        return false;
+
+    }
+
     function validateEmail($email, $debug=false)
     {
 

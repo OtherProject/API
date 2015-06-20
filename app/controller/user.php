@@ -260,7 +260,8 @@ class user extends Controller {
             // db($getToken);
             if ($getToken['email_token']==$decode['token']){
 
-                
+                $updateStatusUser = $this->userHelper->updateStatusUser($decode['email']);
+
                 // is valid, then create account and set status to validate
                 $this->view->assign('validate','Validate account Success');
                 $this->view->assign('status',true);
