@@ -146,20 +146,21 @@ class user extends Controller {
                         if ($save){
                             
                             $insertData = $this->userHelper->getUserData('email',$isUserSet);
+                            // pr($insertData);
                             if ($insertData[0]['usertype']!=2){
-
-                                $this->view->assign('email', $insertData['email']);
-                                $this->view->assign('name', $insertData['name']);
-                                $this->view->assign('encode', $insertData['encode']);
+                                // echo 'ada';
+                                $this->view->assign('email', $insertData[0]['email']);
+                                $this->view->assign('name', $insertData[0]['name']);
+                                $this->view->assign('encode', $insertData[0]['encode']);
                                 
                                 $html = $this->loadView('user/emailTemplate');
 
                                 logFile($msg);
                                 // $html = "klik link berikut ini {$basedomain}register/validate/?ref={$msg}";
-                                $send = sendGlobalMail($insertData['email'],false,$html);
+                                $send = sendGlobalMail($insertData[0]['email'],false,$html);
                             }
                             
- 
+                            // exit;
                             redirect($basedomain.'user/register_step5');
                         }
                     }else{
@@ -240,7 +241,7 @@ class user extends Controller {
         if ($data){
 
             $decode = unserialize(decode($data));
-           
+            // pr($decode);
             // check if token is valid
            
             $salt = "register";
@@ -248,7 +249,13 @@ class user extends Controller {
             $origToken = sha1($salt.$userMail);
 
             // pr($decode);
-            $getToken = $this->userHelper->getEmailToken($decode['email']);
+            $getToken = $this->userHelper->getEmailToken($decode['email'], true);
+
+            if ($getToken['usertype']==1){
+                $this->view->assign('userType',1);
+            }else{
+                $this->view->assign('userType',2);
+            }
 
             // db($getToken);
             if ($getToken['email_token']==$decode['token']){
@@ -271,7 +278,9 @@ class user extends Controller {
 
         }
         
+
         return $this->loadView('user/activate-account');
+        
     }
 
     function activate()

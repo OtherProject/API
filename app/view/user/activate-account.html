@@ -7,6 +7,7 @@
     		<h5 class="text-center">{$validate}</h5>
             <h5 style="color:red" class="error"></h5>
             {if $status}
+            {if $userType==2}
     		<form id="login-form" action="{$basedomain}user/activate" class="form" method="post">
     
     			<div class="form-group">
@@ -27,14 +28,20 @@
     			</div>
     		</form>
             {/if}
+            {/if}
             <!--<a href="javascript:;" class="btn btn-default">Forgot Password?</a>-->
     
     	</div> <!-- /#login -->
-    
+        
+        {if $userType==2}
     	<a href="{$basedomain}user/register_step1" id="signup-btn" class="btn btn-lg btn-block api-btn">
     		Create an Account
     	</a>
-    
+        {else}
+        <a href="{$basedomain}" id="signup-btn" class="btn btn-lg btn-block api-btn">
+            Home Page
+        </a>
+        {/if}
     
     </div>
     

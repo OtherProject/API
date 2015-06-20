@@ -75,16 +75,17 @@ class userHelper extends Database {
     function getUserData($field,$data){
         if($data==false) return false;
         $sql = "SELECT * FROM `social_member` WHERE `$field` = '".$data."' ";
-        $res = $this->fetch($sql);
+        $res = $this->fetch($sql,1);
         if ($res){
-            foreach ($res as $key => $value) {
+            
+            
 
-                $dataencode = array('email'=>$value['email'], 'token'=>$this->token);
-                $msg = encode(serialize($dataencode));
+            $dataencode = array('email'=>$res[0]['email'], 'token'=>$res[0]['email_token']);
+            $msg = encode(serialize($dataencode));
 
-                $res[$key]['encode'] = $msg;
-            }
+            $res[0]['encode'] = $msg;
 
+            
             return $res;
         }
 
