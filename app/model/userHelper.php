@@ -74,10 +74,21 @@ class userHelper extends Database {
      */
     function getUserData($field,$data){
         if($data==false) return false;
-        $sql = "SELECT * FROM `person` WHERE `$field` = '".$data."' ";
-        $res = $this->fetch($sql,0);  
-        if(empty($res)){return false;}
-        return $res; 
+        $sql = "SELECT * FROM `social_member` WHERE `$field` = '".$data."' ";
+        $res = $this->fetch($sql);
+        if ($res){
+            foreach ($res as $key => $value) {
+
+                $dataencode = array('email'=>$value['email'], 'token'=>$this->token);
+                $msg = encode(serialize($dataencode));
+
+                $res[$key]['encode'] = $msg;
+            }
+
+            return $res;
+        }
+
+        return false;
     }
     
     /**
@@ -198,7 +209,7 @@ class userHelper extends Database {
 
         $sql = array(
                 'table'=>'social_member',
-                'field'=>"register_step = '4', username = '{$data['username']}', n_status = 1, login_count = (login_count+1), password = '{$pass}', usertype = 2",
+                'field'=>"register_step = '0', username = '{$data['username']}', n_status = 1, password = '{$pass}', usertype = 2",
                 'condition' => "email = '{$data['email']}'",
                 );
 

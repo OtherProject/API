@@ -145,6 +145,21 @@ class user extends Controller {
                         $save = $this->contentHelper->updatePersetujuan($image);
                         if ($save){
                             
+                            $insertData = $this->userHelper->getUserData('email',$isUserSet);
+                            if ($insertData[0]['usertype']!=2){
+
+                                $this->view->assign('email', $insertData['email']);
+                                $this->view->assign('name', $insertData['name']);
+                                $this->view->assign('encode', $insertData['encode']);
+                                
+                                $html = $this->loadView('user/emailTemplate');
+
+                                logFile($msg);
+                                // $html = "klik link berikut ini {$basedomain}register/validate/?ref={$msg}";
+                                $send = sendGlobalMail($insertData['email'],false,$html);
+                            }
+                            
+ 
                             redirect($basedomain.'user/register_step5');
                         }
                     }else{
@@ -264,8 +279,15 @@ class user extends Controller {
         global $basedomain;
         if (isset($_POST['token'])){
 
-            // pr($_POST);
+            
             $updateUser = $this->userHelper->updateRegisterStep($_POST);
+            if ($updateUser){
+                $_SESSION['newuser']['email'] = $updateUser[0]['email'];
+                $_SESSION['newuser']['id'] = $updateUser[0]['id'];
+
+                redirect($basedomain.'user/register_step2');exit;
+            }
+            /*
             if ($updateUser){
                 $newData = array();
                 foreach ($updateUser[0] as $key => $value) {
@@ -273,13 +295,17 @@ class user extends Controller {
                 }
                 // pr($newData);
                 // exit;
-                $setSession = $this->loadSession->set_session($newData);
+                // $setSession = $this->loadSession->set_session($newData);
+                $_SESSION['newuser']['email'] = $data['email'];
+                $_SESSION['newuser']['id'] = $this->insert_id();
             }
             redirect($basedomain);
-            exit;
-        }
+            
+            */
 
+        }
         
+        redirect($basedomain);
     }
 }
 
