@@ -162,23 +162,25 @@ class contentHelper extends Database {
 
     }
 
-    function updateBiodata($data,$debug=false)
+    function updateBiodata($data, $update=false, $debug=false)
     {
 
-    	$email = $_SESSION['newuser']['email'];
+        $ignorePost = array('email','submitbiodata');
 
+        if ($update){
+            $email = $data['email'];
+        }else{
+            $email = $_SESSION['newuser']['email'];
+        }
     	
-    	foreach ($data as $key => $value) {
+        foreach ($data as $key => $value) {
 
-    		
-			$tmpV[] = "{$key} = '" .$value."'";
-    		
-    		
-
+    		if (!in_array($key, $ignorePost)) $tmpV[] = "{$key} = '" .$value."'";
+    	
     	}
     	
     	$impData = implode(',', $tmpV);
-
+        // db($impData);
     	$sql = array(
                 'table'=>'social_member',
                 'field'=>"{$impData}",
@@ -194,30 +196,33 @@ class contentHelper extends Database {
         return false;
     }
 
-    function updateRiwayat($data,$debug=false)
+    function updateRiwayat($data, $update=false, $debug=false)
     {
 
-    	$userid = $_SESSION['newuser']['id'];
-
-    	
-    	// pr($data);
-
-
-    	for ($i=1; $i <= 3; $i++) { 
+    	if ($update){
+            $userid = $data['userID'];
+            $ignorePost = array('id', 'userid');
+        }else{
+            $userid = $_SESSION['newuser']['id'];
+        }
+        
+        for ($i=1; $i <= 3; $i++) { 
     		
     		for ($j=0; $j <= 2  ; $j++){ 
   				$datatahun[$i][$j]['tahun'] = $data['tahun_'.$i][$j];
   				$datatahun[$i][$j]['judul'] = $data['judul_'.$i][$j];
   				$datatahun[$i][$j]['keterangan'] = $data['keterangan_'.$i][$j];
   				$datatahun[$i][$j]['type'] = ($i-1);
-  				$datatahun[$i][$j]['userid'] = $userid;
+  				$datatahun[$i][$j]['userID'] = $userid;
   				$datatahun[$i][$j]['createDate'] = $this->date;
+                if ($update) $datatahun[$i][$j]['id'] = $data['riwayatid_'.$i][$j];
+                
   			}
     		
     	}
 
 
-    	// pr($datatahun);
+    	// db($datatahun);
     	
     	
     	foreach ($datatahun as $key => $value) {
@@ -231,20 +236,33 @@ class contentHelper extends Database {
     			
     			$tmp = array();
     			$tmpV = array();
+                $tmpUpdate = array();
     			foreach ($val as $keys => $vals) {
-    				$tmp[] = $keys;
-    				$tmpV[] = "'".$vals."'";
+    				
+                    if ($update){
+                        if (!in_array($keys, $ignorePost)) $tmpUpdate[] = $keys ." = '".$vals."'";
+                    }else{
+                        $tmp[] = $keys;
+                        $tmpV[] = "'".$vals."'";
+                    }
+                   
     			}
-    			$impf = implode(',', $tmp);
-    			$impd = implode(',', $tmpV);
+    			
+                if ($update){
+                    $impUpdate = implode(',', $tmpUpdate);
+                    $sql[] = "UPDATE api_riwayat_pendidikan SET {$impUpdate} WHERE id = {$val['id']}";
+                }else{
+                    $impf = implode(',', $tmp);
+                    $impd = implode(',', $tmpV);
+                    $sql[] = "INSERT INTO api_riwayat_pendidikan ({$impf}) VALUES ({$impd})"; 
+                }
 
-    			$sql[] = "INSERT INTO api_riwayat_pendidikan ({$impf}) VALUES ({$impd})";
     		}
 
     	}
     	
     	
-    	// pr($sql);exit;
+    	// db($sql);
         if ($sql){
         	foreach ($sql as $value) {
         		$res = $this->query($value);
@@ -256,10 +274,15 @@ class contentHelper extends Database {
         return false;
     }
 
-    function updateKeberhasilan($data,$debug=false)
+    function updateKeberhasilan($data,$update=false, $debug=false)
     {
 
-    	$userid = $_SESSION['newuser']['id'];
+        if ($update){
+            $userid = $data['userID'];
+        }else{
+            $userid = $_SESSION['newuser']['id'];
+        }
+    	
     	$keberhasilan = $data['keberhasilan'];
     	$sql = array(
                 'table'=>'social_member',
@@ -276,10 +299,16 @@ class contentHelper extends Database {
         return false;
     }
 
-    function updatePersetujuan($data,$debug=false)
-    {
+    function updatePersetujuan($data, $update=false, $debug=false)
+    {   
 
-        $userid = $_SESSION['newuser']['id'];
+        if ($update){
+            $userid = $data['userID'];
+        }else{
+            $userid = $_SESSION['newuser']['id'];
+        }
+
+        // db($data);
         $persetujuan = $data['full_name'];
         $sql = array(
                 'table'=>'social_member',

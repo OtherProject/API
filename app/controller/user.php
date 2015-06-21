@@ -4,7 +4,7 @@ class user extends Controller {
 	
 	var $models = FALSE;
 	var $view;
-
+    var $user;
 	
 	function __construct()
 	{
@@ -13,6 +13,9 @@ class user extends Controller {
 		$this->view = $this->setSmarty();
 		$this->view->assign('basedomain',$basedomain);
         $this->loadSession = new Session;
+        $getUserLogin = $this->isUserOnline();
+        $this->user = $getUserLogin['default'];
+        // pr($this->user);
     }
 	
 	function loadmodule()
@@ -216,6 +219,49 @@ class user extends Controller {
 
     function setting(){
 
+        global $basedomain;
+
+        $email = $this->user['email'];
+
+        
+        if (isset($_POST['submitakun'])){
+            $save = $this->userHelper->updateAkun($_POST);
+            if ($save){
+                echo "<script>alert('Password berhasil diubah')</script>";
+                redirect($basedomain.'user/setting');
+            }
+        }
+
+        if (isset($_POST['submitbiodata'])){
+            $save = $this->contentHelper->updateBiodata($_POST, true);
+        }
+
+        if (isset($_POST['submitriwayat'])){
+            $save = $this->contentHelper->updateRiwayat($_POST, true);
+            if ($save) $keberhasilan = $this->contentHelper->updateKeberhasilan($_POST, true);
+        }
+
+        if (isset($_POST['submitpersetujuan'])){
+            if(!empty($_FILES)){
+                if($_FILES['file_image']['name'] != ''){
+                    
+                    $image = uploadFile('file_image',null,'image');
+                    $x['image'] = $image['full_name'];
+
+                    $image['userID'] = $_POST['userID'];
+                    if ($image){
+                        $save = $this->contentHelper->updatePersetujuan($image, true);
+                    }
+                }
+            }
+        }
+        
+
+        $getUserData = $this->userHelper->getUserData('email',$email);
+        if ($getUserData){
+            // pr($getUserData);
+            $this->view->assign('user', $getUserData[0]);
+        }
         return $this->loadView('user/setting');
     }
 

@@ -18,7 +18,7 @@
                 
                             <div class="form-group">
                                 <label for="register-email">Email</label>
-                                <input type="email" class="form-control" id="register-email" placeholder="Email" name="email" required>
+                                <input type="email" class="form-control" id="register-email" placeholder="Email" name="email" value="{$user.email}" disabled>
                                 <span id="email-error"></span>
                             </div>
                             
@@ -33,8 +33,9 @@
                                 <span id="password-error"></span>
                             </div>
                             <div class="form-group">
-                                <input type="hidden" name="register_step" value="1">
-                                <button type="submit" id="register-btn" class="btn btn-primary btn-block">Simpan &nbsp; <i class="fa fa-play-circle"></i></button>
+                                {*}<input type="hidden" name="register_step" value="1">{/*}
+                                <input type="hidden" name="email" value="{$user.email}">
+                                <button type="submit" id="register-btn" class="btn btn-primary btn-block" name="submitakun">Simpan &nbsp; <i class="fa fa-play-circle"></i></button>
                 
                             </div>
                         </form>
@@ -48,60 +49,62 @@
                 
                             <div class="form-group">
                                 <label for="register-namaLengkap">Nama Lengkap</label>
-                                <input type="text" class="form-control" id="register-namaLengkap" placeholder="Nama Lengkap" name="name" required>
+                                <input type="text" class="form-control" id="register-namaLengkap" placeholder="Nama Lengkap" name="name" required value="{$user.name}">
                             </div>
                             
                             <div class="form-group">
                                 <label for="register-nip">NIP/NIDN</label>
-                                <input type="text" class="form-control" id="register-nip" placeholder="NIP/NIDN" name="nip" onkeypress="validateNumber(this)">
+                                <input type="text" class="form-control" id="register-nip" placeholder="NIP/NIDN" name="nip" onkeypress="validateNumber(this)" value="{$user.nip}">
                             </div>
                             
                             <div class="form-group">
                                 <label for="register-ttl">Tempat Lahir</label>
-                                <input type="text" class="form-control" id="register-ttl" placeholder="Tempat Lahir" name="city" required>
+                                <input type="text" class="form-control" id="register-ttl" placeholder="Tempat Lahir" name="place_of_birth" required value="{$user.place_of_birth}">
                             </div>
                             
                             <div class="form-group">
                                 <label for="register-ttl">Tanggal Lahir</label>
                                 <div id="birthday" class="input-group date" data-auto-close="true" data-date-format="yyyy-mm-dd" data-date-autoclose="true">
-                                    <input type="text" class="form-control" placeholder="Tanggal Lahir" name="birthday" data-required="true" required>
+                                    <input type="text" class="form-control" placeholder="Tanggal Lahir" name="birthday" data-required="true" required value="{$user.birthday}">
                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="register-alamatRumah">Alamat Rumah</label>
-                                <textarea type="text" class="form-control" id="register-alamatRumah" placeholder="Alamat Rumah" name="StreetName"></textarea>
+                                <textarea type="text" class="form-control" id="register-alamatRumah" placeholder="Alamat Rumah" name="StreetName">{$user.StreetName}
+                                </textarea>
                             </div>
                             
                             <div class="form-group">
                                 <label for="register-tlp">No.Telepon</label>
-                                <input type="text" class="form-control" id="register-tlp" placeholder="No.Telepon" name="phone_number" onkeypress="validateNumber(this)">
+                                <input type="text" class="form-control" id="register-tlp" placeholder="No.Telepon" name="phone_number" onkeypress="validateNumber(this)" value="{$user.phone_number}">
                             </div>
                             
                             <div class="form-group">
                                 <label for="register-alamatKantor">Alamat Kantor</label>
-                                <textarea type="text" class="form-control" id="register-alamatKantor" placeholder="Alamat Kantor" name="alamatKantor"></textarea>
+                                <textarea type="text" class="form-control" id="register-alamatKantor" placeholder="Alamat Kantor" name="alamatKantor">{$user.alamatKantor}</textarea>
                             </div>
                             
                             <div class="form-group">
                                 <label for="register-tlpKantor">No.Telepon Kantor</label>
-                                <input type="text" class="form-control" id="register-tlpKantor" placeholder="No.Telepon Kantor" name="tlpKantor" onkeypress="validateNumber(this)">
+                                <input type="text" class="form-control" id="register-tlpKantor" placeholder="No.Telepon Kantor" name="tlpKantor" onkeypress="validateNumber(this)" value="{$user.tlpKantor}">
                             </div>
                             
                             <div class="form-group">
                                 <label for="register-pendTerakhir">Pendidikan Terakhir</label>
-                                <input type="text" class="form-control" id="register-pendTerakhir" placeholder="Pendidikan Terakhir" name="pendidikan">
+                                <input type="text" class="form-control" id="register-pendTerakhir" placeholder="Pendidikan Terakhir" name="pendidikan" value="{$user.pendidikan}">
                             </div>
                             
                             <div class="form-group">
                                 <label for="register-kepakaran">Kepakaran</label>
-                                <input type="text" class="form-control" id="register-kepakaran" placeholder="Kepakaran" name="kepakaran">
+                                <input type="text" class="form-control" id="register-kepakaran" placeholder="Kepakaran" name="kepakaran" value="{$user.kepakaran}">
                             </div>
                 
                             <div class="form-group">
-                                <input type="hidden" name="register_step" value="2">
-                                <button type="submit" id="register-btn" class="btn btn-primary btn-block">Simpan &nbsp; <i class="fa fa-play-circle"></i></button>
+                                {*}<input type="hidden" name="register_step" value="2">{/*}
+                                <input type="hidden" name="email" value="{$user.email}">
+                                <button type="submit" id="register-btn" class="btn btn-primary btn-block" name="submitbiodata">Simpan &nbsp; <i class="fa fa-play-circle"></i></button>
                                 <div class="clearfix"></div>
                             </div>
                         </form>
@@ -118,22 +121,34 @@
                                 <div class="row"> 
                                     <div class="form-group col-xs-3">
                                         <label>Tahun</label>
-                                        <input type="text" class="form-control" placeholder="Tahun" name="tahun_1[]" style="margin-bottom: 10px;" onkeypress="validateNumber(this)" maxlength="4">
-                                        <input type="text" class="form-control" placeholder="Tahun" name="tahun_1[]" style="margin-bottom: 10px;" onkeypress="validateNumber(this)" maxlength="4">
-                                        <input type="text" class="form-control" placeholder="Tahun" name="tahun_1[]" style="margin-bottom: 10px;" onkeypress="validateNumber(this)" maxlength="4">
+                                        <input type="text" class="form-control" placeholder="Tahun" name="tahun_1[]" style="margin-bottom: 10px;" onkeypress="validateNumber(this)" maxlength="4" value="{$user.riwayat_pendidikan.0.tahun}">
+                                        <input type="text" class="form-control" placeholder="Tahun" name="tahun_1[]" style="margin-bottom: 10px;" onkeypress="validateNumber(this)" maxlength="4" value="{$user.riwayat_pendidikan.1.tahun}">
+                                        <input type="text" class="form-control" placeholder="Tahun" name="tahun_1[]" style="margin-bottom: 10px;" onkeypress="validateNumber(this)" maxlength="4" value="{$user.riwayat_pendidikan.2.tahun}">
+
+                                        <input type="hidden" name="riwayatid_1[]" value="{$user.riwayat_pendidikan.0.id}">
+                                        <input type="hidden" name="riwayatid_1[]" value="{$user.riwayat_pendidikan.1.id}">
+                                        <input type="hidden" name="riwayatid_1[]" value="{$user.riwayat_pendidikan.2.id}">
                                     </div>
 
                                     <div class="form-group col-xs-5">
                                         <label>Mata Kuliah</label>
-                                        <input type="text" class="form-control" placeholder="Nama Mata Kuliah" name="judul_1[]" style="margin-bottom: 10px;">
-                                        <input type="text" class="form-control" placeholder="Nama Mata Kuliah" name="judul_1[]" style="margin-bottom: 10px;">
-                                        <input type="text" class="form-control" placeholder="Nama Mata Kuliah" name="judul_1[]" style="margin-bottom: 10px;">
+                                        <input type="text" class="form-control" placeholder="Nama Mata Kuliah" name="judul_1[]" style="margin-bottom: 10px;" value="{$user.riwayat_pendidikan.0.judul}">
+                                        <input type="text" class="form-control" placeholder="Nama Mata Kuliah" name="judul_1[]" style="margin-bottom: 10px;" value="{$user.riwayat_pendidikan.1.judul}">
+                                        <input type="text" class="form-control" placeholder="Nama Mata Kuliah" name="judul_1[]" style="margin-bottom: 10px;" value="{$user.riwayat_pendidikan.2.judul}">
+
+                                        <input type="hidden" name="riwayatid_2[]" value="{$user.riwayat_pendidikan.3.id}">
+                                        <input type="hidden" name="riwayatid_2[]" value="{$user.riwayat_pendidikan.4.id}">
+                                        <input type="hidden" name="riwayatid_2[]" value="{$user.riwayat_pendidikan.5.id}">
                                     </div>
                                     <div class="form-group col-xs-4">
                                         <label>Keterangan</label>
-                                        <input type="text" class="form-control" placeholder="Keterangan" name="keterangan_1[]" style="margin-bottom: 10px;">
-                                        <input type="text" class="form-control" placeholder="Keterangan" name="keterangan_1[]" style="margin-bottom: 10px;">
-                                        <input type="text" class="form-control" placeholder="Keterangan" name="keterangan_1[]" style="margin-bottom: 10px;">
+                                        <input type="text" class="form-control" placeholder="Keterangan" name="keterangan_1[]" style="margin-bottom: 10px;" value="{$user.riwayat_pendidikan.0.keterangan}">
+                                        <input type="text" class="form-control" placeholder="Keterangan" name="keterangan_1[]" style="margin-bottom: 10px;" value="{$user.riwayat_pendidikan.1.keterangan}">
+                                        <input type="text" class="form-control" placeholder="Keterangan" name="keterangan_1[]" style="margin-bottom: 10px;" value="{$user.riwayat_pendidikan.2.keterangan}">
+
+                                        <input type="hidden" name="riwayatid_3[]" value="{$user.riwayat_pendidikan.6.id}">
+                                        <input type="hidden" name="riwayatid_3[]" value="{$user.riwayat_pendidikan.7.id}">
+                                        <input type="hidden" name="riwayatid_3[]" value="{$user.riwayat_pendidikan.8.id}">
                                     </div>
                                 </div>
                         </div>
@@ -144,22 +159,22 @@
                             <div class="row"> 
                                 <div class="form-group col-xs-3">
                                     <label>Tahun</label>
-                                    <input type="text" class="form-control" placeholder="Tahun" name="tahun_2[]" style="margin-bottom: 10px;" onkeypress="validateNumber(this)" maxlength="4">
-                                    <input type="text" class="form-control" placeholder="Tahun" name="tahun_2[]" style="margin-bottom: 10px;" onkeypress="validateNumber(this)" maxlength="4">
-                                    <input type="text" class="form-control" placeholder="Tahun" name="tahun_2[]" style="margin-bottom: 10px;" onkeypress="validateNumber(this)" maxlength="4">
+                                    <input type="text" class="form-control" placeholder="Tahun" name="tahun_2[]" style="margin-bottom: 10px;" onkeypress="validateNumber(this)" maxlength="4" value="{$user.riwayat_pendidikan.3.tahun}">
+                                    <input type="text" class="form-control" placeholder="Tahun" name="tahun_2[]" style="margin-bottom: 10px;" onkeypress="validateNumber(this)" maxlength="4" value="{$user.riwayat_pendidikan.4.tahun}">
+                                    <input type="text" class="form-control" placeholder="Tahun" name="tahun_2[]" style="margin-bottom: 10px;" onkeypress="validateNumber(this)" maxlength="4" value="{$user.riwayat_pendidikan.5.tahun}">
                                 </div>
 
                                 <div class="form-group col-xs-5">
                                     <label>Judul</label>
-                                    <input type="text" class="form-control" placeholder="Judul" name="judul_2[]" style="margin-bottom: 10px;">
-                                    <input type="text" class="form-control" placeholder="Judul" name="judul_2[]" style="margin-bottom: 10px;">
-                                    <input type="text" class="form-control" placeholder="Judul" name="judul_2[]" style="margin-bottom: 10px;">
+                                    <input type="text" class="form-control" placeholder="Judul" name="judul_2[]" style="margin-bottom: 10px;" value="{$user.riwayat_pendidikan.3.judul}">
+                                    <input type="text" class="form-control" placeholder="Judul" name="judul_2[]" style="margin-bottom: 10px;" value="{$user.riwayat_pendidikan.4.judul}">
+                                    <input type="text" class="form-control" placeholder="Judul" name="judul_2[]" style="margin-bottom: 10px;" value="{$user.riwayat_pendidikan.5.judul}">
                                 </div>
                                 <div class="form-group col-xs-4">
                                     <label>Keterangan</label>
-                                    <input type="text" class="form-control" placeholder="Keterangan" name="keterangan_2[]" style="margin-bottom: 10px;">
-                                    <input type="text" class="form-control" placeholder="Keterangan" name="keterangan_2[]" style="margin-bottom: 10px;">
-                                    <input type="text" class="form-control" placeholder="Keterangan" name="keterangan_2[]" style="margin-bottom: 10px;">
+                                    <input type="text" class="form-control" placeholder="Keterangan" name="keterangan_2[]" style="margin-bottom: 10px;" value="{$user.riwayat_pendidikan.3.keterangan}">
+                                    <input type="text" class="form-control" placeholder="Keterangan" name="keterangan_2[]" style="margin-bottom: 10px;" value="{$user.riwayat_pendidikan.4.keterangan}">
+                                    <input type="text" class="form-control" placeholder="Keterangan" name="keterangan_2[]" style="margin-bottom: 10px;" value="{$user.riwayat_pendidikan.5.keterangan}">
                                 </div>
                             </div>
                         </div>
@@ -172,22 +187,22 @@
                             <div class="row"> 
                                 <div class="form-group col-xs-3">
                                     <label>Tahun</label>
-                                    <input type="text" class="form-control" placeholder="Tahun" name="tahun_3[]" style="margin-bottom: 10px;" onkeypress="validateNumber(this)" maxlength="4">
-                                    <input type="text" class="form-control" placeholder="Tahun" name="tahun_3[]" style="margin-bottom: 10px;" onkeypress="validateNumber(this)" maxlength="4">
-                                    <input type="text" class="form-control" placeholder="Tahun" name="tahun_3[]" style="margin-bottom: 10px;" onkeypress="validateNumber(this)" maxlength="4">
+                                    <input type="text" class="form-control" placeholder="Tahun" name="tahun_3[]" style="margin-bottom: 10px;" onkeypress="validateNumber(this)" maxlength="4" value="{$user.riwayat_pendidikan.6.tahun}">
+                                    <input type="text" class="form-control" placeholder="Tahun" name="tahun_3[]" style="margin-bottom: 10px;" onkeypress="validateNumber(this)" maxlength="4" value="{$user.riwayat_pendidikan.7.tahun}">
+                                    <input type="text" class="form-control" placeholder="Tahun" name="tahun_3[]" style="margin-bottom: 10px;" onkeypress="validateNumber(this)" maxlength="4" value="{$user.riwayat_pendidikan.8.tahun}">
                                 </div>
 
                                 <div class="form-group col-xs-5">
                                     <label>Institusi</label>
-                                    <input type="text" class="form-control" placeholder="Institusi" name="judul_3[]" style="margin-bottom: 10px;">
-                                    <input type="text" class="form-control" placeholder="Institusi" name="judul_3[]" style="margin-bottom: 10px;">
-                                    <input type="text" class="form-control" placeholder="Institusi" name="judul_3[]" style="margin-bottom: 10px;">
+                                    <input type="text" class="form-control" placeholder="Institusi" name="judul_3[]" style="margin-bottom: 10px;" value="{$user.riwayat_pendidikan.6.judul}">
+                                    <input type="text" class="form-control" placeholder="Institusi" name="judul_3[]" style="margin-bottom: 10px;" value="{$user.riwayat_pendidikan.7.judul}">
+                                    <input type="text" class="form-control" placeholder="Institusi" name="judul_3[]" style="margin-bottom: 10px;" value="{$user.riwayat_pendidikan.8.judul}">
                                 </div>
                                 <div class="form-group col-xs-4">
                                     <label>Jabatan</label>
-                                    <input type="text" class="form-control" placeholder="Jabatan" name="keterangan_3[]" style="margin-bottom: 10px;">
-                                    <input type="text" class="form-control" placeholder="Jabatan" name="keterangan_3[]" style="margin-bottom: 10px;">
-                                    <input type="text" class="form-control" placeholder="Jabatan" name="keterangan_3[]" style="margin-bottom: 10px;">
+                                    <input type="text" class="form-control" placeholder="Jabatan" name="keterangan_3[]" style="margin-bottom: 10px;" value="{$user.riwayat_pendidikan.6.keterangan}">
+                                    <input type="text" class="form-control" placeholder="Jabatan" name="keterangan_3[]" style="margin-bottom: 10px;" value="{$user.riwayat_pendidikan.7.keterangan}">
+                                    <input type="text" class="form-control" placeholder="Jabatan" name="keterangan_3[]" style="margin-bottom: 10px;" value="{$user.riwayat_pendidikan.8.keterangan}">
                                 </div>
                             </div>
                         </div>  
@@ -200,7 +215,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group" style="margin-bottom: 20px;">
                                         <label for="register-keunggulan">Keunggulan atau keberhasilan</label>
-                                        <textarea type="text" class="form-control" id="register-keunggulan" placeholder="Keunggulan atau keberhasilan yang pernah dicapai (ruang tulisan dapat diperluas)" name="keberhasilan"></textarea>
+                                        <textarea type="text" class="form-control" id="register-keunggulan" placeholder="Keunggulan atau keberhasilan yang pernah dicapai (ruang tulisan dapat diperluas)" name="keberhasilan">{$user.keberhasilan}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -209,8 +224,9 @@
                         <div class="row"> 
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <input type="hidden" name="register_step" value="3">
-                                    <button type="submit" id="register-btn" class="btn btn-primary btn-block">Simpan &nbsp; <i class="fa fa-play-circle"></i></button>
+                                    {*}<input type="hidden" name="register_step" value="3">{/*}
+                                    <input type="hidden" name="userID" value="{$user.id}">
+                                    <button type="submit" id="register-btn" class="btn btn-primary btn-block" name="submitriwayat">Simpan &nbsp; <i class="fa fa-play-circle"></i></button>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -226,15 +242,18 @@
                         <h3 class="text-center">Persetujuan</h3>
                 
                         <form id="register-form" action="" class="form" method="post" enctype="multipart/form-data">
-                            
+                            <div class="form-group" align="center">
+                            <img src="{$basedomain}public_assets/{$user.img}" width="50%">
+                            </div>
                             <div class="form-group">
                                 <label for="register-keunggulan">Form Persetujuan</label>
                                 <input type="file" class="form-control" id="exampleInputFile" name="file_image" required="required">
                             </div>
                 
                             <div class="form-group">
-                                <input type="hidden" name="register_step" value="4">
-                                <button type="submit" id="register-btn" class="btn btn-primary btn-block">Simpan &nbsp; <i class="fa fa-play-circle"></i></button>
+                                {*}<input type="hidden" name="register_step" value="4">{/*}
+                                <input type="hidden" name="userID" value="{$user.id}">
+                                <button type="submit" id="register-btn" class="btn btn-primary btn-block" name="submitpersetujuan">Simpan &nbsp; <i class="fa fa-play-circle"></i></button>
                 
                             </div>
                         </form>

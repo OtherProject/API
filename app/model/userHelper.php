@@ -72,7 +72,7 @@ class userHelper extends Database {
      * @param $data = 
      * @param $field =  field name
      */
-    function getUserData($field,$data){
+    function getUserData($field,$data, $debug=false){
         if($data==false) return false;
         $sql = "SELECT * FROM `social_member` WHERE `$field` = '".$data."' ";
         $res = $this->fetch($sql,1);
@@ -85,7 +85,14 @@ class userHelper extends Database {
 
             $res[0]['encode'] = $msg;
 
-            
+            $sql = array(
+                    'table'=>'api_riwayat_pendidikan',
+                    'field'=>"*",
+                    'condition' => "userID = '{$res[0]['id']}'",
+                    );
+
+            $riwayat_pendidikan = $this->lazyQuery($sql,$debug);
+            if ($riwayat_pendidikan) $res[0]['riwayat_pendidikan'] = $riwayat_pendidikan;
             return $res;
         }
 
@@ -107,6 +114,24 @@ class userHelper extends Database {
         $res = $this->fetch($sql,0,1);  
         if(empty($res)){return false;}
         return $res; 
+    }
+
+    function updateAkun($data=array())
+    {   
+
+        if (!$data['password']) return false;
+
+        $pass = sha1($this->salt.$data['password']);
+
+        $sql = array(
+                'table'=>'social_member',
+                'field'=>"salt = '{$this->salt}', password = '{$pass}'",
+                'condition' => "email = '{$data['email']}'",
+                );
+
+        $res = $this->lazyQuery($sql,$debug,2);
+        if ($res) return true;
+        return false;
     }
 
     function updateStatusUser($email=false)
