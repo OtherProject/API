@@ -236,7 +236,7 @@ class userHelper extends Database {
         if($all) $filter = " * ";
         else $filter = " email_token ";
 
-        $sql = "SELECT {$filter} FROM social_member WHERE `email` = '".$email."' LIMIT 1";
+        $sql = "SELECT {$filter} FROM social_member WHERE `email` = '".$email."' AND n_status = 0 LIMIT 1";
         // logFile($sql);
         $res = $this->fetch($sql);
         if ($res) return $res;
