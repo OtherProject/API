@@ -1,42 +1,74 @@
-{include file="template/meta.html"}
-<body>
-	<!-- RUNNING GLOBAL VAR -->
-	<script>
-		var basedomain = "{$basedomain}";
-	</script>
-	
+{if $page.page == 'demo' AND $page.function == 'v2'}
+
+    {include file="template/meta_v2.html"}
+    <body>
+    <!-- RUNNING GLOBAL VAR -->
+    <script>
+        var basedomain = "{$basedomain}";
+    </script>
+    
     <!-- HEADER DEFAULT -->
-    {include file="template/header.html"}
+    {include file="template/header_v2.html"}
     
-
     <!-- BANNER -->
-    {if $page.page=='home' }
-        {include file="template/banner.html"}
-    {/if}
-    
-    
+    {include file="template/banner_v2.html"}
 
-    <!-- SIDEBAR -->
-    {if 
-        $page.page != 'gallery' AND 
-        $page.function != 'profil' AND 
-        $page.function != 'struktur_organisasi' AND 
-        $page.function != 'anggota' AND 
-        $page.function != 'anggota_view' AND 
-        $page.function != 'repository' AND 
-        $page.function != 'repository_view' AND
-        $page.function != 'repository_view_1' AND
-        $page.function != 'repository_view_2' AND 
-        $page.function != 'kepakaran' AND 
-        $page.function != 'Dirkepakaran' AND 
-        $page.function != 'search_result' AND 
-        $page.function != 'result_detail' AND 
-        $page.page != 'user'}
-        {include file="template/sidebar.html"}
-    {/if}
-    
+    <!-- BOTTOMBAR -->
+    {include file="template/bottombar_v2.html"}
+
+    <!-- LEFTBAR -->
+    {include file="template/leftbar_v2.html"}
+
     <!-- CONTENT -->
-	{$content}
-	
-	<!-- FOOTER -->
-    {include file="template/footer.html"}
+    {$content}
+
+    <!-- RIGHTBAR -->
+    {include file="template/rightbar_v2.html"}
+    
+    <!-- FOOTER -->
+    {include file="template/footer_v2.html"}
+
+{else}
+    {include file="template/meta.html"}
+    <body>
+    	<!-- RUNNING GLOBAL VAR -->
+    	<script>
+    		var basedomain = "{$basedomain}";
+    	</script>
+    	
+        <!-- HEADER DEFAULT -->
+        {include file="template/header.html"}
+        
+
+        <!-- BANNER -->
+        {if $page.page=='home' }
+            {include file="template/banner.html"}
+        {/if}
+        
+        
+
+        <!-- SIDEBAR -->
+        {if 
+            $page.page != 'gallery' AND 
+            $page.function != 'profil' AND 
+            $page.function != 'struktur_organisasi' AND 
+            $page.function != 'anggota' AND 
+            $page.function != 'anggota_view' AND 
+            $page.function != 'repository' AND 
+            $page.function != 'repository_view' AND
+            $page.function != 'repository_view_1' AND
+            $page.function != 'repository_view_2' AND 
+            $page.function != 'kepakaran' AND 
+            $page.function != 'Dirkepakaran' AND 
+            $page.function != 'search_result' AND 
+            $page.function != 'result_detail' AND 
+            $page.page != 'user'}
+            {include file="template/sidebar.html"}
+        {/if}
+        
+        <!-- CONTENT -->
+    	{$content}
+    	
+    	<!-- FOOTER -->
+        {include file="template/footer.html"}
+{/if}

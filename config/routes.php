@@ -14,7 +14,8 @@ $ROUTES = array(
         'kepakaran',
         'anggota',
         'login',
-        'user'
+        'user',
+        'demo'
         );
 ?>
 
