@@ -35,133 +35,134 @@
           <a class="instagramBtn smGlobalBtn" href="http://instagram.com/go_donasia" ></a>
         </div>
       </div>
-
   </div>
 </div>
 
-<div class="navbar navbar-default navbar-static-top api-navbar" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-    <div class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li class="{if $page.page=='home'}active{/if}"><a href="{$basedomain}">BERANDA</a></li>
+<div class="container-fluid nopadding">
+  <div class="navbar navbar-default navbar-static-top api-navbar" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="{if $page.page=='home'}active{/if}"><a href="{$basedomain}">BERANDA</a></li>
 
-        <li class="dropdown {if $page.page=='organisasi'}active{/if}">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">API <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="{$basedomain}organisasi/profil">Profil</a></li>
-            <!--<li><a href="{$basedomain}organisasi/struktur_organisasi">Struktur Organisasi</a></li>-->
-            <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Struktur Organisasi</a>
-              <ul class="dropdown-menu">
-                <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=dewan_kehormatan">Dewan Kehormatan</a></li>
-                <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=dewan_penasihat">Dewan Penasihat</a></li>
-                <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Dewan Pengurus</a>
-                  <ul class="dropdown-menu">
-                    <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=dewan_pengurus_umum">Dewan Pengurus Umum</a></li>
-                    <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=kabid&&kabid=1">Kabid Organisasi/Hub. Kelembagaan</a></li>
-                    <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=kabid&&kabid=2">Kabid Tata Kelola</a></li>
-                    <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=kabid&&kabid=3">Kabid Pendidikan</a></li>
-                    <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=kabid&&kabid=4">Kabid Pendidikan Tinggi &amp; Ristek</a></li>
-                    <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=kabid&&kabid=5">Kabid ldeologi &amp; Budaya</a></li>
-                    <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=kabid&&kabid=6">Kabid Seni &amp; Budaya</a></li>
-                    <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=kabid&&kabid=7">Kabid Kesehatan</a></li>
-                    <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=kabid&&kabid=8">Kabid Pembangunan Komunikasi &amp; 
-Teknologi lnformasi </a></li>
-                    <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=kabid&&kabid=9">Kabid Ekonomi dan Keuangan</a></li>
-                    <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=kabid&&kabid=10">Kabid Pembangunan lndustri Kreatif</a></li>
-                    <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=kabid&&kabid=11">Kabid Peningkatan Kemakmuran</a></li>
-                    <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=kabid&&kabid=12">Kabid Kependudukan &amp; Ketenagakerjaan</a></li>
-                    <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=kabid&&kabid=13">Kabid Pembangunan Berkelanjutan</a></li>
-                    <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=kabid&&kabid=14">Kabid Manajemen Pemerintahan &amp; 
-Pembangunan</a></li>
-                    <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=kabid&&kabid=15">Kabid Pembangunan Prasarana</a></li>
-                    <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=kabid&&kabid=16">Kabid Pembangunan Pertanian &amp; Perikanan</a></li>
-                    <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=kabid&&kabid=17">Kabid lndustri Maritim</a></li>
-                    <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=kabid&&kabid=18">Kabid Pembangunan &amp; Penegakan Hukum</a></li>
-                  </ul>
-                </li>
-                <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Perwakilan</a>
-                <ul class="dropdown-menu">
-                  <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=perwakilan&&perwakilan=dalam">Perwakilan Dalam Negeri</a></li>
-                  <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=perwakilan&&perwakilan=luar">Perwakilan Luar Negeri </a></li>
-                </ul>
-                </li>
-            </ul>
-            </li>
-            <li><a href="{$basedomain}organisasi/afiliasi">Afiliasi</a></li>
-          </ul>
-        </li>
-
-        <li class="dropdown {if $page.page=='news'}active{/if}">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">PROGRAM <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Seminar</a>
-              <ul class="dropdown-menu">
-                <li><a href="{$basedomain}demo/v2">Nasional</a></li>
-                <li><a href="{$basedomain}demo/v2">Internasional</a></li>
-              </ul>
-            </li>
-            <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Penerbitan</a>
-              <ul class="dropdown-menu">
-                <li><a href="{$basedomain}demo/v2">Buku</a></li>
-                <li><a href="{$basedomain}demo/v2">Buletin</a></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-
-        <li class="{if $page.page=='news'}active{/if}"><a href="{$basedomain}news/berita">BERITA</a></li>
-
-        <li class="{if $page.page=='news'}active{/if}"><a href="{$basedomain}direktori/kepakaran">KEPAKARAN</a></li>
-
-        <li class="dropdown {if $page.page=='direktori'}active{/if}">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">PUBLIKASI <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="{$basedomain}direktori/buah_pikir">Buah Pikir</a></li>
-            <li><a href="{$basedomain}demo/v2">Catatan Ilmiah</a></li>
-            <li><a href="{$basedomain}news/kliping_kegiatan">Kliping Kegiatan</a></li>
-            <li><a href="{$basedomain}news/agenda">Agenda</a></li>
-            <li><a href="{$basedomain}demo/v2">Karya Ilmiah</a></li>
-          </ul>
-        </li>
-
-        <li class="dropdown {if $page.page=='direktori'}active{/if}">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">ARSIP <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="{$basedomain}direktori/perundangan">Perundang-undangan</a></li>
-            <li><a href="{$basedomain}direktori/repository">Repositori</a></li>
-          </ul>
-        </li>
-
-        <li class="dropdown {if $page.page=='gallery'}active{/if}">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">GALERI <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="{$basedomain}gallery/foto">Foto</a></li>
-            <li><a href="{$basedomain}gallery/video">Video</a></li>
-          </ul>
-        </li>
-
-        {if $user} <!-- Later condition isLogin -->
-          {*}<li class="dropdown {if $page.page=='user'}active{/if}">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">USERNAME <span class="caret"></span></a>
+          <li class="dropdown {if $page.page=='organisasi'}active{/if}">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">API <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="{$basedomain}direktori/kepakaran">Setting</a></li>
-              <li><a href="{$basedomain}direktori/buah_pikir">Logout</a></li>
+              <li><a href="{$basedomain}organisasi/profil">Profil</a></li>
+              <!--<li><a href="{$basedomain}organisasi/struktur_organisasi">Struktur Organisasi</a></li>-->
+              <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Struktur Organisasi</a>
+                <ul class="dropdown-menu">
+                  <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=dewan_kehormatan">Dewan Kehormatan</a></li>
+                  <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=dewan_penasihat">Dewan Penasihat</a></li>
+                  <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Dewan Pengurus</a>
+                    <ul class="dropdown-menu">
+                      <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=dewan_pengurus_umum">Dewan Pengurus Umum</a></li>
+                      <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=kabid&&kabid=1">Kabid Organisasi/Hub. Kelembagaan</a></li>
+                      <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=kabid&&kabid=2">Kabid Tata Kelola</a></li>
+                      <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=kabid&&kabid=3">Kabid Pendidikan</a></li>
+                      <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=kabid&&kabid=4">Kabid Pendidikan Tinggi &amp; Ristek</a></li>
+                      <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=kabid&&kabid=5">Kabid ldeologi &amp; Budaya</a></li>
+                      <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=kabid&&kabid=6">Kabid Seni &amp; Budaya</a></li>
+                      <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=kabid&&kabid=7">Kabid Kesehatan</a></li>
+                      <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=kabid&&kabid=8">Kabid Pembangunan Komunikasi &amp; 
+  Teknologi lnformasi </a></li>
+                      <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=kabid&&kabid=9">Kabid Ekonomi dan Keuangan</a></li>
+                      <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=kabid&&kabid=10">Kabid Pembangunan lndustri Kreatif</a></li>
+                      <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=kabid&&kabid=11">Kabid Peningkatan Kemakmuran</a></li>
+                      <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=kabid&&kabid=12">Kabid Kependudukan &amp; Ketenagakerjaan</a></li>
+                      <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=kabid&&kabid=13">Kabid Pembangunan Berkelanjutan</a></li>
+                      <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=kabid&&kabid=14">Kabid Manajemen Pemerintahan &amp; 
+  Pembangunan</a></li>
+                      <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=kabid&&kabid=15">Kabid Pembangunan Prasarana</a></li>
+                      <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=kabid&&kabid=16">Kabid Pembangunan Pertanian &amp; Perikanan</a></li>
+                      <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=kabid&&kabid=17">Kabid lndustri Maritim</a></li>
+                      <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=kabid&&kabid=18">Kabid Pembangunan &amp; Penegakan Hukum</a></li>
+                    </ul>
+                  </li>
+                  <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Perwakilan</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=perwakilan&&perwakilan=dalam">Perwakilan Dalam Negeri</a></li>
+                    <li><a href="{$basedomain}organisasi/struktur_organisasi/?type=perwakilan&&perwakilan=luar">Perwakilan Luar Negeri </a></li>
+                  </ul>
+                  </li>
+              </ul>
+              </li>
+              <li><a href="{$basedomain}organisasi/afiliasi">Afiliasi</a></li>
             </ul>
-          </li>{/*}
+          </li>
 
-          <li class="{if $page.page=='user'}active{/if}"><a href="{$basedomain}logout.php">{$user.default.name}</a></li>
-        {else}
-          <li class="{if $page.page=='user'}active{/if}"><a href="{$basedomain}user/login">LOGIN</a></li>
-        {/if}
-      </ul>
-    </div><!--/.nav-collapse -->
+          <li class="dropdown {if $page.page=='news'}active{/if}">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">PROGRAM <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Seminar</a>
+                <ul class="dropdown-menu">
+                  <li><a href="{$basedomain}demo/v2">Nasional</a></li>
+                  <li><a href="{$basedomain}demo/v2">Internasional</a></li>
+                </ul>
+              </li>
+              <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Penerbitan</a>
+                <ul class="dropdown-menu">
+                  <li><a href="{$basedomain}demo/v2">Buku</a></li>
+                  <li><a href="{$basedomain}demo/v2">Buletin</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+
+          <li class="{if $page.page=='news'}active{/if}"><a href="{$basedomain}news/berita">BERITA</a></li>
+
+          <li class="{if $page.page=='news'}active{/if}"><a href="{$basedomain}direktori/kepakaran">KEPAKARAN</a></li>
+
+          <li class="dropdown {if $page.page=='direktori'}active{/if}">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">PUBLIKASI <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="{$basedomain}direktori/buah_pikir">Buah Pikir</a></li>
+              <li><a href="{$basedomain}demo/v2">Catatan Ilmiah</a></li>
+              <li><a href="{$basedomain}news/kliping_kegiatan">Kliping Kegiatan</a></li>
+              <li><a href="{$basedomain}news/agenda">Agenda</a></li>
+              <li><a href="{$basedomain}demo/v2">Karya Ilmiah</a></li>
+            </ul>
+          </li>
+
+          <li class="dropdown {if $page.page=='direktori'}active{/if}">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">ARSIP <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="{$basedomain}direktori/perundangan">Perundang-undangan</a></li>
+              <li><a href="{$basedomain}direktori/repository">Repositori</a></li>
+            </ul>
+          </li>
+
+          <li class="dropdown {if $page.page=='gallery'}active{/if}">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">GALERI <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="{$basedomain}gallery/foto">Foto</a></li>
+              <li><a href="{$basedomain}gallery/video">Video</a></li>
+            </ul>
+          </li>
+
+          {if $user} <!-- Later condition isLogin -->
+            {*}<li class="dropdown {if $page.page=='user'}active{/if}">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">USERNAME <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="{$basedomain}direktori/kepakaran">Setting</a></li>
+                <li><a href="{$basedomain}direktori/buah_pikir">Logout</a></li>
+              </ul>
+            </li>{/*}
+
+            <li class="{if $page.page=='user'}active{/if}"><a href="{$basedomain}logout.php">{$user.default.name}</a></li>
+          {else}
+            <li class="{if $page.page=='user'}active{/if}"><a href="{$basedomain}user/login">LOGIN</a></li>
+          {/if}
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
   </div>
 </div>

@@ -1,31 +1,33 @@
-<div id="api-footerTop">
-    <div class="container api-footerContainer">
-        <div class="row">
-            <div class="col-xs-4 text-center api-footerLink">
-                <a href="#">About API</a>
+<div class="container-fluid nopadding">
+    <div id="api-footerTop">
+        <div class="container api-footerContainer">
+            <div class="row">
+                <div class="col-xs-4 text-center api-footerLink">
+                    <a href="#">About API</a>
+                </div>
+                <div class="col-xs-4 text-center api-footerLink">
+                    <a href="#">Privacy</a>
+                </div>
+                <div class="col-xs-4 text-center api-footerLink">
+                    <a href="#">Site Map</a>
+                </div>
+                <!--<div class="col-md-2 text-center api-footerLink">
+                    <a href="#">Lorem Ipsum</a>
+                </div>
+                <div class="col-md-2 text-center api-footerLink">
+                    <a href="#">Lorem Ipsum</a>
+                </div>
+                <div class="col-md-2 text-center api-footerLink">
+                    <a href="#">Lorem Ipsum</a>
+                </div>-->
             </div>
-            <div class="col-xs-4 text-center api-footerLink">
-                <a href="#">Privacy</a>
-            </div>
-            <div class="col-xs-4 text-center api-footerLink">
-                <a href="#">Site Map</a>
-            </div>
-            <!--<div class="col-md-2 text-center api-footerLink">
-                <a href="#">Lorem Ipsum</a>
-            </div>
-            <div class="col-md-2 text-center api-footerLink">
-                <a href="#">Lorem Ipsum</a>
-            </div>
-            <div class="col-md-2 text-center api-footerLink">
-                <a href="#">Lorem Ipsum</a>
-            </div>-->
         </div>
     </div>
-</div>
-<div id="api-footerDown">
-    <div class="container api-footerContainer">
-        <div class="row text-center">
-            <a href="#">Copyright&copy; to Asosiasi Profesor Indonesia</a>
+    <div id="api-footerDown">
+        <div class="container api-footerContainer">
+            <div class="row text-center">
+                <a href="#">Copyright&copy; to Asosiasi Profesor Indonesia</a>
+            </div>
         </div>
     </div>
 </div>
@@ -69,7 +71,7 @@
         // var dateToday = "{$dateToday}";  
 
 
-        {literal}
+    {literal}
 
         function getUrlParameter(sParam)
         {
@@ -107,6 +109,13 @@
         });
 
     $(document).ready(function() {
+        //INITIATE HEIGHT
+        var window_height = $(window).height();
+        var banner_height = window_height * 60/100;
+        //alert(banner_height);
+        $('#carousel-home .carousel-inner .item').css('height',banner_height+'px');
+        $('#carousel-home .carousel-inner .item img').css('height','100%');
+
         //INITIATE SUBMENU
             $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
                 event.preventDefault(); 
