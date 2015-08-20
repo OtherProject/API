@@ -37,15 +37,7 @@ class mheadlines extends Database {
 							brief_bhs = '{$data['brief_bhs']}',
 							content_bhs = '{$data['content_bhs']}',
                             
-                            title_en = '{$data['title_en']}',
-							brief_en = '{$data['brief_en']}',
-							content_en = '{$data['content_en']}',
-                            
-                            title_uzbek = '{$data['title_uzbek']}',
-							brief_uzbek = '{$data['brief_uzbek']}',
-							content_uzbek = '{$data['content_uzbek']}',
-                            
-							image = '{$data['image']}',
+                            image = '{$data['image']}',
 							file = '{$data['image_url']}',
 							icon_image = '{$data['icon']}',
 							file_icon = '{$data['icon_url']}',

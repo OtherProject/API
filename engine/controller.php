@@ -16,17 +16,12 @@ class Controller extends Application{
 				$this->loadModel('contentHelper');
 				$GLOBALS['CODEKIR']['LOGS'] = new helper_model;	
 			}
-			
-		}
-		
-
+		}	
 	}
-	
 	
 	
 	function index()
 	{
-		
 		global $CONFIG, $LOCALE, $basedomain, $rootpath, $title, $DATA, $app_domain, $CODEKIR;
 		$filePath = APP_CONTROLLER.$this->page.$this->php_ext;
 		
@@ -48,6 +43,7 @@ class Controller extends Application{
 
 		if ($this->configkey=='default'){
 			$this->view->assign('dateToday',date('Y-m-d'));
+			$this->view->assign('banner_home',$this->getBannerHome());
 			$this->view->assign('agenda',$this->getAgenda());
 			$this->view->assign('kliping_index',$this->getKliping());
 		}
@@ -351,6 +347,14 @@ class Controller extends Application{
 	    } 
 	  } 
 	  return $result; 
+	}
+
+	function getBannerHome(){
+		$getHelper = new contentHelper;
+		$data = $getHelper->getBanner(0,5);
+		//pr($data);exit;
+		if (!empty($data)) {return $data;}
+		else return false;
 	}
 
 	function getAgenda()

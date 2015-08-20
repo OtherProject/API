@@ -3,18 +3,24 @@
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
+      {foreach $banner_home as $getBanner}
+      {if $getBanner@first}
+        <div class="item active">
+      {else}
+        <div class="item">
+      {/if}
+        <img src="{$basedomain}public_assets/banner/{$getBanner.image}" class="img-responsive" />
+      </div>
+    {/foreach}
+
+    {*}
       <div class="item active">
         <img src="{$basedomain}public_assets/banner/1.jpg" class="img-responsive" />
         <div class="carousel-caption">
           Asosiasi Profesor Indonesia
         </div>
       </div>
-      <div class="item">
-        <img src="{$basedomain}public_assets/banner/2.jpg" class="img-responsive" />
-        <div class="carousel-caption">
-          Asosiasi Profesor Indonesia
-        </div>
-      </div>
+    {/*}
     </div>
 
     <!-- Controls -->
