@@ -1,0 +1,51 @@
+<div class="container api-content">        
+    <div class="row">
+        <div class="col-md-3">
+
+          {if $page.function !="agenda"}
+          <div class="row">
+            <div class="col-md-12">
+              <div class="api-kliping-side_nonblock">
+                  <h4>Berita Terbaru</h4>
+                  {*}
+                  {if $kliping_index}
+                    {foreach $kliping_index as $val}
+                  <div class="kegiatan">
+                      <p class="date">{$val.changeDate}</p>
+                      <a href="{$basedomain}news/kliping_detail/?id={$val.id}">{$val.title}</a>
+                  </div>
+                    {/foreach}
+                  {/if}
+                  {/*}
+                  <div class="kegiatan">
+                      <p class="date">Jumat, 29 Agustus 2014</p>
+                      <a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</a>
+                  </div>
+                  <div class="kegiatan">
+                      <p class="date">Jumat, 29 Agustus 2014</p>
+                      <a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</a>
+                  </div>
+                  <div class="kegiatan">
+                      <p class="date">Jumat, 29 Agustus 2014</p>
+                      <a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</a>
+                  </div>
+                  
+                  <a href="{$basedomain}news/kliping_kegiatan" class="btn api-btn margin-t">Semua Berita</a>
+              </div>
+            </div>
+          </div>
+          {/if}
+
+          <!-- calendar - START -->
+          <div class="row">
+            <div class="col-md-12">
+              <div class="api-calendar">
+                <h4 class="title text-center">Agenda</h4>
+                <div class="calendar"></div>
+                <div class="endCalendar"></div>
+              </div>
+            </div>
+          </div>
+          <!-- calendar - END -->
+        
+        </div>
