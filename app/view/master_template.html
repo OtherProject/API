@@ -163,6 +163,39 @@
     <!-- FOOTER -->
     {include file="template/v2_2_1/footer_v2_2_1.html"}
 
+{elseif $page.page == 'demo' AND $page.function == 'v2_3'}
+
+    {include file="template/v2_3/meta_v2_3.html"}
+    <body>
+    <!-- RUNNING GLOBAL VAR -->
+    <script>
+        var basedomain = "{$basedomain}";
+    </script>
+    
+    <!-- HEADER DEFAULT -->
+    {include file="template/v2_3/header_v2_3.html"}
+    
+    <!-- BANNER -->
+    {include file="template/v2_3/banner_v2_3.html"}
+
+    <!-- MIDDLEBAR -->
+    {include file="template/v2_3/middlebar_v2_3.html"}
+
+    <!-- LEFTBAR -->
+    {include file="template/v2_3/leftbar_v2_3.html"}
+
+    <!-- CONTENT -->
+    {$content}
+
+    <!-- RIGHTBAR -->
+    {include file="template/v2_3/rightbar_v2_3.html"}
+
+    <!-- BOTTOMBAR -->
+    {include file="template/v2_3/bottombar_v2_3.html"}
+    
+    <!-- FOOTER -->
+    {include file="template/v2_3/footer_v2_3.html"}
+
 {else}
     {include file="template/meta.html"}
     <body>
