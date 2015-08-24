@@ -64,6 +64,39 @@
     <!-- FOOTER -->
     {include file="template/v2_1/footer_v2_1.html"}
 
+{elseif $page.page == 'demo' AND $page.function == 'v2_2'}
+
+    {include file="template/v2_2/meta_v2_2.html"}
+    <body>
+    <!-- RUNNING GLOBAL VAR -->
+    <script>
+        var basedomain = "{$basedomain}";
+    </script>
+    
+    <!-- HEADER DEFAULT -->
+    {include file="template/v2_2/header_v2_2.html"}
+    
+    <!-- BANNER -->
+    {include file="template/v2_2/banner_v2_2.html"}
+
+    <!-- MIDDLEBAR -->
+    {include file="template/v2_2/middlebar_v2_2.html"}
+
+    <!-- LEFTBAR -->
+    {include file="template/v2_2/leftbar_v2_2.html"}
+
+    <!-- CONTENT -->
+    {$content}
+
+    <!-- RIGHTBAR -->
+    {include file="template/v2_2/rightbar_v2_2.html"}
+
+    <!-- BOTTOMBAR -->
+    {include file="template/v2_2/bottombar_v2_2.html"}
+    
+    <!-- FOOTER -->
+    {include file="template/v2_2/footer_v2_2.html"}
+
 {else}
     {include file="template/meta.html"}
     <body>
