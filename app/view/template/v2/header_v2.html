@@ -29,6 +29,10 @@
       </div>
 
       <div class="col-xs-5">
+        {if !$user} <!-- Later condition isLogin -->
+        <a href="{$basedomain}user/login" class="api-login-btn">LOGIN</a>
+        {/if}
+
         <div class="api-media_social">
           <a class="facebookBtn smGlobalBtn" href="http://facebook.com/go.donasia" ></a>
           <a class="twitterBtn smGlobalBtn" href="http://twitter.com/go_donasia" ></a>
@@ -54,7 +58,7 @@
           <li class="{if $page.page=='home'}active{/if}"><a href="{$basedomain}">BERANDA</a></li>
 
           <li class="dropdown {if $page.page=='organisasi'}active{/if}">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">API <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">TENTANG API <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="{$basedomain}organisasi/profil">Profil</a></li>
               <!--<li><a href="{$basedomain}organisasi/struktur_organisasi">Struktur Organisasi</a></li>-->
@@ -117,8 +121,6 @@
             </ul>
           </li>
 
-          <li class="{if $page.page=='news'}active{/if}"><a href="{$basedomain}news/berita">BERITA</a></li>
-
           <li class="{if $page.page=='news'}active{/if}"><a href="{$basedomain}direktori/kepakaran">KEPAKARAN</a></li>
 
           <li class="dropdown {if $page.page=='direktori'}active{/if}">
@@ -127,8 +129,15 @@
               <li><a href="{$basedomain}direktori/buah_pikir">Buah Pikir</a></li>
               <li><a href="{$basedomain}demo/v2">Catatan Ilmiah</a></li>
               <li><a href="{$basedomain}news/kliping_kegiatan">Kliping Kegiatan</a></li>
-              <li><a href="{$basedomain}news/agenda">Agenda</a></li>
               <li><a href="{$basedomain}demo/v2">Karya Ilmiah</a></li>
+              <li><a href="{$basedomain}news/berita">Berita</a></li>
+              <li><a href="{$basedomain}news/agenda">Agenda</a></li>
+              <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Galeri</a>
+                <ul class="dropdown-menu">
+                  <li><a href="{$basedomain}gallery/foto">Foto</a></li>
+                  <li><a href="{$basedomain}gallery/video">Video</a></li>
+                </ul>
+                </li>
             </ul>
           </li>
 
@@ -140,27 +149,21 @@
             </ul>
           </li>
 
-          <li class="dropdown {if $page.page=='gallery'}active{/if}">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">GALERI <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="{$basedomain}gallery/foto">Foto</a></li>
-              <li><a href="{$basedomain}gallery/video">Video</a></li>
-            </ul>
-          </li>
-
+          {*}
           {if $user} <!-- Later condition isLogin -->
-            {*}<li class="dropdown {if $page.page=='user'}active{/if}">
+            <li class="dropdown {if $page.page=='user'}active{/if}">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">USERNAME <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="{$basedomain}direktori/kepakaran">Setting</a></li>
                 <li><a href="{$basedomain}direktori/buah_pikir">Logout</a></li>
               </ul>
-            </li>{/*}
+            </li>
 
             <li class="{if $page.page=='user'}active{/if}"><a href="{$basedomain}logout.php">{$user.default.name}</a></li>
           {else}
             <li class="{if $page.page=='user'}active{/if}"><a href="{$basedomain}user/login">LOGIN</a></li>
           {/if}
+          {/*}
         </ul>
       </div><!--/.nav-collapse -->
     </div>

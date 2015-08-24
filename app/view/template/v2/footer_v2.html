@@ -2,24 +2,12 @@
     <div id="api-footerTop">
         <div class="container api-footerContainer">
             <div class="row">
-                <div class="col-xs-4 text-center api-footerLink">
-                    <a href="#">About API</a>
+                <div class="col-xs-6 text-center api-footerLink">
+                    <a href="#">Tentang API</a>
                 </div>
-                <div class="col-xs-4 text-center api-footerLink">
-                    <a href="#">Privacy</a>
+                <div class="col-xs-6 text-center api-footerLink">
+                    <a href="#">Peta Situs</a>
                 </div>
-                <div class="col-xs-4 text-center api-footerLink">
-                    <a href="#">Site Map</a>
-                </div>
-                <!--<div class="col-md-2 text-center api-footerLink">
-                    <a href="#">Lorem Ipsum</a>
-                </div>
-                <div class="col-md-2 text-center api-footerLink">
-                    <a href="#">Lorem Ipsum</a>
-                </div>
-                <div class="col-md-2 text-center api-footerLink">
-                    <a href="#">Lorem Ipsum</a>
-                </div>-->
             </div>
         </div>
     </div>
@@ -110,11 +98,33 @@
 
     $(document).ready(function() {
         //INITIATE HEIGHT
-        var window_height = $(window).height();
-        var banner_height = window_height * 60/100;
-        //alert(banner_height);
-        $('#carousel-home .carousel-inner .item').css('height',banner_height+'px');
-        $('#carousel-home .carousel-inner .item img').css('height','100%');
+            var window_height = $(window).height();
+            var banner_height = window_height * 60/100;
+            //alert(banner_height);
+            $('#carousel-home .carousel-inner .item').css('height',banner_height+'px');
+            $('#carousel-home .carousel-inner .item img').css('height','100%');
+
+        //INITIATE MINI CAROUSEL
+            $('#miniCarousel').carousel({
+              interval: 10000
+            })
+            
+            $('.mini-carousel .item').each(function(){
+              var next = $(this).next();
+              if (!next.length) {
+                next = $(this).siblings(':first');
+              }
+              next.children(':first-child').clone().appendTo($(this));
+              
+              for (var i=0;i<2;i++) {
+                next=next.next();
+                if (!next.length) {
+                    next = $(this).siblings(':first');
+                }
+                
+                next.children(':first-child').clone().appendTo($(this));
+              }
+            });
 
         //INITIATE SUBMENU
             $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {

@@ -1,6 +1,6 @@
 {if $page.page == 'demo' AND $page.function == 'v2'}
 
-    {include file="template/meta_v2.html"}
+    {include file="template/v2/meta_v2.html"}
     <body>
     <!-- RUNNING GLOBAL VAR -->
     <script>
@@ -8,25 +8,28 @@
     </script>
     
     <!-- HEADER DEFAULT -->
-    {include file="template/header_v2.html"}
+    {include file="template/v2/header_v2.html"}
     
     <!-- BANNER -->
-    {include file="template/banner_v2.html"}
+    {include file="template/v2/banner_v2.html"}
 
-    <!-- BOTTOMBAR -->
-    {include file="template/bottombar_v2.html"}
+    <!-- MIDDLEBAR -->
+    {include file="template/v2/middlebar_v2.html"}
 
     <!-- LEFTBAR -->
-    {include file="template/leftbar_v2.html"}
+    {include file="template/v2/leftbar_v2.html"}
 
     <!-- CONTENT -->
     {$content}
 
     <!-- RIGHTBAR -->
-    {include file="template/rightbar_v2.html"}
+    {include file="template/v2/rightbar_v2.html"}
+
+    <!-- BOTTOMBAR -->
+    {include file="template/v2/bottombar_v2.html"}
     
     <!-- FOOTER -->
-    {include file="template/footer_v2.html"}
+    {include file="template/v2/footer_v2.html"}
 
 {else}
     {include file="template/meta.html"}
