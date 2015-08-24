@@ -27,6 +27,10 @@ class demo extends Controller {
 		return $this->loadView('demo/v2');
     }
 
+    function V2_1_1(){
+		return $this->loadView('demo/v2');
+    }
+
     function V2_2(){
 		return $this->loadView('demo/v2');
     }
