@@ -366,7 +366,7 @@ div.zabuto_calendar .table tr.calendar-month-header th span {
 .api-kliping-side .all:hover{
     border-radius: 0 0 5px 5px;
 }
-.api-kliping-side .kegiatan:hover a{color: #FFF;}
+.api-kliping-side .kegiatan:hover a{color: #111;}
 
 .api-kliping-side .kegiatan a{text-decoration: none;color: #282828;}
 
