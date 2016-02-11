@@ -90,6 +90,25 @@ class demo extends Controller {
     function V5_2(){
         return $this->loadView('demo/v3');
     }
+
+    function V6(){
+        return $this->loadView('demo/v3');
+    }
+    function V6_1_1(){
+        return $this->loadView('demo/v3');
+    }
+    function V6_1_2(){
+        return $this->loadView('demo/v3');
+    }  
+    function V6_1_3(){
+        return $this->loadView('demo/v3');
+    }  
+    function V6_1_4(){
+        return $this->loadView('demo/v3');
+    }
+    function V6_1_5(){
+        return $this->loadView('demo/v3');
+    }
 }
 
 ?>
