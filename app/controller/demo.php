@@ -58,6 +58,7 @@ class demo extends Controller {
     function V3(){
 		return $this->loadView('demo/v3');
     }
+
     function V4(){
 		return $this->loadView('demo/v3');
     }
@@ -78,6 +79,16 @@ class demo extends Controller {
     }
      function V4_1_5(){
 		return $this->loadView('demo/v3');
+    }
+
+    function V5(){
+		return $this->loadView('demo/v3');
+    }
+    function V5_1(){
+		return $this->loadView('demo/v3');
+    }
+    function V5_2(){
+        return $this->loadView('demo/v3');
     }
 }
 

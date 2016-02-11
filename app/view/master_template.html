@@ -395,7 +395,71 @@
     {include file="template/v4_1_2/middlebar_v4_1_2.html"}
 
     <!-- FOOTER -->
-    {include file="template/v4_1_2/footer_v4_1_2.html"}  
+    {include file="template/v4_1_2/footer_v4_1_2.html"} 
+
+{elseif $page.page == 'demo' AND $page.function == 'v5'}
+
+    {include file="template/v5/meta_v5.html"}
+    <body>
+    <!-- RUNNING GLOBAL VAR -->
+    <script>
+        var basedomain = "{$basedomain}";
+    </script>
+    
+    <!-- HEADER DEFAULT -->
+    {include file="template/v5/header_v5.html"}
+    
+    <!-- BANNER -->
+    {include file="template/v5/banner_v5.html"}
+
+    <!-- MIDDLEBAR -->
+    {include file="template/v5/middlebar_v5.html"}
+
+    <!-- FOOTER -->
+    {include file="template/v5/footer_v5.html"}
+
+{elseif $page.page == 'demo' AND $page.function == 'v5_1'}
+
+    {include file="template/v5_1/meta_v5_1.html"}
+    <body>
+    <!-- RUNNING GLOBAL VAR -->
+    <script>
+        var basedomain = "{$basedomain}";
+    </script>
+    
+    <!-- HEADER DEFAULT -->
+    {include file="template/v5_1/header_v5_1.html"}
+    
+    <!-- BANNER -->
+    {include file="template/v5_1/banner_v5_1.html"}
+
+    <!-- MIDDLEBAR -->
+    {include file="template/v5_1/middlebar_v5_1.html"}
+
+    <!-- FOOTER -->
+    {include file="template/v5_1/footer_v5_1.html"}
+
+{elseif $page.page == 'demo' AND $page.function == 'v5_2'}
+
+    {include file="template/v5_2/meta_v5_2.html"}
+    <body>
+    <!-- RUNNING GLOBAL VAR -->
+    <script>
+        var basedomain = "{$basedomain}";
+    </script>
+    
+    <!-- HEADER DEFAULT -->
+    {include file="template/v5_2/header_v5_2.html"}
+    
+    <!-- BANNER -->
+    {include file="template/v5_2/banner_v5_2.html"}
+
+    <!-- MIDDLEBAR -->
+    {include file="template/v5_2/middlebar_v5_2.html"}
+
+    <!-- FOOTER -->
+    {include file="template/v5_2/footer_v5_2.html"}
+
 {else}
     {include file="template/meta.html"}
     <body>

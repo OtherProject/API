@@ -1,0 +1,223 @@
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    
+    <!-- Jquery JS -->
+    <script type="text/javascript" src="{$basedomain}assets/js/jquery-2.1.0.min.js"></script>
+    
+    <!-- Helper -->
+    <script src="{$basedomain}assets/js/helper.js"></script>
+    <script src="{$basedomain}assets/js/pace.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="{$basedomain}plugin/bootstrap-3.3.2/js/bootstrap.min.js"></script> 
+
+    <!-- Calendar -->
+    <script src="{$basedomain}plugin/calendar/zabuto_calendar.min.js"></script>
+    
+    <!-- Bootstrap Image Gallery JS -->
+    <script src="{$basedomain}plugin/bootstrap-image-gallery-3.1.1/js/jquery.blueimp-gallery.min.js"></script>
+    <script src="{$basedomain}plugin/bootstrap-image-gallery-3.1.1/js/bootstrap-image-gallery.min.js"></script>
+    
+    <!-- Datatables JS -->
+    <script src="{$basedomain}plugin/datatable/js/jquery.dataTables.min.js"></script>
+    <script src="{$basedomain}plugin/datatable/js/dataTables.bootstrap.js"></script>
+    
+    <!-- Datepicker JS -->
+    <script src="{$basedomain}plugin/datepicker/bootstrap-datepicker.js"></script>
+ 
+    <script type="text/javascript" src="{$basedomain}assets/select2/select2.js"></script>
+
+    <script type="text/javascript">
+
+        var agenda = {$agenda};
+        var basedomain = "{$basedomain}";
+        var dateToday = "{$dateToday}";
+        var tech = getUrlParameter('tgl');
+        // var dateToday = "{$dateToday}";  
+
+
+    {literal}
+
+        function getUrlParameter(sParam)
+        {
+            var sPageURL = window.location.search.substring(1);
+            var sURLVariables = sPageURL.split('&');
+            for (var i = 0; i < sURLVariables.length; i++) 
+            {
+                var sParameterName = sURLVariables[i].split('=');
+                if (sParameterName[0] == sParam) 
+                {
+                    return sParameterName[1];
+                }
+            }
+        } 
+
+        
+        if(jQuery.isEmptyObject(tech)){
+            var dataYear = new Date().getFullYear();
+            var dataMonth = new Date().getMonth()+1;
+            if(dataMonth<10) {
+                dataMonth='0'+dataMonth
+            }
+            //console.log(dataYear);
+            //console.log(dataMonth);
+        }
+        else{
+            var dataYear = tech.substring(0, 4);
+            var dataMonth = tech.substring(5, 7);
+            //console.log(dataYear);
+            //console.log(dataMonth);
+        }
+
+        $(function() {
+            $('#birthday').datepicker ();
+        });
+
+    $(document).ready(function() {
+        //INITIATE HEIGHT
+            var window_height = $(window).height();
+            var banner_height = window_height * 50/100;
+            //alert(banner_height);
+            $('#carousel-home .carousel-inner .item').css('height',banner_height+'px');
+            $('#carousel-home .carousel-inner .item img').css('height','100%');
+
+        //INITIATE MINI CAROUSEL
+            $('#miniCarousel').carousel({
+              interval: 10000
+            })
+            
+            $('.mini-carousel .item').each(function(){
+              var next = $(this).next();
+              if (!next.length) {
+                next = $(this).siblings(':first');
+              }
+              next.children(':first-child').clone().appendTo($(this));
+              
+              for (var i=0;i<2;i++) {
+                next=next.next();
+                if (!next.length) {
+                    next = $(this).siblings(':first');
+                }
+                
+                next.children(':first-child').clone().appendTo($(this));
+              }
+            });
+
+        //INITIATE SUBMENU
+            $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
+                event.preventDefault(); 
+                event.stopPropagation(); 
+                $(this).parent().siblings().removeClass('open');
+                $(this).parent().toggleClass('open');
+            });
+            
+        // INITIATE GALLERY PLUGIN
+            $('#blueimp-gallery').toggleClass('blueimp-gallery-controls', true);
+
+        // INITIATE DATATABLE
+            $('.table').dataTable(); 
+            
+        // INITIATE CALENDAR
+            function myDateFunction(id) {
+                var date = $("#" + id).data("date");
+                var hasEvent = $("#" + id).data("hasEvent");
+                window.location.href = basedomain+"news/agenda/?tgl="+date;
+            }
+
+            $(".calendar").zabuto_calendar({
+                year: dataYear,
+                month: dataMonth,
+                data: agenda,
+                today: true,
+                legend: false,
+                action: function() { myDateFunction(this.id); }
+            });  
+        });
+
+        {/literal}
+    </script>
+
+    <!-- script ajax paging-->
+        {include file="template/ajax.html"}
+    <!-- script ajax paging-->
+
+    <script type="text/javascript">
+
+        {literal}
+        $(document).on('click','#login-btn', function(){
+
+            var user = $('#login-username').val();
+            var pass = $('#login-password').val();
+
+            $.post(basedomain+'user/local',{token:true, user:user, pass:pass}, function(data){
+
+                var html = "";
+
+                if (data.status==false){
+                    $('.error').html('Invalid username or password');
+                }else{
+                    window.location.href=basedomain;
+                } 
+            }, "JSON")
+        })
+
+        /* validasi register #1 */
+
+        $(document).on('blur','#register-email', function(){
+
+            //Validate Email
+            var email = $(this).val();
+            var validate = IsEmail(email);
+            if (validate==false){
+                $('input#register-email').css('border','1px dotted red');
+                $('#email-error').html('Email tidak valid');
+                $('#email-error').css('color','red');
+
+            }else{
+
+                $.post(basedomain+'user/ajax',{token:true, email:email}, function(data){
+
+                    var html = "";
+
+                    if (data.status==true){
+                        $('input#register-email').css('border','1px dotted red')
+                        $('#email-error').html('Email sudah terdaftar');
+                        $('#email-error').css('color','red');
+
+                    }else{
+                        $('#email-error').html('');
+                        $('#email-error').css('color','white');
+                    }
+                }, "JSON")
+
+                
+            }
+            console.log(validate);
+            
+        })
+
+        //Validate Password
+        function validatePassword()
+        {
+            var pass1 = $('#register-password').val();
+            var pass2 = $('#register-rePassword').val();
+
+            var validate = compare(pass1, pass2);
+            log('data ='+validate);
+
+            if (validate==false){
+                $('input#register-rePassword').css('border','1px dotted red')
+                $('#password-error').html('Password tidak sama');
+                $('#password-error').css('color','red');
+                return false;
+
+            }
+        }
+
+        {/literal}
+    </script>
+</body>
+</html>
+
