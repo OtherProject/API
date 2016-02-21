@@ -15,7 +15,7 @@ body{
 }
 
 body p,a{
-    font-family: 'Lato',Helvetica,Sans-Serif;
+    font-family: 'Open Sans',Helvetica,Sans-Serif;
     font-size: 16px;
     line-height: 150%;
 }
@@ -56,15 +56,15 @@ body p,a{
     color:#FFFFFF;
     border-radius: 5px;
 }
-.api-btn{
-    background-color: #96B0FA;
+.api-btn {
+    background-color: #209CDA;
     color: #FFF;
 }
 
 .api-btn:hover{
     background-color: #FFF;
-    color: #96B0FA;
-    border: 1px solid #96B0FA;
+    color: #209CDA;
+    border: 1px solid #209CDA;
     -webkit-transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
     -o-transition: all .2s ease-in-out;
@@ -454,12 +454,12 @@ div.zabuto_calendar .table tr.calendar-month-header th span {
     width: 100%;
 }
 
-.kepakaran h4.title{
-    background-color: #D0DCFF;
-    border-top: 7px solid #4663B8;
+.kepakaran h4.title {
+    background-color: #85D6FF;
+    border-top: 7px solid #393693;
     border-bottom: 1px solid #FFF;
     padding: 10px;
-    margin-bottom:0;
+    margin-bottom: 0;
 }
 
 .kepakaran h3{margin-top:0; text-align: left;}
@@ -471,9 +471,9 @@ div.zabuto_calendar .table tr.calendar-month-header th span {
     border: none;
 }
 
-#menu_kepakaran a.list-group-item{
+#menu_kepakaran a.list-group-item {
     border-bottom: 1px solid #FFF;
-    background-color: #D0DCFF;
+    background-color: #85D6FF;
 }
 
 #menu_kepakaran .panel{
@@ -503,8 +503,8 @@ div.zabuto_calendar .table tr.calendar-month-header th span {
     border-bottom: 1px solid #FFF;
 }
 
-.api-search{
-    border: 7px solid #EDF2FF;
+.api-search {
+    border: 7px solid #85D6FF;
     margin: 10px 0;
     padding: 10px;
     padding-bottom: 35px;
