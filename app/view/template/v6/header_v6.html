@@ -103,13 +103,13 @@
             </ul>
           </li>
 
-          <li class="dropdown {if $page.page=='news'}active{/if}">
+          <li class="dropdown {if $page.page==''}active{/if}">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">PROGRAM <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Seminar</a>
                 <ul class="dropdown-menu">
-                  <li><a href="{$basedomain}demo/v2">Nasional</a></li>
-                  <li><a href="{$basedomain}demo/v2">Internasional</a></li>
+                  <li><a href="{$basedomain}">Nasional</a></li>
+                  <li><a href="{$basedomain}">Internasional</a></li>
                 </ul>
               </li>
               <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Penerbitan</a>
@@ -121,15 +121,15 @@
             </ul>
           </li>
 
-          <li class="{if $page.page=='news'}active{/if}"><a href="{$basedomain}direktori/kepakaran">KEPAKARAN</a></li>
+          <li class="{if $page.function=='kepakaran'}active{/if}"><a href="{$basedomain}direktori/kepakaran">KEPAKARAN</a></li>
 
-          <li class="dropdown {if $page.page=='direktori'}active{/if}">
+          <li class="dropdown {if $page.function=='buah_pikir' OR $page.function=='kliping_kegiatan' OR $page.function=='berita' OR $page.function=='agenda' OR $page.function=='foto' OR $page.function=='video'}active{/if}">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">PUBLIKASI <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="{$basedomain}direktori/buah_pikir">Buah Pikir</a></li>
-              <li><a href="{$basedomain}demo/v2">Catatan Ilmiah</a></li>
+              <li><a href="{$basedomain}">Catatan Ilmiah</a></li>
               <li><a href="{$basedomain}news/kliping_kegiatan">Kliping Kegiatan</a></li>
-              <li><a href="{$basedomain}demo/v2">Karya Ilmiah</a></li>
+              <li><a href="{$basedomain}">Karya Ilmiah</a></li>
               <li><a href="{$basedomain}news/berita">Berita</a></li>
               <li><a href="{$basedomain}news/agenda">Agenda</a></li>
               <li class="menu-item dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Galeri</a>
@@ -141,7 +141,7 @@
             </ul>
           </li>
 
-          <li class="dropdown {if $page.page=='direktori'}active{/if}">
+          <li class="dropdown {if $page.function=='perundangan' OR $page.function=='repository'}active{/if}">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">ARSIP <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="{$basedomain}direktori/perundangan">Perundang-undangan</a></li>

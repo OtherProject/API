@@ -19,6 +19,8 @@ class demo extends Controller {
         //$this->contentHelper = $this->loadModel('contentHelper');
 	}
 	
+    exit;
+
 	function V2(){
 		return $this->loadView('demo/v2');
     }

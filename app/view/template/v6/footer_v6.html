@@ -218,6 +218,17 @@
 
         {/literal}
     </script>
+
+    {if $page.page!='home' }    
+    <script type="text/javascript">
+        $(document).ready(function() {
+             $('html, body').animate({
+                    scrollTop: $(".api-content").offset().top
+                }, 1000);
+        });
+
+    </script>
+    {/if}
 </body>
 </html>
 
