@@ -2,9 +2,15 @@
   <div id="carousel-home" class="carousel slide" data-ride="carousel">
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
-      <div class="item active">
-        <img src="{$basedomain}tmp/sloganAPI-2b.jpg" class="img-responsive" />
+      {foreach $banner_home as $getBanner}
+      {if $getBanner@first}
+        <div class="item active">
+      {else}
+        <div class="item">
+      {/if}
+        <img src="{$basedomain}public_assets/banner/{$getBanner.image}" style="width: 100%;">
       </div>
+    {/foreach}
     </div>
 
     <!-- Controls -->

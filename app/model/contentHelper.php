@@ -105,7 +105,7 @@ class contentHelper extends Database {
     function getBanner($start=0, $limit=5)
     {
         
-        $sql = "SELECT * FROM {$this->prefix}_banner ORDER BY posted_date DESC LIMIT {$start},{$limit}";
+        $sql = "SELECT * FROM {$this->prefix}_banner WHERE n_stats = '1' ORDER BY posted_date DESC LIMIT {$start},{$limit}";
         // pr($sql);
         $res = $this->fetch($sql,1);
         if ($res){
