@@ -31,8 +31,10 @@
         <!-- HEADER DEFAULT -->
         {include file="template/v6/header_v6.html"}
         
+        {if $page.page != 'user' AND $page.function != 'login'}    
         <!-- BANNER -->
             {include file="template/v6/banner_v6.html"}
+        {/if}
         
         {if $page.page=='home' }    
         <!-- MIDDLEBAR -->

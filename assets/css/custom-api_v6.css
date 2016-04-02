@@ -542,7 +542,7 @@ div.zabuto_calendar .table tr.calendar-month-header th span {
 #api-loginContainer, #api-registerContainer{
     position: relative;
     width: 90%;
-    margin: 0 auto;
+    margin: 20px auto;
 }
 #api-loginContainer .row > div, #api-registerContainer .row > div {margin-bottom: 1em;}
 #api-loginContainer .row > div:last-child, #api-registerContainer .row > div:last-child {margin-bottom: 0;}
